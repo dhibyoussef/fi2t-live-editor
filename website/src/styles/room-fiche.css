@@ -1,0 +1,314 @@
+/* Fiche hébergement — extends room-landing layout (/chambres/:id/fiche) */
+
+/* Fiche hero — 2 equal columns: info left, gallery right */
+.room-fiche-hero.room-landing-hero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: clamp(520px, 72vh, 800px);
+}
+
+.room-fiche-hero .room-landing-hero__intro {
+  background: var(--color-white, #ffffff);
+  color: var(--color-navy, #002b45);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.room-fiche-hero__media {
+  display: flex;
+  flex-direction: column;
+  background: #1a1a1a;
+  min-height: 0;
+  min-width: 0;
+}
+
+.room-fiche-hero__media .room-fiche-gallery {
+  flex: 1;
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.room-fiche-hero__media .room-fiche-gallery__main {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.room-fiche__eyebrow {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--fw-medium, 500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche__eyebrow a {
+  color: var(--color-navy, #002b45);
+  text-decoration: none;
+}
+
+.room-fiche__eyebrow a:hover {
+  color: var(--color-gold);
+  text-decoration: underline;
+}
+
+.room-fiche__name {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.15;
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche__surface-block {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.room-fiche__surface {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: var(--fw-medium, 500);
+  color: var(--color-maroon, #40222f);
+}
+
+.room-fiche__divider {
+  margin: 10px 0 0;
+  border: none;
+  border-top: 1px solid var(--color-maroon, #40222f);
+  width: 100%;
+}
+
+.room-fiche-hero .room-fiche__desc,
+.room-fiche-hero .room-landing-hero__desc {
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche-hero .room-landing-hero__amenities li {
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche-hero .room-landing-hero__amenities li i,
+.room-fiche-hero .room-landing-hero__amenities li i::before {
+  color: var(--color-gold, #c6a14a);
+}
+
+.room-fiche-hero .room-landing-hero__amenities li img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(72%) sepia(28%) saturate(638%)
+    hue-rotate(6deg) brightness(91%) contrast(86%);
+}
+
+.room-fiche-gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.room-fiche-gallery__main {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 200px;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.room-fiche-gallery__hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.room-fiche-gallery__nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.room-fiche-gallery__nav button {
+  pointer-events: auto;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--color-gold);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.room-fiche-gallery__nav button:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: scale(1.05);
+}
+
+.room-fiche-gallery__thumbs {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px;
+  background: var(--color-white, #fff);
+  border-top: 1px solid rgba(0, 43, 69, 0.08);
+}
+
+.room-fiche-gallery__thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 2px solid transparent;
+  background: #e8e4de;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.room-fiche-gallery__thumb.active,
+.room-fiche-gallery__thumb:hover {
+  opacity: 1;
+  border-color: var(--color-gold);
+}
+
+.room-fiche-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gallery inside landing hero media column — rules merged above */
+
+/* Pick section — white + blue text (fiche variant) */
+.room-fiche-pick {
+  background-color: var(--color-white);
+  background-image: none;
+  padding: clamp(32px, 4vw, 48px) 0;
+}
+
+.room-fiche-pick .bookingbar__label,
+.room-fiche-pick .bookingbar__toggle-label {
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche-pick .bookingbar__input {
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche-pick .room-landing-pick__head {
+  margin-bottom: 0;
+}
+
+/* Autres chambres — ivory + calque */
+
+.room-fiche-others{
+  position: relative;
+  background-color: var(--Ivory, rgba(244, 239, 232, 1));
+  overflow: hidden;
+  padding: clamp(56px, 7vw, 90px) 0 clamp(48px, 6vw, 70px);
+}
+
+.room-fiche-others::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/imgs/Calque_1 (2).png");
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center;
+
+  opacity: 0.15; /* change this */
+  z-index: 0;
+}
+
+.room-fiche-others> * {
+  position: relative;
+  z-index: 1;
+}
+
+.room-fiche-others__head {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto clamp(40px, 5vw, 56px);
+}
+
+.room-fiche-others__title {
+  margin: 0 0 24px;
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: var(--fw-semibold, 600);
+  text-transform: uppercase;
+  color: var(--color-navy, #002b45);
+  line-height: 1.2;
+}
+
+.room-fiche-others__desc {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-navy, #002b45);
+  white-space: pre-line;
+}
+
+.room-fiche-others__carousel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Same card as landing — Numidian bg + navy text */
+.room-fiche-others .featured-room-card {
+  background: var(--Numidian, rgba(216, 195, 165, 1));
+}
+
+.room-fiche-others .featured-room-card__title {
+  color: var(--color-navy, #002b45);
+}
+
+.room-fiche-others .featured-room-card__desc {
+  color: var(--color-navy, #002b45);
+  opacity: 0.85;
+}
+
+@media (max-width: 1100px) {
+  .room-fiche-hero.room-landing-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .room-fiche-hero__media {
+    order: -1;
+    min-height: clamp(320px, 55vw, 420px);
+  }
+
+  .room-fiche-hero__media .room-fiche-gallery__main {
+    min-height: clamp(280px, 50vw, 380px);
+  }
+}
+
+@media (max-width: 768px) {
+  .room-fiche-others__carousel {
+    gap: 12px;
+  }
+}

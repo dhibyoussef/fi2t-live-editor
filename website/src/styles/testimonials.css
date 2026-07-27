@@ -1,0 +1,502 @@
+/* Avis & Réputation — same bg as Événements, 2 reviews, vertical scroll per review */
+
+/* Figma: review 1170×268, circle @102, avatar @204, text @409×667×139 */
+
+.testimonials {
+  --figma-w: 1170;
+  --figma-slot-h: 268;
+  --figma-circle-x: 102;
+  --figma-avatar-x: 204;
+  --figma-content-x: 409;
+  --figma-circle-w: 135;
+  --figma-circle-h: 136;
+  --figma-avatar: 135;
+  --figma-content-w: 667;
+  --figma-content-h: 139;
+
+  --review-slot-h: clamp(210px, 22.906vw, 268px);
+  --review-slide-ms: 800ms;
+  --review-bg-featured: #0a0e14;
+  --review-border: rgba(198, 161, 74, 0.45);
+  --review-gold-light: #f5dc96;
+  --review-sub: #b5ae98;
+  --review-body: #e5e0d5;
+
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Same background as .events__main */
+.testimonials__main {
+  min-height: 1079px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #002b45;
+  overflow: hidden;
+  padding: clamp(56px, 7vw, 80px) clamp(20px, 4vw, 40px) clamp(56px, 7vw, 80px);
+}
+
+.testimonials__main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+  linear-gradient(rgba(0, 43, 69, 0.8), rgba(0, 43, 69, 0.4)),
+      url('/imgs/Mode_Isolation.png') center top / 100% repeat;
+      opacity: 0.1;
+    
+}
+
+.testimonials__main > * {
+  position: relative;
+}
+
+.testimonials--maroon .testimonials__main {
+  background-color: var(--color-maroon, #40222f);
+  background-image:
+    linear-gradient(rgba(64, 34, 47, 0.92), rgba(64, 34, 47, 0.92)),
+    url('/imgs/Mode_Isolation.png');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.testimonials__intro {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(40px, 5vw, 56px);
+  flex-shrink: 0;
+}
+
+.testimonials__title {
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin: 0 0 20px;
+}
+
+.testimonials__sub {
+  font-family: var(--font-primary);
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: var(--fw-medium);
+  line-height: 1.7;
+  color: rgba(244, 239, 232, 0.88);
+  margin: 0 auto;
+  max-width: 680px;
+  white-space: pre-line;
+}
+
+/* ── Display block: one shared calque pair + scrolling cards ─ */
+.testimonials__stage {
+  position: relative;
+  max-width: min(1170px, 100%);
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.testimonials__display {
+  position: relative;
+  height: calc(var(--review-slot-h) * 2 + clamp(14px, 2vw, 22px) + 52px);
+  padding-bottom: 52px;
+  box-sizing: border-box;
+}
+
+/* Fixed calques — wrap both visible comments as one unit */
+.testimonials__calques {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.testimonials__calque {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(var(--review-slot-h) * 2);
+  border: 1px solid var(--color-gold);
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* c2 exterior — wider, sits lower */
+.testimonials__calque--outer {
+  top: clamp(10px, 1.5vw, 16px);
+  width: 100%;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+/* c1 interior — narrower, sits higher */
+.testimonials__calque--inner {
+  top: 58px;
+  width: calc(100% * 1143 / 1186);
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.testimonials__viewport {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1170px, 100%);
+  height: calc(var(--review-slot-h) * 2);
+  overflow: hidden;
+  z-index: 3;
+}
+
+.testimonials__track {
+  transition: transform var(--review-slide-ms) cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.testimonials__track--instant {
+  transition: none !important;
+}
+
+.testimonials__slot {
+  height: var(--review-slot-h);
+  box-sizing: border-box;
+}
+
+/* Manual nav — single down arrow, no circle */
+.testimonials__nav {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+}
+
+.testimonials__nav-btn {
+  border: none;
+  margin-top: 0;
+  background: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.testimonials__nav-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.testimonials__nav-btn:hover {
+  opacity: 1;
+}
+
+.testimonials__nav-btn:active {
+  transform: translateY(2px);
+}
+
+/* ── Review cards ────────────────────────────────────────── */
+.review-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.review-card__inner {
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color var(--review-slide-ms) ease;
+}
+
+/* Single review — 1170 × 268 (Figma) */
+.review-card__layout {
+  position: relative;
+  width: 100%;
+  max-width: 1170px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* Black circle — 135 × 136 @ left 102 */
+.review-card__quote-circle {
+  position: absolute;
+  left: calc(var(--figma-circle-x) / var(--figma-w) * 100%);
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(var(--figma-circle-w) / var(--figma-w) * 100%);
+  aspect-ratio: 135 / 136;
+  border-radius: 50%;
+  background: #0a0e14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.review-card__quote-circle img {
+  width: 32%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Avatar — 135 × 135 @ left 204, overlaps circle */
+.review-card__avatar {
+  position: absolute;
+  left: calc(var(--figma-avatar-x) / var(--figma-w) * 100%);
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(var(--figma-avatar) / var(--figma-w) * 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-white);
+  z-index: 2;
+}
+
+/* Text + source — 667 × 139 @ left 409 */
+.review-card__content {
+  position: absolute;
+  left: calc(var(--figma-content-x) / var(--figma-w) * 100%);
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(var(--figma-content-w) / var(--figma-w) * 100%);
+  height: calc(var(--figma-content-h) / var(--figma-slot-h) * 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.review-card__content-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.review-card__meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.review-card__name {
+  font-family: var(--font-primary);
+  font-size: clamp(15px, 1.8vw, 17px);
+  font-weight: var(--fw-semibold);
+  color: var(--color-white);
+  margin: 0 0 3px;
+}
+
+.review-card__origin {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: var(--fw-medium);
+  color: var(--review-sub);
+  margin: 0;
+}
+
+.review-card__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--review-gold-light);
+  font-size: clamp(13px, 1.5vw, 15px);
+  flex-shrink: 0;
+}
+
+.review-card__stars--sm {
+  font-size: 9px;
+  gap: 2px;
+}
+
+.review-card__text {
+  font-family: var(--font-primary);
+  font-size: clamp(12px, 1.2vw, 14px);
+  line-height: 1.55;
+  color: var(--review-body);
+  margin: 0;
+  flex: 1;
+  min-height: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.review-card__source {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.review-card--featured .review-card__inner {
+  background: var(--review-bg-featured);
+}
+
+.review-card--secondary .review-card__inner {
+  background: transparent;
+}
+
+.review-card__platform-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.review-card__platform-icon .fa-google { color: #4285f4; }
+.review-card__platform-icon .fa-tripadvisor { color: #00af87; }
+
+.review-card__source-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.review-card__source-label {
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  color: var(--review-gold-light);
+}
+
+
+@media (max-width: 1024px) {
+  .testimonials__main {
+    min-height: auto;
+    padding: clamp(40px, 6vw, 56px) clamp(16px, 3vw, 24px);
+  }
+
+  .testimonials__calque--inner {
+    top: clamp(32px, 5vw, 48px);
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonials {
+    --review-slot-h: clamp(200px, 52vw, 260px);
+  }
+
+  .testimonials__main {
+    padding: 36px 12px 40px;
+  }
+
+  .testimonials__intro {
+    margin-bottom: 28px;
+  }
+
+  .testimonials__display {
+    height: auto;
+    min-height: calc(var(--review-slot-h) * 2 + 52px);
+    padding-bottom: 44px;
+  }
+
+  .testimonials__calques {
+    position: absolute;
+    inset: 0;
+    bottom: 44px;
+  }
+
+  .testimonials__calque--outer {
+    top: 8px;
+    opacity: 0.35;
+  }
+
+  .testimonials__calque--inner {
+    top: clamp(24px, 6vw, 36px);
+    width: calc(100% - 16px);
+    opacity: 0.7;
+  }
+
+  .testimonials__viewport {
+    position: relative;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: calc(var(--review-slot-h) * 2);
+  }
+
+  .review-card__layout {
+    position: relative;
+    display: block;
+    padding: 16px 12px 14px 88px;
+    min-height: calc(var(--review-slot-h) - 8px);
+    box-sizing: border-box;
+  }
+
+  .review-card__quote-circle {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+  }
+
+  .review-card__avatar {
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-width: 3px;
+  }
+
+  .review-card__content {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .review-card__text {
+    -webkit-line-clamp: 4;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .review-card__name {
+    font-size: 14px;
+  }
+
+  .review-card__origin {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials__track {
+    transition: none !important;
+  }
+
+  .review-card__inner {
+    transition: none;
+  }
+}

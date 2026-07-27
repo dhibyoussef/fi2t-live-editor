@@ -1,0 +1,199 @@
+/* Golden Carthage — Design tokens from Figma 1kc1RqFUu3ie84abF7D2J0 */
+
+:root {
+  --color-maroon: #40222F;
+  --color-navy: #002B45;
+  --color-gold: #C6A14A;
+  --color-cream: #F4EFE8;
+  --color-beige: #D8C3A5;
+  --color-white: #FFFFFF;
+  --color-dark: #111111;
+  --Ivory: rgba(244, 239, 232, 1);
+  --Numidian: rgba(216, 195, 165, 1);
+
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+  --font-ui: 'Inter', sans-serif;
+  --font-nav: 'CS Boris Demo', 'Cormorant Garamond', 'Times New Roman', serif;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --container: 1170px;
+  --section-py: 90px;
+  --transition: 0.3s ease;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  color: var(--color-cream);
+  background-color: var(--color-maroon);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+html[dir="rtl"] body { direction: rtl; text-align: right; }
+
+a { text-decoration: none; color: inherit; transition: color var(--transition); }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: var(--font-primary); }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section { padding: var(--section-py) 0; }
+.section--navy { background: var(--color-navy); }
+.section--maroon { background: var(--color-maroon); }
+
+/* Gold accent bar before labels */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 48px;
+  height: 2px;
+  background: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.eyebrow span {
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.section-title {
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.section-title--gold { color: var(--color-gold); }
+.section-title--white { color: var(--color-white); }
+.section-title--cream { color: var(--color-cream); }
+
+.section-sub {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  text-align: center;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--color-cream);
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--color-gold);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  transition: background var(--transition), transform var(--duration-fast, 0.25s) var(--ease-out), box-shadow var(--transition);
+}
+
+.btn-gold:hover {
+  background: #b8923f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 161, 74, 0.35);
+}
+
+.btn-gold i { transition: transform var(--transition); }
+.btn-gold:hover i { transform: translateX(4px); }
+
+.btn-gold-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  background: transparent;
+  text-transform: uppercase;
+  transition: background var(--transition), color var(--transition), transform 0.25s var(--ease-out);
+}
+
+.btn-gold-outline:hover {
+  background: var(--color-gold);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+/* Uppercase all call-to-action / action buttons site-wide */
+.navbar__cta,
+.hero__cta,
+.about-ambition__btn,
+.gallery-section__btn,
+.fiche-technique__btn,
+.sem-services__btn,
+.spa-discover__card-btn,
+.spa-landing__brochure-btn,
+.spa__brochure-btn,
+.resto-reservation__submit,
+.resto-reservation__modal-btn,
+.site-header__reserve,
+.mobile-bottom-nav__reserve,
+.heb-card__cta,
+.room-card__cta,
+.featured-room-card__cta,
+.resto-card__cta,
+.resto-landing-card__cta,
+.resto-page-bar__cta,
+.spa-card__cta,
+.room-landing-hero__reserve,
+.apt-landing-hero__reserve,
+.sem-landing-hero__reserve,
+.sem-landing-hero__book,
+.resto-page-hero__reserve,
+.resto-page-hero__book,
+.bookingbar__search,
+.gallery__cta-btn,
+[class$="__cta"],
+[class*="__cta-btn"],
+[class$="__btn"]:not([class*="nav"]):not([class*="icon"]) {
+  text-transform: uppercase;
+}
+
+.stars { display: flex; gap: 4px; color: var(--color-gold); font-size: 13px; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-navy); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); }

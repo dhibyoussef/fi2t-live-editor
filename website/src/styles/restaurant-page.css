@@ -1,0 +1,540 @@
+/* Restaurant detail — /restaurants/:slug */
+
+.resto-page-loading {
+  padding: 80px 24px;
+  text-align: center;
+  color: var(--color-navy);
+  font-size: 18px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+
+.resto-page-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(520px, 49vw, 944px);
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.resto-page-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.resto-page-hero__stage {
+  position: relative;
+  z-index: 1;
+  min-height: clamp(520px, 49vw, 944px);
+  display: flex;
+  align-items: stretch;
+}
+
+.resto-page-hero__inner {
+  width: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: clamp(24px, 4vw, 40px);
+  padding-bottom: clamp(32px, 5vw, 56px);
+  box-sizing: border-box;
+}
+
+.resto-page-hero__panel-wrap {
+  position: relative;
+  max-width: 100%;
+}
+
+.resto-page-hero__panel {
+  width: min(569px, 100%);
+  min-height: min(526px, auto);
+  padding: clamp(32px, 4vw, 44px) clamp(28px, 3.5vw, 40px) clamp(36px, 4vw, 48px);
+  background: var(--Purple, rgba(64, 34, 47, 0.8));
+  color: var(--color-cream);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 0 1 569px;
+}
+
+/* Outside panel — top-right, in the gap above the panel */
+.resto-page-hero__panel-wrap:has(.resto-page-hero__switch) {
+  padding-top: 52px;
+}
+
+.resto-page-hero__switch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resto-page-hero__switch-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--color-gold, #c6a14a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.resto-page-hero__switch-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+  transform: scale(1.05);
+}
+
+.resto-page-hero__brand {
+  display: grid;
+  grid-template-columns: 43px minmax(0, 1fr);
+  column-gap: clamp(14px, 2vw, 20px);
+  row-gap: 0;
+  align-items: center;
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.resto-page-hero__logo {
+  grid-row: 1 / span 2;
+  width: 43px;
+  height: 49px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  align-self: center;
+}
+
+.resto-page-hero__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.resto-page-hero__label {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: var(--fw-medium, 500);
+  line-height: 30px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-cream, #f4efe8);
+}
+
+.resto-page-hero__name {
+  margin: 0;
+  max-width: 309px;
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-cream, #f4efe8);
+}
+
+.resto-page-hero__desc {
+  margin: 0 0 28px;
+  flex: 1;
+  max-width: 370px;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: var(--fw-medium, 500);
+  line-height: 1;
+  letter-spacing: 0;
+  color: rgba(244, 239, 232, 0.92);
+}
+
+.resto-page-hero__actions {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.resto-page-hero__reserve {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  background: var(--color-gold, #c6a14a);
+  color: var(--color-white, #fff);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.resto-page-hero__reserve:hover {
+  opacity: 0.9;
+}
+
+.resto-page-hero__book {
+  flex-shrink: 0;
+  width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white, #fff);
+  color: var(--color-gold, #c6a14a);
+  font-size: 16px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.resto-page-hero__book:hover {
+  opacity: 0.9;
+}
+
+/* ── Chef ─────────────────────────────────────────────────── */
+
+.resto-page-chef {
+  background-color: #002b45;
+  background-image:
+    linear-gradient(rgba(0, 43, 69, 0.88), rgba(0, 43, 69, 0.88)),
+    url(/imgs/Mode_Isolation.png);
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center top;
+  padding: clamp(32px, 8vw, 32px) 0;
+}
+
+.resto-page-chef__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 570px) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+
+.resto-page-chef__media {
+  width: 100%;
+  max-width: 570px;
+}
+
+.resto-page-chef__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 570 / 643;
+  object-fit: cover;
+  display: block;
+}
+
+.resto-page-chef__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  padding: clamp(12px, 2vw, 24px) 0 clamp(12px, 2vw, 24px) clamp(28px, 4vw, 56px);
+}
+
+.resto-page-chef__title {
+  margin: 0 0 clamp(32px, 4.5vw, 48px);
+  font-family: var(--font-primary);
+  font-size: clamp(28px, 3.5vw, 37px);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.resto-page-chef__slogan {
+  position: relative;
+  margin: 0 0 clamp(36px, 5vw, 56px);
+  padding: clamp(18px, 2.5vw, 24px) 0 clamp(18px, 2.5vw, 24px) clamp(22px, 3vw, 32px);
+  font-family: var(--font-primary);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: var(--fw-medium, 500);
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--color-gold, #c6a14a);
+  border-left: 3px solid var(--color-gold, #c6a14a);
+  max-width: 440px;
+}
+
+.resto-page-chef__slogan::before {
+  content: "\201C";
+  position: absolute;
+  top: -4px;
+  left: clamp(14px, 2vw, 22px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 6vw, 64px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-gold, #c6a14a);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.resto-page-chef__desc {
+  margin: 0 0 clamp(40px, 5.5vw, 60px);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: var(--fw-regular, 400);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 480px;
+}
+
+.resto-page-chef__name {
+  margin: 0;
+  padding-top: clamp(24px, 3.5vw, 36px);
+  border-top: 1px solid rgba(198, 161, 74, 0.4);
+  align-self: flex-start;
+  font-family: var(--font-primary);
+  font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: var(--fw-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #fff;
+}
+
+/* ── Bar ─────────────────────────────────────────────────── */
+
+.resto-page-bar {
+  position: relative;
+  background-color: var(--Ivory, rgba(244, 239, 232, 1));
+  overflow: hidden;
+  
+}
+
+.resto-page-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/imgs/Calque_1 (2).png");
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.resto-page-bar__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.resto-page-bar__brand {
+  display: grid;
+  grid-template-columns: 43px minmax(0, 1fr);
+  column-gap: clamp(14px, 2vw, 20px);
+  row-gap: 0;
+  align-items: center;
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.resto-page-bar__logo {
+  grid-row: 1 / span 2;
+  width: 43px;
+  height: 49px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  align-self: center;
+}
+
+.resto-page-bar__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.resto-page-bar__eyebrow {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: var(--fw-medium, 500);
+  line-height: 30px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-gold, #c6a14a);
+}
+
+.resto-page-bar__title {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-navy, #002b45);
+}
+
+.resto-page-bar__desc {
+  margin: 0 0 28px;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: var(--fw-regular, 400);
+  line-height: 1.75;
+  color: var(--color-navy, #002b45);
+  max-width: 480px;
+}
+
+.resto-page-bar__actions {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.resto-page-bar__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 24px;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: var(--fw-bold, 700);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.resto-page-bar__cta:hover {
+  opacity: 0.9;
+}
+
+.resto-page-bar__cta--navy {
+  background: var(--color-navy, #002b45);
+  color: var(--color-white, #fff);
+}
+
+.resto-page-bar__cta--book {
+  width: 48px;
+  padding: 0;
+  background: var(--color-white, #fff);
+  color: var(--color-gold, #c6a14a);
+  font-size: 16px;
+  border: 1px solid rgba(0, 43, 69, 0.12);
+}
+
+.resto-page-bar__media {
+  width: 100%;
+  min-height: 0;
+}
+
+.resto-page-bar__media img {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(320px, 40vw, 480px);
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .resto-page-hero__stage {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .resto-page-chef__inner,
+  .resto-page-bar__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .resto-page-chef__media {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .resto-page-chef__content {
+    max-width: 100%;
+    padding-left: 0;
+    padding-top: clamp(8px, 2vw, 16px);
+  }
+
+  .resto-page-chef__slogan {
+    max-width: 100%;
+  }
+
+  .resto-page-bar__media {
+    order: -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .resto-page-hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .resto-page-hero__bg {
+    position: relative;
+    height: clamp(280px, 55vw, 420px);
+  }
+
+  .resto-page-hero__stage {
+    min-height: 0;
+    margin-top: -40px;
+  }
+
+  .resto-page-hero__inner {
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 24px;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .resto-page-hero__panel-wrap:has(.resto-page-hero__switch) {
+    padding-top: 48px;
+  }
+
+  .resto-page-hero__panel-wrap {
+    width: 100%;
+  }
+
+  .resto-page-hero__panel {
+    width: 100%;
+    min-height: 0;
+    flex: 1;
+  }
+
+  .resto-page-hero__switch {
+    gap: 6px;
+  }
+
+  .resto-page-hero__name,
+  .resto-page-hero__desc {
+    max-width: 100%;
+  }
+
+  .resto-page-hero__switch-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+}

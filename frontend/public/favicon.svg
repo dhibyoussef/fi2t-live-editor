@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FI2T">
+  <rect width="64" height="64" rx="14" fill="#001E40"/>
+  <text
+    x="32"
+    y="39"
+    text-anchor="middle"
+    font-family="Segoe UI, Arial, sans-serif"
+    font-size="18"
+    font-weight="800"
+    letter-spacing="0.04em"
+    fill="#00A98D"
+  >FI2T</text>
+  <circle cx="27.2" cy="26.5" r="2.2" fill="#CDB48A"/>
+</svg>

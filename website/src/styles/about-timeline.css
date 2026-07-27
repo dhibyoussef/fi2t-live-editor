@@ -1,0 +1,237 @@
+/* About page — centered hotel history timeline */
+
+.timeline-section {
+  position: relative;
+  padding: clamp(64px, 8vw, 100px) clamp(24px, 5vw, 48px);
+  background-color: #f5f0e8;
+  overflow: hidden;
+}
+
+.timeline-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/imgs/Calque_1 (2).png");
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center;
+  opacity: 0.09;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.timeline-section__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.timeline-section__label {
+  display: block;
+  width: fit-content;
+  margin: 0 auto clamp(20px, 3vw, 28px);
+  padding: 10px 20px;
+  background: var(--color-gold, #c6a14a);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: var(--fw-medium, 500);
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+}
+
+.timeline-section__title {
+  margin: 0 0 clamp(36px, 5vw, 48px);
+  font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(28px, 4vw, 50px);
+  font-weight: 600;
+  line-height: 70px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+/* ── Centered vertical axis ── */
+
+.timeline-axis {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vw, 64px);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 0;
+}
+
+.timeline-axis__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.timeline-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(16px, 2.5vw, 24px);
+}
+
+.timeline-row__side {
+  min-width: 0;
+}
+
+.timeline-row__side--left {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.timeline-row__side--right {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.timeline-row__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 18px;
+  margin-top: 0;
+}
+
+.timeline-axis__dot {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  margin-top: -6px;
+}
+
+/* ── Entry content — 470×184, RTL ── */
+
+.timeline-entry {
+  width: 470px;
+  max-width: 100%;
+  min-height: 184px;
+  direction: rtl;
+  text-align: right;
+  opacity: 1;
+}
+
+.timeline-entry__year {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  direction: ltr;
+  font-family: var(--font-primary);
+  font-size: 18px;
+  font-weight: var(--fw-bold, 700);
+  line-height: 18px;
+  color: var(--color-gold, #c6a14a);
+}
+
+.timeline-entry__year i {
+  font-size: 18px;
+  color: var(--color-gold, #c6a14a);
+ 
+  font-style: italic;
+}
+
+.timeline-entry__title {
+  margin: 0 0 8px;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.3;
+  color: #000;
+}
+
+.timeline-entry__text {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: var(--fw-medium, 500);
+  line-height: 1.5;
+  color: #000;
+  text-align: right;
+}
+
+/* Right-side highlight — left-to-right */
+.timeline-entry--ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+.timeline-entry--ltr .timeline-entry__text {
+  text-align: left;
+}
+
+@media (max-width: 1024px) {
+  .timeline-entry {
+    width: min(470px, 100%);
+  }
+
+  .timeline-section__title {
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 720px) {
+  .timeline-axis {
+    max-width: 100%;
+  }
+
+  .timeline-axis__line {
+    left: 15px;
+    transform: none;
+  }
+
+  .timeline-row {
+    grid-template-columns: 30px minmax(0, 1fr);
+    column-gap: 16px;
+  }
+
+  .timeline-row__center {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .timeline-row__side--left,
+  .timeline-row__side--right {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-start;
+  }
+
+  .timeline-row__side--left:empty,
+  .timeline-row__side--right:empty {
+    display: none;
+  }
+
+  .timeline-entry {
+    width: 100%;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-section__title {
+    font-size: clamp(22px, 5.5vw, 32px);
+    line-height: 1.35;
+  }
+}

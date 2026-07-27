@@ -1,0 +1,22 @@
+/** Local image paths — no external stock URLs */
+export const IMG = {
+  heroHome: '/imgs/herohome.jpg',
+  landingRoom: '/imgs/landingroom.jpg',
+  eventReunion: '/imgs/reunion.jpg',
+  spa: '/imgs/spa.png',
+  spaHero: '/imgs/f9tyXY2BI8BEtH3UmsH0ZfNhIjZ2DI2rTwhqHQgP.jpg',
+  restaurantStalla: '/imgs/f9tyXY2BI8BEtH3UmsH0ZfNhIjZ2DI2rTwhqHQgP.jpg',
+  restaurantMontazah: '/imgs/cmJScqQXCLHdLVNeTzEUCSHYhGSozaaQou3w97LS.jpg',
+  restaurantCalcutta: '/imgs/coj755JYjt8GFUIA6KZsd6VQz5yNxpiyZyIfJDVE.jpg',
+  g1: '/imgs/g1.jpg',
+  g2: '/imgs/g2.jpg',
+  g3: '/imgs/g3.jpg',
+  g4: '/imgs/g4.jpg',
+  g5: '/imgs/g5.jpg',
+  g6: '/imgs/g6.jpg',
+  g7: '/imgs/g7.jpg',
+  misc: '/imgs/7107ddb993c3ee48c48e05145b1b8ed7a1c853bb.jpg',
+  contactHero: '/imgs/herohome.jpg',
+  servicesHero: '/imgs/landingroom.jpg',
+  restaurantBar: '/imgs/aboutus/7rXUeju6QOspHisvgMp63ltznlikwR7BLfBH63jv.jpg',
+} as const

@@ -1,0 +1,179 @@
+/* CÉRÉMONIES & NOCES — 3-part layout: maroon spacer → photo hero + cards → maroon pattern + CTA */
+
+.weddings {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Part 1 — maroon band between spa gallery and ceremonies */
+.weddings__top-spacer {
+  height: clamp(48px, 6vw, 90px);
+  background: var(--color-maroon);
+}
+
+/* Part 2 — wedding photo background through title + cards */
+.weddings__hero {
+  position: relative;
+  background-color: var(--color-maroon);
+  background-image: 
+      linear-gradient(
+          rgba(0, 0, 0, 0.57),
+          rgba(0, 0, 0, 0.57)
+      ),
+      url("/imgs/wbg (1).jpg");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  padding: clamp(48px, 6vw, 80px) 0 0;
+}
+
+.weddings__inner {
+  text-align: center;
+}
+
+.weddings__title {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  margin: 0 auto 28px;
+  max-width: 900px;
+}
+
+@media (min-width: 900px) {
+  .weddings__title {
+    line-height: 1.4;
+  }
+}
+
+.weddings__badge-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(40px, 5vw, 56px);
+}
+
+.weddings__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gold);
+  padding: 8px 32px;
+  min-height: 32px;
+}
+
+.weddings__badge-text {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-semibold);
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.4;
+  letter-spacing: 0.11em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.weddings__cards {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.weddings__card {
+  width: 370px;
+  height: 378px;
+  box-sizing: border-box;
+  background: var(--color-cream);
+  color: var(--color-navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px 33px;
+  text-align: center;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s ease;
+}
+
+.weddings__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.weddings__card-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weddings__card-icon img {
+  width: auto;
+  height: auto;
+  max-width: 80px;
+  max-height: 80px;
+  display: block;
+  
+}
+
+.weddings__card-text {
+  width: 303px;
+  max-width: 100%;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  line-height: 1.7;
+  color: var(--color-navy);
+  margin: 0;
+}
+
+/* Part 3 — maroon + GC pattern + CTA */
+.weddings__cta-band {
+  background-color: var(--color-maroon);
+
+  background-image: 
+  linear-gradient(
+      rgba(64, 34, 47, 0.89),
+      rgba(64, 34, 47, 0.89)
+  ),
+  url('/imgs/Mode_Isolation.png');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: clamp(48px, 6vw, 72px) 0 clamp(56px, 7vw, 90px);
+  text-align: center;
+}
+
+.weddings__cta {
+  min-width: min(100%, 320px);
+  justify-content: center;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 420px) {
+  .weddings__card {
+    width: 100%;
+    max-width: 370px;
+    height: auto;
+    min-height: 378px;
+  }
+}
+
+@media (max-width: 900px) {
+  .weddings__cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}

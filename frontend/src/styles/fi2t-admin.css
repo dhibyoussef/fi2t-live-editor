@@ -1,0 +1,544 @@
+/* ═══════════════════════════════════════════════════════════
+   FI2T Admin theme overrides — align shell with public Figma
+═══════════════════════════════════════════════════════════ */
+
+.gc-shell {
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(0, 169, 141, 0.08), transparent 55%),
+    radial-gradient(900px 400px at -10% 20%, rgba(205, 180, 138, 0.12), transparent 50%),
+    var(--fi2t-lilac);
+}
+
+/* ── Sidebar: light header-style like FI2T site ── */
+.gc-sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid var(--fi2t-line) !important;
+  box-shadow: 4px 0 24px rgba(0, 30, 64, 0.04);
+}
+
+.gc-sidebar::before,
+.gc-sidebar::after {
+  display: none !important;
+}
+
+.gc-sidebar-logo {
+  border-bottom: 1px solid var(--fi2t-line) !important;
+  padding: 16px 18px !important;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  min-height: 76px;
+  box-sizing: border-box;
+}
+
+.collapsed .gc-sidebar-logo {
+  padding: 14px 10px !important;
+  justify-content: center;
+}
+
+.gc-sidebar-brand {
+  height: 44px;
+  width: auto;
+  max-width: 148px;
+  object-fit: contain;
+  object-position: left center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #0a0a0a;
+  padding: 4px 6px;
+}
+
+.gc-sidebar-brand--mark,
+.collapsed .gc-sidebar-brand {
+  width: 36px;
+  height: 36px;
+  max-width: 36px;
+  padding: 0;
+  background: transparent;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.gc-sidebar-logo-title {
+  color: var(--fi2t-navy) !important;
+  font-family: var(--fi2t-font) !important;
+  font-weight: 800 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.02em;
+}
+
+.gc-sidebar-logo-sub {
+  color: var(--fi2t-teal) !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+}
+
+.gc-nav-group-label {
+  color: #9ca3af !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 10px !important;
+}
+
+.gc-nav-divider {
+  background: var(--fi2t-line) !important;
+}
+
+.gc-nav-item {
+  color: var(--fi2t-ink) !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+}
+
+.gc-nav-item:hover {
+  background: var(--fi2t-teal-soft) !important;
+  color: var(--fi2t-teal-dark) !important;
+}
+
+.gc-nav-item.active {
+  background: var(--fi2t-teal) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 18px rgba(0, 169, 141, 0.25) !important;
+}
+
+.gc-nav-item.active .gc-nav-icon,
+.gc-nav-item.active .gc-nav-external {
+  color: #fff !important;
+}
+
+.gc-nav-icon {
+  color: var(--fi2t-teal) !important;
+}
+
+.gc-nav-item:hover .gc-nav-icon {
+  color: var(--fi2t-teal-dark) !important;
+}
+
+.gc-toggle-btn {
+  background: #fff !important;
+  border: 1px solid var(--fi2t-line) !important;
+  color: var(--fi2t-navy) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.gc-toggle-btn:hover {
+  background: var(--fi2t-teal-soft) !important;
+  border-color: var(--fi2t-teal) !important;
+  color: var(--fi2t-teal-dark) !important;
+}
+
+/* ── Topbar ── */
+.gc-topbar {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--fi2t-line) !important;
+}
+
+.gc-topbar-title h1 {
+  font-family: var(--fi2t-font) !important;
+  color: var(--fi2t-navy) !important;
+  font-weight: 700 !important;
+}
+
+.gc-topbar-title p {
+  color: var(--fi2t-muted) !important;
+}
+
+.gc-icon-btn,
+.gc-lang-btn,
+.gc-user-btn {
+  border-radius: 999px !important;
+}
+
+.gc-user-avatar {
+  background: var(--gradient-gold) !important;
+  color: #fff !important;
+}
+
+.gc-badge-dot {
+  background: var(--fi2t-teal) !important;
+}
+
+.gc-btn-primary {
+  background: var(--fi2t-teal) !important;
+  border-color: var(--fi2t-teal) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  font-family: var(--fi2t-font) !important;
+}
+
+.gc-btn-primary:hover:not(:disabled) {
+  background: #01967e !important;
+}
+
+/* ── Dashboard (Figma-inspired composition) ── */
+.fi2t-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1180px;
+}
+
+.fi2t-dash__hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  min-height: 220px;
+  color: #fff;
+  display: grid;
+  align-items: end;
+  padding: 36px 40px;
+  background: var(--fi2t-navy);
+}
+
+.fi2t-dash__hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+}
+
+.fi2t-dash__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(0, 17, 58, 0.88) 0%, rgba(0, 105, 107, 0.55) 100%);
+}
+
+.fi2t-dash__hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.fi2t-dash__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.fi2t-dash__hero h1 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.fi2t-dash__hero p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  max-width: 520px;
+}
+
+.fi2t-dash__section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.fi2t-dash__section-head h2 {
+  margin: 0;
+  font-size: 22px;
+  color: var(--fi2t-ink);
+}
+
+.fi2t-dash__section-head p {
+  margin: 6px 0 0;
+  color: var(--fi2t-muted);
+  font-size: 13px;
+}
+
+.fi2t-dash__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.fi2t-dash-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 180px;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fi2t-dash-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 169, 141, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 169, 141, 0.12);
+}
+
+.fi2t-dash-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid var(--fi2t-line);
+  color: var(--fi2t-teal);
+  margin-bottom: 8px;
+}
+
+.fi2t-dash-card strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fi2t-navy);
+}
+
+.fi2t-dash-card span {
+  font-size: 13px;
+  color: var(--fi2t-muted);
+  line-height: 1.45;
+}
+
+.fi2t-dash-card__cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--fi2t-teal);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.fi2t-dash__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.fi2t-stat {
+  background: #fff;
+  border: 1px solid var(--fi2t-line);
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+.fi2t-stat__value {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--fi2t-teal);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.fi2t-stat__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fi2t-muted);
+}
+
+.fi2t-dash__panel {
+  background: #fff;
+  border: 1px solid var(--fi2t-line);
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+
+.fi2t-dash__panel h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+.fi2t-dash__links {
+  display: grid;
+  gap: 10px;
+}
+
+.fi2t-dash__links a,
+.fi2t-dash__links button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--fi2t-line);
+  background: var(--fi2t-lilac);
+  color: var(--fi2t-navy);
+  text-decoration: none;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.fi2t-dash__links a:hover,
+.fi2t-dash__links button:hover {
+  border-color: var(--fi2t-teal);
+  background: var(--fi2t-teal-soft);
+}
+
+@media (max-width: 980px) {
+  .fi2t-dash__grid,
+  .fi2t-dash__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .fi2t-dash__grid,
+  .fi2t-dash__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .fi2t-dash__hero {
+    padding: 28px 22px;
+  }
+}
+
+/* ── Login (FI2T navy + teal, not hotel gold/noir) ── */
+.fi2t-login.login-shell {
+  background: linear-gradient(160deg, #00113a 0%, #001e40 45%, #003461 100%);
+}
+
+.fi2t-login .login-brand {
+  background: linear-gradient(160deg, #00113a 0%, #001e40 55%, #00696b 120%);
+  border-right: 1px solid rgba(0, 169, 141, 0.2);
+}
+
+.fi2t-login .login-brand-orb-top {
+  background: radial-gradient(circle, rgba(0, 169, 141, 0.28) 0%, transparent 70%);
+}
+
+.fi2t-login .login-brand-orb-bottom {
+  background: radial-gradient(circle, rgba(205, 180, 138, 0.22) 0%, transparent 70%);
+}
+
+.fi2t-login .login-logo-icon {
+  background: #0a0a0a !important;
+  border: 1px solid rgba(197, 198, 210, 0.35);
+  box-shadow: none !important;
+  overflow: hidden;
+  width: auto !important;
+  height: auto !important;
+  min-width: 120px;
+  border-radius: 10px !important;
+  padding: 6px 8px;
+}
+
+.fi2t-login .login-logo-icon img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.fi2t-login .login-logo-name,
+.fi2t-login .login-mobile-brand,
+.fi2t-login .login-form-title {
+  font-family: 'Montserrat Alternates', system-ui, sans-serif !important;
+  color: #001e40;
+}
+
+.fi2t-login .login-logo-name {
+  color: #fff !important;
+}
+
+.fi2t-login .login-logo-sub {
+  color: #00a98d !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.fi2t-login .login-brand-pill {
+  background: rgba(0, 169, 141, 0.18) !important;
+  border: 1px solid rgba(0, 169, 141, 0.35) !important;
+  color: #9ad9cd !important;
+}
+
+.fi2t-login .login-brand-headline {
+  font-family: 'Montserrat Alternates', system-ui, sans-serif !important;
+  color: #fff !important;
+}
+
+.fi2t-login .text-gold-gradient {
+  background: linear-gradient(90deg, #00a98d, #cdb48a) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.fi2t-login .login-brand-desc,
+.fi2t-login .login-brand-copyright {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.fi2t-login .login-brand-separator {
+  background: linear-gradient(90deg, transparent, rgba(0, 169, 141, 0.45), transparent) !important;
+}
+
+.fi2t-login .login-form-panel {
+  background: #faf8ff !important;
+}
+
+.fi2t-login .login-form-box {
+  background: #fff;
+  border: 1px solid rgba(197, 198, 210, 0.35);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 12px 40px rgba(0, 30, 64, 0.08);
+}
+
+.fi2t-login .login-form-subtitle {
+  color: #00a98d !important;
+  font-weight: 600;
+}
+
+.fi2t-login .gc-input:focus {
+  border-color: #00a98d !important;
+  box-shadow: 0 0 0 3px rgba(0, 169, 141, 0.18) !important;
+}
+
+.fi2t-login .login-footer-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* Content builder accents */
+.gc-page .text-gold-gradient,
+.wc-page [style*="D4A017"] {
+  color: #00a98d;
+}
+
+.gc-spinner {
+  border-top-color: #00a98d !important;
+}
+

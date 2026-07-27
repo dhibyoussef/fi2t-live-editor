@@ -1,0 +1,23 @@
+# FI2T root
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+.cursor/
+
+# Env secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies & builds
+**/node_modules/
+**/vendor/
+**/dist/
+**/public/build/
+**/public/hot/
+**/public/storage/
+**/.phpunit.cache/
+**/storage/*.key
+**/storage/pail/

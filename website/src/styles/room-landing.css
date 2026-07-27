@@ -1,0 +1,686 @@
+/* Room type landing — /chambres/:id */
+
+.room-landing-loading {
+  padding: 80px 24px;
+  text-align: center;
+  color: var(--color-navy);
+  font-size: 18px;
+}
+
+.room-landing-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(723px, 42vw);
+  align-items: stretch;
+}
+
+.room-landing-hero__intro {
+  background: var(--color-maroon, #40222f);
+  color: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(48px, 6vw, 80px) clamp(24px, 5vw, 72px);
+  min-height: 0;
+}
+
+.room-landing-hero__content {
+  max-width: min(900px, 100%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.room-landing-hero__brand {
+  display: grid;
+  grid-template-columns: 43px minmax(0, 1fr);
+  column-gap: clamp(14px, 2vw, 20px);
+  row-gap: 0;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.room-landing-hero__logo {
+  grid-row: 1 / span 2;
+  width: 43px;
+  height: 49px;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  align-self: center;
+}
+
+.room-landing-hero__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.room-landing-hero__label {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: var(--fw-medium, 500);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-gold, #c6a14a);
+}
+
+.room-landing-hero__name {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(18px, 2.2vw, 20px);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--color-cream, #f4efe8);
+}
+
+.room-landing-hero__tagline {
+  margin: 0;
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: var(--fw-medium, 500);
+  line-height: 1.35;
+  color: var(--color-white);
+}
+
+.room-landing-hero__desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(244, 239, 232, 0.92);
+}
+
+.room-landing-hero__type {
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--fw-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+}
+
+.room-landing-hero__amenities {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+}
+
+.room-landing-hero__amenities li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(244, 239, 232, 0.95);
+}
+
+.room-landing-hero__amenities li i {
+  color: var(--color-gold);
+  font-size: 12px;
+  width: 14px;
+  text-align: center;
+}
+
+.room-landing-hero__amenities li img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.room-landing-hero--suite .room-landing-hero__amenities li i,
+.room-landing-hero--suite .room-landing-hero__amenities li i::before {
+  color: var(--color-gold, #c6a14a);
+}
+
+.room-landing-hero--suite .room-landing-hero__amenities li img {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(28%) saturate(638%)
+    hue-rotate(6deg) brightness(91%) contrast(86%);
+}
+
+.room-landing-stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.room-landing-stat {
+  position: relative;
+  flex: 0 0 270px;
+  width: 270px;
+  max-width: 100%;
+  height: 206px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.room-landing-stat__bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+  max-width: 65%;
+  object-fit: contain;
+  object-position: right center;
+  pointer-events: none;
+  opacity:17%;
+}
+
+.room-landing-stat__value,
+.room-landing-stat__label {
+  position: relative;
+  z-index: 1;
+}
+
+.room-landing-stat--blue {
+  background-color: var(--color-navy, #002b45);
+}
+
+.room-landing-stat--gold {
+  background-color: var(--color-gold, #c6a14a);
+  color: var(--color-navy);
+}
+
+.room-landing-stat--purple {
+  background-color: var(--color-maroon, #40222f);
+  border-top: 2px solid var(--color-white);
+  border-bottom: 2px solid var(--color-white);
+  color: var(--color-white);
+}
+
+.room-landing-stat__value {
+  font-size: clamp(42px, 5vw, 56px);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1;
+}
+
+.room-landing-stat--gold .room-landing-stat__value {
+  color: var(--color-navy);
+}
+
+.room-landing-stat__label {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: var(--fw-medium, 500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.room-landing-stat--gold .room-landing-stat__label {
+  color: var(--color-navy);
+}
+
+.room-landing-hero__reserve {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 14px 28px;
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.room-landing-hero__reserve:hover {
+  opacity: 0.9;
+}
+
+.room-landing-hero__media {
+  position: relative;
+  min-height: 0;
+  background: #1a1a1a;
+}
+
+.room-landing-hero__media img,
+.room-landing-hero__media .cms-editable--image,
+.room-landing-hero__media .cms-editable--image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Choisir une chambre */
+.room-landing-pick {
+  background-color: var(--color-navy, #002b45);
+  background-image: url('/imgs/Calque_1 (2).png');
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center;
+  padding: clamp(56px, 7vw, 90px) 0 0;
+}
+
+.room-landing-pick__head {
+  text-align: center;
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+.room-landing-pick__title {
+  margin: 0 0 32px;
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: var(--fw-semibold, 600);
+  text-transform: uppercase;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.room-landing-pick .bookingbar {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.room-landing-pick .featured-rooms,
+.room-landing-pick .featured-rooms.section--maroon {
+  background: transparent;
+  padding-top: clamp(32px, 4vw, 48px);
+  padding-bottom: clamp(48px, 6vw, 70px);
+}
+
+.room-landing-pick .featured-room-card {
+  background: var(--color-maroon, #40222f);
+}
+
+.featured-rooms--landing {
+  background: transparent;
+  margin-top: 0;
+}
+
+.featured-rooms--landing .container {
+  max-width: 1170px;
+}
+
+/* Avis & Réputation */
+.room-landing-reviews {
+  --review-slot-h: clamp(210px, 22.906vw, 268px);
+  --review-bg: #0a0e14;
+  --review-gold-light: #f5dc96;
+  --review-sub: #b5ae98;
+  --review-body: #e5e0d5;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-maroon, #40222f);
+  background-image:
+    linear-gradient(rgba(64, 34, 47, 0.89), rgba(64, 34, 47, 0.89)),
+    url('/imgs/Mode_Isolation.png');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.room-landing-reviews__inner {
+  padding: clamp(56px, 7vw, 80px) clamp(20px, 4vw, 40px);
+}
+
+.room-landing-reviews__header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(40px, 5vw, 56px);
+}
+
+.room-landing-reviews__title {
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: var(--fw-semibold, 600);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin: 0 0 20px;
+}
+
+.room-landing-reviews__sub {
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: var(--fw-medium, 500);
+  line-height: 1.7;
+  color: rgba(244, 239, 232, 0.88);
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+.room-landing-reviews__columns {
+  max-width: 1170px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.room-landing-reviews__stage {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding-bottom: 52px;
+  position: relative;
+}
+
+.room-landing-reviews__nav {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.room-landing-reviews__nav-btn {
+  border: none;
+  margin: 0;
+  background: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.room-landing-reviews__nav-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.room-landing-reviews__nav-btn:hover {
+  opacity: 1;
+}
+
+.room-landing-reviews__nav-btn:active {
+  transform: translateY(2px);
+}
+
+.room-landing-reviews__column {
+  position: relative;
+  min-height: calc(var(--review-slot-h) * 2);
+}
+
+.room-landing-reviews__column-calques {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.room-landing-reviews__column-calque {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--color-gold);
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.room-landing-reviews__column-calque--outer {
+  top: 0;
+  width: 90%;
+  height: 105%;
+  opacity: 0.45;
+}
+
+.room-landing-reviews__column-calque--inner {
+  top: clamp(10px, 1.5vw, 16px);
+  width: calc(103% * 1143 / 1186);
+  height: calc(100% - clamp(10px, 1.5vw, 16px));
+  opacity: 0.85;
+  z-index: 1;
+}
+
+.room-landing-reviews__column-stack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(var(--review-slot-h) * 2);
+}
+
+.room-landing-reviews__card {
+  min-height: var(--review-slot-h);
+  height: 100%;
+}
+
+.room-landing-reviews__card-inner {
+  position: relative;
+  height: 100%;
+  min-height: var(--review-slot-h);
+  padding: 20px 18px 16px 108px;
+  box-sizing: border-box;
+}
+
+.room-landing-reviews__card--featured .room-landing-reviews__card-inner {
+  background: var(--review-bg);
+}
+
+.room-landing-reviews__card--secondary .room-landing-reviews__card-inner {
+  background: transparent;
+}
+
+.room-landing-reviews__card--secondary .room-landing-reviews__quote,
+.room-landing-reviews__card--secondary .room-landing-reviews__avatar,
+.room-landing-reviews__card--secondary .room-landing-reviews__content {
+  opacity: 0.3;
+}
+
+.room-landing-reviews__quote {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #0a0e14;
+  border: 1px solid rgba(198, 161, 74, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.room-landing-reviews__quote img {
+  width: 32%;
+  height: auto;
+  object-fit: contain;
+}
+
+.room-landing-reviews__avatar {
+  position: absolute;
+  left: 38px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-white);
+  z-index: 2;
+}
+
+.room-landing-reviews__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: calc(var(--review-slot-h) - 36px);
+  min-width: 0;
+}
+
+.room-landing-reviews__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.room-landing-reviews__meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.room-landing-reviews__name {
+  font-family: var(--font-primary);
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: var(--fw-semibold, 600);
+  color: var(--color-white);
+  margin: 0 0 3px;
+}
+
+.room-landing-reviews__origin {
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: var(--fw-medium, 500);
+  color: var(--review-sub);
+  margin: 0;
+}
+
+.room-landing-reviews__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--review-gold-light);
+  font-size: clamp(12px, 1.4vw, 15px);
+  flex-shrink: 0;
+}
+
+.room-landing-reviews__stars--sm {
+  font-size: 9px;
+  gap: 2px;
+}
+
+.room-landing-reviews__text {
+  font-family: var(--font-primary);
+  font-size: clamp(12px, 1.2vw, 14px);
+  line-height: 1.55;
+  color: var(--review-body);
+  margin: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.room-landing-reviews__source {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.room-landing-reviews__platform-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.room-landing-reviews__platform-icon .fa-google {
+  color: #4285f4;
+}
+
+.room-landing-reviews__platform-icon .fa-tripadvisor {
+  color: #00af87;
+}
+
+.room-landing-reviews__source-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.room-landing-reviews__source-label {
+  font-size: 10px;
+  font-weight: var(--fw-semibold, 600);
+  color: var(--review-gold-light);
+}
+
+@media (max-width: 1100px) {
+  .room-landing-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .room-landing-hero__media {
+    order: -1;
+    min-height: clamp(320px, 55vw, 420px);
+  }
+
+  .room-landing-hero__media img {
+    position: absolute;
+    inset: 0;
+    max-height: none;
+  }
+
+  .room-landing-hero__content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .room-landing-reviews__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .room-landing-reviews__column {
+    min-height: auto;
+  }
+
+  .room-landing-reviews__column-stack {
+    min-height: auto;
+  }
+
+  .room-landing-reviews__card-inner {
+    padding: 16px 12px 14px 88px;
+  }
+
+  .room-landing-reviews__quote {
+    left: 8px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .room-landing-reviews__avatar {
+    left: 28px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .room-landing-hero__amenities {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .room-landing-stats {
+    justify-content: center;
+  }
+
+  .room-landing-stat {
+    flex: 1 1 220px;
+    width: auto;
+    min-width: 200px;
+  }
+}

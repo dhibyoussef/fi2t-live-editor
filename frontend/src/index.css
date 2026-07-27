@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════
+   FI2T — Admin Design Tokens (from Figma)
+═══════════════════════════════════════ */
+:root {
+  --fi2t-teal: #00a98d;
+  --fi2t-teal-dark: #00696b;
+  --fi2t-teal-soft: #e6f7f4;
+  --fi2t-gold: #cdb48a;
+  --fi2t-ink: #444650;
+  --fi2t-navy: #001e40;
+  --fi2t-navy-deep: #00113a;
+  --fi2t-lilac: #faf8ff;
+  --fi2t-muted: #6b7280;
+  --fi2t-line: rgba(197, 198, 210, 0.35);
+  --fi2t-white: #ffffff;
+  --fi2t-font: 'Montserrat Alternates', system-ui, sans-serif;
+
+  /* Map legacy gc-* vars → FI2T so old components pick up brand */
+  --gc-gold-50:  #e6f7f4;
+  --gc-gold-100: #ccefe8;
+  --gc-gold-200: #9ad9cd;
+  --gc-gold-400: #00a98d;
+  --gc-gold-600: #00696b;
+  --gc-gold-800: #001e40;
+  --gc-gold-900: #00113a;
+
+  --gc-sand-50:  #faf8ff;
+  --gc-sand-100: #f3f0fa;
+  --gc-sand-200: #e5e4ef;
+  --gc-sand-400: #cdb48a;
+  --gc-sand-600: #8c7248;
+  --gc-sand-800: #444650;
+  --gc-sand-900: #001e40;
+
+  --gc-noir-900: #00113a;
+  --gc-noir-800: #001e40;
+  --gc-noir-700: #003461;
+  --gc-noir-600: #444650;
+  --gc-noir-400: #6b7280;
+  --gc-noir-200: #c5c6d2;
+  --gc-noir-100: #e8e8ef;
+  --gc-noir-50:  #faf8ff;
+
+  --gc-success: #00a98d;
+  --gc-warning: #cdb48a;
+  --gc-danger:  #c0392b;
+  --gc-info:    #003461;
+
+  --gradient-gold:          linear-gradient(135deg, #00a98d 0%, #00696b 100%);
+  --gradient-noir:          linear-gradient(160deg, #00113a 0%, #001e40 45%, #003461 100%);
+  --gradient-prestige:      linear-gradient(135deg, #001e40 0%, #00a98d 100%);
+  --gradient-sand:          linear-gradient(135deg, #faf8ff 0%, #ffffff 100%);
+  --gradient-gold-vertical: linear-gradient(180deg, #00a98d 0%, #00696b 100%);
+  --gradient-gold-subtle:   linear-gradient(135deg, #e6f7f4 0%, #faf8ff 100%);
+
+  --shadow-xs:        0 1px 2px rgba(0, 30, 64, 0.05);
+  --shadow-sm:        0 2px 8px rgba(0, 30, 64, 0.07);
+  --shadow-md:        0 4px 16px rgba(0, 30, 64, 0.09);
+  --shadow-lg:        0 8px 28px rgba(0, 30, 64, 0.12);
+  --shadow-xl:        0 16px 40px rgba(0, 30, 64, 0.14);
+  --shadow-gold-glow: 0 0 24px rgba(0, 169, 141, 0.28);
+  --shadow-gold-ring: 0 0 0 3px rgba(0, 169, 141, 0.18);
+
+  --border-default: 1px solid rgba(197, 198, 210, 0.45);
+  --border-subtle:  1px solid rgba(197, 198, 210, 0.28);
+  --border-gold:    1px solid rgba(0, 169, 141, 0.35);
+  --border-focus:   2px solid #00a98d;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; }
+
+body {
+  font-family: var(--fi2t-font);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fi2t-ink);
+  background: var(--fi2t-lilac);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fi2t-font);
+  color: var(--fi2t-navy);
+  font-weight: 700;
+}
+
+a { color: var(--fi2t-teal); }
