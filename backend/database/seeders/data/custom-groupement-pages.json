@@ -1,0 +1,1431 @@
+{
+  "thalassotherapie": {
+    "layout": "thalasso",
+    "sections": [
+      {
+        "id": "split",
+        "label": "Au cœur de la Santé par la Mer"
+      },
+      {
+        "id": "atouts",
+        "label": "Atouts du Secteur"
+      },
+      {
+        "id": "diagnostic",
+        "label": "Diagnostic Économique"
+      },
+      {
+        "id": "defis",
+        "label": "Défis Stratégiques"
+      },
+      {
+        "id": "plan",
+        "label": "Plan de Relance : 6 Actions Clés"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-thalassotherapie.jpg",
+        "hero.title": "Thalassothérapie – Dr Kaouthar Meddeb",
+        "intro.body": "Découvrez l'alliance unique entre l'expertise médicale tunisienne et les vertus thérapeutiques millénaires de la mer Méditerranée.",
+        "split.title": "Au cœur de la Santé par la Mer",
+        "split.lead": "La thalassothérapie est l'utilisation combinée, sous surveillance médicale, des bienfaits du milieu marin : climat, eau de mer, boues marines, algues et autres substances extraites de l'Océan.",
+        "split.copy": "Aujourd'hui, face à une demande croissante pour le tourisme de santé préventif, la Tunisie s'affirme comme un leader incontesté, offrant des protocoles de soin rigoureux dans un cadre de prestige.",
+        "split.img": "/images/groupement-media/thalasso-split.jpg",
+        "atouts.title": "Atouts du Secteur",
+        "atouts.sub": "Un écosystème conçu pour l'excellence et la performance.",
+        "atouts.items": "[{\"title\":\"300+ Jours\",\"desc\":\"D'ensoleillement annuel, favorisant l'héliothérapie naturelle.\",\"icon\":\"sun\"},{\"title\":\"Infrastructures de Prestige\",\"desc\":\"Centres intégrés dans des unités hôtelières 4* et 5* de haut standing.\",\"icon\":\"building\"},{\"title\":\"Technologie & Expertise\",\"desc\":\"Équipements de pointe et personnel médical hautement qualifié pour des soins personnalisés.\",\"icon\":\"tech\"},{\"title\":\"Rigueur Légale\",\"desc\":\"Législation stricte et normes ISO 17680 appliquées.\",\"icon\":\"scale\"},{\"title\":\"Compétitivité\",\"desc\":\"Un rapport qualité-prix inégalé sur le marché international.\",\"icon\":\"wallet\"}]",
+        "diagnostic.title": "Diagnostic Économique",
+        "diagnostic.items": "[{\"value\":\"60\",\"label\":\"CENTRES ACTIFS\",\"desc\":\"Dont 15 centres actuellement en arrêt d'exploitation pour restructuration.\"},{\"value\":\"10%\",\"label\":\"TAUX DE FRÉQUENTATION\",\"desc\":\"Moyenne annuelle reflétant un fort potentiel de croissance inexploité.\"},{\"value\":\"48.7m\",\"label\":\"CHIFFRE D'AFFAIRES (DT)\",\"desc\":\"Indicateur de la résilience du secteur malgré les défis conjoncturels.\"}]",
+        "defis.title": "Défis Stratégiques",
+        "defis.sub": "Identification des points de friction structurels pour une vision prospective claire.",
+        "defis.items": "[{\"title\":\"Conflit Institutionnel\",\"desc\":\"Déséquilibre de tutelle entre le Ministère de la Santé et le Ministère du Tourisme.\"},{\"title\":\"Déficit d'Investissement\",\"desc\":\"Absence d'incitations fiscales spécifiques pour le renouvellement technique.\"},{\"title\":\"Gaps de Certification\",\"desc\":\"Nécessité d'accélération de la mise aux normes internationales (ISO).\"},{\"title\":\"Concurrence\",\"desc\":\"Besoin de régulation contre la concurrence déloyale des structures non-homologuées.\"}]",
+        "plan.title": "Plan de Relance : 6 Actions Clés",
+        "plan.items": "[{\"title\":\"Certification & Qualité\",\"desc\":\"Généralisation des normes ISO pour garantir une qualité de soin irréprochable et certifiée.\"},{\"title\":\"Enrichissement Produits\",\"desc\":\"Intégration de soins énergétiques complémentaires pour une offre holistique moderne.\"},{\"title\":\"Marketing Stratégique\",\"desc\":\"Collaboration ONTT/ONTH pour conquérir les marchés du Maghreb et du Moyen-Orient.\"},{\"title\":\"Réforme Fiscale\",\"desc\":\"Révision de la loi de finance pour corriger l'impact des mesures 2018-2019.\"},{\"title\":\"Contrôle Éthique\",\"desc\":\"Mise en place d'une surveillance stricte pour assurer une concurrence saine et loyale.\"},{\"title\":\"Cadre Légal\",\"desc\":\"Renforcement du rôle de l'Office National du Thermalisme et de l'Hydrothérapie.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-thalassotherapie.jpg",
+        "hero.title": "Thalassotherapy – Dr Kaouthar Meddeb",
+        "intro.body": "Discover the unique alliance between Tunisian medical expertise and the millennia-old therapeutic virtues of the Mediterranean Sea.",
+        "split.title": "At the Heart of Health by the Sea",
+        "split.lead": "Thalassotherapy is the combined use, under medical supervision, of the benefits of the marine environment: climate, seawater, marine muds, algae and other substances extracted from the ocean.",
+        "split.copy": "Today, faced with growing demand for preventive health tourism, Tunisia is asserting itself as an undisputed leader, offering rigorous care protocols in a prestigious setting.",
+        "split.img": "/images/groupement-media/thalasso-split.jpg",
+        "atouts.title": "Sector Strengths",
+        "atouts.sub": "An ecosystem designed for excellence and performance.",
+        "atouts.items": "[{\"title\":\"300+ Days\",\"desc\":\"Of sunshine per year, favouring natural heliotherapy.\",\"icon\":\"sun\"},{\"title\":\"Prestige Infrastructure\",\"desc\":\"Centres integrated into 4★ and 5★ high-end hotel units.\",\"icon\":\"building\"},{\"title\":\"Technology & Expertise\",\"desc\":\"State-of-the-art equipment and highly qualified medical staff for personalised care.\",\"icon\":\"tech\"},{\"title\":\"Legal Rigor\",\"desc\":\"Strict legislation and ISO 17680 standards applied.\",\"icon\":\"scale\"},{\"title\":\"Competitiveness\",\"desc\":\"An unmatched quality-price ratio on the international market.\",\"icon\":\"wallet\"}]",
+        "diagnostic.title": "Economic Diagnosis",
+        "diagnostic.items": "[{\"value\":\"60\",\"label\":\"ACTIVE CENTRES\",\"desc\":\"Including 15 centres currently idle for restructuring.\"},{\"value\":\"10%\",\"label\":\"OCCUPANCY RATE\",\"desc\":\"Annual average reflecting strong untapped growth potential.\"},{\"value\":\"48.7m\",\"label\":\"TURNOVER (TND)\",\"desc\":\"An indicator of sector resilience despite cyclical challenges.\"}]",
+        "defis.title": "Strategic Challenges",
+        "defis.sub": "Identifying structural friction points for a clear forward-looking vision.",
+        "defis.items": "[{\"title\":\"Institutional Conflict\",\"desc\":\"Imbalance of oversight between the Ministry of Health and the Ministry of Tourism.\"},{\"title\":\"Investment Gap\",\"desc\":\"Absence of specific tax incentives for technical renewal.\"},{\"title\":\"Certification Gaps\",\"desc\":\"Need to accelerate compliance with international standards (ISO).\"},{\"title\":\"Competition\",\"desc\":\"Need for regulation against unfair competition from non-approved structures.\"}]",
+        "plan.title": "Recovery Plan: 6 Key Actions",
+        "plan.items": "[{\"title\":\"Certification & Quality\",\"desc\":\"Generalisation of ISO standards to guarantee impeccable, certified care quality.\"},{\"title\":\"Product Enrichment\",\"desc\":\"Integration of complementary energy treatments for a modern holistic offer.\"},{\"title\":\"Strategic Marketing\",\"desc\":\"ONTT/ONTH collaboration to conquer Maghreb and Middle East markets.\"},{\"title\":\"Tax Reform\",\"desc\":\"Revision of the finance law to correct the impact of 2018-2019 measures.\"},{\"title\":\"Ethical Oversight\",\"desc\":\"Strict monitoring to ensure fair and healthy competition.\"},{\"title\":\"Legal Framework\",\"desc\":\"Strengthening the role of the National Office of Thermalism and Hydrotherapy.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-thalassotherapie.jpg",
+        "hero.title": "العلاج بمياه البحر – د. كوثر مدب",
+        "intro.body": "اكتشف التحالف الفريد بين الخبرة الطبية التونسية وفوائد البحر الأبيض المتوسط العلاجية العريقة.",
+        "split.title": "في قلب الصحة عبر البحر",
+        "split.lead": "العلاج بمياه البحر هو الاستخدام المشترك، تحت إشراف طبي، لمنافع البيئة البحرية: المناخ ومياه البحر والطين البحري والطحالب وغيرها من المواد المستخرجة من المحيط.",
+        "split.copy": "اليوم، أمام الطلب المتزايد على سياحة الصحة الوقائية، تؤكد تونس نفسها كرائدة لا منازع لها، وتقدّم بروتوكولات رعاية صارمة في إطار فاخر.",
+        "split.img": "/images/groupement-media/thalasso-split.jpg",
+        "atouts.title": "مقومات القطاع",
+        "atouts.sub": "منظومة مصمّمة للتميّز والأداء.",
+        "atouts.items": "[{\"title\":\"300+ يوم\",\"desc\":\"من أشعة الشمس سنويًا، مما يُفَضِّل العلاج بالشمس الطبيعي.\",\"icon\":\"sun\"},{\"title\":\"بنى تحتية فاخرة\",\"desc\":\"مراكز مدمجة في وحدات فندقية 4★ و5★ راقية.\",\"icon\":\"building\"},{\"title\":\"تكنولوجيا وخبرة\",\"desc\":\"معدات متطورة وكوادر طبية مؤهلة تأهيلًا عاليًا لرعاية شخصية.\",\"icon\":\"tech\"},{\"title\":\"صرامة قانونية\",\"desc\":\"تشريع صارم ومعايير ISO 17680 مطبّقة.\",\"icon\":\"scale\"},{\"title\":\"تنافسية\",\"desc\":\"علاقة جودة/سعر لا مثيل لها في السوق الدولي.\",\"icon\":\"wallet\"}]",
+        "diagnostic.title": "التشخيص الاقتصادي",
+        "diagnostic.items": "[{\"value\":\"60\",\"label\":\"مراكز نشطة\",\"desc\":\"منها 15 مركزًا متوقفًا حاليًا عن التشغيل لإعادة الهيكلة.\"},{\"value\":\"10%\",\"label\":\"معدل الإشغال\",\"desc\":\"متوسط سنوي يعكس إمكانات نمو قوية غير مستغلّة.\"},{\"value\":\"48.7m\",\"label\":\"رقم الأعمال (د.ت)\",\"desc\":\"مؤشر على مرونة القطاع رغم التحديات المؤقتة.\"}]",
+        "defis.title": "تحديات استراتيجية",
+        "defis.sub": "تحديد نقاط الاحتكاك الهيكلية لرؤية استشرافية واضحة.",
+        "defis.items": "[{\"title\":\"صراع مؤسسي\",\"desc\":\"اختلال الإشراف بين وزارة الصحة ووزارة السياحة.\"},{\"title\":\"عجز الاستثمار\",\"desc\":\"غياب حوافز ضريبية خاصة لتجديد المعدات التقنية.\"},{\"title\":\"فجوات الاعتماد\",\"desc\":\"ضرورة تسريع التوافق مع المعايير الدولية (ISO).\"},{\"title\":\"المنافسة\",\"desc\":\"حاجة إلى تنظيم ضد المنافسة غير اللائقة من هياكل غير معتمدة.\"}]",
+        "plan.title": "خطة الإنعاش: 6 إجراءات أساسية",
+        "plan.items": "[{\"title\":\"الاعتماد والجودة\",\"desc\":\"تعميم معايير ISO لضمان جودة رعاية لا تشوبها شائبة ومعتمدة.\"},{\"title\":\"إثراء المنتجات\",\"desc\":\"دمج علاجات طاقية مكمّلة لعرض شامل حديث.\"},{\"title\":\"تسويق استراتيجي\",\"desc\":\"تعاون الديوان الوطني للسياحة والعلاج الطبيعي لاختراق أسواق المغرب العربي والشرق الأوسط.\"},{\"title\":\"إصلاح ضريبي\",\"desc\":\"مراجعة قانون المالية لتصحيح أثر تدابير 2018-2019.\"},{\"title\":\"رقابة أخلاقية\",\"desc\":\"وضع مراقبة صارمة لضمان منافسة سليمة وعادلة.\"},{\"title\":\"إطار قانوني\",\"desc\":\"تعزيز دور المكتب الوطني للسياحة الحرارية والعلاج المائي.\"}]"
+      }
+    }
+  },
+  "tourisme-senior": {
+    "layout": "senior",
+    "sections": [
+      {
+        "id": "pourquoi",
+        "label": "Pourquoi la Tunisie ?"
+      },
+      {
+        "id": "services",
+        "label": "Des Services Spécialisés & Humains"
+      },
+      {
+        "id": "defis",
+        "label": "Défis & Engagements"
+      },
+      {
+        "id": "roadmap",
+        "label": "Feuille de Route Stratégique"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-senior.jpg",
+        "hero.title": "Tourisme des Sénior",
+        "intro.body": "Avec l’augmentation de l’espérance de vie et le vieillissement de la population, le tourisme des seniors connaît une forte croissance. Disposant souvent de plus de temps libre, les voyageurs de 60 ans et plus recherchent des expériences authentiques, confortables et enrichissantes. D’ici 2050, cette tranche d’âge devrait atteindre 2,1 milliards de personnes dans le monde, tandis qu’en Europe, elle représente déjà près d’un quart des voyageurs internationaux. Cette évolution fait du tourisme senior un marché stratégique offrant de nombreuses opportunités pour développer des offres touristiques adaptées, accessibles et durables.",
+        "pourquoi.title": "Pourquoi la Tunisie ?",
+        "pourquoi.sub": "Un ensemble d'atouts compétitifs faisant de notre pays une terre d'accueil privilégiée pour le troisième âge.",
+        "pourquoi.items": "[{\"title\":\"300 jours de Soleil\",\"desc\":\"Un climat tempéré idéal pour la santé osseuse et le bien-être moral tout au long de l'année.\",\"icon\":\"sun\"},{\"title\":\"Qualité des Soins\",\"desc\":\"Une expertise médicale reconnue internationalement et des infrastructures de santé de pointe.\",\"icon\":\"care\"},{\"title\":\"Coût Compétitif\",\"desc\":\"Un pouvoir d'achat préservé permettant d'accéder à des services premium à des tarifs avantageux.\",\"icon\":\"euro\"},{\"title\":\"Facilité Linguistique\",\"desc\":\"Une population francophone accueillante, facilitant l'intégration et la communication quotidienne.\",\"icon\":\"globe\"},{\"title\":\"Proximité Géographique\",\"desc\":\"À seulement 2 heures des principales capitales européennes, facilitant les visites familiales.\",\"icon\":\"plane\"},{\"title\":\"Sécurité & Stabilité\",\"desc\":\"Un environnement serein et sécurisé, essentiel pour une retraite paisible et épanouie.\",\"icon\":\"shield\"}]",
+        "services.title": "Des Services Spécialisés & Humains",
+        "services.sub": "Nous développons une offre multidimensionnelle répondant à chaque étape de la vie des séniors, du voyageur actif au résident nécessitant des soins spécifiques.",
+        "services.items": "[{\"title\":\"Structures de standing avec encadrement médical permanent.\",\"icon\":\"clinic\"},{\"title\":\"Concepts de resorts dédiés à l'autonomie et au lien social.\",\"icon\":\"resort\"},{\"title\":\"Unités spécialisées avec approches thérapeutiques innovantes.\",\"icon\":\"pin\"}]",
+        "defis.title": "Défis & Engagements",
+        "defis.sub": "La FI2T s'engage à transformer les problématiques actuelles en standards d'excellence opérationnelle.",
+        "defis.items": "[{\"title\":\"Accessibilité\",\"desc\":\"Réhabilitation d'hôtels pour une mobilité sans entrave.\",\"icon\":\"access\"},{\"title\":\"Sécurité\",\"desc\":\"Protocoles de protection et d'assistance 24/7.\",\"icon\":\"shield\"},{\"title\":\"Confort\",\"desc\":\"Aménagements ergonomiques et services de conciergerie.\",\"icon\":\"comfort\"},{\"title\":\"Disponibilité\",\"desc\":\"Continuité des soins médicaux et paramédicaux.\",\"icon\":\"care\"}]",
+        "roadmap.title": "Feuille de Route Stratégique",
+        "roadmap.body": "Notre groupement pilote les réformes nécessaires pour asseoir la Tunisie comme leader du tourisme médical et de retraite.",
+        "roadmap.items": "[{\"title\":\"Assise Légale & Réglementaire\",\"desc\":\"Établissement d'un cadre juridique spécifique facilitant l'investissement et le séjour longue durée des non-résidents.\"},{\"title\":\"Certification & Qualité\",\"desc\":\"Lancement de labels de qualité \\\"Fi2T Sénior Excellence\\\" pour garantir des standards internationaux dans nos établissements.\"},{\"title\":\"Conventions d'Assurances\",\"desc\":\"Négociation d'accords bilatéraux avec les caisses de sécurité sociale étrangères pour la prise en charge des soins en Tunisie.\"},{\"title\":\"Marketing de Destination\",\"desc\":\"Stratégie de communication digitale ciblée sur les marchés sources européens pour valoriser l'expertise santé tunisienne.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-senior.jpg",
+        "hero.title": "Senior tourism",
+        "intro.body": "With rising life expectancy and an ageing population, senior tourism is experiencing strong growth. Travellers aged 60 and over often have more time and seek authentic, comfortable and enriching experiences. By 2050, this age group is expected to reach 2.1 billion people worldwide, while in Europe it already represents around a quarter of international travellers. This trend makes senior tourism a strategic market offering many opportunities to develop suitable, accessible and sustainable tourism products.",
+        "pourquoi.title": "Why Tunisia?",
+        "pourquoi.sub": "A set of competitive assets making our country a preferred destination for the third age.",
+        "pourquoi.items": "[{\"title\":\"300 Days of Sunshine\",\"desc\":\"A mild climate ideal for bone health and mental well-being year-round.\",\"icon\":\"sun\"},{\"title\":\"Quality of Care\",\"desc\":\"Internationally recognised medical expertise and advanced health infrastructure.\",\"icon\":\"care\"},{\"title\":\"Competitive Cost\",\"desc\":\"Preserved purchasing power enabling access to premium services at competitive prices.\",\"icon\":\"euro\"},{\"title\":\"Language Ease\",\"desc\":\"Welcoming French-speaking population, facilitating integration and daily communication.\",\"icon\":\"globe\"},{\"title\":\"Geographic Proximity\",\"desc\":\"Just two hours from major European capitals, making family visits easier.\",\"icon\":\"plane\"},{\"title\":\"Security & Stability\",\"desc\":\"A calm and safe environment, essential for a peaceful and fulfilling retirement.\",\"icon\":\"shield\"}]",
+        "services.title": "Specialised & Human Services",
+        "services.sub": "We are developing a multi-dimensional offer meeting every stage of senior life, from the active traveller to the resident requiring special care.",
+        "services.items": "[{\"title\":\"High-end structures with permanent medical supervision.\",\"icon\":\"clinic\"},{\"title\":\"Resort concepts dedicated to independence and social connection.\",\"icon\":\"resort\"},{\"title\":\"Specialised units with innovative therapeutic approaches.\",\"icon\":\"pin\"}]",
+        "defis.title": "Challenges & Commitments",
+        "defis.sub": "Fi2T is committed to turning current issues into operational excellence standards.",
+        "defis.items": "[{\"title\":\"Accessibility\",\"desc\":\"Hotel retrofitting for barrier-free movement.\",\"icon\":\"access\"},{\"title\":\"Security\",\"desc\":\"24/7 protection and assistance protocols.\",\"icon\":\"shield\"},{\"title\":\"Comfort\",\"desc\":\"Ergonomic equipment and concierge services.\",\"icon\":\"comfort\"},{\"title\":\"Availability\",\"desc\":\"Continuity of medical and paramedical care.\",\"icon\":\"care\"}]",
+        "roadmap.title": "Strategic Roadmap",
+        "roadmap.body": "Our groupement is leading the reforms needed to establish Tunisia as a leader in medical tourism and retirement.",
+        "roadmap.items": "[{\"title\":\"Legal & Regulatory Foundation\",\"desc\":\"Establishment of a specific legal framework facilitating investment and long-stay residence for non-residents.\"},{\"title\":\"Certification & Quality\",\"desc\":\"Launch of \\\"Fi2T Senior Excellence\\\" quality labels to guarantee international standards in our establishments.\"},{\"title\":\"Insurance Agreements\",\"desc\":\"Negotiation of bilateral agreements with foreign social security funds for care coverage in Tunisia.\"},{\"title\":\"Destination Marketing\",\"desc\":\"Targeted digital communication strategy on European source markets to promote Tunisian health expertise.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-senior.jpg",
+        "hero.title": "سياحة كبار السن",
+        "intro.body": "مع تزايد متوسط العمر وتقدّم السكان في العمر، تشهد سياحة كبار السن نموًا قويًا. وغالبًا ما يمتلك المسافرون من 60 عامًا فأكثر وقتًا أكبر، ويبحثون عن تجارب أصيلة ومريحة ومُثرية. وبحلول 2050، يُتوقع أن تبلغ هذه الفئة العمرية 2.1 مليار شخص في العالم، بينما تمثّل في أوروبا اليوم نحو ربع المسافرين الدوليين. ويجعل هذا التطور من سياحة كبار السن سوقًا استراتيجيًا يتيح فرصًا عديدة لتطوير عروض سياحية ملائمة وسهلة الوصول ومستدامة.",
+        "pourquoi.title": "لماذا تونس؟",
+        "pourquoi.sub": "مجموعة مقومات تنافسية تجعل بلدنا وجهة مفضّلة للمرحلة الثالثة من العمر.",
+        "pourquoi.items": "[{\"title\":\"300 يوم من الشمس\",\"desc\":\"مناخ معتدل مثالي لصحة العظام والرفاه النفسي طوال السنة.\",\"icon\":\"sun\"},{\"title\":\"جودة الرعاية\",\"desc\":\"خبرة طبية معترف بها دوليًا وبنى صحية متطورة.\",\"icon\":\"care\"},{\"title\":\"تكلفة تنافسية\",\"desc\":\"قدرة شرائية محفوظة تتيح الوصول إلى خدمات متميزة بأسعار منافسة.\",\"icon\":\"euro\"},{\"title\":\"سهولة اللغة\",\"desc\":\"سكان ناطقون بالفرنسية ومرحّبون، مما يسهّل الاندماج والتواصل اليومي.\",\"icon\":\"globe\"},{\"title\":\"القرب الجغرافي\",\"desc\":\"ساعتان فقط من العواصم الأوروبية الرئيسية، مما يسهّل الزيارات العائلية.\",\"icon\":\"plane\"},{\"title\":\"الأمن والاستقرار\",\"desc\":\"بيئة هادئة وآمنة، ضرورية لتقاعد هادئ ومُوفّر.\",\"icon\":\"shield\"}]",
+        "services.title": "خدمات متخصّصة وإنسانية",
+        "services.sub": "نطوّر عرضًا متعدد الأبعاد يلبي كل مراحل حياة كبار السن، من المسافر النشط إلى المقيم بحاجة إلى رعاية خاصة.",
+        "services.items": "[{\"title\":\"هياكل راقية مع إشراف طبي دائم.\",\"icon\":\"clinic\"},{\"title\":\"مفاهيم منتجعات مخصّصة للاستقلالية والترابط الاجتماعي.\",\"icon\":\"resort\"},{\"title\":\"وحدات متخصّصة بمقاربات علاجية مبتكرة.\",\"icon\":\"pin\"}]",
+        "defis.title": "تحديات والتزامات",
+        "defis.sub": "تلتزم الفيتو بتحويل الإشكاليات الراهنة إلى معايير تميّز تشغيلي.",
+        "defis.items": "[{\"title\":\"إمكانية الوصول\",\"desc\":\"إعادة تأهيل الفنادق لحركة بلا عوائق.\",\"icon\":\"access\"},{\"title\":\"الأمن\",\"desc\":\"بروتوكولات حماية ومساعدة على مدار الساعة.\",\"icon\":\"shield\"},{\"title\":\"الراحة\",\"desc\":\"تجهيزات مريحة وخدمات استقبال شخصية.\",\"icon\":\"comfort\"},{\"title\":\"التوفر\",\"desc\":\"استمرارية الرعاية الطبية والشبه طبية.\",\"icon\":\"care\"}]",
+        "roadmap.title": "خارطة الطريق الاستراتيجية",
+        "roadmap.body": "يقود مجموعتنا الإصلاحات اللازمة لتثبيت تونس كرائدة في السياحة الطبية وتقاعد.",
+        "roadmap.items": "[{\"title\":\"أساس قانوني وتنظيمي\",\"desc\":\"وضع إطار قانوني خاص يسهّل الاستثمار والإقامة طويلة الأمد لغير المقيمين.\"},{\"title\":\"الاعتماد والجودة\",\"desc\":\"إطلاق علامات جودة «Fi2T Sénior Excellence» لضمان معايير دولية في منشآتنا.\"},{\"title\":\"اتفاقيات التأمين\",\"desc\":\"تفاوض اتفاقيات ثنائية مع صناديق الضمان الاجتماعي الأجنبية لتغطية الرعاية في تونس.\"},{\"title\":\"تسويق الوجهة\",\"desc\":\"استراتيجية تواصل رقمي موجّهة على الأسواق الأوروبية المُصدِّرة لإبراز الخبرة الصحية التونسية.\"}]"
+      }
+    }
+  },
+  "tourisme-thermal": {
+    "layout": "thermal",
+    "sections": [
+      {
+        "id": "pot",
+        "label": "Le Potentiel du Secteur"
+      },
+      {
+        "id": "real",
+        "label": "Réalité du Produit en Tunisie"
+      },
+      {
+        "id": "places",
+        "label": "Sites"
+      },
+      {
+        "id": "defis",
+        "label": "Défis & Problématiques Structurelles"
+      },
+      {
+        "id": "roadmap",
+        "label": "Feuille de Route Stratégique"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-thermal.jpg",
+        "hero.title": "Tourisme thermal",
+        "intro.body": "Le tourisme thermal est un tourisme de bien-être, un voyage à la poursuite du maintien ou de l'amélioration du bien-être personnel, en prenant soin du corps et de l'esprit.\nActuellement en plus du tourisme de bien être, des cures et mini cures thermales pour la prise en charge de toutes sortes de maladies est de plus en plus demandées par les pays voisins et les pays de l’union Européenne.",
+        "pot.title": "Le Potentiel du Secteur",
+        "pot.sub": "Analyse comparative basée sur le modèle français, illustrant les perspectives de croissance pour l'infrastructure thermale tunisienne.",
+        "pot.items": "[{\"value\":\"90\",\"label\":\"STATIONS THERMALES\",\"desc\":\"Capacité cible pour une exploitation optimale des sources.\"},{\"value\":\"10M\",\"label\":\"JOURNÉES DE SOINS\",\"desc\":\"Volume annuel prévisionnel pour un marché mature.\"},{\"value\":\"4.9 Md€\",\"label\":\"RETOMBÉES ÉCONOMIQUES\",\"desc\":\"Impact direct et indirect généré par l'activité thermale globale.\"}]",
+        "real.title": "Réalité du Produit en Tunisie",
+        "real.body": "La Tunisie possède des sources uniques au monde, alliant tradition et modernité. Malgré un potentiel immense, l'activité se concentre sur des pôles d'excellence historiques.",
+        "real.metricValue": "55 835",
+        "real.metricLabel": "Visiteurs en 2018 (Record)",
+        "real.metricSub": "Un indicateur clé de l'attractivité croissante pour le thermalisme médical et de bien-être.",
+        "places.items": "[{\"name\":\"Korbous\",\"tag\":\"Pôle Historique\",\"img\":\"/images/groupement-media/thermal-korbous-photo.jpg?v=8\"},{\"name\":\"Jebel Oust\",\"tag\":\"Excellence Médicale\",\"img\":\"/images/groupement-media/thermal-jebel-photo.jpg?v=8\"},{\"name\":\"Hammam Bourguiba\",\"tag\":\"Retraite Nature\",\"img\":\"/images/groupement-media/thermal-hammam-photo.jpg?v=8\"},{\"name\":\"Jerba Les Bains\",\"tag\":\"Rivage Bien-être\",\"img\":\"/images/groupement-media/thermal-jerba-photo.jpg?v=8\"}]",
+        "defis.title": "Défis & Problématiques Structurelles",
+        "defis.items": "[{\"title\":\"Conflits Institutionnels\",\"desc\":\"Dualité de tutelle entre la santé et le tourisme, créant des lenteurs administratives et des blocages réglementaires.\",\"icon\":\"building\"},{\"title\":\"Déficit d'Incitation\",\"desc\":\"Absence de mesures fiscales spécifiques pour stimuler l'investissement privé dans les infrastructures thermales lourdes.\",\"icon\":\"chart\"},{\"title\":\"Besoin de Certification\",\"desc\":\"Nécessité impérative de normalisation internationale pour garantir la qualité et l’attractivité des soins.\",\"icon\":\"shield\"}]",
+        "roadmap.title": "Feuille de Route Stratégique",
+        "roadmap.items": "[{\"title\":\"Relancer l'Investissement\",\"desc\":\"Modernisation du cadre juridique pour attirer les capitaux étrangers et locaux.\"},{\"title\":\"Exploitation Rationnelle\",\"desc\":\"Gestion durable et optimisée des ressources en eau minérale.\"},{\"title\":\"Diversification\",\"desc\":\"Élargir l'offre vers le bien-être, la remise en forme et le tourisme senior.\"},{\"title\":\"Capital Humain\",\"desc\":\"Programmes de formation spécialisés pour le personnel thermal et médical.\"},{\"title\":\"Génération de Devises\",\"desc\":\"Cibler les marchés internationaux à fort pouvoir d’achat.\"},{\"title\":\"Développement Local\",\"desc\":\"Dynamisation des régions intérieures par le thermalisme de proximité.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-thermal.jpg",
+        "hero.title": "Thermal tourism",
+        "intro.body": "Thermal tourism is wellness tourism, a journey in pursuit of maintaining or improving personal well-being, caring for body and mind.\nCurrently, in addition to wellness tourism, spa and mini-spa cures for the treatment of all kinds of illnesses are increasingly requested by neighbouring countries and European Union member states.",
+        "pot.title": "Sector Potential",
+        "pot.sub": "Comparative analysis based on the French model, illustrating growth prospects for Tunisian thermal infrastructure.",
+        "pot.items": "[{\"value\":\"90\",\"label\":\"THERMAL STATIONS\",\"desc\":\"Target capacity for optimal exploitation of springs.\"},{\"value\":\"10M\",\"label\":\"TREATMENT DAYS\",\"desc\":\"Projected annual volume for a mature market.\"},{\"value\":\"4.9 Md€\",\"label\":\"ECONOMIC IMPACT\",\"desc\":\"Direct and indirect impact generated by overall thermal activity.\"}]",
+        "real.title": "The Product Reality in Tunisia",
+        "real.body": "Tunisia has unique springs worldwide, combining tradition and modernity. Despite immense potential, activity is concentrated in historic centres of excellence.",
+        "real.metricValue": "55 835",
+        "real.metricLabel": "Visitors in 2018 (Record)",
+        "real.metricSub": "A key indicator of growing appeal for medical and wellness thermalism.",
+        "places.items": "[{\"name\":\"Korbous\",\"tag\":\"Historic Hub\",\"img\":\"/images/groupement-media/thermal-korbous-photo.jpg?v=8\"},{\"name\":\"Jebel Oust\",\"tag\":\"Medical Excellence\",\"img\":\"/images/groupement-media/thermal-jebel-photo.jpg?v=8\"},{\"name\":\"Hammam Bourguiba\",\"tag\":\"Nature Retreat\",\"img\":\"/images/groupement-media/thermal-hammam-photo.jpg?v=8\"},{\"name\":\"Jerba Les Bains\",\"tag\":\"Wellness Coast\",\"img\":\"/images/groupement-media/thermal-jerba-photo.jpg?v=8\"}]",
+        "defis.title": "Challenges & Structural Issues",
+        "defis.items": "[{\"title\":\"Institutional Conflicts\",\"desc\":\"Dual oversight between health and tourism, creating administrative delays and regulatory blockages.\",\"icon\":\"building\"},{\"title\":\"Incentive Gap\",\"desc\":\"Absence of specific tax measures to stimulate private investment in heavy thermal infrastructure.\",\"icon\":\"chart\"},{\"title\":\"Certification Need\",\"desc\":\"Imperative need for international standardisation to guarantee quality and appeal of treatments.\",\"icon\":\"shield\"}]",
+        "roadmap.title": "Strategic Roadmap",
+        "roadmap.items": "[{\"title\":\"Revive Investment\",\"desc\":\"Modernisation of the legal framework to attract foreign and local capital.\"},{\"title\":\"Rational Exploitation\",\"desc\":\"Sustainable and optimised management of mineral water resources.\"},{\"title\":\"Diversification\",\"desc\":\"Expand the offer towards wellness, fitness and senior tourism.\"},{\"title\":\"Human Capital\",\"desc\":\"Specialised training programmes for thermal and medical staff.\"},{\"title\":\"Foreign Exchange\",\"desc\":\"Target international markets with high purchasing power.\"},{\"title\":\"Local Development\",\"desc\":\"Revitalisation of inland regions through local thermalism.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-thermal.jpg",
+        "hero.title": "السياحة الحرارية",
+        "intro.body": "السياحة الحرارية هي سياحة العافية، رحلة في سبيل الحفاظ على الرفاه الشخصي أو تحسينه، مع العناية بالجسم والعقل.\nحاليًا، إلى جانب سياحة العافية، تزداد طلبات الحمامات والحمامات المصغّرة الحرارية لمعالجة مختلف أنواع الأمراض من قبل البلدان المجاورة ودول الاتحاد الأوروبي.",
+        "pot.title": "إمكانات القطاع",
+        "pot.sub": "تحليل مقارن مستند إلى النموذج الفرنسي، يوضّح آفاق النمو للبنية التحتية الحرارية التونسية.",
+        "pot.items": "[{\"value\":\"90\",\"label\":\"محطات حرارية\",\"desc\":\"قدرة مستهدفة لاستغلال أمثل للينابيع.\"},{\"value\":\"10M\",\"label\":\"أيام علاج\",\"desc\":\"حجم سنوي متوقّع لسوق ناضج.\"},{\"value\":\"4.9 Md€\",\"label\":\"انعكاسات اقتصادية\",\"desc\":\"أثر مباشر وغير مباشر تولّده النشاط الحراري بمجمله.\"}]",
+        "real.title": "واقع المنتج في تونس",
+        "real.body": "تتمتع تونس بينابيع فريدة في العالم، تجمع بين التقاليد والحداثة. رغم إمكانات هائلة، يركز النشاط على أقطاب التميّز التاريخية.",
+        "real.metricValue": "55 835",
+        "real.metricLabel": "زائر في 2018 (رقم قياسي)",
+        "real.metricSub": "مؤشر رئيسي على جاذبية متزايدة للسياحة الحرارية الطبية والعافية.",
+        "places.items": "[{\"name\":\"Korbous\",\"tag\":\"قطب تاريخي\",\"img\":\"/images/groupement-media/thermal-korbous-photo.jpg?v=8\"},{\"name\":\"Jebel Oust\",\"tag\":\"تميّز طبي\",\"img\":\"/images/groupement-media/thermal-jebel-photo.jpg?v=8\"},{\"name\":\"Hammam Bourguiba\",\"tag\":\"ملاذ طبيعي\",\"img\":\"/images/groupement-media/thermal-hammam-photo.jpg?v=8\"},{\"name\":\"Jerba Les Bains\",\"tag\":\"ساحل العافية\",\"img\":\"/images/groupement-media/thermal-jerba-photo.jpg?v=8\"}]",
+        "defis.title": "تحديات وإشكاليات هيكلية",
+        "defis.items": "[{\"title\":\"صراعات مؤسسية\",\"desc\":\"ازدواجية الإشراف بين الصحة والسياحة، مما يخلق بطئًا إداريًا وعراقيل تنظيمية.\",\"icon\":\"building\"},{\"title\":\"عجز الحوافز\",\"desc\":\"غياب تدابير ضريبية خاصة لتحفيز الاستثمار الخاص في البنى الحرارية الثقيلة.\",\"icon\":\"chart\"},{\"title\":\"حاجة إلى الاعتماد\",\"desc\":\"ضرورة ملحّة للتوحيد القياسي الدولي لضمان جودة وجاذبية العلاجات.\",\"icon\":\"shield\"}]",
+        "roadmap.title": "خارطة الطريق الاستراتيجية",
+        "roadmap.items": "[{\"title\":\"إنعاش الاستثمار\",\"desc\":\"تحديث الإطار القانوني لجذب رؤوس الأموال الأجنبية والمحلية.\"},{\"title\":\"استغلال رشيد\",\"desc\":\"إدارة مستدامة ومُحسّنة لموارد المياه المعدنية.\"},{\"title\":\"التنويع\",\"desc\":\"توسيع العرض نحو العافية واللياقة وسياحة كبار السن.\"},{\"title\":\"رأس المال البشري\",\"desc\":\"برامج تكوين متخصصة للكوادر الحرارية والطبية.\"},{\"title\":\"توليد العملات\",\"desc\":\"استهداف الأسواق الدولية ذات القدرة الشرائية العالية.\"},{\"title\":\"التنمية المحلية\",\"desc\":\"إنعاش المناطق الداخلية عبر السياحة الحرارية المحلية.\"}]"
+      }
+    }
+  },
+  "tourisme-medical": {
+    "layout": "medical",
+    "sections": [
+      {
+        "id": "adv",
+        "label": "Avantages du Tourisme médical en Tunisie"
+      },
+      {
+        "id": "origin",
+        "label": "Quels sont les principaux pays d'origine des patients médicaux en Tunisie"
+      },
+      {
+        "id": "bars",
+        "label": "Répartition"
+      },
+      {
+        "id": "donut",
+        "label": "Indicateur"
+      },
+      {
+        "id": "diag",
+        "label": "Diagnostic"
+      },
+      {
+        "id": "actions",
+        "label": "Actions à entreprendre"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-medical.jpg",
+        "hero.title": "Tourisme médical",
+        "intro.body": "Le tourisme médical consiste à se rendre dans un autre pays pour bénéficier de soins de santé, souvent dans le but d'accéder à des traitements de meilleure qualité, plus rapides ou à moindre coût. Les patients sont également attirés par la disponibilité de certaines spécialités médicales et l'accès à des technologies de pointe. En pleine croissance à l'échelle mondiale, ce secteur représente un levier économique important pour les destinations d'accueil, tout en soulevant des enjeux liés à l'équité et à l'accès aux soins pour les populations locales.",
+        "adv.title": "Avantages du Tourisme médical en Tunisie",
+        "adv.items": "[{\"title\":\"Coûts abordables\",\"desc\":\"Économies substantielles de 30% à 50% par rapport aux tarifs européens sans compromis sur la qualité.\",\"icon\":\"euro\"},{\"title\":\"Qualité des soins\",\"desc\":\"Plateaux techniques de pointe et corps médical formé selon les standards internationaux.\",\"icon\":\"care\"},{\"title\":\"Accessibilité\",\"desc\":\"Proximité géographique stratégique avec l'Europe et le bassin méditerranéen (vols de -3h).\",\"icon\":\"plane\"},{\"title\":\"Expérience culturelle\",\"desc\":\"Convalescence dans un cadre méditerranéen propice à la récupération et au bien-être.\",\"icon\":\"globe\"},{\"title\":\"Services tout-compris\",\"desc\":\"Prise en charge intégrale : transfert aéroport, clinique, hébergement et suivi post- opératoire.\",\"icon\":\"clinic\"},{\"title\":\"Accompagnement Fi2T\",\"desc\":\"Coordination institutionnelle et défense des intérêts par notre groupement professionnel.\",\"icon\":\"shield\"}]",
+        "origin.title": "Quels sont les principaux\npays d'origine des patients\nmédicaux en Tunisie",
+        "origin.sub": "Répartition démographique de la patientèle internationale accueillie\ndans nos structures.",
+        "bars.items": "[{\"label\":\"Algérie\",\"pct\":\"70\",\"fill\":\"\"},{\"label\":\"Libye (Pic cliniques)\",\"pct\":\"80\",\"fill\":\"\"},{\"label\":\"Afrique Subsaharienne\",\"pct\":\"15\",\"fill\":\"#59DBBD\"},{\"label\":\"Europe\",\"pct\":\"15\",\"fill\":\"#59DBBD\"}]",
+        "donut.value": "100%",
+        "donut.label": "CONFIANCE PATIENT",
+        "diag.intro": "Diagnostic structurel des défis à relever pour consolider le secteur.",
+        "diag.items": "[{\"title\":\"Déficit de Promotion\",\"desc\":\"Manque de visibilité internationale structurée et absence de campagnes de communication digitale coordonnées.\",\"icon\":\"megaphone\"},{\"title\":\"Ambiguïté de Tutelle\",\"desc\":\"Flou juridictionnel entre le Ministère de la Santé et le Ministère du Tourisme, freinant la prise de décision.\",\"icon\":\"building\"},{\"title\":\"Anarchie Extra-médicale\",\"desc\":\"Besoin de régulation des services d'accueil, de logistique et de facilitation pour garantir une expérience patient homogène.\",\"icon\":\"alert\"}]",
+        "actions.title": "Actions à entreprendre",
+        "actions.items": "[{\"title\":\"Coordination Ministérielle\",\"desc\":\"Institutionnaliser un comité de pilotage permanent entre Santé et Tourisme pour un cadre réglementaire unifié.\"},{\"title\":\"Promotion via Réseaux\",\"desc\":\"Lancement de campagnes de marketing territorial ciblées via des réseaux spécialisés et médias internationaux de santé.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-medical.jpg",
+        "hero.title": "Medical tourism",
+        "intro.body": "Medical tourism means travelling to another country for health care, often to access better-quality, faster or more affordable treatments. Patients are also drawn by certain medical specialties and cutting-edge technologies. Growing worldwide, this sector is an important economic lever for host destinations, while raising issues of equity and access to care for local populations.",
+        "adv.title": "Advantages of medical tourism in Tunisia",
+        "adv.items": "[{\"title\":\"Affordable costs\",\"desc\":\"Substantial savings of 30% to 50% compared with European rates, with no compromise on quality.\",\"icon\":\"euro\"},{\"title\":\"Quality of care\",\"desc\":\"Cutting-edge technical platforms and medical staff trained to international standards.\",\"icon\":\"care\"},{\"title\":\"Accessibility\",\"desc\":\"Strategic geographic proximity to Europe and the Mediterranean basin (flights under 3 hours).\",\"icon\":\"plane\"},{\"title\":\"Cultural experience\",\"desc\":\"Convalescence in a Mediterranean setting conducive to recovery and well-being.\",\"icon\":\"globe\"},{\"title\":\"All-inclusive services\",\"desc\":\"End-to-end care: airport transfer, clinic, accommodation and post-operative follow-up.\",\"icon\":\"clinic\"},{\"title\":\"Fi2T support\",\"desc\":\"Institutional coordination and defence of interests by our professional groupement.\",\"icon\":\"shield\"}]",
+        "origin.title": "What are the main\ncountries of origin of medical\npatients in Tunisia",
+        "origin.sub": "Demographic breakdown of the international patient base welcomed\nin our facilities.",
+        "bars.items": "[{\"label\":\"Algeria\",\"pct\":\"70\",\"fill\":\"\"},{\"label\":\"Libya (clinic peak)\",\"pct\":\"80\",\"fill\":\"\"},{\"label\":\"Sub-Saharan Africa\",\"pct\":\"15\",\"fill\":\"#59DBBD\"},{\"label\":\"Europe\",\"pct\":\"15\",\"fill\":\"#59DBBD\"}]",
+        "donut.value": "100%",
+        "donut.label": "PATIENT TRUST",
+        "diag.intro": "Structural diagnosis of the challenges to consolidate the sector.",
+        "diag.items": "[{\"title\":\"Promotion gap\",\"desc\":\"Lack of structured international visibility and absence of coordinated digital communication campaigns.\",\"icon\":\"megaphone\"},{\"title\":\"Unclear oversight\",\"desc\":\"Jurisdictional blur between the Ministry of Health and the Ministry of Tourism, slowing decision-making.\",\"icon\":\"building\"},{\"title\":\"Extra-medical disorder\",\"desc\":\"Need to regulate reception, logistics and facilitation services to guarantee a consistent patient experience.\",\"icon\":\"alert\"}]",
+        "actions.title": "Actions to take",
+        "actions.items": "[{\"title\":\"Ministerial coordination\",\"desc\":\"Institutionalise a permanent steering committee between Health and Tourism for a unified regulatory framework.\"},{\"title\":\"Promotion via networks\",\"desc\":\"Launch targeted territorial marketing campaigns through specialised networks and international health media.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-medical.jpg",
+        "hero.title": "السياحة الطبية",
+        "intro.body": "تعني السياحة الطبية الانتقال إلى بلد آخر للحصول على رعاية صحية، غالبًا بهدف الاستفادة من علاجات أجود أو أسرع أو أقل تكلفة. وينجذب المرضى أيضًا لتوفر بعض التخصصات الطبية والتقنيات المتطورة. وفي نمو متواصل عالميًا، يمثّل هذا القطاع رافعة اقتصادية مهمة للوجهات المستقبلة، مع طرح قضايا تتعلق بالإنصاف ووصول السكان المحليين إلى الرعاية.",
+        "adv.title": "مزايا السياحة الطبية في تونس",
+        "adv.items": "[{\"title\":\"تكاليف ميسورة\",\"desc\":\"وفورات كبيرة من 30% إلى 50% مقارنة بالتعريفات الأوروبية دون المساس بالجودة.\",\"icon\":\"euro\"},{\"title\":\"جودة الرعاية\",\"desc\":\"منصات تقنية متقدمة وكفاءات طبية مكوَّنة وفق المعايير الدولية.\",\"icon\":\"care\"},{\"title\":\"سهولة الوصول\",\"desc\":\"قرب جغرافي استراتيجي من أوروبا وحوض المتوسط (رحلات أقل من 3 ساعات).\",\"icon\":\"plane\"},{\"title\":\"تجربة ثقافية\",\"desc\":\"نقاهة في إطار متوسطي ملائم للتعافي والرفاه.\",\"icon\":\"globe\"},{\"title\":\"خدمات شاملة\",\"desc\":\"تكفّل كامل: نقل من المطار والعيادة والإقامة والمتابعة بعد العملية.\",\"icon\":\"clinic\"},{\"title\":\"مرافقة الفيتو\",\"desc\":\"تنسيق مؤسسي والدفاع عن المصالح عبر مجموعتنا المهنية.\",\"icon\":\"shield\"}]",
+        "origin.title": "ما هي أبرز\nبلدان منشأ المرضى\nالطبيين في تونس",
+        "origin.sub": "التوزيع الديمغرافي للمرضى الدوليين المستقبَلين\nفي منشآتنا.",
+        "bars.items": "[{\"label\":\"الجزائر\",\"pct\":\"70\",\"fill\":\"\"},{\"label\":\"ليبيا (ذروة العيادات)\",\"pct\":\"80\",\"fill\":\"\"},{\"label\":\"إفريقيا جنوب الصحراء\",\"pct\":\"15\",\"fill\":\"#59DBBD\"},{\"label\":\"أوروبا\",\"pct\":\"15\",\"fill\":\"#59DBBD\"}]",
+        "donut.value": "100%",
+        "donut.label": "ثقة المريض",
+        "diag.intro": "تشخيص هيكلي للتحديات الواجب رفعها لتعزيز القطاع.",
+        "diag.items": "[{\"title\":\"نقص الترويج\",\"desc\":\"ضعف الظهور الدولي المنظَّم وغياب حملات تواصل رقمي منسَّقة.\",\"icon\":\"megaphone\"},{\"title\":\"غموض الإشراف\",\"desc\":\"ضبابية الاختصاص بين وزارة الصحة ووزارة السياحة تعيق اتخاذ القرار.\",\"icon\":\"building\"},{\"title\":\"فوضى خارج طبية\",\"desc\":\"حاجة لتنظيم خدمات الاستقبال واللوجستيك والتيسير لضمان تجربة مريض متجانسة.\",\"icon\":\"alert\"}]",
+        "actions.title": "إجراءات ينبغي اتخاذها",
+        "actions.items": "[{\"title\":\"تنسيق وزاري\",\"desc\":\"إرساء لجنة قيادة دائمة بين الصحة والسياحة لإطار تنظيمي موحّد.\"},{\"title\":\"ترويج عبر الشبكات\",\"desc\":\"إطلاق حملات تسويق ترابي موجَّهة عبر شبكات متخصصة ووسائل إعلام صحية دولية.\"}]"
+      }
+    }
+  },
+  "tourisme-aventure": {
+    "layout": "aventure",
+    "sections": [
+      {
+        "id": "market",
+        "label": "Potentiel du Marché Global"
+      },
+      {
+        "id": "wealth",
+        "label": "Richesse Territoriale vs Exploitation"
+      },
+      {
+        "id": "photos",
+        "label": "Galerie"
+      },
+      {
+        "id": "freins",
+        "label": "Freins à la Croissance"
+      },
+      {
+        "id": "roadmap",
+        "label": "Feuille de Route Fi2T"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-aventure.jpg",
+        "hero.title": "Tourisme d'aventure",
+        "intro.body": "Le tourisme d'aventure ou le tourisme actif sont toutes les formes de produits touristiques induisant un effort physique ou sportif dans leurs pratiques et ce de préférence dans un milieu naturel : randonnées pédestres, équestres et cyclotourisme...",
+        "market.title": "Potentiel du Marché Global",
+        "market.body": "Une croissance sans précédent pour un segment autrefois de niche, devenu pilier stratégique.",
+        "market.items": "[{\"value\":\"683B\",\"label\":\"MILLIARDS USD (2022)\"},{\"value\":\"+17.4%\",\"label\":\"CROISSANCE PROJETÉE\"}]",
+        "wealth.title": "Richesse Territoriale vs Exploitation",
+        "wealth.body": "La Tunisie possède un patrimoine naturel d'exception : de l'immensité du Sahara et du Grand Erg aux reliefs sculptés du Dahar, en passant par les forêts du Nord-Ouest et le littoral sauvage du Cap Bon.",
+        "wealth.metricValue": "8,000",
+        "wealth.metricLabel": "Randonneurs par an (Estimation Fi2T)",
+        "wealth.metricSub": "Un chiffre dérisoire face au potentiel réel, illustrant un gisement d'opportunités encore inexploité.",
+        "photos.items": "[{\"img\":\"/images/groupement-media/aventure-1.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-2.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-3.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-4.jpg?v=2\"}]",
+        "freins.title": "Freins à la Croissance",
+        "freins.sub": "Trois axes critiques bloquent aujourd'hui l'essor de la filière.",
+        "freins.items": "[{\"title\":\"Procédures sécuritaires\",\"desc\":\"Gestion complexe des zones vertes et rouges, limitant l'accès aux sites les plus emblématiques du sud.\",\"icon\":\"shield\"},{\"title\":\"Promotion insuffisante\",\"desc\":\"Manque de visibilité internationale sur les segments spécifiques de l'aventure et de l'itinérance.\",\"icon\":\"megaphone\"},{\"title\":\"Capital Humain\",\"desc\":\"Carence en guides hautement spécialisés formés aux standards internationaux de l'aventure.\",\"icon\":\"people\"}]",
+        "roadmap.title": "Feuille de\nRoute Fi2T",
+        "roadmap.sub": "Notre stratégie opérationnelle pour transformer le secteur d'ici 2026.",
+        "roadmap.items": "[{\"title\":\"Coordination Inter-Ministérielle\",\"desc\":\"Dialogue permanent avec le Ministère de l'Intérieur pour lever les obstacles sécuritaires et faciliter l'accès aux zones à fort potentiel.\"},{\"title\":\"Pôle Formation & Métiers\",\"desc\":\"Création de programmes de certification pour les guides d'aventure et les gestionnaires de gîtes ruraux et tourisme alternatif.\"},{\"title\":\"Promotion Ciblée\",\"desc\":\"Présence offensive sur les réseaux spécifiques : foires internationales outdoor, salons spécialisés et accueils de presse étrangère.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-aventure.jpg",
+        "hero.title": "Adventure tourism",
+        "intro.body": "Adventure tourism or active tourism encompasses all forms of tourism products involving physical or sporting effort, preferably in a natural setting: hiking, equestrian tourism, cycle touring…",
+        "market.title": "Global Market Potential",
+        "market.body": "Unprecedented growth for a segment once considered niche, now a strategic pillar.",
+        "market.items": "[{\"value\":\"683B\",\"label\":\"BILLION USD (2022)\"},{\"value\":\"+17.4%\",\"label\":\"PROJECTED GROWTH\"}]",
+        "wealth.title": "Territorial Wealth vs Exploitation",
+        "wealth.body": "Tunisia possesses exceptional natural heritage: from the vast Sahara and Grand Erg to the sculpted reliefs of the Dahar, through the north-west forests and the wild Cap Bon coastline.",
+        "wealth.metricValue": "8,000",
+        "wealth.metricLabel": "Hikers per year (Fi2T estimate)",
+        "wealth.metricSub": "A derisory figure compared to real potential, illustrating still untapped opportunities.",
+        "photos.items": "[{\"img\":\"/images/groupement-media/aventure-1.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-2.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-3.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-4.jpg?v=2\"}]",
+        "freins.title": "Barriers to Growth",
+        "freins.sub": "Three critical axes are blocking the sector’s development today.",
+        "freins.items": "[{\"title\":\"Security procedures\",\"desc\":\"Complex management of green and red zones, limiting access to the south’s most emblematic sites.\",\"icon\":\"shield\"},{\"title\":\"Insufficient promotion\",\"desc\":\"Lack of international visibility on specific adventure and itinerant tourism segments.\",\"icon\":\"megaphone\"},{\"title\":\"Human Capital\",\"desc\":\"Shortage of highly specialised guides trained to international adventure standards.\",\"icon\":\"people\"}]",
+        "roadmap.title": "Fi2T\nRoadmap",
+        "roadmap.sub": "Our operational strategy to transform the sector by 2026.",
+        "roadmap.items": "[{\"title\":\"Inter-Ministerial Coordination\",\"desc\":\"Ongoing dialogue with the Ministry of the Interior to lift security obstacles and facilitate access to high-potential zones.\"},{\"title\":\"Training & Trades Hub\",\"desc\":\"Creation of certification programmes for adventure guides and rural lodge and alternative tourism managers.\"},{\"title\":\"Targeted Promotion\",\"desc\":\"Offensive presence on specialised networks: international outdoor trade shows, specialised fairs and foreign press trips.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-aventure.jpg",
+        "hero.title": "سياحة المغامرة",
+        "intro.body": "سياحة المغامرة أو السياحة النشطة هي كل أشكال المنتجات السياحية التي تتضمن جهدًا بدنيًا أو رياضيًا في ممارستها، ويفضّل أن تكون في بيئة طبيعية: المشي، والسياحة الفروسية، والسياحة بالدراجات…",
+        "market.title": "إمكانات السوق العالمي",
+        "market.body": "نمو غير مسبوق لشعبة كانت ذات يوم متخصصة، وأصبحت اليوم ركيزة استراتيجية.",
+        "market.items": "[{\"value\":\"683B\",\"label\":\"مليار دولار (2022)\"},{\"value\":\"+17.4%\",\"label\":\"نمو متوقّع\"}]",
+        "wealth.title": "ثراء إقليمي مقابل استغلال",
+        "wealth.body": "تتمتع تونس بتراث طبيعي استثنائي: من اتساع الصحراء والعرق الكبير إلى تضاريس الدهار المنحوتة، مرورًا بغابات الشمال الغربي والساحل البري لكاب بون.",
+        "wealth.metricValue": "8,000",
+        "wealth.metricLabel": "متنزّه سنويًا (تقدير الفيتو)",
+        "wealth.metricSub": "رقم ضئيل أمام الإمكانات الحقيقية، يبيّن مخزونًا من الفرص لا تزال غير مستغلّة.",
+        "photos.items": "[{\"img\":\"/images/groupement-media/aventure-1.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-2.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-3.jpg?v=2\"},{\"img\":\"/images/groupement-media/aventure-4.jpg?v=2\"}]",
+        "freins.title": "عوائق أمام النمو",
+        "freins.sub": "ثلاثة محاور حاسمة تعرقل اليوم ازدهار الشعبة.",
+        "freins.items": "[{\"title\":\"إجراءات أمنية\",\"desc\":\"إدارة معقدة للمناطق الخضراء والحمراء، مما يحدّ من الوصول إلى أكثر المواقع تميزًا في الجنوب.\",\"icon\":\"shield\"},{\"title\":\"ترويج غير كافٍ\",\"desc\":\"غياب الرؤية الدولية على شرائح المغامرة والتجوال تحديدًا.\",\"icon\":\"megaphone\"},{\"title\":\"رأس المال البشري\",\"desc\":\"نقص في المرشدين المتخصصين تأهيلهم وفق معايير المغامرة الدولية.\",\"icon\":\"people\"}]",
+        "roadmap.title": "خارطة طريق\nالفيتو",
+        "roadmap.sub": "استراتيجيتنا التشغيلية لتحويل القطاع بحلول 2026.",
+        "roadmap.items": "[{\"title\":\"تنسيق بين الوزارات\",\"desc\":\"حوار دائم مع وزارة الداخلية لرفع العراقيل الأمنية وتسهيل الوصول إلى المناطق ذات الإمكانات العالية.\"},{\"title\":\"قطب التكوين والمهن\",\"desc\":\"إنشاء برامج اعتماد لمرشدي المغامرة ومديري البيوت الريفية والسياحة البديلة.\"},{\"title\":\"ترويج موجّه\",\"desc\":\"حضور فعّال على الشبكات المتخصصة: معارض دولية للأنشطة في الهواء الطلق وصالونات متخصصة واستقبال صحافة أجنبية.\"}]"
+      }
+    }
+  },
+  "tourisme-affaire": {
+    "layout": "affaire",
+    "sections": [
+      {
+        "id": "mondial",
+        "label": "Poids Économique Mondial"
+      },
+      {
+        "id": "tn",
+        "label": "Poids Économique en Tunisie"
+      },
+      {
+        "id": "atouts",
+        "label": "Les Atouts Stratégiques"
+      },
+      {
+        "id": "diag",
+        "label": "Diagnostic Stratégique & Contraintes"
+      },
+      {
+        "id": "axes",
+        "label": "Feuille de Route & Actions Fi2T"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-affaire.jpg",
+        "hero.title": "Tourisme d'affaire",
+        "intro.body": "",
+        "mondial.title": "Poids Économique Mondial",
+        "mondial.items": "[{\"value\":\"1.6 T\",\"label\":\"TRILLION USD\",\"desc\":\"Valeur estimée du marché mondial du MICE d'ici 2030, représentant une force majeure de l'économie globale.\"},{\"value\":\"+7%\",\"label\":\"CROISSANCE ANNUELLE\",\"desc\":\"Taux de croissance annuel composé (CAGR) projeté sur la période 2023- 2032 pour le secteur des affaires.\"},{\"value\":\"9%\",\"label\":\"IMPACT TOURISTIQUE\",\"desc\":\"Part du tourisme d'affaires dans le volume total du tourisme mondial, avec un panier moyen supérieur au loisir.\"}]",
+        "tn.title": "Poids Économique en Tunisie",
+        "tn.body": "Le MICE n'est pas seulement une alternative au tourisme balnéaire ; c'est un moteur de désaisonnalisation et de montée en gamme pour l'hôtellerie tunisienne.",
+        "tn.stats": "[{\"value\":\"25%\",\"label\":\"du chiffre d'affaires global du tourisme tunisien provient du segment affaires.\"},{\"value\":\"2x\",\"label\":\"Dépense moyenne journalière par rapport à un touriste de loisir classique.\"},{\"value\":\"Top 10\",\"label\":\"Positionnement historique en destination MICE régionale (Classement 2018).\"}]",
+        "atouts.title": "Les Atouts Stratégiques",
+        "atouts.sub": "Une combinaison unique d'infrastructures modernes, d'histoire millénaire et d'une position géographique centrale.",
+        "atouts.items": "[{\"title\":\"Tarifs compétitifs\",\"desc\":\"Un rapport qualité-prix inégalé dans le bassin méditerranéen pour les grands groupes.\",\"icon\":\"euro\"},{\"title\":\"Proximité\",\"desc\":\"À moins de 3 heures des principales capitales européennes et hub vers l'Afrique.\",\"icon\":\"plane\"},{\"title\":\"Sites Uniques\",\"desc\":\"Salles de congrès dans des sites archéologiques ou bivouacs de luxe à Tozeur.\",\"icon\":\"landmark\"},{\"title\":\"8,000+ Chambres\",\"desc\":\"Capacité d'accueil massive de haut standing concentrée sur le Grand Tunis.\",\"icon\":\"building\"}]",
+        "diag.title": "Diagnostic\nStratégique\n&\nContraintes",
+        "diag.body": "Une analyse rigoureuse des barrières à la croissance pour définir des actions précises.",
+        "diag.items": "[{\"title\":\"CONCURRENCE\",\"desc\":\"Émergence de nouvelles destinations régionales avec des budgets marketing agressifs et infrastructures neuves.\",\"icon\":\"chart\"},{\"title\":\"INFRASTRUCTURES\",\"desc\":\"Nécessité de rénover les centres de congrès historiques et de développer des pôles technologiques dédiés.\",\"icon\":\"building\"},{\"title\":\"PERCEPTION\",\"desc\":\"Transition nécessaire de l'image \\\"Low-Cost Balnéaire\\\" vers une image \\\"Expertise Corporate & Luxe\\\".\",\"icon\":\"eye\"},{\"title\":\"FORMATION\",\"desc\":\"Besoin crucial de montée en compétences pour le personnel logistique et évènementiel spécialisé MICE.\",\"icon\":\"people\"}]",
+        "axes.title": "Feuille de Route & Actions Fi2T",
+        "axes.sub": "Notre vision pour transformer le secteur d'ici 2026 à travers trois axes fondamentaux.",
+        "axes.items": "[{\"title\":\"Coordination\\nInter-Ministérielle\",\"desc\":\"Création d'un \\\"Task Force\\\" permanent réunissant les ministères du Tourisme, de la Culture et de l'Intérieur pour fluidifier l'accueil des délégations et la sécurité des évènements d'envergure.\",\"link\":\"GUICHET UNIQUE ADMINISTRATIF\"},{\"title\":\"Promotion &\\nInfrastructures\",\"desc\":\"Campagnes de promotion ciblées sur les marchés émetteurs à forte valeur ajoutée et accélération des partenariats Public-Privé pour la modernisation des centres de congrès nationaux.\",\"link\":\"PROMOTION DIGITALE B2B\"},{\"title\":\"Facilitation\\nPatrimoniale\",\"desc\":\"Assouplissement des autorisations pour l'organisation de dîners de gala et d'évènements exclusifs sur les sites historiques et archéologiques classés, tout en garantissant leur préservation.\",\"link\":\"PROTOCOLE DE PROTECTION DU PATRIMOINE\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-affaire.jpg",
+        "hero.title": "Business tourism",
+        "intro.body": "",
+        "mondial.title": "Global Economic Weight",
+        "mondial.items": "[{\"value\":\"1.6 T\",\"label\":\"TRILLION USD\",\"desc\":\"Estimated value of the global MICE market by 2030, representing a major force in the global economy.\"},{\"value\":\"+7%\",\"label\":\"ANNUAL GROWTH\",\"desc\":\"Projected compound annual growth rate (CAGR) for 2023-2032 in the business sector.\"},{\"value\":\"9%\",\"label\":\"TOURISM IMPACT\",\"desc\":\"Share of business tourism in total global tourism volume, with a higher average spend than leisure.\"}]",
+        "tn.title": "Economic Weight in Tunisia",
+        "tn.body": "MICE is not merely an alternative to seaside tourism; it is a driver of off-season activity and upscaling for Tunisian hospitality.",
+        "tn.stats": "[{\"value\":\"25%\",\"label\":\"of total Tunisian tourism turnover comes from the business segment.\"},{\"value\":\"2x\",\"label\":\"Average daily spend compared with a classic leisure tourist.\"},{\"value\":\"Top 10\",\"label\":\"Historic positioning as a regional MICE destination (2018 ranking).\"}]",
+        "atouts.title": "Strategic Strengths",
+        "atouts.sub": "A unique combination of modern infrastructure, millennia-old history and a central geographic position.",
+        "atouts.items": "[{\"title\":\"Competitive rates\",\"desc\":\"An unmatched quality-price ratio in the Mediterranean basin for large groups.\",\"icon\":\"euro\"},{\"title\":\"Proximity\",\"desc\":\"Less than 3 hours from major European capitals and a hub towards Africa.\",\"icon\":\"plane\"},{\"title\":\"Unique Sites\",\"desc\":\"Convention halls in archaeological sites or luxury bivouacs in Tozeur.\",\"icon\":\"landmark\"},{\"title\":\"8,000+ Rooms\",\"desc\":\"Massive high-end accommodation capacity concentrated in Greater Tunis.\",\"icon\":\"building\"}]",
+        "diag.title": "Strategic\nDiagnosis\n&\nConstraints",
+        "diag.body": "A rigorous analysis of growth barriers to define precise actions.",
+        "diag.items": "[{\"title\":\"COMPETITION\",\"desc\":\"Emergence of new regional destinations with aggressive marketing budgets and new infrastructure.\",\"icon\":\"chart\"},{\"title\":\"INFRASTRUCTURE\",\"desc\":\"Need to renovate historic convention centres and develop dedicated technology hubs.\",\"icon\":\"building\"},{\"title\":\"PERCEPTION\",\"desc\":\"Necessary transition from a \\\"Low-Cost Seaside\\\" image to an \\\"Corporate Expertise & Luxury\\\" image.\",\"icon\":\"eye\"},{\"title\":\"TRAINING\",\"desc\":\"Crucial need to upskill specialised MICE logistics and event staff.\",\"icon\":\"people\"}]",
+        "axes.title": "Fi2T Roadmap & Actions",
+        "axes.sub": "Our vision to transform the sector by 2026 through three fundamental axes.",
+        "axes.items": "[{\"title\":\"Inter-Ministerial\\nCoordination\",\"desc\":\"Creation of a permanent \\\"Task Force\\\" bringing together the Ministries of Tourism, Culture and the Interior to streamline delegation reception and major event security.\",\"link\":\"SINGLE ADMINISTRATIVE WINDOW\"},{\"title\":\"Promotion &\\nInfrastructure\",\"desc\":\"Targeted promotion campaigns on high value-added source markets and acceleration of public-Private partnerships for modernisation of national convention centres.\",\"link\":\"B2B DIGITAL PROMOTION\"},{\"title\":\"Heritage\\nFacilitation\",\"desc\":\"Easing of authorisations for organising gala dinners and exclusive events on classified historic and archaeological sites, while guaranteeing their preservation.\",\"link\":\"HERITAGE PROTECTION PROTOCOL\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-affaire.jpg",
+        "hero.title": "سياحة الأعمال",
+        "intro.body": "",
+        "mondial.title": "الوزن الاقتصادي العالمي",
+        "mondial.items": "[{\"value\":\"1.6 T\",\"label\":\"تريليون دولار\",\"desc\":\"القيمة التقديرية لسوق MICE العالمي بحلول 2030، تمثل قوة اقتصادية كبرى على مستوى العالم.\"},{\"value\":\"+7%\",\"label\":\"نمو سنوي\",\"desc\":\"معدل النمو السنوي المركب المتوقع (CAGR) للفترة 2023-2032 في قطاع الأعمال.\"},{\"value\":\"9%\",\"label\":\"أثر السياحة\",\"desc\":\"حصة سياحة الأعمال من إجمالي حجم السياحة العالمية، مع إنفاق يومي أعلى من السياحة الترفيهية.\"}]",
+        "tn.title": "الوزن الاقتصادي في تونس",
+        "tn.body": "MICE ليست مجرد بديل للسياحة الشاطئية؛ إنها محرّك للنشاط خارج الموسم ورفع مستوى الضيافة التونسية.",
+        "tn.stats": "[{\"value\":\"25%\",\"label\":\"من إجمالي رقم أعمال السياحة التونسية يأتي من شعبة الأعمال.\"},{\"value\":\"2x\",\"label\":\"متوسط الإنفاق اليومي مقارنة بسائح ترفيهي تقليدي.\"},{\"value\":\"الأفضل\\n10\",\"label\":\"موقع تاريخي كوجهة MICE إقليمية (تصنيف 2018).\"}]",
+        "atouts.title": "مقومات استراتيجية",
+        "atouts.sub": "مزيج فريد من بنى تحتية حديثة وتاريخ عريق وموقع جغرافي محوري.",
+        "atouts.items": "[{\"title\":\"أسعار تنافسية\",\"desc\":\"علاقة جودة/سعر لا مثيل لها في حوض المتوسط للمجموعات الكبيرة.\",\"icon\":\"euro\"},{\"title\":\"القرب\",\"desc\":\"أقل من 3 ساعات من العواصم الأوروبية الكبرى ومحور نحو أفريقيا.\",\"icon\":\"plane\"},{\"title\":\"مواقع فريدة\",\"desc\":\"قاعات مؤتمرات في مواقع أثرية أو مخيمات فاخرة في توزر.\",\"icon\":\"landmark\"},{\"title\":\"8,000+ غرفة\",\"desc\":\"قدرة إيواء ضخمة راقية مركّزة في تونس الكبرى.\",\"icon\":\"building\"}]",
+        "diag.title": "التشخيص\nالاستراتيجي\nو\nالقيود",
+        "diag.body": "تحليل دقيق لعوائق النمو لتحديد إجراءات دقيقة.",
+        "diag.items": "[{\"title\":\"المنافسة\",\"desc\":\"ظهور وجهات إقليمية جديدة بميزانيات تسويقية عدوانية وبنى تحتية جديدة.\",\"icon\":\"chart\"},{\"title\":\"البنية التحتية\",\"desc\":\"حاجة إلى تجديد مراكز المؤتمرات التاريخية وتطوير مراكز تقنية مخصّصة.\",\"icon\":\"building\"},{\"title\":\"التصوّر\",\"desc\":\"انتقال ضروري من صورة «شاطئ منخفض التكلفة» إلى صورة «خبرة مؤسساتية وفخامة».\",\"icon\":\"eye\"},{\"title\":\"التكوين\",\"desc\":\"حاجة حاسمة لرفع مهارات كوادر لوجستيات MICE وتنظيم الفعاليات.\",\"icon\":\"people\"}]",
+        "axes.title": "خارطة طريق الفيتو والإجراءات",
+        "axes.sub": "رؤيتنا لتحويل القطاع بحلول 2026 عبر ثلاثة محاور أساسية.",
+        "axes.items": "[{\"title\":\"تنسيق\\nبين الوزارات\",\"desc\":\"إنشاء «فريق عمل» دائم يجمع وزارات السياحة والثقافة والداخلية لتبسيط استقبال الوفود وأمن الفعاليات الكبرى.\",\"link\":\"نافذة إدارية واحدة\"},{\"title\":\"الترويج\\nوالبنية التحتية\",\"desc\":\"حملات ترويج موجّهة على أسواق المصدر ذات القيمة المضافة وتسريع الشراكات بين القطاعين العام والخاص لتحديث مراكز المؤتمرات الوطنية.\",\"link\":\"ترويج رقمي B2B\"},{\"title\":\"تسهيل\\nالتراث\",\"desc\":\"تخفيف التراخيص لتنظيم عشاءات فاخرة وفعاليات حصرية في مواقع تاريخية وأثرية مصنّفة، مع ضمان حمايتها.\",\"link\":\"بروتوكول حماية التراث\"}]"
+      }
+    }
+  },
+  "tourisme-golfique": {
+    "layout": "golf",
+    "sections": [
+      {
+        "id": "pot",
+        "label": "Le Potentiel Mondial"
+      },
+      {
+        "id": "banner",
+        "label": "Bandeau"
+      },
+      {
+        "id": "etat",
+        "label": "L'État des Lieux en Tunisie"
+      },
+      {
+        "id": "defis",
+        "label": "Défis Stratégiques"
+      },
+      {
+        "id": "roadmap",
+        "label": "Feuille de Route Fi2T"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-golfique.jpg",
+        "hero.title": "Tourisme golfique",
+        "intro.body": "",
+        "pot.title": "Le Potentiel Mondial",
+        "pot.sub": "Le segment du golf représente l'une des niches les plus lucratives et dynamiques du tourisme international moderne.",
+        "pot.items": "[{\"value\":\"15 Md€\",\"label\":\"VALEUR ANNUELLE MONDIALE\",\"icon\":\"money\"},{\"value\":\"+15%\",\"label\":\"CROISSANCE ANNUELLE MOYENNE\",\"icon\":\"chart\"},{\"value\":\"65M\",\"label\":\"JOUEURS DANS LE MONDE\",\"icon\":\"people\"}]",
+        "banner.text": "Un touriste golfeur dépense en moyenne **50% de plus** qu'un touriste balnéaire classique.",
+        "etat.title": "L'État des Lieux en Tunisie",
+        "etat.body": "Malgré un climat idéal et une position géographique stratégique, l'offre actuelle reste sous-exploitée par rapport à nos concurrents directs de la rive nord.",
+        "etat.stats": "[{\"value\":\"10 Parcours\",\"label\":\"Seulement 5 sont pleinement opérationnels\"},{\"value\":\"60k Joueurs\",\"label\":\"Fréquentation annuelle moyenne\"}]",
+        "etat.box": "<1%",
+        "etat.boxLabel": "Pénétration du Marché Européen",
+        "etat.boxSub": "Un potentiel de croissance massif pour la destination Tunisie sur le segment haut de gamme.",
+        "defis.title": "Défis Stratégiques",
+        "defis.sub": "Les freins identifiés par la Fi2T pour le développement du secteur",
+        "defis.items": "[{\"title\":\"COÛTS ÉLEVÉS\",\"desc\":\"Investissement massif et maintenance complexe des parcours.\",\"icon\":\"wallet\"},{\"title\":\"CONNECTIVITÉ\",\"desc\":\"Besoin de liaisons aériennes directes et fluides pour les golfeurs.\",\"icon\":\"plane\"},{\"title\":\"EAU & ÉCOLOGIE\",\"desc\":\"Gestion critique des ressources en eau pour l'irrigation.\",\"icon\":\"drop\"},{\"title\":\"COMPÉTITIVITÉ\",\"desc\":\"Concurrence agressive des pays voisins méditerranéens.\",\"icon\":\"swords\"}]",
+        "roadmap.title": "Feuille de Route Fi2T",
+        "roadmap.sub": "Notre plan d'action articulé autour de 6 piliers majeurs pour transformer structurellement le tourisme golfique tunisien.",
+        "roadmap.items": "[{\"title\":\"Densification des Parcours\",\"desc\":\"Objectif d'un parcours pour 10 000 lits touristiques pour créer des clusters attractifs.\"},{\"title\":\"Incentives à l'Investissement\",\"desc\":\"Révision du cadre fiscal et incitations spécifiques pour les porteurs de projets golfiques.\"},{\"title\":\"Gestion de l'Eau\",\"desc\":\"Amélioration de la qualité des eaux traitées pour garantir une irrigation pérenne.\"},{\"title\":\"Mise à Niveau Technique\",\"desc\":\"Modernisation des parcours existants pour répondre aux standards internationaux de difficulté.\"},{\"title\":\"Promotion PPP\",\"desc\":\"Campagnes ciblées, salons internationaux et organisation de tournois de prestige.\"},{\"title\":\"Importations Proshop\",\"desc\":\"Facilitation administrative pour l'importation d'équipements et accessoires spécialisés.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-golfique.jpg",
+        "hero.title": "Golf tourism",
+        "intro.body": "",
+        "pot.title": "Global Potential",
+        "pot.sub": "The golf segment represents one of the most lucrative and dynamic niches of modern international tourism.",
+        "pot.items": "[{\"value\":\"15 Md€\",\"label\":\"ANNUAL GLOBAL VALUE\",\"icon\":\"money\"},{\"value\":\"+15%\",\"label\":\"AVERAGE ANNUAL GROWTH\",\"icon\":\"chart\"},{\"value\":\"65M\",\"label\":\"PLAYERS WORLDWIDE\",\"icon\":\"people\"}]",
+        "banner.text": "A golf tourist spends on average **50% more** than a classic seaside tourist.",
+        "etat.title": "The Situation in Tunisia",
+        "etat.body": "Despite an ideal climate and a strategic geographic position, the current offer remains under-exploited compared with our direct competitors on the northern shore.",
+        "etat.stats": "[{\"value\":\"10 Courses\",\"label\":\"Only 5 are fully operational\"},{\"value\":\"60k Players\",\"label\":\"Average annual attendance\"}]",
+        "etat.box": "<1%",
+        "etat.boxLabel": "European Market Penetration",
+        "etat.boxSub": "Massive growth potential for Tunisia on the premium segment.",
+        "defis.title": "Strategic Challenges",
+        "defis.sub": "Barriers identified by Fi2T for sector development",
+        "defis.items": "[{\"title\":\"HIGH COSTS\",\"desc\":\"Massive investment and complex course maintenance.\",\"icon\":\"wallet\"},{\"title\":\"CONNECTIVITY\",\"desc\":\"Need for direct and smooth air links for golfers.\",\"icon\":\"plane\"},{\"title\":\"WATER & ECOLOGY\",\"desc\":\"Critical management of water resources for irrigation.\",\"icon\":\"drop\"},{\"title\":\"COMPETITIVENESS\",\"desc\":\"Aggressive competition from neighbouring Mediterranean countries.\",\"icon\":\"swords\"}]",
+        "roadmap.title": "Fi2T Roadmap",
+        "roadmap.sub": "Our action plan structured around 6 major pillars to structurally transform Tunisian golf tourism.",
+        "roadmap.items": "[{\"title\":\"Course Densification\",\"desc\":\"Target of one course per 10,000 tourist beds to create attractive clusters.\"},{\"title\":\"Investment Incentives\",\"desc\":\"Revision of the tax framework and specific incentives for golf project developers.\"},{\"title\":\"Water Management\",\"desc\":\"Improvement of treated water quality to guarantee sustainable irrigation.\"},{\"title\":\"Technical Upgrade\",\"desc\":\"Modernisation of existing courses to meet international difficulty standards.\"},{\"title\":\"PPP Promotion\",\"desc\":\"Targeted campaigns, international trade shows and organisation of prestigious tournaments.\"},{\"title\":\"Pro Shop Imports\",\"desc\":\"Administrative facilitation for importing specialised equipment and accessories.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-golfique.jpg",
+        "hero.title": "سياحة الغولف",
+        "intro.body": "",
+        "pot.title": "الإمكانات العالمية",
+        "pot.sub": "تمثل شعبة الغولف أحد أكثر التخصصات ربحية وديناميكية في السياحة الدولية الحديثة.",
+        "pot.items": "[{\"value\":\"15 Md€\",\"label\":\"قيمة عالمية سنوية\",\"icon\":\"money\"},{\"value\":\"+15%\",\"label\":\"نمو سنوي متوسط\",\"icon\":\"chart\"},{\"value\":\"65M\",\"label\":\"لاعب حول العالم\",\"icon\":\"people\"}]",
+        "banner.text": "ينفق سائح الغولف في المتوسط **50% أكثر** من سائح شاطئ تقليدي.",
+        "etat.title": "الوضع في تونس",
+        "etat.body": "رغم مناخ مثالي وموقع جغرافي استراتيجي، يبقى العرض الحالي مستغلًا بشكل محدود مقارنة بمنافسينا المباشرين على الشاطئ الشمالي.",
+        "etat.stats": "[{\"value\":\"10 ملاعب\",\"label\":\"5 فقط تعمل بكامل طاقتها\"},{\"value\":\"60k لاعب\",\"label\":\"متوسط الحضور السنوي\"}]",
+        "etat.box": "<1%",
+        "etat.boxLabel": "اختراق السوق الأوروبي",
+        "etat.boxSub": "إمكانات نمو هائلة لتونس في الشريحة المتميزة.",
+        "defis.title": "تحديات استراتيجية",
+        "defis.sub": "عوائق حدّدتها الفيتو لتطوير القطاع",
+        "defis.items": "[{\"title\":\"تكاليف مرتفعة\",\"desc\":\"استثمار ضخم وصيانة معقدة للملاعب.\",\"icon\":\"wallet\"},{\"title\":\"الربط الجوي\",\"desc\":\"حاجة إلى خطوط جوية مباشرة وسلسة للاعبي الغولف.\",\"icon\":\"plane\"},{\"title\":\"الماء والبيئة\",\"desc\":\"إدارة حاسمة لموارد المياه للري.\",\"icon\":\"drop\"},{\"title\":\"التنافسية\",\"desc\":\"منافسة عدوانية من دول متوسطية مجاورة.\",\"icon\":\"swords\"}]",
+        "roadmap.title": "خارطة طريق الفيتو",
+        "roadmap.sub": "خطة عملنا المنظّمة حول 6 ركائز كبرى لتحويل سياحة الغولف التونسية هيكليًا.",
+        "roadmap.items": "[{\"title\":\"كثافة الملاعب\",\"desc\":\"هدف ملعب واحد لكل 10,000 سرير سياحي لإنشاء تجمعات جذّابة.\"},{\"title\":\"حوافز الاستثمار\",\"desc\":\"مراجعة الإطار الضريبي وحوافز خاصة لمطوّري مشاريع الغولف.\"},{\"title\":\"إدارة المياه\",\"desc\":\"تحسين جودة المياه المعالجة لضمان ري مستدام.\"},{\"title\":\"ترقية تقنية\",\"desc\":\"تحديث الملاعب القائمة لتلبية معايير الصعوبة الدولية.\"},{\"title\":\"ترويج PPP\",\"desc\":\"حملات موجّهة ومعارض دولية وتنظيم بطولات مرموقة.\"},{\"title\":\"استيراد المتاجر\",\"desc\":\"تسهيل إداري لاستيراد المعدات والإكسسوارات المتخصصة.\"}]"
+      }
+    }
+  },
+  "tourisme-plaisance": {
+    "layout": "plaisance",
+    "sections": [
+      {
+        "id": "impact",
+        "label": "Un Impact Économique Décuplé"
+      },
+      {
+        "id": "marina",
+        "label": "Marina"
+      },
+      {
+        "id": "parent",
+        "label": "Le Parent Pauvre du Tourisme"
+      },
+      {
+        "id": "prob",
+        "label": "Grandes Problématiques"
+      },
+      {
+        "id": "actions",
+        "label": "Actions à entreprendre"
+      },
+      {
+        "id": "blueprint",
+        "label": "Schéma"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-plaisance.jpg",
+        "hero.title": "Tourisme la plaisance",
+        "intro.body": "",
+        "impact.title": "Un Impact Économique\nDécuplé",
+        "impact.items": "[{\"title\":\"Ratio 20:1\",\"desc\":\"Un touriste de plaisance génère en moyenne une dépense 20 fois supérieure à celle d'un touriste balnéaire classique.\",\"icon\":\"money\"},{\"title\":\"1350 km de Littoral\",\"desc\":\"Une position stratégique au cœur de la Méditerranée, à quelques heures de navigation des côtes européennes.\",\"icon\":\"chart\"}]",
+        "marina.img": "/images/groupement-media/plaisance-marina.jpg?v=3",
+        "parent.icon": "/images/groupement-media/plaisance-parent-icon.png?v=2",
+        "parent.title": "Le Parent Pauvre du Tourisme",
+        "parent.body": "Malgré un potentiel immense, le yachting reste aujourd'hui le \"parent pauvre\" de l'écosystème touristique tunisien. Notre ambition est de transformer cet état de fait par une stratégie collective, ambitieuse et structurée pour positionner la Tunisie comme une destination de plaisance incontournable.",
+        "prob.title": "Grandes Problématiques",
+        "prob.sub": "Les 9 piliers stratégiques pour la refonte du secteur.",
+        "prob.items": "[{\"title\":\"Code des ports\",\"desc\":\"Modernisation du cadre juridique portuaire.\"},{\"title\":\"Concession\",\"desc\":\"Clarification des contrats de concession de plaisance.\"},{\"title\":\"Réglementation douanière\",\"desc\":\"Assouplissement des procédures douanières spécifiques.\"},{\"title\":\"Autorités sécuritaires\",\"desc\":\"Optimisation de la gestion des flux sécuritaires.\"},{\"title\":\"Produits et services\",\"desc\":\"Montée en gamme de l'offre de services en marina.\"},{\"title\":\"Demande locale\",\"desc\":\"Développement du marché de la plaisance domestique.\"},{\"title\":\"Animations nautiques\",\"desc\":\"Création d'événements et de régates internationales.\"},{\"title\":\"Marketing\",\"desc\":\"Promotion de la destination Tunisie Yachting.\"},{\"title\":\"Formation\",\"desc\":\"Professionnalisation des métiers du nautisme.\"}]",
+        "actions.title": "Actions à\nentreprendre",
+        "actions.body": "Une feuille de route concrète pour la transformation du secteur et l'amélioration de la compétitivité régionale de la Tunisie.",
+        "actions.items": "[{\"text\":\"Volet législatif : Refonte globale\"},{\"text\":\"Formation maritime de pointe\"},{\"text\":\"Infrastructures & Services premium\"},{\"text\":\"Compétitivité régionale accrue\"},{\"text\":\"Communication & Branding international\"},{\"text\":\"Unification des procédures douanières\"},{\"text\":\"Levée des restrictions administratives\"},{\"text\":\"Formations spécifiques adaptées au luxe\"}]",
+        "blueprint.img": "/images/groupement-media/plaisance-blueprint.jpg?v=3"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-plaisance.jpg",
+        "hero.title": "Pleasure boating tourism",
+        "intro.body": "",
+        "impact.title": "Tenfold\nEconomic Impact",
+        "impact.items": "[{\"title\":\"Ratio 20:1\",\"desc\":\"A pleasure boating tourist generates on average 20 times more spending than a classic seaside tourist.\",\"icon\":\"money\"},{\"title\":\"1,350 km of Coastline\",\"desc\":\"A strategic position at the heart of the Mediterranean, a few hours’ sailing from European coasts.\",\"icon\":\"chart\"}]",
+        "marina.img": "/images/groupement-media/plaisance-marina.jpg?v=3",
+        "parent.icon": "/images/groupement-media/plaisance-parent-icon.png?v=2",
+        "parent.title": "The Poor Relation of Tourism",
+        "parent.body": "Despite immense potential, yachting remains today the \"poor relation\" of the Tunisian tourism ecosystem. Our ambition is to transform this situation through a collective, ambitious and structured strategy to position Tunisia as an essential pleasure boating destination.",
+        "prob.title": "Major Issues",
+        "prob.sub": "The 9 strategic pillars for sector overhaul.",
+        "prob.items": "[{\"title\":\"Port code\",\"desc\":\"Modernisation of the port legal framework.\"},{\"title\":\"Concession\",\"desc\":\"Clarification of pleasure boating concession contracts.\"},{\"title\":\"Customs regulations\",\"desc\":\"Easing of specific customs procedures.\"},{\"title\":\"Security authorities\",\"desc\":\"Optimisation of security flow management.\"},{\"title\":\"Products and services\",\"desc\":\"Upgrading marina service offerings.\"},{\"title\":\"Local demand\",\"desc\":\"Development of the domestic pleasure boating market.\"},{\"title\":\"Nautical events\",\"desc\":\"Creation of international events and regattas.\"},{\"title\":\"Marketing\",\"desc\":\"Promotion of the Tunisia Yachting destination.\"},{\"title\":\"Training\",\"desc\":\"Professionalisation of nautical trades.\"}]",
+        "actions.title": "Actions to\ntake",
+        "actions.body": "A concrete roadmap for sector transformation and improved regional competitiveness for Tunisia.",
+        "actions.items": "[{\"text\":\"Legislative component: comprehensive overhaul\"},{\"text\":\"Advanced maritime training\"},{\"text\":\"Premium infrastructure & services\"},{\"text\":\"Increased regional competitiveness\"},{\"text\":\"International communication & branding\"},{\"text\":\"Unification of customs procedures\"},{\"text\":\"Removal of administrative restrictions\"},{\"text\":\"Luxury-specific tailored training\"}]",
+        "blueprint.img": "/images/groupement-media/plaisance-blueprint.jpg?v=3"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-plaisance.jpg",
+        "hero.title": "سياحة اليخوت",
+        "intro.body": "",
+        "impact.title": "أثر اقتصادي\nمضاعف",
+        "impact.items": "[{\"title\":\"نسبة 20:1\",\"desc\":\"ينفق سائح اليخوت في المتوسط 20 مرة أكثر من سائح شاطئ تقليدي.\",\"icon\":\"money\"},{\"title\":\"1,350 km من الساحل\",\"desc\":\"موقع استراتيجي في قلب المتوسط، على بُعد ساعات قليلة من السواحل الأوروبية.\",\"icon\":\"chart\"}]",
+        "marina.img": "/images/groupement-media/plaisance-marina.jpg?v=3",
+        "parent.icon": "/images/groupement-media/plaisance-parent-icon.png?v=2",
+        "parent.title": "الابن المحروم من السياحة",
+        "parent.body": "رغم إمكانات هائلة، يبقى الإبحار الترفيهي اليوم «الابن المحروم» من منظومة السياحة التونسية. طموحنا تحويل هذا الوضع عبر استراتيجية جماعية وطموحة ومنظّمة لتثبيت تونس كوجهة إبحار ترفيهي أساسية.",
+        "prob.title": "إشكاليات كبرى",
+        "prob.sub": "9 ركائز استراتيجية لإعادة هيكلة القطاع.",
+        "prob.items": "[{\"title\":\"قانون الموانئ\",\"desc\":\"تحديث الإطار القانوني للموانئ.\"},{\"title\":\"الامتياز\",\"desc\":\"توضيح عقود امتياز الإبحار الترفيهي.\"},{\"title\":\"التنظيمات الجمركية\",\"desc\":\"تخفيف الإجراءات الجمركية الخاصة.\"},{\"title\":\"سلطات الأمن\",\"desc\":\"تحسين إدارة تدفقات الأمن.\"},{\"title\":\"المنتجات والخدمات\",\"desc\":\"ترقية عروض خدمات المراسي.\"},{\"title\":\"الطلب المحلي\",\"desc\":\"تطوير سوق الإبحار الترفيهي المحلي.\"},{\"title\":\"الفعاليات البحرية\",\"desc\":\"إنشاء فعاليات وسباقات دولية.\"},{\"title\":\"التسويق\",\"desc\":\"ترويج وجهة تونس للإبحار الترفيهي.\"},{\"title\":\"التكوين\",\"desc\":\"احترافية المهن البحرية.\"}]",
+        "actions.title": "إجراءات\nمطلوبة",
+        "actions.body": "خارطة طريق ملموسة لتحويل القطاع وتعزيز التنافسية الإقليمية لتونس.",
+        "actions.items": "[{\"text\":\"المكوّن التشريعي: إصلاح شامل\"},{\"text\":\"تكوين بحري متقدّم\"},{\"text\":\"بنية تحتية وخدمات متميزة\"},{\"text\":\"تعزيز التنافسية الإقليمية\"},{\"text\":\"تواصل وتسويق دولي\"},{\"text\":\"توحيد الإجراءات الجمركية\"},{\"text\":\"رفع القيود الإدارية\"},{\"text\":\"تكوين مخصّص للفخامة\"}]",
+        "blueprint.img": "/images/groupement-media/plaisance-blueprint.jpg?v=3"
+      }
+    }
+  },
+  "tourisme-automobile": {
+    "layout": "auto",
+    "sections": [
+      {
+        "id": "vision",
+        "label": "Une Éclatante Vision de la Mobilité"
+      },
+      {
+        "id": "stats",
+        "label": "Chiffres clés"
+      },
+      {
+        "id": "real",
+        "label": "Réalité du produit en Tunisie"
+      },
+      {
+        "id": "actions",
+        "label": "Actions à entreprendre"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-automobile.jpg",
+        "hero.title": "Tourisme automobile",
+        "intro.body": "",
+        "vision.title": "Une Éclatante Vision de la Mobilité",
+        "vision.body": "Le tourisme automobile transcende le simple voyage routier. Il s'agit d'une immersion culturelle rythmée par les road trips thématiques, le caravaning de prestige et l'organisation de rallyes d'envergure internationale. C'est l'art de la découverte lente, favorisant l'accès à des territoires authentiques, souvent hors des sentiers battus.",
+        "stats.items": "[{\"value\":\"10%\",\"label\":\"PIB MONDIAL\",\"desc\":\"Part générée par le tourisme automobile et ses écosystèmes dérivés.\",\"tone\":\"light\"},{\"value\":\"25%\",\"label\":\"MODÈLE DE RÉUSSITE\",\"desc\":\"Part du PIB au Monténégro, exemple leader du tourisme itinérant structuré.\",\"tone\":\"dark\"},{\"value\":\"Euro\",\"label\":\"MARCHÉ PRIORITAIRE\",\"desc\":\"L'Europe constitue le premier vivier de voyageurs motorisés autonomes au monde.\",\"tone\":\"light\"}]",
+        "real.title": "Réalité du produit en Tunisie",
+        "real.body": "La Tunisie possède plusieurs atouts majeurs en matière de potentiel de développement en tourisme automobile :",
+        "real.items": "[{\"text\":\"Patrimoine riche\"},{\"text\":\"Grande attractivité du sud tunisien\"},{\"text\":\"Bonnes infrastructures routières\"},{\"text\":\"Accessibilité : Sa proximité avec l’Europe et un climat méditerranéen favorable peuvent attirer les visiteurs tout au long de l’année\"},{\"text\":\"Bonne connexion maritime avec l’Europe (ports de Marseille, Gênes, Palerme, Naples...)\"}]",
+        "real.img": "/images/groupement-media/auto-road.jpg?v=2",
+        "actions.title": "Actions à entreprendre",
+        "actions.items": "[{\"text\":\"Pourquoi pas de bus à 2 étages à Tunis ? malgré leurs avantages : capacité accrue, efficacité économique cout/passager, expérience touristique améliorée, moins d’espaces requis...\"},{\"text\":\"La quasi absence de modes d’hébergements adaptés au tourisme automobile en particulier les aires aménagées de camping caravaning (les véhicules qui viennent en Tunisie sont obligés de faire du camping caravaning sauvage)\"},{\"text\":\"Absence de promotion dans les marchés cibles en Europe\"},{\"text\":\"Absence de coordination et collaboration entre l’Automobile Club de Tunisie (représentant exclusif de la FIA) et la Fédération Tunisienne des Sports Automobiles ce qui empêche l’organisation de rallyes et autres événements.\"}]",
+        "actions.body": "Actions à entreprendre : Promotion du secteur via les réseaux spécifiques : foires et salons spécialisés, magazines, invitation presse et médias spécialisés...Et surtout trouver un compromis entre l’Automobile Club de Tunisie et la Fédération des Sports Automobile.",
+        "actions.img": "/images/groupement-media/auto-hands.jpg?v=2"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-automobile.jpg",
+        "hero.title": "Automotive tourism",
+        "intro.body": "",
+        "vision.title": "A Dazzling Vision of Mobility",
+        "vision.body": "Automotive tourism goes beyond a simple road trip. It is a cultural immersion paced by themed road trips, prestige caravanning and the organisation of major international rallies. It is the art of slow discovery, favouring access to authentic territories, often off the beaten track.",
+        "stats.items": "[{\"value\":\"10%\",\"label\":\"GLOBAL GDP\",\"desc\":\"Share generated by automotive tourism and its derived ecosystems.\",\"tone\":\"light\"},{\"value\":\"25%\",\"label\":\"SUCCESS MODEL\",\"desc\":\"Share of GDP in Montenegro, a leading example of structured itinerant tourism.\",\"tone\":\"dark\"},{\"value\":\"Euro\",\"label\":\"PRIORITY MARKET\",\"desc\":\"Europe is the world’s leading pool of autonomous motorised travellers.\",\"tone\":\"light\"}]",
+        "real.title": "Reality of the product in Tunisia",
+        "real.body": "Tunisia has several major assets for developing automotive tourism:",
+        "real.items": "[{\"text\":\"Rich heritage\"},{\"text\":\"Strong appeal of southern Tunisia\"},{\"text\":\"Good road infrastructure\"},{\"text\":\"Accessibility: its proximity to Europe and a favourable Mediterranean climate can attract visitors year-round\"},{\"text\":\"Good maritime connection with Europe (ports of Marseille, Genoa, Palermo, Naples…)\"}]",
+        "real.img": "/images/groupement-media/auto-road.jpg?v=2",
+        "actions.title": "Actions to undertake",
+        "actions.items": "[{\"text\":\"Why no double-decker buses in Tunis? despite their advantages: increased capacity, cost-per-passenger efficiency, improved tourist experience, less space required…\"},{\"text\":\"The near absence of accommodation modes suited to automotive tourism, in particular equipped camping and caravanning areas (vehicles coming to Tunisia are forced into wild camping)\"},{\"text\":\"Lack of promotion in target markets in Europe\"},{\"text\":\"Lack of coordination and collaboration between the Automobile Club of Tunisia (exclusive FIA representative) and the Tunisian Federation of Motor Sports, which prevents the organisation of rallies and other events.\"}]",
+        "actions.body": "Actions to undertake: promote the sector through specialised networks — trade fairs and specialised shows, magazines, press and specialised media invitations… and above all find a compromise between the Automobile Club of Tunisia and the Federation of Motor Sports.",
+        "actions.img": "/images/groupement-media/auto-hands.jpg?v=2"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-automobile.jpg",
+        "hero.title": "سياحة السيارات",
+        "intro.body": "",
+        "vision.title": "رؤية باهرة للتنقل",
+        "vision.body": "تتجاوز السياحة السياراتية مجرّد السفر على الطرق. إنها انغماس ثقافي بإيقاع الرحلات البرية الموضوعية، والقوافل الفاخرة، وتنظيم الراليات الدولية الكبرى. إنها فن الاكتشاف البطيء، مع تفضيل الوصول إلى أقاليم أصيلة، غالبًا بعيدًا عن المسارات المعتادة.",
+        "stats.items": "[{\"value\":\"10%\",\"label\":\"الناتج المحلي العالمي\",\"desc\":\"الحصة التي تولّدها السياحة السياراتية ومنظوماتها المشتقة.\",\"tone\":\"light\"},{\"value\":\"25%\",\"label\":\"نموذج نجاح\",\"desc\":\"حصة الناتج المحلي في الجبل الأسود، مثال رائد للسياحة التجوالية المنظّمة.\",\"tone\":\"dark\"},{\"value\":\"أوروبا\",\"label\":\"سوق ذات أولوية\",\"desc\":\"تشكّل أوروبا أكبر تجمع للمسافرين الآليين المستقلين في العالم.\",\"tone\":\"light\"}]",
+        "real.title": "واقع المنتج في تونس",
+        "real.body": "تملك تونس عدة مقومات كبرى لتطوير السياحة السياراتية:",
+        "real.items": "[{\"text\":\"تراث غني\"},{\"text\":\"جاذبية قوية لجنوب تونس\"},{\"text\":\"بنية تحتية طرقية جيدة\"},{\"text\":\"سهولة الوصول: قربها من أوروبا ومناخ متوسطي ملائم يمكن أن يجذب الزوار طوال السنة\"},{\"text\":\"ربط بحري جيد مع أوروبا (موانئ مرسيليا وجنوة وباليرمو ونابولي…)\"}]",
+        "real.img": "/images/groupement-media/auto-road.jpg?v=2",
+        "actions.title": "إجراءات يجب القيام بها",
+        "actions.items": "[{\"text\":\"لماذا لا توجد حافلات ذات طابقين في تونس؟ رغم مزاياها: زيادة السعة، وكفاءة اقتصادية للتكلفة/المسافر، وتحسين تجربة السائح، ومساحة أقل مطلوبة…\"},{\"text\":\"شبه غياب لأنماط الإيواء الملائمة للسياحة السياراتية، ولا سيما مناطق التخييم والقوافل المجهّزة (المركبات القادمة إلى تونس مضطرة إلى التخييم البري)\"},{\"text\":\"غياب الترويج في الأسواق المستهدفة في أوروبا\"},{\"text\":\"غياب التنسيق والتعاون بين نادي السيارات التونسي (الممثل الحصري لـ FIA) والاتحاد التونسي للرياضات الآلية، مما يمنع تنظيم الراليات وغيرها من الفعاليات.\"}]",
+        "actions.body": "إجراءات يجب القيام بها: ترويج القطاع عبر الشبكات المتخصصة — المعارض والصالونات المتخصصة والمجلات ودعوات الصحافة ووسائل الإعلام المتخصصة… وفوق كل ذلك إيجاد تسوية بين نادي السيارات التونسي واتحاد الرياضات الآلية.",
+        "actions.img": "/images/groupement-media/auto-hands.jpg?v=2"
+      }
+    }
+  },
+  "hebergements-alternatifs": {
+    "layout": "hebergements",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "types",
+        "label": "Typologies"
+      },
+      {
+        "id": "values",
+        "label": "Valeurs"
+      },
+      {
+        "id": "growth",
+        "label": "Un secteur en pleine croissance"
+      },
+      {
+        "id": "diag",
+        "label": "Le Diagnostic Stratégique"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-hebergements-alternatifs.jpg",
+        "hero.title": "L'hébergement alternatif touristique",
+        "intro.body": "L'hébergement alternatif touristique fait partie d'un concept plus large connu sous le nom de tourisme alternatif, qui se distingue du tourisme de masse par son approche responsable et durable.",
+        "intro.lead": "l'hébergement alternatif touristique",
+        "intro.copy": "L'hébergement alternatif désigne des types de logements qui offrent une expérience unique et souvent immersive, en opposition aux structures hôtelières conventionnelles. Ce type d'hébergement peut inclure :",
+        "types.items": "[{\"name\":\"Eco-lodges\",\"desc\":\"Conçus pour minimiser l'impact environnemental tout en offrant un confort.\",\"img\":\"/images/groupement-media/heb-ecolodge-photo.jpg\",\"wide\":true},{\"name\":\"Maisons d'hôtes\",\"desc\":\"L'élégance du patrimoine architectural tunisien au service d'un accueil personnalisé et chaleureux.\",\"img\":\"/images/groupement-media/heb-maisons-photo.jpg\",\"wide\":false},{\"name\":\"Hébergements Insolites\",\"desc\":\"Cabanes, habitats troglodytes ou palais en Médina pour une expérience de séjour unique et mémorable.\",\"img\":\"/images/groupement-media/heb-insolites-photo.jpg\",\"wide\":false},{\"name\":\"Séjours chez l'habitant\",\"desc\":\"Permettent aux voyageurs de vivre avec des familles locales, favorisant ainsi un échange culturel.\",\"img\":\"/images/groupement-media/heb-habitant-photo.jpg\",\"wide\":true}]",
+        "values.items": "[{\"title\":\"Durabilité\",\"desc\":\"Ces hébergements sont souvent construits et gérés avec un souci de respect de l'environnement, utilisant des matériaux durables et des pratiques écologiques\",\"icon\":\"/images/groupement-media/heb-value-durabilite.png?v=3\"},{\"title\":\"Authenticité\",\"desc\":\"L'accent est mis sur la culture locale, permettant aux voyageurs de s'immerger dans les traditions et modes de vie des communautés\",\"icon\":\"/images/groupement-media/heb-value-authenticite.png?v=3\"},{\"title\":\"Interaction\",\"desc\":\"Les voyageurs sont encouragés à interagir avec les habitants, ce qui enrichit leur expérience et soutient les économies locales\",\"icon\":\"/images/groupement-media/heb-value-interaction.png?v=3\"},{\"title\":\"Impact\",\"desc\":\"L'objectif est de générer des bénéfices pour les communautés locales tout en préservant leur patrimoine culturel et naturel\",\"icon\":\"/images/groupement-media/heb-value-impact.png?v=3\"}]",
+        "growth.title": "Un secteur en pleine croissance",
+        "growth.body": "L’hébergement alternatif touristique connaît une croissance continue et s’impose comme une solution de voyage plus responsable et authentique. En privilégiant les maisons d’hôtes, les gîtes ruraux ou les éco-lodges, les voyageurs soutiennent les économies locales tout en favorisant la préservation du patrimoine culturel et environnemental. En Tunisie, ce secteur représente une part croissante du marché touristique et génère des retombées économiques importantes pour les communautés locales. Porté par la demande pour des expériences durables et immersives, l’hébergement alternatif s’affirme comme un levier essentiel du tourisme de demain.",
+        "growth.stats": "[{\"value\":\"+20%\",\"label\":\"de croissance des maisons d’hôtes et gîtes ruraux (2019-2022)\"},{\"value\":\"9%\",\"label\":\"du marché touristique tunisien\"},{\"value\":\"50m\",\"suffix\":\"TND\",\"label\":\"générés pour les communautés locales en 2022\"}]",
+        "diag.title": "Le Diagnostic Stratégique",
+        "diag.items": "[{\"title\":\"Anarchie du Marché\",\"desc\":\"L’étude Fi2T/EMHROD a démontré qu’il existe en Tunisie plus de 2500 hébergements alternatifs touristiques (sous différentes formes légales et illégales). Moins d’une centaine exercent avec un agrément officiel de l’ONTT\",\"side\":\"left\"},{\"title\":\"Procédures\",\"desc\":\"Ceci prouve que le cadre légal et les procédures nécessitent révision et souplesse afin d’englober le maximum d’opérateurs dans le circuit légal\",\"side\":\"right\"},{\"title\":\"Cahier des Charges\",\"desc\":\"un projet de cahier des charges a été élaboré depuis presque deux ans et n’a pas encore vu le jour. Il est à craindre que le projet de cahier des charges pose plus de contraintes que les lois\",\"side\":\"left\"},{\"title\":\"Contrôle\",\"desc\":\"qui a la charge du contrôle des hébergements alternatifs : CRT, police touristique ..\",\"side\":\"right\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-hebergements-alternatifs.jpg",
+        "hero.title": "Alternative tourist accommodation",
+        "intro.body": "Alternative tourist accommodation is part of a broader concept known as alternative tourism, which differs from mass tourism through its responsible and sustainable approach.",
+        "intro.lead": "alternative tourist accommodation",
+        "intro.copy": "Alternative accommodation refers to lodging types that offer a unique and often immersive experience, as opposed to conventional hotel structures. This kind of accommodation can include:",
+        "types.items": "[{\"name\":\"Eco-lodges\",\"desc\":\"Designed to minimise environmental impact while still offering comfort.\",\"img\":\"/images/groupement-media/heb-ecolodge-photo.jpg\",\"wide\":true},{\"name\":\"Guest houses\",\"desc\":\"The elegance of Tunisian architectural heritage in the service of warm, personalised hospitality.\",\"img\":\"/images/groupement-media/heb-maisons-photo.jpg\",\"wide\":false},{\"name\":\"Unusual stays\",\"desc\":\"Cabins, troglodyte dwellings or medina palaces for a unique and memorable stay.\",\"img\":\"/images/groupement-media/heb-insolites-photo.jpg\",\"wide\":false},{\"name\":\"Homestays\",\"desc\":\"Allow travellers to live with local families, fostering cultural exchange.\",\"img\":\"/images/groupement-media/heb-habitant-photo.jpg\",\"wide\":true}]",
+        "values.items": "[{\"title\":\"Sustainability\",\"desc\":\"These accommodations are often built and managed with respect for the environment, using sustainable materials and ecological practices\",\"icon\":\"/images/groupement-media/heb-value-durabilite.png?v=3\"},{\"title\":\"Authenticity\",\"desc\":\"The focus is on local culture, allowing travellers to immerse themselves in the traditions and lifestyles of communities\",\"icon\":\"/images/groupement-media/heb-value-authenticite.png?v=3\"},{\"title\":\"Interaction\",\"desc\":\"Travellers are encouraged to interact with residents, which enriches their experience and supports local economies\",\"icon\":\"/images/groupement-media/heb-value-interaction.png?v=3\"},{\"title\":\"Impact\",\"desc\":\"The aim is to generate benefits for local communities while preserving their cultural and natural heritage\",\"icon\":\"/images/groupement-media/heb-value-impact.png?v=3\"}]",
+        "growth.title": "A fast-growing sector",
+        "growth.body": "Alternative tourist accommodation continues to grow and is establishing itself as a more responsible and authentic way to travel. By favouring guest houses, rural cottages or eco-lodges, travellers support local economies while helping to preserve cultural and environmental heritage. In Tunisia, this sector accounts for a growing share of the tourism market and generates significant economic returns for local communities. Driven by demand for sustainable, immersive experiences, alternative accommodation is asserting itself as an essential lever of tomorrow’s tourism.",
+        "growth.stats": "[{\"value\":\"+20%\",\"label\":\"growth in guest houses and rural cottages (2019-2022)\"},{\"value\":\"9%\",\"label\":\"of the Tunisian tourism market\"},{\"value\":\"50m\",\"suffix\":\"TND\",\"label\":\"generated for local communities in 2022\"}]",
+        "diag.title": "The Strategic Diagnosis",
+        "diag.items": "[{\"title\":\"Market anarchy\",\"desc\":\"The Fi2T/EMHROD study showed that Tunisia has more than 2,500 alternative tourist accommodations (in various legal and illegal forms). Fewer than a hundred operate with an official ONTT licence\",\"side\":\"left\"},{\"title\":\"Procedures\",\"desc\":\"This proves that the legal framework and procedures need revision and flexibility in order to bring as many operators as possible into the legal circuit\",\"side\":\"right\"},{\"title\":\"Specifications\",\"desc\":\"A draft set of specifications was prepared almost two years ago and has still not been published. There is a risk that the draft will impose more constraints than the laws themselves\",\"side\":\"left\"},{\"title\":\"Control\",\"desc\":\"who is responsible for controlling alternative accommodations: CRT, tourism police…\",\"side\":\"right\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-hebergements-alternatifs.jpg",
+        "hero.title": "الإيواء السياحي البديل",
+        "intro.body": "يندرج الإيواء السياحي البديل ضمن مفهوم أوسع يُعرف بالسياحة البديلة، ويتميز عن السياحة الجماعية بنهجه المسؤول والمستدام.",
+        "intro.lead": "الإيواء السياحي البديل",
+        "intro.copy": "يقصد بالإيواء البديل أنواعًا من أماكن الإقامة تقدّم تجربة فريدة وغالباً غامرة، بخلاف الهياكل الفندقية التقليدية. ويمكن أن يشمل هذا النوع من الإيواء:",
+        "types.items": "[{\"name\":\"الإيكولوجات\",\"desc\":\"مصمّمة لتقليل الأثر البيئي مع توفير الراحة.\",\"img\":\"/images/groupement-media/heb-ecolodge-photo.jpg\",\"wide\":true},{\"name\":\"بيوت الضيافة\",\"desc\":\"أناقة التراث المعماري التونسي في خدمة استقبال شخصي ودافئ.\",\"img\":\"/images/groupement-media/heb-maisons-photo.jpg\",\"wide\":false},{\"name\":\"إقامات غير تقليدية\",\"desc\":\"أكواخ أو مساكن كهفية أو قصور في المدينة لتجربة إقامة فريدة لا تُنسى.\",\"img\":\"/images/groupement-media/heb-insolites-photo.jpg\",\"wide\":false},{\"name\":\"الإقامة لدى السكان\",\"desc\":\"تتيح للمسافرين العيش مع عائلات محلية، مما يعزّز التبادل الثقافي.\",\"img\":\"/images/groupement-media/heb-habitant-photo.jpg\",\"wide\":true}]",
+        "values.items": "[{\"title\":\"الاستدامة\",\"desc\":\"غالباً ما تُبنى هذه الإقامات وتُدار باحترام للبيئة، باستخدام مواد مستدامة وممارسات إيكولوجية\",\"icon\":\"/images/groupement-media/heb-value-durabilite.png?v=3\"},{\"title\":\"الأصالة\",\"desc\":\"يُركَّز على الثقافة المحلية، مما يتيح للمسافرين الانغماس في تقاليد وأنماط عيش المجتمعات\",\"icon\":\"/images/groupement-media/heb-value-authenticite.png?v=3\"},{\"title\":\"التفاعل\",\"desc\":\"يُشجَّع المسافرون على التفاعل مع السكان، مما يثري تجربتهم ويدعم الاقتصادات المحلية\",\"icon\":\"/images/groupement-media/heb-value-interaction.png?v=3\"},{\"title\":\"الأثر\",\"desc\":\"الهدف هو تحقيق منافع للمجتمعات المحلية مع الحفاظ على تراثها الثقافي والطبيعي\",\"icon\":\"/images/groupement-media/heb-value-impact.png?v=3\"}]",
+        "growth.title": "قطاع في نمو متواصل",
+        "growth.body": "يعرف الإيواء السياحي البديل نموًا مستمرًا ويؤكد نفسه كحل سفر أكثر مسؤولية وأصالة. ومن خلال تفضيل بيوت الضيافة والنزل الريفية أو الإيكولوجات، يدعم المسافرون الاقتصادات المحلية ويعززون الحفاظ على التراث الثقافي والبيئي. وفي تونس يمثل هذا القطاع حصة متزايدة من السوق السياحي ويولّد عوائد اقتصادية مهمة للمجتمعات المحلية. مدفوعًا بالطلب على تجارب مستدامة وغامرة، يثبت الإيواء البديل نفسه كرافعة أساسية لسياحة الغد.",
+        "growth.stats": "[{\"value\":\"+20%\",\"label\":\"نمو بيوت الضيافة والنزل الريفية (2019-2022)\"},{\"value\":\"9%\",\"label\":\"من السوق السياحي التونسي\"},{\"value\":\"50m\",\"suffix\":\"TND\",\"label\":\"عائدات للمجتمعات المحلية سنة 2022\"}]",
+        "diag.title": "التشخيص الاستراتيجي",
+        "diag.items": "[{\"title\":\"فوضى السوق\",\"desc\":\"أظهرت دراسة Fi2T/EMHROD وجود أكثر من 2500 إيواء سياحي بديل في تونس (بأشكال قانونية وغير قانونية مختلفة). وأقل من مائة منها يعمل بترخيص رسمي من الديوان الوطني للسياحة التونسية\",\"side\":\"left\"},{\"title\":\"الإجراءات\",\"desc\":\"يثبت ذلك أن الإطار القانوني والإجراءات تحتاج إلى مراجعة ومرونة لإدماج أكبر عدد ممكن من المشغّلين في المسار القانوني\",\"side\":\"right\"},{\"title\":\"كراس الشروط\",\"desc\":\"أُعدّ مشروع كراس شروط منذ نحو سنتين ولم يرَ النور بعد. ويُخشى أن يفرض المشروع قيودًا أكثر من القوانين نفسها\",\"side\":\"left\"},{\"title\":\"المراقبة\",\"desc\":\"من يتولى مراقبة الإيواء البديل: المندوبيات الجهوية للسياحة، الشرطة السياحية…\",\"side\":\"right\"}]"
+      }
+    }
+  },
+  "tourisme-culturel": {
+    "layout": "culturel",
+    "sections": [
+      {
+        "id": "stats",
+        "label": "Chiffres clés"
+      },
+      {
+        "id": "atouts",
+        "label": "Nos Atouts Stratégiques"
+      },
+      {
+        "id": "artisan",
+        "label": "Artisanat"
+      },
+      {
+        "id": "quote",
+        "label": "Citation"
+      },
+      {
+        "id": "diag",
+        "label": "Diagnostic Stratégique"
+      },
+      {
+        "id": "roadmap",
+        "label": "Feuille de Route Institutionnelle"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-culturel.jpg",
+        "hero.title": "Tourisme culturel",
+        "intro.body": "Redécouvrir la Tunisie à travers le prisme de l'authenticité, du savoir-faire et de l'innovation institutionnelle.",
+        "stats.items": "[{\"value\":\"40%\",\"label\":\"PART DU TOURISME INTERNATIONAL\",\"desc\":\"Le tourisme culturel s'impose comme le segment moteur de la mobilité mondiale.\",\"icon\":\"globe\"},{\"value\":\"3x\",\"label\":\"DÉPENSE PAR TOURISTE\",\"desc\":\"Un profil de voyageur à haute valeur ajoutée, contribuant significativement à l'économie locale.\",\"icon\":\"euro\"},{\"value\":\"10%\",\"label\":\"CONTRIBUTION AU PIB MONDIAL\",\"desc\":\"Une force économique transversale qui dépasse la simple visite de sites.\",\"icon\":\"chart\"}]",
+        "atouts.title": "Nos Atouts Stratégiques",
+        "atouts.body": "La Tunisie n'est pas seulement une destination; c'est un carrefour de civilisations. De la légende d'Alyssa aux stratégies de Hannibal, nous portons 3000 ans d'histoire.",
+        "atouts.items": "[{\"title\":\"3000 ANS D'HISTOIRE\",\"desc\":\"Un patrimoine archéologique unique en Méditerranée.\",\"icon\":\"landmark\"},{\"title\":\"PROXIMITÉ EUROPÉENNE\",\"desc\":\"Un accès rapide pour le marché émetteur principal.\",\"icon\":\"plane\"}]",
+        "artisan.img": "/images/groupement-media/culturel-artisanat.png",
+        "quote.value": "\"L'artisanat est l'âme de notre territoire, le prolongement vivant de notre histoire.\"",
+        "diag.title": "Diagnostic Stratégique",
+        "diag.sub": "Identifier les leviers de croissance en adressant les défis actuels.",
+        "diag.items": "[{\"title\":\"Mise en Valeur\",\"desc\":\"Besoin urgent de réhabiliter les sites et d'améliorer l'expérience visiteur sur place.\",\"icon\":\"/images/groupement-media/culturel-diag-alert.png?v=4\"},{\"title\":\"Coordination\",\"desc\":\"Nécessité d'une synergie accrue entre les ministères du Tourisme et de la Culture.\",\"icon\":\"/images/groupement-media/culturel-diag-sync.png?v=4\"},{\"title\":\"Promotion\",\"desc\":\"Manque de visibilité ciblée sur les segments spécialisés à l’international.\",\"icon\":\"/images/groupement-media/culturel-diag-megaphone.png?v=4\"}]",
+        "roadmap.title": "Feuille de Route Institutionnelle",
+        "roadmap.body": "Notre stratégie repose sur trois piliers fondamentaux pour transformer le potentiel en réalité économique.",
+        "roadmap.items": "[{\"title\":\"Intégration Culturelle\",\"desc\":\"Créer des parcours touristiques liant patrimoine immatériel et sites archéologiques.\"},{\"title\":\"Promotion Ciblée\",\"desc\":\"Organisation d'eductours, invitations de presse spécialisée et présence dans les salons de niche.\"},{\"title\":\"Digitization & Access\",\"desc\":\"Moderniser la billetterie et proposer des guides interactifs multilingues.\"}]"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-culturel.jpg",
+        "hero.title": "Cultural tourism",
+        "intro.body": "Rediscover Tunisia through the prism of authenticity, craftsmanship and institutional innovation.",
+        "stats.items": "[{\"value\":\"40%\",\"label\":\"SHARE OF INTERNATIONAL TOURISM\",\"desc\":\"Cultural tourism is establishing itself as the driving segment of global mobility.\",\"icon\":\"globe\"},{\"value\":\"3x\",\"label\":\"SPEND PER TOURIST\",\"desc\":\"A high-value traveller profile that contributes significantly to the local economy.\",\"icon\":\"euro\"},{\"value\":\"10%\",\"label\":\"CONTRIBUTION TO GLOBAL GDP\",\"desc\":\"A cross-cutting economic force that goes beyond simply visiting sites.\",\"icon\":\"chart\"}]",
+        "atouts.title": "Our Strategic Strengths",
+        "atouts.body": "Tunisia is not merely a destination; it is a crossroads of civilisations. From the legend of Alyssa to the strategies of Hannibal, we carry 3,000 years of history.",
+        "atouts.items": "[{\"title\":\"3,000 YEARS OF HISTORY\",\"desc\":\"An archaeological heritage unique in the Mediterranean.\",\"icon\":\"landmark\"},{\"title\":\"EUROPEAN PROXIMITY\",\"desc\":\"Quick access for the main source market.\",\"icon\":\"plane\"}]",
+        "artisan.img": "/images/groupement-media/culturel-artisanat.png",
+        "quote.value": "\"Craftsmanship is the soul of our territory, the living extension of our history.\"",
+        "diag.title": "Strategic Diagnosis",
+        "diag.sub": "Identify growth levers by addressing current challenges.",
+        "diag.items": "[{\"title\":\"Enhancement\",\"desc\":\"Urgent need to rehabilitate sites and improve the on-site visitor experience.\",\"icon\":\"/images/groupement-media/culturel-diag-alert.png?v=4\"},{\"title\":\"Coordination\",\"desc\":\"Need for greater synergy between the Ministries of Tourism and Culture.\",\"icon\":\"/images/groupement-media/culturel-diag-sync.png?v=4\"},{\"title\":\"Promotion\",\"desc\":\"Lack of targeted visibility on specialised segments internationally.\",\"icon\":\"/images/groupement-media/culturel-diag-megaphone.png?v=4\"}]",
+        "roadmap.title": "Institutional Roadmap",
+        "roadmap.body": "Our strategy rests on three fundamental pillars to turn potential into economic reality.",
+        "roadmap.items": "[{\"title\":\"Cultural Integration\",\"desc\":\"Create tourist itineraries linking intangible heritage and archaeological sites.\"},{\"title\":\"Targeted Promotion\",\"desc\":\"Organisation of eductours, specialised press invitations and presence at niche trade shows.\"},{\"title\":\"Digitization & Access\",\"desc\":\"Modernise ticketing and offer interactive multilingual guides.\"}]"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-culturel.jpg",
+        "hero.title": "السياحة الثقافية",
+        "intro.body": "إعادة اكتشاف تونس من خلال أصالة التجربة والحِرف والابتكار المؤسسي.",
+        "stats.items": "[{\"value\":\"40%\",\"label\":\"حصة السياحة الدولية\",\"desc\":\"تفرض السياحة الثقافية نفسها كقطاع محرّك للتنقل العالمي.\",\"icon\":\"globe\"},{\"value\":\"3x\",\"label\":\"الإنفاق لكل سائح\",\"desc\":\"ملف مسافر ذي قيمة مضافة عالية يساهم بشكل ملموس في الاقتصاد المحلي.\",\"icon\":\"euro\"},{\"value\":\"10%\",\"label\":\"المساهمة في الناتج العالمي\",\"desc\":\"قوة اقتصادية عرضية تتجاوز مجرد زيارة المواقع.\",\"icon\":\"chart\"}]",
+        "atouts.title": "مقوماتنا الاستراتيجية",
+        "atouts.body": "تونس ليست مجرد وجهة؛ إنها ملتقى حضارات. من أسطورة إليسا إلى استراتيجيات حنبعل، نحمل ثلاثة آلاف سنة من التاريخ.",
+        "atouts.items": "[{\"title\":\"3000 سنة من التاريخ\",\"desc\":\"تراث أثري فريد في حوض البحر الأبيض المتوسط.\",\"icon\":\"landmark\"},{\"title\":\"القرب من أوروبا\",\"desc\":\"وصول سريع إلى السوق المُصدِّر الرئيسي.\",\"icon\":\"plane\"}]",
+        "artisan.img": "/images/groupement-media/culturel-artisanat.png",
+        "quote.value": "\"الحِرف هي روح أرضنا، والامتداد الحي لتاريخنا.\"",
+        "diag.title": "التشخيص الاستراتيجي",
+        "diag.sub": "تحديد رافعات النمو عبر معالجة التحديات الراهنة.",
+        "diag.items": "[{\"title\":\"التثمين\",\"desc\":\"حاجة ملحّة لإعادة تأهيل المواقع وتحسين تجربة الزائر في عين المكان.\",\"icon\":\"/images/groupement-media/culturel-diag-alert.png?v=4\"},{\"title\":\"التنسيق\",\"desc\":\"ضرورة تعزيز التآزر بين وزارتي السياحة والثقافة.\",\"icon\":\"/images/groupement-media/culturel-diag-sync.png?v=4\"},{\"title\":\"الترويج\",\"desc\":\"نقص في الظهور المستهدف على الشرائح المتخصصة دوليًا.\",\"icon\":\"/images/groupement-media/culturel-diag-megaphone.png?v=4\"}]",
+        "roadmap.title": "خارطة الطريق المؤسسية",
+        "roadmap.body": "تقوم استراتيجيتنا على ثلاثة أعمدة أساسية لتحويل الإمكانات إلى واقع اقتصادي.",
+        "roadmap.items": "[{\"title\":\"الإدماج الثقافي\",\"desc\":\"إحداث مسارات سياحية تربط التراث غير المادي بالمواقع الأثرية.\"},{\"title\":\"ترويج موجّه\",\"desc\":\"تنظيم جولات تعريفية ودعوات للصحافة المتخصصة والحضور في المعارض المتخصصة.\"},{\"title\":\"الرقمنة والوصول\",\"desc\":\"تحديث التذاكر وتقديم أدلة تفاعلية متعددة اللغات.\"}]"
+      }
+    }
+  },
+  "tourisme-de-sante": {
+    "layout": "hub",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "stats",
+        "label": "Le pôle en chiffres"
+      },
+      {
+        "id": "pillars",
+        "label": "Le rôle de la Fi2T sur ce pôle"
+      },
+      {
+        "id": "grid",
+        "label": "Les filières du pôle santé"
+      },
+      {
+        "id": "cta",
+        "label": "Vous êtes un acteur du tourisme de santé ?"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-de-sante.jpg",
+        "hero.title": "Tourisme de santé",
+        "intro.body": "Le tourisme de santé regroupe l’ensemble des séjours dont le motif principal est le soin, la prévention ou la remise en forme. La Tunisie y dispose d’un avantage rare : un corps médical reconnu, des infrastructures hôtelières intégrées aux centres de soin, une façade méditerranéenne et des ressources naturelles — eau de mer, boues, sources thermales — exploitées depuis l’Antiquité.\nCe pôle rassemble quatre filières qui partagent les mêmes clients, les mêmes canaux de distribution et les mêmes exigences de qualité. Les traiter ensemble permet de construire une offre lisible à l’international, de mutualiser la promotion et de parler d’une seule voix face aux autorités de santé, de tutelle et de transport.",
+        "intro.eyebrow": "Pôle du groupement",
+        "intro.lead": "Soins médicaux, thalassothérapie, thermalisme et séjours séniors : quatre filières, une même promesse de santé méditerranéenne.",
+        "stats.title": "Le pôle en chiffres",
+        "stats.items": "[{\"value\":\"4\",\"label\":\"FILIÈRES REPRÉSENTÉES\",\"desc\":\"Médical, thalassothérapie, thermal et séniors — pilotées au sein d’un même pôle.\"},{\"value\":\"60\",\"label\":\"CENTRES DE THALASSOTHÉRAPIE\",\"desc\":\"Dont 15 à l’arrêt, en attente de restructuration et de remise à niveau.\"},{\"value\":\"300+\",\"label\":\"JOURS D’ENSOLEILLEMENT / AN\",\"desc\":\"Un climat qui autorise les cures et l’héliothérapie sur l’ensemble de l’année.\"},{\"value\":\"2 h\",\"label\":\"DE VOL DES MARCHÉS ÉMETTEURS\",\"desc\":\"Proximité immédiate des principales capitales européennes.\"}]",
+        "pillars.title": "Le rôle de la Fi2T sur ce pôle",
+        "pillars.sub": "Quatre chantiers transversaux menés pour l’ensemble des filières santé.",
+        "pillars.items": "[{\"title\":\"Qualité & accréditation\",\"desc\":\"Harmoniser les protocoles, accompagner les démarches d’accréditation et sécuriser la confiance du patient étranger.\",\"icon\":\"shield\"},{\"title\":\"Cadre réglementaire\",\"desc\":\"Porter auprès des autorités les adaptations nécessaires : visas médicaux, transfert de dossiers, statut des accompagnants.\",\"icon\":\"scale\"},{\"title\":\"Promotion internationale\",\"desc\":\"Une bannière « Tunisie Santé » commune sur les salons, auprès des assureurs et des agences spécialisées.\",\"icon\":\"megaphone\"},{\"title\":\"Formation & métiers\",\"desc\":\"Professionnaliser l’accueil multilingue, la coordination des séjours et les métiers du bien-être médicalisé.\",\"icon\":\"people\"}]",
+        "grid.title": "Les filières du pôle santé",
+        "grid.sub": "Chaque filière dispose de sa fiche détaillée : diagnostic, atouts et actions à entreprendre.",
+        "grid.source": "tourisme-de-sante",
+        "grid.cta": "Découvrir la filière",
+        "grid.children": "[{\"slug\":\"tourisme-medical\",\"label\":\"Tourisme médical\",\"tag\":\"Soins & chirurgie\",\"blurb\":\"Cliniques privées accréditées, plateaux techniques de pointe et prise en charge de patients internationaux, du diagnostic au suivi post-opératoire.\",\"face\":\"/images/groupement-photos/face-tourisme-medical.jpg\"},{\"slug\":\"thalassotherapie\",\"label\":\"Thalassothérapie\",\"tag\":\"Santé par la mer\",\"blurb\":\"Protocoles encadrés médicalement autour de l’eau de mer, des boues et des algues, dans des centres intégrés aux hôtels 4★ et 5★ du littoral.\",\"face\":\"/images/groupement-photos/face-thalassotherapie.jpg\"},{\"slug\":\"tourisme-thermal\",\"label\":\"Tourisme thermal\",\"tag\":\"Sources & hammams\",\"blurb\":\"Sources chaudes de Korbous, Jebel Oust ou Jerba et une tradition thermale ancienne à moderniser en véritables pôles de cure.\",\"face\":\"/images/groupement-photos/face-tourisme-thermal.jpg\"},{\"slug\":\"tourisme-senior\",\"label\":\"Tourisme des séniors\",\"tag\":\"Séjours longue durée\",\"blurb\":\"Hivernage, accessibilité et accompagnement dédié : une clientèle fidèle qui allonge la saison et consomme du soin comme du loisir.\",\"face\":\"/images/groupement-photos/face-tourisme-senior.jpg\"}]",
+        "cta.title": "Vous êtes un acteur du tourisme de santé ?",
+        "cta.body": "Cliniques, centres de thalassothérapie et de cure, résidences séniors, agences spécialisées : rejoignez le groupement et participez aux travaux du pôle.",
+        "cta.label": "Adhérer à la Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-de-sante.jpg",
+        "hero.title": "Health tourism",
+        "intro.body": "Health tourism covers all stays whose main purpose is care, prevention or wellness. Tunisia has a rare advantage here: a recognised medical profession, hotel infrastructure integrated with care centres, a Mediterranean coastline and natural resources — seawater, muds, thermal springs — used since antiquity.\nThis hub brings together four segments that share the same clients, the same distribution channels and the same quality requirements. Treating them together makes it possible to build a clear international offer, pool promotion and speak with one voice to health, supervisory and transport authorities.",
+        "intro.eyebrow": "Groupement hub",
+        "intro.lead": "Medical care, thalassotherapy, thermalism and senior stays: four segments, one Mediterranean health promise.",
+        "stats.title": "The hub in figures",
+        "stats.items": "[{\"value\":\"4\",\"label\":\"SEGMENTS REPRESENTED\",\"desc\":\"Medical, thalassotherapy, thermal and seniors — steered within a single hub.\"},{\"value\":\"60\",\"label\":\"THALASSOTHERAPY CENTRES\",\"desc\":\"Of which 15 are idle, awaiting restructuring and upgrading.\"},{\"value\":\"300+\",\"label\":\"SUNNY DAYS / YEAR\",\"desc\":\"A climate that allows treatments and heliotherapy year-round.\"},{\"value\":\"2 h\",\"label\":\"FLIGHT FROM SOURCE MARKETS\",\"desc\":\"Immediate proximity to major European capitals.\"}]",
+        "pillars.title": "Fi2T’s role on this hub",
+        "pillars.sub": "Four cross-cutting workstreams carried out for all health segments.",
+        "pillars.items": "[{\"title\":\"Quality & accreditation\",\"desc\":\"Harmonise protocols, support accreditation processes and secure the foreign patient’s trust.\",\"icon\":\"shield\"},{\"title\":\"Regulatory framework\",\"desc\":\"Advocate with the authorities for needed adaptations: medical visas, file transfers, accompanying-person status.\",\"icon\":\"scale\"},{\"title\":\"International promotion\",\"desc\":\"A shared “Tunisia Health” banner at trade shows, with insurers and specialised agencies.\",\"icon\":\"megaphone\"},{\"title\":\"Training & professions\",\"desc\":\"Professionalise multilingual reception, stay coordination and medical wellness trades.\",\"icon\":\"people\"}]",
+        "grid.title": "Health hub segments",
+        "grid.sub": "Each segment has its own detailed sheet: diagnosis, strengths and actions to take.",
+        "grid.source": "tourisme-de-sante",
+        "grid.cta": "Discover the segment",
+        "grid.children": "[{\"slug\":\"tourisme-medical\",\"label\":\"Medical tourism\",\"tag\":\"Care & surgery\",\"blurb\":\"Accredited private clinics, cutting-edge technical platforms and end-to-end care for international patients, from diagnosis to post-operative follow-up.\",\"face\":\"/images/groupement-photos/face-tourisme-medical.jpg\"},{\"slug\":\"thalassotherapie\",\"label\":\"Thalassotherapy\",\"tag\":\"Health by the sea\",\"blurb\":\"Medically supervised protocols around seawater, muds and algae, in centres integrated into 4★ and 5★ coastal hotels.\",\"face\":\"/images/groupement-photos/face-thalassotherapie.jpg\"},{\"slug\":\"tourisme-thermal\",\"label\":\"Thermal tourism\",\"tag\":\"Springs & hammams\",\"blurb\":\"Hot springs of Korbous, Jebel Oust or Jerba and an ancient thermal tradition to modernise into true spa hubs.\",\"face\":\"/images/groupement-photos/face-tourisme-thermal.jpg\"},{\"slug\":\"tourisme-senior\",\"label\":\"Senior tourism\",\"tag\":\"Long-stay breaks\",\"blurb\":\"Wintering, accessibility and dedicated support: a loyal clientele that lengthens the season and consumes care as well as leisure.\",\"face\":\"/images/groupement-photos/face-tourisme-senior.jpg\"}]",
+        "cta.title": "Are you a health tourism operator?",
+        "cta.body": "Clinics, thalassotherapy and spa centres, senior residences, specialised agencies: join the groupement and take part in the hub’s work.",
+        "cta.label": "Join Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-de-sante.jpg",
+        "hero.title": "سياحة الصحة",
+        "intro.body": "تجمع سياحة الصحة كل الإقامات التي يكون دافعها الأساسي العلاج أو الوقاية أو استعادة اللياقة. وتتمتع تونس في هذا المجال بميزة نادرة: كفاءات طبية معترف بها، وبُنى فندقية مدمجة بمراكز الرعاية، وواجهة متوسطية وموارد طبيعية — مياه بحر وطين وينابيع حرارية — تُستغل منذ العصور القديمة.\nيجمع هذا القطب أربع شعب تشترك في الزبائن نفسها وقنوات التوزيع ومتطلبات الجودة. ومعالجتها معًا تتيح بناء عرض واضح دوليًا، وتوحيد الترويج، والتحدث بصوت واحد أمام سلطات الصحة والإشراف والنقل.",
+        "intro.eyebrow": "قطب المجموعة",
+        "intro.lead": "رعاية طبية وعلاج بمياه البحر وحرارية وإقامات كبار السن: أربع شعب ووعد واحد بصحة متوسطية.",
+        "stats.title": "القطب بالأرقام",
+        "stats.items": "[{\"value\":\"4\",\"label\":\"شعب ممثَّلة\",\"desc\":\"طبية وعلاج بمياه البحر وحرارية وكبار السن — تُقاد ضمن قطب واحد.\"},{\"value\":\"60\",\"label\":\"مراكز علاج بمياه البحر\",\"desc\":\"منها 15 متوقفة في انتظار إعادة هيكلة وتحديث.\"},{\"value\":\"300+\",\"label\":\"يوم مشمس / سنة\",\"desc\":\"مناخ يتيح العلاج والعلاج بالشمس على مدار السنة.\"},{\"value\":\"2 h\",\"label\":\"من الطيران عن الأسواق المُصدِّرة\",\"desc\":\"قرب مباشر من العواصم الأوروبية الرئيسية.\"}]",
+        "pillars.title": "دور الفيتو في هذا القطب",
+        "pillars.sub": "أربعة محاور عرضية تُنجَز لفائدة كل شعب الصحة.",
+        "pillars.items": "[{\"title\":\"الجودة والاعتماد\",\"desc\":\"مواءمة البروتوكولات ومرافقة مسارات الاعتماد وتعزيز ثقة المريض الأجنبي.\",\"icon\":\"shield\"},{\"title\":\"الإطار التنظيمي\",\"desc\":\"الدفاع أمام السلطات عن التكييفات اللازمة: التأشيرات الطبية ونقل الملفات ووضع المرافقين.\",\"icon\":\"scale\"},{\"title\":\"الترويج الدولي\",\"desc\":\"راية مشتركة «تونس الصحة» في المعارض ولدى شركات التأمين والوكالات المتخصصة.\",\"icon\":\"megaphone\"},{\"title\":\"التكوين والمهن\",\"desc\":\"تأهيل الاستقبال متعدد اللغات وتنسيق الإقامات ومهن الرفاه الطبي.\",\"icon\":\"people\"}]",
+        "grid.title": "شعب قطب الصحة",
+        "grid.sub": "لكل شعبة بطاقة مفصّلة: تشخيص ومقومات وإجراءات مطلوبة.",
+        "grid.source": "tourisme-de-sante",
+        "grid.cta": "اكتشف الشعبة",
+        "grid.children": "[{\"slug\":\"tourisme-medical\",\"label\":\"السياحة الطبية\",\"tag\":\"رعاية وجراحة\",\"blurb\":\"عيادات خاصة معتمدة ومنصات تقنية متقدمة ورعاية شاملة للمرضى الدوليين، من التشخيص إلى المتابعة بعد العملية.\",\"face\":\"/images/groupement-photos/face-tourisme-medical.jpg\"},{\"slug\":\"thalassotherapie\",\"label\":\"العلاج بمياه البحر\",\"tag\":\"صحة عبر البحر\",\"blurb\":\"بروتوكولات بإشراف طبي حول مياه البحر والطين والطحالب، في مراكز مدمجة بفنادق الشاطئ من فئة 4★ و5★.\",\"face\":\"/images/groupement-photos/face-thalassotherapie.jpg\"},{\"slug\":\"tourisme-thermal\",\"label\":\"السياحة الحرارية\",\"tag\":\"ينابيع وحمامات\",\"blurb\":\"ينابيع حارة في قربص وجبل الوسط وجربة وتقاليد حرارية عريقة ينبغي تحديثها إلى أقطاب علاج حقيقية.\",\"face\":\"/images/groupement-photos/face-tourisme-thermal.jpg\"},{\"slug\":\"tourisme-senior\",\"label\":\"سياحة كبار السن\",\"tag\":\"إقامات طويلة\",\"blurb\":\"تشتية وسهولة وصول ومرافقة مخصّصة: زبائن أوفياء يطيلون الموسم ويستهلكون الرعاية كما الترفيه.\",\"face\":\"/images/groupement-photos/face-tourisme-senior.jpg\"}]",
+        "cta.title": "هل أنتم فاعلون في سياحة الصحة؟",
+        "cta.body": "عيادات ومراكز علاج بمياه البحر والمنتجعات ومساكن كبار السن ووكالات متخصصة: انضموا إلى المجموعة وشاركوا في أعمال القطب.",
+        "cta.label": "الانضمام إلى الفيتو",
+        "cta.to": "/fiche-adhesion"
+      }
+    }
+  },
+  "tourisme-sportif": {
+    "layout": "hub",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "stats",
+        "label": "Le pôle en chiffres"
+      },
+      {
+        "id": "pillars",
+        "label": "Le rôle de la Fi2T sur ce pôle"
+      },
+      {
+        "id": "grid",
+        "label": "Les filières du pôle sportif"
+      },
+      {
+        "id": "cta",
+        "label": "Votre discipline n’est pas encore représentée ?"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-sportif.jpg",
+        "hero.title": "Tourisme sportif",
+        "intro.body": "Le tourisme sportif réunit les séjours motivés par la pratique d’une discipline, la préparation d’une saison ou la participation à une compétition. Il repose sur trois atouts tunisiens : un climat praticable toute l’année, des équipements de niveau international et des coûts d’accueil très compétitifs face aux destinations concurrentes du bassin méditerranéen.\nLe golf constitue la première filière structurée de ce pôle, la plus mature en termes d’équipements et de clientèle internationale. D’autres disciplines — stages de clubs, sports de raquette, cyclisme sur route, disciplines de plein air — rejoindront progressivement le groupement à mesure que leurs opérateurs s’organisent.",
+        "intro.eyebrow": "Pôle du groupement",
+        "intro.lead": "Un pôle bâti sur le climat, les équipements et la compétitivité tunisienne — avec le golf comme filière pilote.",
+        "stats.title": "Le pôle en chiffres",
+        "stats.items": "[{\"value\":\"10\",\"label\":\"PARCOURS DE GOLF\",\"desc\":\"Répartis sur le littoral et le sud, dont 5 seulement sont pleinement opérationnels.\"},{\"value\":\"60k\",\"label\":\"JOUEURS PAR AN\",\"desc\":\"Fréquentation annuelle moyenne des parcours tunisiens, très en deçà du potentiel.\"},{\"value\":\"65M\",\"label\":\"PRATIQUANTS DANS LE MONDE\",\"desc\":\"Un marché mondial de 15 Md€ en croissance de +15 % par an.\"},{\"value\":\"12 mois\",\"label\":\"DE SAISON EXPLOITABLE\",\"desc\":\"Un climat qui permet la pratique et les stages hors des pics touristiques.\"}]",
+        "pillars.title": "Le rôle de la Fi2T sur ce pôle",
+        "pillars.sub": "Structurer une offre sportive vendable et désaisonnalisée.",
+        "pillars.items": "[{\"title\":\"Équipements & entretien\",\"desc\":\"Remettre à niveau les installations sous-exploitées et sécuriser leur exploitation dans la durée.\",\"icon\":\"building\"},{\"title\":\"Packaging séjour\",\"desc\":\"Construire des forfaits « sport + hébergement + transfert » commercialisables auprès des tours opérateurs spécialisés.\",\"icon\":\"sync\"},{\"title\":\"Événements & compétitions\",\"desc\":\"Attirer tournois, stages de clubs et rencontres internationales, puissants leviers de notoriété.\",\"icon\":\"megaphone\"},{\"title\":\"Désaisonnalisation\",\"desc\":\"Utiliser le sport pour remplir les mois creux et allonger la durée moyenne de séjour.\",\"icon\":\"chart\"}]",
+        "grid.title": "Les filières du pôle sportif",
+        "grid.sub": "Le golf ouvre le pôle ; les prochaines disciplines sont en cours de structuration.",
+        "grid.source": "tourisme-sportif",
+        "grid.cta": "Découvrir la filière",
+        "grid.children": "[{\"slug\":\"tourisme-golfique\",\"label\":\"Tourisme golfique\",\"tag\":\"Parcours 18 trous\",\"blurb\":\"Dix parcours de standard international, un climat jouable toute l’année et une clientèle européenne à fort pouvoir d’achat encore sous-exploitée.\",\"face\":\"/images/groupement-photos/face-tourisme-golfique.jpg\"}]",
+        "cta.title": "Votre discipline n’est pas encore représentée ?",
+        "cta.body": "Clubs, académies, gestionnaires d’équipements et organisateurs d’événements sportifs : contactez-nous pour ouvrir une nouvelle filière au sein du pôle.",
+        "cta.label": "Nous contacter",
+        "cta.to": "/contact"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-sportif.jpg",
+        "hero.title": "Sports tourism",
+        "intro.body": "Sports tourism brings together stays motivated by practising a discipline, preparing for a season or taking part in a competition. It rests on three Tunisian strengths: a climate practicable year-round, international-level facilities and very competitive hosting costs compared with competing Mediterranean destinations.\nGolf is the first structured segment of this hub, the most mature in terms of facilities and international clientele. Other disciplines — club training camps, racket sports, road cycling, outdoor activities — will gradually join the groupement as their operators organise.",
+        "intro.eyebrow": "Groupement hub",
+        "intro.lead": "A hub built on climate, facilities and Tunisian competitiveness — with golf as the pilot segment.",
+        "stats.title": "The hub in figures",
+        "stats.items": "[{\"value\":\"10\",\"label\":\"GOLF COURSES\",\"desc\":\"Spread along the coast and in the south, of which only 5 are fully operational.\"},{\"value\":\"60k\",\"label\":\"PLAYERS PER YEAR\",\"desc\":\"Average annual attendance at Tunisian courses, well below potential.\"},{\"value\":\"65M\",\"label\":\"PRACTITIONERS WORLDWIDE\",\"desc\":\"A global market of €15 billion growing at +15% per year.\"},{\"value\":\"12 months\",\"label\":\"EXPLOITABLE SEASON\",\"desc\":\"A climate that allows practice and training camps outside peak tourist periods.\"}]",
+        "pillars.title": "Fi2T’s role on this hub",
+        "pillars.sub": "Structuring a marketable and off-season sports offer.",
+        "pillars.items": "[{\"title\":\"Facilities & maintenance\",\"desc\":\"Upgrade under-exploited installations and secure their long-term operation.\",\"icon\":\"building\"},{\"title\":\"Stay packaging\",\"desc\":\"Build \\\"sport + accommodation + transfer\\\" packages marketable to specialised tour operators.\",\"icon\":\"sync\"},{\"title\":\"Events & competitions\",\"desc\":\"Attract tournaments, club training camps and international meetings, powerful levers for visibility.\",\"icon\":\"megaphone\"},{\"title\":\"Off-season activity\",\"desc\":\"Use sport to fill low months and extend average length of stay.\",\"icon\":\"chart\"}]",
+        "grid.title": "Sports hub segments",
+        "grid.sub": "Golf opens the hub; upcoming disciplines are being structured.",
+        "grid.source": "tourisme-sportif",
+        "grid.cta": "Discover the segment",
+        "grid.children": "[{\"slug\":\"tourisme-golfique\",\"label\":\"Golf tourism\",\"tag\":\"18-hole courses\",\"blurb\":\"Ten international-standard courses, a climate playable year-round and a high-spending European clientele still largely untapped.\",\"face\":\"/images/groupement-photos/face-tourisme-golfique.jpg\"}]",
+        "cta.title": "Is your discipline not yet represented?",
+        "cta.body": "Clubs, academies, facility managers and sports event organisers: contact us to open a new segment within the hub.",
+        "cta.label": "Contact us",
+        "cta.to": "/contact"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-sportif.jpg",
+        "hero.title": "السياحة الرياضية",
+        "intro.body": "تجمع السياحة الرياضية الإقامات التي يدفعها ممارسة تخصّص أو التحضير لموسم أو المشاركة في منافسة. وتستند إلى ثلاثة مقومات تونسية: مناخ قابل للممارسة طوال السنة، ومرافق بمستوى دولي، وتكاليف استضافة تنافسية جدًا مقارنة بالوجهات المتوسطية المنافسة.\nالغولف هو أول شعبة منظّمة في هذا القطب، الأكثر نضجًا من حيث المرافق والزبائن الدوليين. ستنضم تخصّصات أخرى — معسكرات تدريب الأندية ورياضات المضرب وركوب الدراجات والأنشطة في الهواء الطلق — تدريجيًا مع تنظيم مشغّليها.",
+        "intro.eyebrow": "قطب المجموعة",
+        "intro.lead": "قطب مبني على المناخ والمرافق والتنافسية التونسية — والغولف كشعبة رائدة.",
+        "stats.title": "القطب بالأرقام",
+        "stats.items": "[{\"value\":\"10\",\"label\":\"ملاعب غولف\",\"desc\":\"منتشرة على الساحل وفي الجنوب، منها 5 فقط تعمل بكامل طاقتها.\"},{\"value\":\"60k\",\"label\":\"لاعب / سنة\",\"desc\":\"متوسط الحضور السنوي في الملاعب التونسية، دون إمكانات حقيقية.\"},{\"value\":\"65M\",\"label\":\"ممارس حول العالم\",\"desc\":\"سوق عالمي بقيمة 15 مليار يورو ينمو بـ +15% سنويًا.\"},{\"value\":\"12 شهرًا\",\"label\":\"موسم قابل للاستغلال\",\"desc\":\"مناخ يتيح الممارسة ومعسكرات التدريب خارج فترات الذروة السياحية.\"}]",
+        "pillars.title": "دور الفيتو في هذا القطب",
+        "pillars.sub": "هيكلة عرض رياضي قابل للتسويق وخارج الموسم.",
+        "pillars.items": "[{\"title\":\"المرافق والصيانة\",\"desc\":\"ترقية المنشآت غير المستغلّة بكامل طاقتها وضمان استدامة تشغيلها.\",\"icon\":\"building\"},{\"title\":\"تجميع الإقامات\",\"desc\":\"بناء حزم «رياضة + إيواء + نقل» قابلة للتسويق لدى وكالات متخصصة.\",\"icon\":\"sync\"},{\"title\":\"الفعاليات والمسابقات\",\"desc\":\"جذب بطولات ومعسكرات تدريب واجتماعات دولية، رافعات قوية للظهور.\",\"icon\":\"megaphone\"},{\"title\":\"نشاط خارج الموسم\",\"desc\":\"استخدام الرياضة لملء الأشهر المنخفضة وتمديد متوسط الإقامة.\",\"icon\":\"chart\"}]",
+        "grid.title": "شعب القطب الرياضي",
+        "grid.sub": "الغولف يفتح القطب؛ تخصّصات قادمة قيد الهيكلة.",
+        "grid.source": "tourisme-sportif",
+        "grid.cta": "اكتشف الشعبة",
+        "grid.children": "[{\"slug\":\"tourisme-golfique\",\"label\":\"سياحة الغولف\",\"tag\":\"ملاعب 18 حفرة\",\"blurb\":\"عشرة ملاعب بمعايير دولية، ومناخ قابل للعب طوال السنة، وزبائن أوروبيون ذوو قدرة شرائية عالية لا تزال تُستغلّ بشكل محدود.\",\"face\":\"/images/groupement-photos/face-tourisme-golfique.jpg\"}]",
+        "cta.title": "هل تخصّصكم غير ممثّل بعد؟",
+        "cta.body": "أندية وأكاديميات ومديرو مرافق ومنظّمو فعاليات رياضية: تواصلوا معنا لفتح شعبة جديدة ضمن القطب.",
+        "cta.label": "اتصلوا بنا",
+        "cta.to": "/contact"
+      }
+    }
+  },
+  "tourisme-nautique": {
+    "layout": "hub",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "stats",
+        "label": "Le pôle en chiffres"
+      },
+      {
+        "id": "pillars",
+        "label": "Le rôle de la Fi2T sur ce pôle"
+      },
+      {
+        "id": "grid",
+        "label": "Les filières du pôle nautique"
+      },
+      {
+        "id": "cta",
+        "label": "Vous opérez sur le littoral ou en marina ?"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-nautique.jpg",
+        "hero.title": "Tourisme nautique",
+        "intro.body": "Le tourisme nautique couvre l’ensemble des activités touristiques dont la mer est le support : plaisance et yachting, escales de croisière, sports de mer, événements et régates. Avec 1 350 km de côtes au cœur de la Méditerranée occidentale, la Tunisie se trouve sur la route naturelle des flottes européennes — à quelques heures de navigation de la Sicile, de la Sardaigne et des Baléares.\nLe potentiel reste largement sous-exploité : le cadre portuaire, les procédures douanières et le niveau de services en marina freinent encore l’escale et l’hivernage. Le pôle nautique porte ces sujets de façon coordonnée, en commençant par la filière plaisance, la plus avancée en termes de diagnostic et de feuille de route.",
+        "intro.eyebrow": "Pôle du groupement",
+        "intro.lead": "1 350 km de côtes, une position centrale en Méditerranée et une filière plaisance à débloquer.",
+        "stats.title": "Le pôle en chiffres",
+        "stats.items": "[{\"value\":\"1 350 km\",\"label\":\"DE LITTORAL\",\"desc\":\"Une position stratégique à quelques heures de navigation des côtes européennes.\"},{\"value\":\"20:1\",\"label\":\"RATIO DE DÉPENSE\",\"desc\":\"Un plaisancier dépense en moyenne vingt fois plus qu’un touriste balnéaire classique.\"},{\"value\":\"9\",\"label\":\"CHANTIERS PRIORITAIRES\",\"desc\":\"Du code des ports à la formation : les piliers identifiés pour refonder le secteur.\"},{\"value\":\"12 mois\",\"label\":\"POTENTIEL D’HIVERNAGE\",\"desc\":\"Un climat qui permet de capter la maintenance et l’hivernage des unités européennes.\"}]",
+        "pillars.title": "Le rôle de la Fi2T sur ce pôle",
+        "pillars.sub": "Lever les freins réglementaires et monter en gamme sur les services.",
+        "pillars.items": "[{\"title\":\"Cadre portuaire\",\"desc\":\"Moderniser le code des ports et clarifier les contrats de concession des marinas.\",\"icon\":\"scale\"},{\"title\":\"Fluidité des escales\",\"desc\":\"Simplifier et unifier les procédures douanières et sécuritaires à l’arrivée comme au départ.\",\"icon\":\"sync\"},{\"title\":\"Services & maintenance\",\"desc\":\"Développer les services techniques, l’avitaillement et l’hivernage attendus par la clientèle yachting.\",\"icon\":\"tech\"},{\"title\":\"Animation & notoriété\",\"desc\":\"Régates, événements nautiques et promotion d’une véritable destination « Tunisie Yachting ».\",\"icon\":\"megaphone\"}]",
+        "grid.title": "Les filières du pôle nautique",
+        "grid.sub": "La plaisance ouvre le pôle ; sports de mer et croisière suivront.",
+        "grid.source": "tourisme-nautique",
+        "grid.cta": "Découvrir la filière",
+        "grid.children": "[{\"slug\":\"tourisme-plaisance\",\"label\":\"Tourisme de plaisance\",\"tag\":\"Marinas & yachting\",\"blurb\":\"Ports de plaisance, escales et services techniques : la filière qui capte les flux de yachting de la Méditerranée occidentale.\",\"face\":\"/images/groupement-photos/face-tourisme-plaisance.jpg\"}]",
+        "cta.title": "Vous opérez sur le littoral ou en marina ?",
+        "cta.body": "Gestionnaires de ports, chantiers, loueurs, clubs et prestataires nautiques : rejoignez le pôle et pesez sur les réformes en cours.",
+        "cta.label": "Adhérer à la Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-nautique.jpg",
+        "hero.title": "Nautical tourism",
+        "intro.body": "Nautical tourism covers all tourist activities for which the sea is the medium: pleasure boating and yachting, cruise stopovers, sea sports, events and regattas. With 1,350 km of coastline at the heart of the western Mediterranean, Tunisia lies on the natural route of European fleets — a few hours’ sailing from Sicily, Sardinia and the Balearics.\nPotential remains largely untapped: the port framework, customs procedures and marina service levels still hinder stopovers and wintering. The nautical hub addresses these issues in a coordinated way, starting with the pleasure boating segment, the most advanced in terms of diagnosis and roadmap.",
+        "intro.eyebrow": "Groupement hub",
+        "intro.lead": "1,350 km of coastline, a central Mediterranean position and a pleasure boating segment to unlock.",
+        "stats.title": "The hub in figures",
+        "stats.items": "[{\"value\":\"1 350 km\",\"label\":\"OF COASTLINE\",\"desc\":\"A strategic position a few hours’ sailing from European coasts.\"},{\"value\":\"20:1\",\"label\":\"SPENDING RATIO\",\"desc\":\"A pleasure boater spends on average twenty times more than a classic seaside tourist.\"},{\"value\":\"9\",\"label\":\"PRIORITY WORKSTREAMS\",\"desc\":\"From the port code to training: the pillars identified to rebuild the sector.\"},{\"value\":\"12 months\",\"label\":\"WINTERING POTENTIAL\",\"desc\":\"A climate that allows capturing maintenance and wintering of European vessels.\"}]",
+        "pillars.title": "Fi2T’s role on this hub",
+        "pillars.sub": "Removing regulatory barriers and upgrading services.",
+        "pillars.items": "[{\"title\":\"Port framework\",\"desc\":\"Modernise the port code and clarify marina concession contracts.\",\"icon\":\"scale\"},{\"title\":\"Stopover fluidity\",\"desc\":\"Simplify and unify customs and security procedures on arrival and departure.\",\"icon\":\"sync\"},{\"title\":\"Services & maintenance\",\"desc\":\"Develop technical services, provisioning and wintering expected by yachting clientele.\",\"icon\":\"tech\"},{\"title\":\"Events & visibility\",\"desc\":\"Regattas, nautical events and promotion of a true \\\"Tunisia Yachting\\\" destination.\",\"icon\":\"megaphone\"}]",
+        "grid.title": "Nautical hub segments",
+        "grid.sub": "Pleasure boating opens the hub; sea sports and cruising will follow.",
+        "grid.source": "tourisme-nautique",
+        "grid.cta": "Discover the segment",
+        "grid.children": "[{\"slug\":\"tourisme-plaisance\",\"label\":\"Pleasure boating tourism\",\"tag\":\"Marinas & yachting\",\"blurb\":\"Marinas, stopovers and technical services: the segment that captures yachting flows from the western Mediterranean.\",\"face\":\"/images/groupement-photos/face-tourisme-plaisance.jpg\"}]",
+        "cta.title": "Do you operate on the coast or in a marina?",
+        "cta.body": "Port managers, shipyards, rental companies, clubs and nautical service providers: join the hub and influence ongoing reforms.",
+        "cta.label": "Join Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-nautique.jpg",
+        "hero.title": "السياحة البحرية",
+        "intro.body": "تغطي السياحة البحرية كل الأنشطة السياحية التي يكون فيها البحر الوسيط: الإبحار الترفيهي واليخوت، ومحطات توقف الرحلات البحرية، والرياضات البحرية والفعاليات والسباقات. مع 1,350 كم من الساحل في قلب غرب المتوسط، تقع تونس على المسار الطبيعي للأساطيل الأوروبية — على بُعد ساعات قليلة من صقلية وسردينيا وجزر البليار.\nتبقى الإمكانات غير مستغلّة إلى حدّ كبير: الإطار المينائي والإجراءات الجمركية ومستوى خدمات المراسي ما زالت تعيق محطات التوقف والشتوية. يعالج القطب البحري هذه الإشكاليات بشكل منسّق، بدءًا بشعبة الإبحار الترفيهي، الأكثر تقدّمًا من حيث التشخيص وخارطة الطريق.",
+        "intro.eyebrow": "قطب المجموعة",
+        "intro.lead": "1,350 كم من الساحل، وموقع متوسطي محوري، وشعبة إبحار ترفيهي بانتظار الإطلاق.",
+        "stats.title": "القطب بالأرقام",
+        "stats.items": "[{\"value\":\"1 350 كم\",\"label\":\"من الساحل\",\"desc\":\"موقع استراتيجي على بُعد ساعات قليلة من السواحل الأوروبية.\"},{\"value\":\"20:1\",\"label\":\"نسبة الإنفاق\",\"desc\":\"ينفق ممارس الإبحار الترفيهي في المتوسط عشرين مرة أكثر من سائح شاطئ تقليدي.\"},{\"value\":\"9\",\"label\":\"محاور أولوية\",\"desc\":\"من قانون الموانئ إلى التكوين: الركائز المحدّدة لإعادة بناء القطاع.\"},{\"value\":\"12 شهرًا\",\"label\":\"إمكانات الشتوية\",\"desc\":\"مناخ يتيح استقطاب صيانة وشتوية السفن الأوروبية.\"}]",
+        "pillars.title": "دور الفيتو في هذا القطب",
+        "pillars.sub": "رفع الحواجز التنظيمية وترقية الخدمات.",
+        "pillars.items": "[{\"title\":\"الإطار المينائي\",\"desc\":\"تحديث قانون الموانئ وتوضيح عقود امتياز المراسي.\",\"icon\":\"scale\"},{\"title\":\"سلاسة محطات التوقف\",\"desc\":\"تبسيط وتوحيد الإجراءات الجمركية والأمنية عند الوصول والمغادرة.\",\"icon\":\"sync\"},{\"title\":\"الخدمات والصيانة\",\"desc\":\"تطوير الخدمات التقنية والتموين والشتوية التي يتوقّعها زبائن الإبحار الترفيهي.\",\"icon\":\"tech\"},{\"title\":\"الفعاليات والظهور\",\"desc\":\"سباقات وفعاليات بحرية وترويج وجهة «تونس للإبحار الترفيهي» حقيقية.\",\"icon\":\"megaphone\"}]",
+        "grid.title": "شعب القطب البحري",
+        "grid.sub": "الإبحار الترفيهي يفتح القطب؛ الرياضات البحرية والرحلات البحرية ستتبع.",
+        "grid.source": "tourisme-nautique",
+        "grid.cta": "اكتشف الشعبة",
+        "grid.children": "[{\"slug\":\"tourisme-plaisance\",\"label\":\"سياحة اليخوت\",\"tag\":\"مراسي واليخوت\",\"blurb\":\"مراسي ومحطات توقف وخدمات تقنية: الشعبة التي تستقطب تدفقات الإبحار الترفيهي من غرب المتوسط.\",\"face\":\"/images/groupement-photos/face-tourisme-plaisance.jpg\"}]",
+        "cta.title": "هل تعملون على الساحل أو في مرسى؟",
+        "cta.body": "مديرو الموانئ والحواضن وشركات التأجير والأندية ومقدّمو الخدمات البحرية: انضموا إلى القطب وشاركوا في الإصلاحات الجارية.",
+        "cta.label": "الانضمام إلى الفيتو",
+        "cta.to": "/fiche-adhesion"
+      }
+    }
+  },
+  "tourisme-ecologique": {
+    "layout": "segment",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "stats",
+        "label": "Le segment en chiffres"
+      },
+      {
+        "id": "pillars",
+        "label": "Piliers du segment"
+      },
+      {
+        "id": "challenges",
+        "label": "Défis à relever"
+      },
+      {
+        "id": "actions",
+        "label": "Actions Fi2T"
+      },
+      {
+        "id": "cta",
+        "label": "Vous portez un projet d’écotourisme ?"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-ecologique.jpg",
+        "hero.title": "Tourisme écologique",
+        "intro.body": "Le tourisme écologique place la préservation des écosystèmes et le développement des territoires au cœur de l’expérience du voyageur. La Tunisie dispose pour cela d’un capital naturel rare et très diversifié : parcs nationaux, oasis de montagne et de plaine, zones humides classées, forêts du nord-ouest et littoral encore préservé.\nLe segment existe déjà sur le terrain, porté par des écolodges, des maisons d’hôtes rurales et des guides indépendants. Il souffre en revanche d’un déficit de structuration : offre éclatée, absence de référentiel commun et visibilité internationale insuffisante. Le groupement fédère ces opérateurs pour construire une offre lisible, certifiée et réellement commercialisable.",
+        "intro.eyebrow": "Groupement Fi2T",
+        "intro.lead": "Une offre nature déjà vivante sur le terrain, qu’il s’agit désormais de labelliser et de rendre commercialisable.",
+        "stats.title": "Le segment en chiffres",
+        "stats.items": "[{\"value\":\"+20%\",\"label\":\"CROISSANCE DES GÎTES RURAUX\",\"desc\":\"Progression des maisons d’hôtes et gîtes ruraux entre 2019 et 2022.\"},{\"value\":\"9%\",\"label\":\"DU MARCHÉ TOURISTIQUE\",\"desc\":\"Poids actuel des formes alternatives d’hébergement en Tunisie.\"},{\"value\":\"Europe\",\"label\":\"MARCHÉ PRIORITAIRE\",\"desc\":\"Les marchés européens sont les plus sensibles aux critères de durabilité.\"}]",
+        "pillars.title": "Piliers du segment",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"Nature & biodiversité\",\"desc\":\"Parcs nationaux, réserves et itinéraires nature pour une découverte respectueuse des milieux.\",\"icon\":\"globe\"},{\"title\":\"Communautés locales\",\"desc\":\"Retombées économiques pour les territoires et savoir-faire locaux (artisanat, agriculture, guidage).\",\"icon\":\"care\"},{\"title\":\"Certification & labels\",\"desc\":\"Montée en gamme via des labels environnementaux et des chartes d’accueil durable.\",\"icon\":\"shield\"}]",
+        "challenges.title": "Défis à relever",
+        "challenges.items": "[{\"text\":\"Fragmentation de l’offre et manque de packaging commercial clair.\"},{\"text\":\"Besoin de formation des guides et d’opérateurs aux standards écotouristiques.\"},{\"text\":\"Pression sur certains sites sensibles sans outils de gestion des flux.\"},{\"text\":\"Visibilité internationale encore insuffisante face aux destinations concurrents.\"}]",
+        "actions.title": "Actions Fi2T",
+        "actions.items": "[{\"text\":\"Cartographier et labelliser les opérateurs engagés.\"},{\"text\":\"Construire des circuits écotouristiques commercialisables (B2B / B2C).\"},{\"text\":\"Renforcer le dialogue avec les autorités environnementales et territoriales.\"},{\"text\":\"Promouvoir le segment sur les marchés européens sensibles à la durabilité.\"}]",
+        "cta.title": "Vous portez un projet d’écotourisme ?",
+        "cta.body": "Écolodges, gîtes ruraux, guides nature et opérateurs de circuits durables : rejoignez le groupement et participez à la construction du référentiel.",
+        "cta.label": "Adhérer à la Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-ecologique.jpg",
+        "hero.title": "Ecological tourism",
+        "intro.body": "Ecological tourism places ecosystem preservation and territorial development at the heart of the traveller’s experience. Tunisia has a rare and highly diverse natural capital for this: national parks, mountain and plain oases, classified wetlands, north-west forests and still preserved coastline.\nThe segment already exists on the ground, driven by eco-lodges, rural guest houses and independent guides. It suffers however from a structuring deficit: fragmented offer, absence of a common reference framework and insufficient international visibility. The groupement federates these operators to build a clear, certified and truly marketable offer.",
+        "intro.eyebrow": "Fi2T Groupement",
+        "intro.lead": "A nature offer already alive on the ground, now to be labelled and made marketable.",
+        "stats.title": "The segment in figures",
+        "stats.items": "[{\"value\":\"+20%\",\"label\":\"RURAL COTTAGE GROWTH\",\"desc\":\"Growth in guest houses and rural cottages between 2019 and 2022.\"},{\"value\":\"9%\",\"label\":\"OF TOURISM MARKET\",\"desc\":\"Current weight of alternative accommodation forms in Tunisia.\"},{\"value\":\"Europe\",\"label\":\"PRIORITY MARKET\",\"desc\":\"European markets are most sensitive to sustainability criteria.\"}]",
+        "pillars.title": "Segment pillars",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"Nature & biodiversity\",\"desc\":\"National parks, reserves and nature trails for respectful discovery of environments.\",\"icon\":\"globe\"},{\"title\":\"Local communities\",\"desc\":\"Economic returns for territories and local know-how (crafts, agriculture, guiding).\",\"icon\":\"care\"},{\"title\":\"Certification & labels\",\"desc\":\"Upgrading via environmental labels and sustainable hospitality charters.\",\"icon\":\"shield\"}]",
+        "challenges.title": "Challenges to address",
+        "challenges.items": "[{\"text\":\"Fragmentation of the offer and lack of clear commercial packaging.\"},{\"text\":\"Need to train guides and operators to ecotourism standards.\"},{\"text\":\"Pressure on certain sensitive sites without visitor flow management tools.\"},{\"text\":\"International visibility still insufficient compared with competing destinations.\"}]",
+        "actions.title": "Fi2T Actions",
+        "actions.items": "[{\"text\":\"Map and label committed operators.\"},{\"text\":\"Build marketable ecotourism circuits (B2B / B2C).\"},{\"text\":\"Strengthen dialogue with environmental and territorial authorities.\"},{\"text\":\"Promote the segment on European markets sensitive to sustainability.\"}]",
+        "cta.title": "Do you run an ecotourism project?",
+        "cta.body": "Eco-lodges, rural cottages, nature guides and sustainable circuit operators: join the groupement and help build the reference framework.",
+        "cta.label": "Join Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-ecologique.jpg",
+        "hero.title": "السياحة البيئية",
+        "intro.body": "تضع السياحة البيئية حفظ النظام البيئي والتنمية الترابية في قلب تجربة المسافر. تتمتع تونس برأسمال طبيعي نادر ومتنوّع جدًا: محميات وطنية، واحات جبلية وسهلية، أراضٍ رطبة مصنّفة، غابات الشمال الغربي وساحل لا يزال محفوظًا.\nالشعبة موجودة فعليًا على الأرض، بقيادة نزل بيئية وبيوت ضيافة ريفية ومرشدين مستقلين. لكنها تعاني من عجز في الهيكلة: عرض مجزّأ، وغياب إطار مرجعي مشترك، وظهور دولي غير كافٍ. تجمع المجموعة هؤلاء المشغّلين لبناء عرض واضح ومعتمد وقابل للتسويق فعلًا.",
+        "intro.eyebrow": "مجموعة الفيتو",
+        "intro.lead": "عرض طبيعي حيّ على الأرض، يحان الآن وضع علامة عليه وجعله قابلًا للتسويق.",
+        "stats.title": "الشعبة بالأرقام",
+        "stats.items": "[{\"value\":\"+20%\",\"label\":\"نمو البيوت الريفية\",\"desc\":\"نمو بيوت الضيافة والبيوت الريفية بين 2019 و2022.\"},{\"value\":\"9%\",\"label\":\"من سوق السياحة\",\"desc\":\"الوزن الحالي لأشكال الإيواء البديلة في تونس.\"},{\"value\":\"أوروبا\",\"label\":\"سوق أولوية\",\"desc\":\"الأسواق الأوروبية الأكثر حساسية لمعايير الاستدامة.\"}]",
+        "pillars.title": "ركائز الشعبة",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"الطبيعة والتنوّع البيولوجي\",\"desc\":\"محميات ومسارات طبيعية لاكتشاف محترم للبيئات.\",\"icon\":\"globe\"},{\"title\":\"المجتمعات المحلية\",\"desc\":\"عائدات اقتصادية للأقاليم ومعارف محلية (حرف وزراعة وإرشاد).\",\"icon\":\"care\"},{\"title\":\"الاعتماد والعلامات\",\"desc\":\"ترقية عبر علامات بيئية وميثاق ضيافة مستدامة.\",\"icon\":\"shield\"}]",
+        "challenges.title": "تحديات يجب معالجتها",
+        "challenges.items": "[{\"text\":\"تجزئة العرض وغياب تجميع تجاري واضح.\"},{\"text\":\"حاجة إلى تكوين المرشدين والمشغّلين وفق معايير السياحة البيئية.\"},{\"text\":\"ضغط على مواقع حسّاسة دون أدوات إدارة تدفّق الزوار.\"},{\"text\":\"ظهور دولي لا يزال غير كافٍ مقارنة بالوجهات المنافسة.\"}]",
+        "actions.title": "إجراءات الفيتو",
+        "actions.items": "[{\"text\":\"رسم خريطة للمشغّلين الملتزمين ووضع علامات عليهم.\"},{\"text\":\"بناء مسارات سياحة بيئية قابلة للتسويق (B2B / B2C).\"},{\"text\":\"تعزيز الحوار مع السلطات البيئية والترابية.\"},{\"text\":\"ترويج الشعبة في الأسواق الأوروبية الحسّاسة للاستدامة.\"}]",
+        "cta.title": "هل تديرون مشروع سياحة بيئية؟",
+        "cta.body": "نزل بيئية وبيوت ريفية ومرشدو طبيعة ومشغّلو مسارات مستدامة: انضموا إلى المجموعة وساهموا في بناء الإطار المرجعي.",
+        "cta.label": "الانضمام إلى الفيتو",
+        "cta.to": "/fiche-adhesion"
+      }
+    }
+  },
+  "tourisme-aeronautique": {
+    "layout": "segment",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "stats",
+        "label": "Le segment en chiffres"
+      },
+      {
+        "id": "pillars",
+        "label": "Piliers du segment"
+      },
+      {
+        "id": "challenges",
+        "label": "Défis à relever"
+      },
+      {
+        "id": "actions",
+        "label": "Actions Fi2T"
+      },
+      {
+        "id": "cta",
+        "label": "Vous êtes un opérateur du secteur aérien ?"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-aeronautique.jpg",
+        "hero.title": "Tourisme aéronautique",
+        "intro.body": "Le tourisme aéronautique regroupe l’aviation légère et de loisir, l’aviation d’affaires, les meetings aériens et l’ensemble des expériences construites autour du vol. Il s’appuie sur un maillage aéroportuaire dense, un réseau d’aéroclubs historiques et une position géographique charnière entre l’Europe et l’Afrique.\nC’est le segment le plus récent du groupement. Sa priorité n’est pas la promotion mais la structuration : identifier les opérateurs, cartographier les freins réglementaires qui pèsent sur l’aviation légère et d’affaires, et faire émerger des produits associant le vol à la découverte du territoire.",
+        "intro.eyebrow": "Groupement Fi2T",
+        "intro.lead": "Un segment en cours de structuration, où le premier chantier est réglementaire avant d’être commercial.",
+        "stats.title": "Le segment en chiffres",
+        "stats.items": "[{\"value\":\"9\",\"label\":\"AÉROPORTS INTERNATIONAUX\",\"desc\":\"Un maillage qui couvre le littoral, le centre et le sud du pays.\"},{\"value\":\"2 h\",\"label\":\"DE VOL DES HUBS EUROPÉENS\",\"desc\":\"Une accessibilité immédiate pour le charter et l’aviation d’affaires.\"},{\"value\":\"En création\",\"label\":\"GROUPEMENT DU SEGMENT\",\"desc\":\"Les opérateurs intéressés sont invités à se déclarer auprès de la fédération.\"}]",
+        "pillars.title": "Piliers du segment",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"Connectivité\",\"desc\":\"Réseau aéroportuaire et potentiel de vols charter / aviation d’affaires.\",\"icon\":\"plane\"},{\"title\":\"Aviation légère\",\"desc\":\"Aéroclubs, baptêmes de l’air et tourisme sportif aérien à développer.\",\"icon\":\"tech\"},{\"title\":\"Événementiel\",\"desc\":\"Meetings aériens et expériences premium pour une clientèle internationale.\",\"icon\":\"megaphone\"}]",
+        "challenges.title": "Défis à relever",
+        "challenges.items": "[{\"text\":\"Cadre réglementaire et procédures à fluidifier pour l’aviation légère et d’affaires.\"},{\"text\":\"Infrastructures d’accueil (FBOs, hangars, services) encore limitées.\"},{\"text\":\"Offre packagée (vol + séjour) peu visible auprès des tours opérateurs spécialisés.\"},{\"text\":\"Coordination entre autorités aéronautiques, tourisme et opérateurs privés.\"}]",
+        "actions.title": "Actions Fi2T",
+        "actions.items": "[{\"text\":\"Structurer le groupement et la représentation des opérateurs du segment.\"},{\"text\":\"Identifier les freins réglementaires et proposer des mesures concrètes.\"},{\"text\":\"Développer des produits « aviation + découverte du territoire ».\"},{\"text\":\"Attirer des événements et des clients aviation d’affaires ciblés.\"}]",
+        "cta.title": "Vous êtes un opérateur du secteur aérien ?",
+        "cta.body": "Aéroclubs, exploitants, prestataires d’assistance et organisateurs d’événements aériens : déclarez-vous pour participer à la création du groupement.",
+        "cta.label": "Nous contacter",
+        "cta.to": "/contact"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-aeronautique.jpg",
+        "hero.title": "Aeronautical tourism",
+        "intro.body": "Aeronautical tourism encompasses light and leisure aviation, business aviation, air shows and all experiences built around flight. It relies on a dense airport network, a historic network of flying clubs and a pivotal geographic position between Europe and Africa.\nIt is the groupement’s newest segment. Its priority is not promotion but structuring: identifying operators, mapping regulatory barriers weighing on light and business aviation, and developing products combining flight with territorial discovery.",
+        "intro.eyebrow": "Fi2T Groupement",
+        "intro.lead": "A segment being structured, where the first priority is regulatory before commercial.",
+        "stats.title": "The segment in figures",
+        "stats.items": "[{\"value\":\"9\",\"label\":\"INTERNATIONAL AIRPORTS\",\"desc\":\"A network covering the coast, centre and south of the country.\"},{\"value\":\"2 h\",\"label\":\"FLIGHT FROM EUROPEAN HUBS\",\"desc\":\"Immediate accessibility for charter and business aviation.\"},{\"value\":\"In creation\",\"label\":\"SEGMENT GROUPEMENT\",\"desc\":\"Interested operators are invited to register with the federation.\"}]",
+        "pillars.title": "Segment pillars",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"Connectivity\",\"desc\":\"Airport network and potential for charter / business aviation flights.\",\"icon\":\"plane\"},{\"title\":\"Light aviation\",\"desc\":\"Flying clubs, introductory flights and sport aviation tourism to develop.\",\"icon\":\"tech\"},{\"title\":\"Events\",\"desc\":\"Air shows and premium experiences for an international clientele.\",\"icon\":\"megaphone\"}]",
+        "challenges.title": "Challenges to address",
+        "challenges.items": "[{\"text\":\"Regulatory framework and procedures to streamline for light and business aviation.\"},{\"text\":\"Limited reception infrastructure (FBOs, hangars, services).\"},{\"text\":\"Packaged offer (flight + stay) little visible to specialised tour operators.\"},{\"text\":\"Coordination between aeronautical authorities, tourism and private operators.\"}]",
+        "actions.title": "Fi2T Actions",
+        "actions.items": "[{\"text\":\"Structure the groupement and representation of segment operators.\"},{\"text\":\"Identify regulatory barriers and propose concrete measures.\"},{\"text\":\"Develop \\\"aviation + territorial discovery\\\" products.\"},{\"text\":\"Attract targeted events and business aviation clients.\"}]",
+        "cta.title": "Are you an aviation sector operator?",
+        "cta.body": "Flying clubs, operators, assistance providers and air event organisers: register to take part in creating the groupement.",
+        "cta.label": "Contact us",
+        "cta.to": "/contact"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-aeronautique.jpg",
+        "hero.title": "السياحة الجوية",
+        "intro.body": "تشمل السياحة الجوية الطيران الخفيف والترفيهي، والطيران للأعمال، والعروض الجوية وكل التجارب المبنية حول الطيران. وتستند إلى شبكة مطارات كثيفة، وشبكة تاريخية من نوادي الطيران، وموقع جغرافي محوري بين أوروبا وأفريقيا.\nإنها أحدث شعبة في المجموعة. أولويتها ليست الترويج بل الهيكلة: تحديد المشغّلين، ورسم العوائق التنظيمية التي تثقل الطيران الخفيف وللأعمال، وتطوير منتجات تجمع الطيران باكتشاف الأقاليم.",
+        "intro.eyebrow": "مجموعة الفيتو",
+        "intro.lead": "شعبة قيد الهيكلة، حيث الأولوية الأولى تنظيمية قبل التجارية.",
+        "stats.title": "الشعبة بالأرقام",
+        "stats.items": "[{\"value\":\"9\",\"label\":\"مطارات دولية\",\"desc\":\"شبكة تغطي الساحل والوسط والجنوب.\"},{\"value\":\"ساعتان\",\"label\":\"طيران من أوروبا\",\"desc\":\"سهولة وصول فورية للطيران الخاص وللأعمال.\"},{\"value\":\"قيد الإحداث\",\"label\":\"مجموعة الشعبة\",\"desc\":\"يُدعى المشغّلون المهتمون للتسجيل لدى الاتحاد.\"}]",
+        "pillars.title": "ركائز الشعبة",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"الربط\",\"desc\":\"شبكة مطارات وإمكانات رحلات خاصة / للأعمال.\",\"icon\":\"plane\"},{\"title\":\"الطيران الخفيف\",\"desc\":\"نوادي طيران ورحلات تعريفية وسياحة طيران رياضي للتطوير.\",\"icon\":\"tech\"},{\"title\":\"الفعاليات\",\"desc\":\"عروض جوية وتجارب متميزة لزبائن دوليين.\",\"icon\":\"megaphone\"}]",
+        "challenges.title": "تحديات يجب معالجتها",
+        "challenges.items": "[{\"text\":\"إطار تنظيمي وإجراءات للتبسيط في الطيران الخفيف وللأعمال.\"},{\"text\":\"بنية استقبال محدودة (FBOs، حظائر، خدمات).\"},{\"text\":\"عرض مجمّع (طيران + إقامة) ضعيف الظهور لدى وكالات متخصصة.\"},{\"text\":\"تنسيق بين سلطات الطيران والسياحة والمشغّلين الخواص.\"}]",
+        "actions.title": "إجراءات الفيتو",
+        "actions.items": "[{\"text\":\"هيكلة المجموعة وتمثيل مشغّلي الشعبة.\"},{\"text\":\"تحديد العوائق التنظيمية واقتراح تدابير ملموسة.\"},{\"text\":\"تطوير منتجات «طيران + اكتشاف ترابي».\"},{\"text\":\"جذب فعاليات مستهدفة وزبائن طيران للأعمال.\"}]",
+        "cta.title": "هل أنتم مشغّل في قطاع الطيران؟",
+        "cta.body": "نوادي طيران ومشغّلون ومقدّمو مساعدة ومنظّمو فعاليات جوية: سجّلوا للمشاركة في إنشاء المجموعة.",
+        "cta.label": "اتصلوا بنا",
+        "cta.to": "/contact"
+      }
+    }
+  },
+  "tourisme-subaquatique": {
+    "layout": "segment",
+    "sections": [
+      {
+        "id": "intro",
+        "label": "Introduction"
+      },
+      {
+        "id": "stats",
+        "label": "Le segment en chiffres"
+      },
+      {
+        "id": "pillars",
+        "label": "Piliers du segment"
+      },
+      {
+        "id": "challenges",
+        "label": "Défis à relever"
+      },
+      {
+        "id": "actions",
+        "label": "Actions Fi2T"
+      },
+      {
+        "id": "cta",
+        "label": "Vous exploitez un centre de plongée ?"
+      }
+    ],
+    "locales": {
+      "fr": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-subaquatique.jpg",
+        "hero.title": "Tourisme subaquatique",
+        "intro.body": "Plongée sous-marine, snorkeling, apnée et sports subaquatiques s’appuient sur un littoral de 1 350 km offrant une grande variété de sites : tombants rocheux du nord, épaves, herbiers de posidonie et réserves marines du sud. La ressource est réelle et la saison longue.\nLa filière reste toutefois hétérogène : les standards de sécurité et de formation varient d’un club à l’autre, les sites les plus fréquentés subissent une pression croissante et la commercialisation internationale demeure artisanale. Le groupement travaille ces trois axes de front — professionnalisation, protection et mise en marché.",
+        "intro.eyebrow": "Groupement Fi2T",
+        "intro.lead": "Une ressource sous-marine remarquable, à protéger et à professionnaliser avant de la vendre à l’international.",
+        "stats.title": "Le segment en chiffres",
+        "stats.items": "[{\"value\":\"1 350 km\",\"label\":\"DE CÔTES PLONGEABLES\",\"desc\":\"Tombants, épaves et réserves marines répartis du nord jusqu’à Djerba.\"},{\"value\":\"8 mois\",\"label\":\"DE SAISON EXPLOITABLE\",\"desc\":\"Des températures d’eau favorables du printemps à l’automne.\"},{\"value\":\"Europe\",\"label\":\"MARCHÉS ÉMETTEURS\",\"desc\":\"France, Italie et Allemagne concentrent les clubs et voyagistes plongée.\"}]",
+        "pillars.title": "Piliers du segment",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"Sites & biodiversité marine\",\"desc\":\"Fonds marins, épaves et réserves — un capital naturel à protéger et à valoriser.\",\"icon\":\"globe\"},{\"title\":\"Clubs & formation\",\"desc\":\"Réseau de centres de plongée, moniteurs certifiés et standards de sécurité.\",\"icon\":\"shield\"},{\"title\":\"Expériences premium\",\"desc\":\"Packages plongée + hébergement pour une clientèle européenne et régionale.\",\"icon\":\"care\"}]",
+        "challenges.title": "Défis à relever",
+        "challenges.items": "[{\"text\":\"Hétérogénéité des standards de sécurité et de formation entre clubs.\"},{\"text\":\"Protection des sites face à la pression touristique et à la pollution.\"},{\"text\":\"Saisonnalité et dépendance aux flux balnéaires classiques.\"},{\"text\":\"Marketing international encore peu structuré pour la plongée tunisienne.\"}]",
+        "actions.title": "Actions Fi2T",
+        "actions.items": "[{\"text\":\"Harmoniser les bonnes pratiques et renforcer la professionnalisation des clubs.\"},{\"text\":\"Co-construire avec les autorités des règles de protection des sites sensibles.\"},{\"text\":\"Créer une offre packagée B2B pour les marchés plongée européens.\"},{\"text\":\"Former et labelliser les opérateurs du groupement subaquatique.\"}]",
+        "cta.title": "Vous exploitez un centre de plongée ?",
+        "cta.body": "Clubs, moniteurs, loueurs de matériel et structures d’accueil : rejoignez le groupement pour porter les standards de la filière.",
+        "cta.label": "Adhérer à la Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "en": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-subaquatique.jpg",
+        "hero.title": "Underwater tourism",
+        "intro.body": "Scuba diving, snorkelling, freediving and underwater sports rely on 1,350 km of coastline offering great site variety: rocky drop-offs in the north, wrecks, posidonia meadows and marine reserves in the south. The resource is real and the season is long.\nThe segment remains however heterogeneous: safety and training standards vary from club to club, the most frequented sites face growing pressure and international commercialisation remains artisanal. The groupement is working on these three fronts — professionalisation, protection and market access.",
+        "intro.eyebrow": "Fi2T Groupement",
+        "intro.lead": "A remarkable underwater resource, to be protected and professionalised before selling internationally.",
+        "stats.title": "The segment in figures",
+        "stats.items": "[{\"value\":\"1 350 km\",\"label\":\"DIVEABLE COASTLINE\",\"desc\":\"Drop-offs, wrecks and marine reserves from the north to Djerba.\"},{\"value\":\"8 months\",\"label\":\"EXPLOITABLE SEASON\",\"desc\":\"Favourable water temperatures from spring to autumn.\"},{\"value\":\"Europe\",\"label\":\"SOURCE MARKETS\",\"desc\":\"France, Italy and Germany concentrate diving clubs and tour operators.\"}]",
+        "pillars.title": "Segment pillars",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"Sites & marine biodiversity\",\"desc\":\"Seabeds, wrecks and reserves — natural capital to protect and enhance.\",\"icon\":\"globe\"},{\"title\":\"Clubs & training\",\"desc\":\"Network of dive centres, certified instructors and safety standards.\",\"icon\":\"shield\"},{\"title\":\"Premium experiences\",\"desc\":\"Diving + accommodation packages for European and regional clientele.\",\"icon\":\"care\"}]",
+        "challenges.title": "Challenges to address",
+        "challenges.items": "[{\"text\":\"Heterogeneity of safety and training standards between clubs.\"},{\"text\":\"Protection of sites facing tourist pressure and pollution.\"},{\"text\":\"Seasonality and dependence on classic seaside flows.\"},{\"text\":\"International marketing still poorly structured for Tunisian diving.\"}]",
+        "actions.title": "Fi2T Actions",
+        "actions.items": "[{\"text\":\"Harmonise best practices and strengthen club professionalisation.\"},{\"text\":\"Co-build with authorities rules for protecting sensitive sites.\"},{\"text\":\"Create a packaged B2B offer for European diving markets.\"},{\"text\":\"Train and label underwater groupement operators.\"}]",
+        "cta.title": "Do you run a dive centre?",
+        "cta.body": "Clubs, instructors, equipment rental companies and reception structures: join the groupement to uphold sector standards.",
+        "cta.label": "Join Fi2T",
+        "cta.to": "/fiche-adhesion"
+      },
+      "ar": {
+        "hero.image": "/images/groupement-photos/hero-tourisme-subaquatique.jpg",
+        "hero.title": "السياحة تحت المائية",
+        "intro.body": "يعتمد الغوص والغوص السطحي والغوص الحر والرياضات تحت الماء على 1,350 كم من الساحل توفر تنوّعًا كبيرًا في المواقع: منحدرات صخرية في الشمال، حطام سفن، مراعي البوسيدونيا ومحميات بحرية في الجنوب. المورد حقيقي والموسم طويل.\nتبقى الشعبة مع ذلك متباينة: معايير السلامة والتكوين تختلف من نادٍ لآخر، والمواقع الأكثر ازدحامًا تواجه ضغطًا متزايدًا، والتسويق الدولي لا يزال حرفيًا. تعمل المجموعة على هذه الجبهات الثلاث — الاحترافية والحماية والوصول إلى السوق.",
+        "intro.eyebrow": "مجموعة الفيتو",
+        "intro.lead": "مورد تحت الماء استثنائي، يجب حمايته واحترافيته قبل بيعه دوليًا.",
+        "stats.title": "الشعبة بالأرقام",
+        "stats.items": "[{\"value\":\"1 350 كم\",\"label\":\"ساحل قابل للغوص\",\"desc\":\"منحدرات وحطام ومحميات بحرية من الشمال إلى جرجيس.\"},{\"value\":\"8 أشهر\",\"label\":\"موسم قابل للاستغلال\",\"desc\":\"درجات حرارة مياه ملائمة من الربيع إلى الخريف.\"},{\"value\":\"أوروبا\",\"label\":\"أسواق المصدر\",\"desc\":\"فرنسا وإيطاليا وألمانيا تجمع أندية الغوص ومنظّمي الرحلات.\"}]",
+        "pillars.title": "ركائز الشعبة",
+        "pillars.sub": "",
+        "pillars.items": "[{\"title\":\"المواقع والتنوّع البحري\",\"desc\":\"قيعان بحرية وحطام ومحميات — رأسمال طبيعي للحماية والتعزيز.\",\"icon\":\"globe\"},{\"title\":\"الأندية والتكوين\",\"desc\":\"شبكة مراكز غوص ومدربون معتمدون ومعايير سلامة.\",\"icon\":\"shield\"},{\"title\":\"تجارب متميزة\",\"desc\":\"حزم غوص + إقامة لزبائن أوروبيين وإقليميين.\",\"icon\":\"care\"}]",
+        "challenges.title": "تحديات يجب معالجتها",
+        "challenges.items": "[{\"text\":\"تباين معايير السلامة والتكوين بين الأندية.\"},{\"text\":\"حماية المواقع أمام ضغط سياحي وتلوث.\"},{\"text\":\"موسمية واعتماد على تدفّقات الشاطئ التقليدية.\"},{\"text\":\"تسويق دولي لا يزال ضعيف الهيكلة للغوص التونسي.\"}]",
+        "actions.title": "إجراءات الفيتو",
+        "actions.items": "[{\"text\":\"توحيد أفضل الممارسات وتعزيز احترافية الأندية.\"},{\"text\":\"بناء قواعد حماية المواقع الحسّاسة مع السلطات.\"},{\"text\":\"إنشاء عرض B2B مجمّع لأسواق الغوص الأوروبية.\"},{\"text\":\"تكوين ووضع علامات على مشغّلي المجموعة تحت الماء.\"}]",
+        "cta.title": "هل تديرون مركز غوص؟",
+        "cta.body": "أندية ومدربون وشركات تأجير معدات وهياكل استقبال: انضموا إلى المجموعة لضمان معايير القطاع.",
+        "cta.label": "الانضمام إلى الفيتو",
+        "cta.to": "/fiche-adhesion"
+      }
+    }
+  }
+}

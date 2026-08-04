@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { Plus, Trash2, Upload, GripVertical, Star } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { uploadImageFile } from '../../../lib/uploadImageFile'
+import PageTreeEditor from './PageTreeEditor'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -402,23 +403,21 @@ function SimpleCardsEditor({ value, onChange }: { value: string; onChange: (v: s
 
 // ─── FI2T home / organisation lists ──────────────────────────────────────────
 
-interface ObjectifItem { num: string; title: string; desc: string }
+interface ObjectifItem { num?: string; title: string; desc: string }
 interface GroupementCard { label: string; slug: string; icon: string }
 interface ReasonItem { title: string; desc: string }
 interface NewsCard { slug: string; title: string; desc: string; date: string; img: string }
 
 function ObjectifsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const items = parseArray<ObjectifItem>(value, [])
-  const update = (next: ObjectifItem[]) => onChange(JSON.stringify(next))
+  const update = (next: ObjectifItem[]) =>
+    onChange(JSON.stringify(next.map(({ num: _storedNumber, ...item }) => item)))
 
   return (
     <div className="wc-list-editor">
-      <p className="wc-list-hint">Objectifs (numéro, titre, description). 4 par page sur le site.</p>
+      <p className="wc-list-hint">Objectifs (titre et description). Le numéro suit automatiquement l’ordre de la liste. 4 par page sur le site.</p>
       {items.map((item, i) => (
         <ItemCard key={i} index={i} title="Objectif" onRemove={() => update(items.filter((_, j) => j !== i))}>
-          <Field label="Numéro">
-            <TextInput value={item.num ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, num: v } : x))} placeholder="01" />
-          </Field>
           <Field label="Titre">
             <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
           </Field>
@@ -431,7 +430,6 @@ function ObjectifsEditor({ value, onChange }: { value: string; onChange: (v: str
         type="button"
         className="wc-add-item-btn"
         onClick={() => update([...items, {
-          num: String(items.length + 1).padStart(2, '0'),
           title: 'Nouvel objectif',
           desc: '',
         }])}
@@ -463,7 +461,7 @@ function GroupementsEditor({ value, onChange }: { value: string; onChange: (v: s
       <button
         type="button"
         className="wc-add-item-btn"
-        onClick={() => update([...items, { label: 'Nouveau groupement', slug: '', icon: '/images/icon1.png' }])}
+        onClick={() => update([...items, { label: 'Nouveau groupement', slug: '', icon: '/images/icon1.png?v=5' }])}
       >
         <Plus size={14} /> Ajouter un groupement
       </button>
@@ -501,7 +499,9 @@ function NewsCardsEditor({ value, onChange }: { value: string; onChange: (v: str
 
   return (
     <div className="wc-list-editor">
-      <p className="wc-list-hint">Cartes actualités (titre, extrait, date, image, slug).</p>
+      <p className="wc-list-hint">
+        Articles Actualités (carte + slug URL). Pour rédiger le corps, ouvrez l’article dans le Live Editor.
+      </p>
       {items.map((item, i) => (
         <ItemCard key={i} index={i} title="Article" onRemove={() => update(items.filter((_, j) => j !== i))}>
           <Field label="Titre">
@@ -522,9 +522,447 @@ function NewsCardsEditor({ value, onChange }: { value: string; onChange: (v: str
       <button
         type="button"
         className="wc-add-item-btn"
-        onClick={() => update([...items, { slug: '', title: '', desc: '', date: '', img: '/images/act1.jpg' }])}
+        onClick={() => update([{ slug: `article-${Date.now()}`, title: 'Nouvel article', desc: 'Résumé…', date: '', img: '/images/act1.png?v=6' }, ...items])}
       >
-        <Plus size={14} /> Ajouter une actualité
+        <Plus size={14} /> Ajouter un article
+      </button>
+    </div>
+  )
+}
+
+interface ValueCard { title: string; desc: string; icon: string }
+interface DiversifyPoint { title: string; desc: string }
+interface HebTypeCard { name: string; desc: string; img: string; wide?: boolean }
+interface HebStatCard { value: string; label: string; suffix?: string }
+interface HebDiagCard { title: string; desc: string; side?: 'left' | 'right' }
+
+function ValuesEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<ValueCard>(value, [])
+  const update = (next: ValueCard[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Valeurs / objectifs (titre, description, icône image).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Valeur" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Titre">
+            <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={3} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+          <ImageField value={item.icon ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, icon: v } : x))} label="Icône" />
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() => update([...items, { title: 'NOUVELLE VALEUR', desc: '', icon: '/images/groupement-media/heb-value-durabilite.png?v=3' }])}
+      >
+        <Plus size={14} /> Ajouter une valeur
+      </button>
+    </div>
+  )
+}
+
+function HebTypesEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<HebTypeCard>(value, [])
+  const update = (next: HebTypeCard[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Typologies d’hébergements (nom, description, photo). Cochez « large » pour une carte pleine largeur.</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Typologie" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Nom">
+            <TextInput value={item.name ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, name: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={3} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+          <ImageField value={item.img ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, img: v } : x))} label="Photo" />
+          <label className="wc-field" style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
+            <input
+              type="checkbox"
+              checked={Boolean(item.wide)}
+              onChange={e => update(items.map((x, j) => j === i ? { ...x, wide: e.target.checked } : x))}
+            />
+            <span>Carte large (pleine largeur)</span>
+          </label>
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() => update([...items, { name: 'NOUVELLE TYPOLOGIE', desc: '', img: '/images/groupement-media/heb-ecolodges-photo.jpg?v=1', wide: false }])}
+      >
+        <Plus size={14} /> Ajouter une typologie
+      </button>
+    </div>
+  )
+}
+
+function HebStatsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<HebStatCard>(value, [])
+  const update = (next: HebStatCard[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Chiffres de croissance (valeur, libellé, suffixe optionnel comme « + »).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Stat" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Valeur">
+            <TextInput value={item.value ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, value: v } : x))} />
+          </Field>
+          <Field label="Libellé">
+            <TextInput value={item.label ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, label: v } : x))} />
+          </Field>
+          <Field label="Suffixe (ex. +)">
+            <TextInput value={item.suffix ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, suffix: v } : x))} />
+          </Field>
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() => update([...items, { value: '0', label: 'Nouveau chiffre', suffix: '' }])}
+      >
+        <Plus size={14} /> Ajouter un chiffre
+      </button>
+    </div>
+  )
+}
+
+function HebDiagEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<HebDiagCard & { icon?: string }>(value, [])
+  const update = (next: (HebDiagCard & { icon?: string })[]) => onChange(JSON.stringify(next))
+  const hasSide = items.some((i) => i.side === 'left' || i.side === 'right')
+  const hasIcon = items.some((i) => Boolean(i.icon))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">
+        Points de diagnostic (titre, texte
+        {hasSide || !hasIcon ? ', position' : ''}
+        {hasIcon || !hasSide ? ', icône' : ''}).
+      </p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Point" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Titre">
+            <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={3} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+          {(hasSide || !hasIcon) && (
+            <Field label="Position">
+              <select
+                className="wc-field-input"
+                value={item.side === 'right' ? 'right' : 'left'}
+                onChange={e => update(items.map((x, j) => j === i ? { ...x, side: e.target.value as 'left' | 'right' } : x))}
+              >
+                <option value="left">Gauche</option>
+                <option value="right">Droite</option>
+              </select>
+            </Field>
+          )}
+          {(hasIcon || !hasSide) && (
+            <ImageField
+              value={item.icon ?? ''}
+              onChange={v => update(items.map((x, j) => j === i ? { ...x, icon: v } : x))}
+              label="Icône"
+            />
+          )}
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() =>
+          update([
+            ...items,
+            hasIcon && !hasSide
+              ? { title: 'NOUVEAU POINT', desc: '', icon: '/images/groupement-media/culturel-diag-alert.png?v=4' }
+              : { title: 'NOUVEAU POINT', desc: '', side: items.length % 2 === 0 ? 'left' : 'right' },
+          ])
+        }
+      >
+        <Plus size={14} /> Ajouter un point
+      </button>
+    </div>
+  )
+}
+
+interface CultStatCard { value: string; label: string; desc?: string; icon?: string }
+interface IconCardItem { title: string; desc: string; icon?: string }
+
+function CultStatsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<CultStatCard & { tone?: string }>(value, [])
+  const update = (next: Array<CultStatCard & { tone?: string }>) => onChange(JSON.stringify(next))
+  const usesTone = items.some((item) => item.tone !== undefined)
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Chiffres clés (valeur, libellé, description{usesTone ? ', ton light/dark' : ', icône'}).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Chiffre" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Valeur">
+            <TextInput value={item.value ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, value: v } : x))} />
+          </Field>
+          <Field label="Libellé">
+            <TextInput value={item.label ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, label: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={2} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+          {usesTone || item.tone !== undefined ? (
+            <Field label="Ton (light / dark)">
+              <TextInput value={item.tone ?? 'light'} onChange={v => update(items.map((x, j) => j === i ? { ...x, tone: v } : x))} placeholder="light" />
+            </Field>
+          ) : (
+            <Field label="Icône (globe/euro/chart ou URL)">
+              <TextInput value={item.icon ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, icon: v } : x))} />
+            </Field>
+          )}
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() => update([...items, usesTone
+          ? { value: '0', label: 'Nouveau chiffre', desc: '', tone: 'light' }
+          : { value: '0', label: 'Nouveau chiffre', desc: '', icon: 'globe' }])}
+      >
+        <Plus size={14} /> Ajouter un chiffre
+      </button>
+    </div>
+  )
+}
+
+function IconCardsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<IconCardItem>(value, [])
+  const update = (next: IconCardItem[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Cartes (titre, description, icône image).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Carte" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Titre">
+            <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={2} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+          <ImageField
+            value={item.icon?.startsWith('/') || item.icon?.startsWith('http') ? (item.icon ?? '') : ''}
+            onChange={v => update(items.map((x, j) => j === i ? { ...x, icon: v } : x))}
+            label="Icône"
+          />
+          <Field label="Ou clé SVG (sun, building, tech…)">
+            <TextInput
+              value={item.icon && !item.icon.startsWith('/') && !item.icon.startsWith('http') ? item.icon : ''}
+              onChange={v => update(items.map((x, j) => j === i ? { ...x, icon: v } : x))}
+              placeholder="sun"
+            />
+          </Field>
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() => update([...items, { title: 'NOUVELLE CARTE', desc: '', icon: 'sun' }])}
+      >
+        <Plus size={14} /> Ajouter une carte
+      </button>
+    </div>
+  )
+}
+
+interface HubChildCard { slug: string; label: string; blurb: string; face?: string; tag?: string }
+
+function HubChildrenEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<HubChildCard>(value, [])
+  const update = (next: HubChildCard[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Filières du pôle (photo, titre, tag, texte, slug URL).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Filière" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <ImageField value={item.face ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, face: v } : x))} label="Photo" />
+          <Field label="Titre">
+            <TextInput value={item.label ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, label: v } : x))} />
+          </Field>
+          <Field label="Tag">
+            <TextInput value={item.tag ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, tag: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={3} value={item.blurb ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, blurb: e.target.value } : x))} />
+          </Field>
+          <Field label="Slug (URL)">
+            <TextInput value={item.slug ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, slug: v } : x))} placeholder="tourisme-medical" />
+          </Field>
+        </ItemCard>
+      ))}
+      <button
+        type="button"
+        className="wc-add-item-btn"
+        onClick={() => update([...items, { slug: '', label: 'Nouvelle filière', blurb: '', face: '', tag: '' }])}
+      >
+        <Plus size={14} /> Ajouter une filière
+      </button>
+    </div>
+  )
+}
+
+function DiversifyEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<DiversifyPoint>(value, [])
+  const update = (next: DiversifyPoint[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Points de diversification (titre + description).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Point" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Titre">
+            <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={2} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+        </ItemCard>
+      ))}
+      <button type="button" className="wc-add-item-btn" onClick={() => update([...items, { title: '', desc: '' }])}>
+        <Plus size={14} /> Ajouter un point
+      </button>
+    </div>
+  )
+}
+
+/** Flat string lists used by groupement pages: `[{ text: "…" }]`. */
+function TextItemsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const raw = parseArray<string | { text?: string }>(value, [])
+  const items = raw.map((row) => (typeof row === 'string' ? { text: row } : { text: String(row?.text ?? '') }))
+  const update = (next: { text: string }[]) => onChange(JSON.stringify(next))
+
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Liste de textes (une ligne par élément).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Élément" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Texte">
+            <textarea
+              className="wc-field-input"
+              rows={2}
+              value={item.text}
+              onChange={(e) => update(items.map((x, j) => (j === i ? { text: e.target.value } : x)))}
+            />
+          </Field>
+        </ItemCard>
+      ))}
+      <button type="button" className="wc-add-item-btn" onClick={() => update([...items, { text: '' }])}>
+        <Plus size={14} /> Ajouter une ligne
+      </button>
+    </div>
+  )
+}
+
+interface BoardMember { name: string; role: string; image: string }
+interface StaffMember { initials: string; name: string; role: string }
+interface RegionItem { name: string; region: string }
+
+function BoardEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<BoardMember>(value, [])
+  const update = (next: BoardMember[]) => onChange(JSON.stringify(next))
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Composition du bureau (nom, rôle, photo).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Membre" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Nom">
+            <TextInput value={item.name ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, name: v } : x))} />
+          </Field>
+          <Field label="Rôle">
+            <TextInput value={item.role ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, role: v } : x))} />
+          </Field>
+          <ImageField value={item.image ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, image: v } : x))} label="Photo" />
+        </ItemCard>
+      ))}
+      <button type="button" className="wc-add-item-btn" onClick={() => update([...items, { name: '', role: '', image: '' }])}>
+        <Plus size={14} /> Ajouter un membre
+      </button>
+    </div>
+  )
+}
+
+function StaffEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<StaffMember>(value, [])
+  const update = (next: StaffMember[]) => onChange(JSON.stringify(next))
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Équipe du siège (initiales, nom, fonction).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Collaborateur" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Initiales">
+            <TextInput value={item.initials ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, initials: v } : x))} />
+          </Field>
+          <Field label="Nom">
+            <TextInput value={item.name ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, name: v } : x))} />
+          </Field>
+          <Field label="Fonction">
+            <TextInput value={item.role ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, role: v } : x))} />
+          </Field>
+        </ItemCard>
+      ))}
+      <button type="button" className="wc-add-item-btn" onClick={() => update([...items, { initials: '', name: '', role: '' }])}>
+        <Plus size={14} /> Ajouter un collaborateur
+      </button>
+    </div>
+  )
+}
+
+function RegionsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<RegionItem>(value, [])
+  const update = (next: RegionItem[]) => onChange(JSON.stringify(next))
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Bureaux régionaux (responsable + région).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Bureau" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Responsable">
+            <TextInput value={item.name ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, name: v } : x))} />
+          </Field>
+          <Field label="Région">
+            <TextInput value={item.region ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, region: v } : x))} />
+          </Field>
+        </ItemCard>
+      ))}
+      <button type="button" className="wc-add-item-btn" onClick={() => update([...items, { name: '', region: '' }])}>
+        <Plus size={14} /> Ajouter un bureau
+      </button>
+    </div>
+  )
+}
+
+function BenefitsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const items = parseArray<DiversifyPoint>(value, [])
+  const update = (next: DiversifyPoint[]) => onChange(JSON.stringify(next))
+  return (
+    <div className="wc-list-editor">
+      <p className="wc-list-hint">Avantages d’adhésion (titre + description).</p>
+      {items.map((item, i) => (
+        <ItemCard key={i} index={i} title="Avantage" onRemove={() => update(items.filter((_, j) => j !== i))}>
+          <Field label="Titre">
+            <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
+          </Field>
+          <Field label="Description">
+            <textarea className="wc-field-input" rows={2} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
+          </Field>
+        </ItemCard>
+      ))}
+      <button type="button" className="wc-add-item-btn" onClick={() => update([...items, { title: '', desc: '' }])}>
+        <Plus size={14} /> Ajouter un avantage
       </button>
     </div>
   )
@@ -543,6 +981,42 @@ const EDITOR_LABELS: Record<string, string> = {
   'groupements.items': 'Groupements',
   'adherer.reasons': 'Raisons d’adhérer',
   'actualites.items': 'Actualités',
+  'values.items': 'Valeurs / Objectifs',
+  'diversify.items': 'Diversification',
+  'board.members': 'Bureau — Membres',
+  'headquarters.staff': 'Siège — Équipe',
+  'regional.items': 'Bureaux régionaux',
+  'grid.items': 'Actualités',
+  'benefits.items': 'Avantages adhésion',
+  'types.items': 'Typologies',
+  'growth.stats': 'Chiffres de croissance',
+  'diag.items': 'Diagnostic stratégique',
+  'stats.items': 'Chiffres clés',
+  'atouts.items': 'Atouts',
+  'roadmap.items': 'Feuille de route',
+  'pillars.items': 'Piliers',
+  'grid.children': 'Filières du pôle',
+  'diagnostic.items': 'Diagnostic économique',
+  'defis.items': 'Défis',
+  'plan.items': 'Plan de relance',
+  'pourquoi.items': 'Pourquoi',
+  'services.items': 'Services',
+  'pot.items': 'Potentiel',
+  'places.items': 'Sites',
+  'freins.items': 'Freins',
+  'mondial.items': 'Contexte mondial',
+  'axes.items': 'Axes stratégiques',
+  'adv.items': 'Avantages',
+  'market.items': 'Marché',
+  'impact.items': 'Impact',
+  'prob.items': 'Problématiques',
+  'actions.items': 'Actions',
+  'challenges.items': 'Défis',
+  'real.items': 'Atouts',
+  'bars.items': 'Répartition',
+  'etat.stats': 'État — Stats',
+  'wealth.items': 'Richesses',
+  'photos.items': 'Galerie',
 }
 
 type EditorType =
@@ -556,20 +1030,113 @@ type EditorType =
   | 'groupements'
   | 'reasons'
   | 'news'
+  | 'values'
+  | 'diversify'
+  | 'board'
+  | 'staff'
+  | 'regions'
+  | 'benefits'
+  | 'hebTypes'
+  | 'hebStats'
+  | 'hebDiag'
+  | 'cultStats'
+  | 'iconCards'
+  | 'hubChildren'
+  | 'pageTree'
+  | 'textItems'
   | 'simple'
 
-function resolveEditor(section: string, blockKey: string): EditorType {
+function peekSample(value: string): unknown {
+  try {
+    const parsed = JSON.parse(value)
+    return Array.isArray(parsed) ? parsed[0] : undefined
+  } catch {
+    return undefined
+  }
+}
+
+function resolveEditor(section: string, blockKey: string, value = ''): EditorType {
   const c = `${section}.${blockKey}`
+  const sample = peekSample(value)
+  const obj = sample && typeof sample === 'object' && !Array.isArray(sample)
+    ? (sample as Record<string, unknown>)
+    : null
+
+  // Figma groupement bands: one `<band>.data` document per section.
+  if (blockKey === 'data') return 'pageTree'
   if (c === 'rooms.cards' || (blockKey === 'cards' && section.includes('room'))) return 'rooms'
   if (c === 'restaurants.cards' || (blockKey === 'cards' && section.includes('restaurant'))) return 'restaurants'
   if (c === 'weddings.cards' || (blockKey === 'cards' && section === 'weddings')) return 'weddings'
-  if (c === 'services.items' || (blockKey === 'items' && section === 'services')) return 'services'
+  // Hotel services use `{ title, icons: { base } }`; FI2T senior services use icon cards.
+  if (c === 'services.items' || (blockKey === 'items' && section === 'services')) {
+    if (obj && obj.icons && typeof obj.icons === 'object') return 'services'
+    return 'iconCards'
+  }
   if (c === 'gallery.photos' || blockKey === 'photos') return 'gallery'
   if (c === 'testimonials.reviews' || blockKey === 'reviews') return 'testimonials'
   if (c === 'objectifs.items') return 'objectifs'
   if (c === 'groupements.items') return 'groupements'
   if (c === 'adherer.reasons') return 'reasons'
   if (c === 'actualites.items' || (section === 'grid' && blockKey === 'items')) return 'news'
+  if (c === 'values.items') return 'values'
+  if (c === 'diversify.items') return 'diversify'
+  if (c === 'board.members') return 'board'
+  if (c === 'headquarters.staff') return 'staff'
+  if (c === 'regional.items') return 'regions'
+  if (c === 'benefits.items') return 'benefits'
+  if (c === 'types.items') return 'hebTypes'
+  if (c === 'growth.stats') return 'hebStats'
+  if (c === 'diag.items') return 'hebDiag'
+  if (c === 'grid.children') return 'hubChildren'
+  if (c === 'grid.items' && section === 'grid') return 'news'
+
+  // Shape-aware routing for flat groupement lists
+  if (typeof sample === 'string' || (obj && 'text' in obj && !('title' in obj) && !('desc' in obj) && !('value' in obj))) {
+    return 'textItems'
+  }
+  if (obj && 'value' in obj && ('label' in obj || 'desc' in obj || 'tone' in obj)) {
+    return 'cultStats'
+  }
+  if (
+    c === 'stats.items'
+    || c === 'diagnostic.items'
+    || c === 'etat.stats'
+    || c === 'bars.items'
+    || blockKey === 'stats'
+  ) {
+    return 'cultStats'
+  }
+  if (
+    c === 'atouts.items'
+    || c === 'pillars.items'
+    || c === 'pourquoi.items'
+    || c === 'pot.items'
+    || c === 'places.items'
+    || c === 'freins.items'
+    || c === 'mondial.items'
+    || c === 'axes.items'
+    || c === 'adv.items'
+    || c === 'market.items'
+    || c === 'impact.items'
+    || c === 'prob.items'
+    || c === 'defis.items'
+    || c === 'plan.items'
+    || c === 'roadmap.items'
+    || c === 'actions.items'
+    || c === 'wealth.items'
+    || (obj && 'title' in obj && ('desc' in obj || 'icon' in obj) && !('text' in obj) && !('image' in obj))
+  ) {
+    // Numbered roadmap / plan rows without icons still use title+desc
+    if (obj && 'title' in obj && 'desc' in obj && !('icon' in obj) && (c === 'roadmap.items' || c === 'plan.items' || c === 'defis.items')) {
+      return 'diversify'
+    }
+    if (obj && 'title' in obj && 'desc' in obj && !('icon' in obj) && !('image' in obj)) {
+      return 'diversify'
+    }
+    return 'iconCards'
+  }
+  if (c === 'challenges.items' || c === 'real.items') return 'textItems'
+  if (obj && 'title' in obj && 'text' in obj) return 'simple'
   return 'simple'
 }
 
@@ -591,11 +1158,25 @@ const EDITOR_TYPE_LABELS: Record<EditorType, string> = {
   groupements: 'Groupements',
   reasons: 'Raisons d’adhérer',
   news: 'Actualités',
+  values: 'Valeurs / Objectifs',
+  diversify: 'Diversification',
+  board: 'Bureau — Membres',
+  staff: 'Siège — Équipe',
+  regions: 'Bureaux régionaux',
+  benefits: 'Avantages adhésion',
+  hebTypes: 'Typologies',
+  hebStats: 'Chiffres de croissance',
+  hebDiag: 'Diagnostic stratégique',
+  cultStats: 'Chiffres clés',
+  iconCards: 'Cartes avec icône',
+  hubChildren: 'Filières du pôle',
+  pageTree: 'Contenu de la page',
+  textItems: 'Liste de textes',
   simple: 'Liste simple',
 }
 
 export default function JsonBlockEditor({ section, blockKey, value, onChange }: Props) {
-  const editor = resolveEditor(section, blockKey)
+  const editor = resolveEditor(section, blockKey, value)
   const compound = `${section}.${blockKey}`
   const label = EDITOR_LABELS[compound] ?? EDITOR_TYPE_LABELS[editor]
 
@@ -612,6 +1193,20 @@ export default function JsonBlockEditor({ section, blockKey, value, onChange }: 
       {editor === 'groupements' && <GroupementsEditor value={value} onChange={onChange} />}
       {editor === 'reasons' && <ReasonsEditor value={value} onChange={onChange} />}
       {editor === 'news' && <NewsCardsEditor value={value} onChange={onChange} />}
+      {editor === 'values' && <ValuesEditor value={value} onChange={onChange} />}
+      {editor === 'diversify' && <DiversifyEditor value={value} onChange={onChange} />}
+      {editor === 'board' && <BoardEditor value={value} onChange={onChange} />}
+      {editor === 'staff' && <StaffEditor value={value} onChange={onChange} />}
+      {editor === 'regions' && <RegionsEditor value={value} onChange={onChange} />}
+      {editor === 'benefits' && <BenefitsEditor value={value} onChange={onChange} />}
+      {editor === 'hebTypes' && <HebTypesEditor value={value} onChange={onChange} />}
+      {editor === 'hebStats' && <HebStatsEditor value={value} onChange={onChange} />}
+      {editor === 'hebDiag' && <HebDiagEditor value={value} onChange={onChange} />}
+      {editor === 'cultStats' && <CultStatsEditor value={value} onChange={onChange} />}
+      {editor === 'iconCards' && <IconCardsEditor value={value} onChange={onChange} />}
+      {editor === 'hubChildren' && <HubChildrenEditor value={value} onChange={onChange} />}
+      {editor === 'pageTree' && <PageTreeEditor value={value} onChange={onChange} />}
+      {editor === 'textItems' && <TextItemsEditor value={value} onChange={onChange} />}
       {editor === 'simple' && <SimpleCardsEditor value={value} onChange={onChange} />}
     </div>
   )

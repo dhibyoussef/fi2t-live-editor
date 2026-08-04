@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../i18n'
+import { ContentProvider } from '../../cms/ContentProvider'
+import EditableImage from '../../cms/EditableImage'
 
 const NAV = [
   { to: '/', key: 'home', end: true },
@@ -18,7 +20,7 @@ const LANGS = [
   { code: 'ar', label: 'AR' },
 ]
 
-export default function Fi2tHeader() {
+function Fi2tHeaderInner() {
   const [open, setOpen] = useState(false)
   const { t, i18n: i18nHook } = useTranslation()
   const currentLang = (i18nHook.language || 'fr').split('-')[0]
@@ -34,7 +36,13 @@ export default function Fi2tHeader() {
     <header className="fi2t-header">
       <div className="fi2t-header__inner">
         <Link to="/" className="fi2t-header__logo" onClick={() => setOpen(false)}>
-          <img src="/logo.png" alt="FI2T" />
+          <EditableImage
+            page="global"
+            blockKey="header.logo"
+            label="Logo du site"
+            alt="FI2T"
+            fallback="/logo.png"
+          />
         </Link>
 
         <nav className={`fi2t-header__nav ${open ? 'is-open' : ''}`}>
@@ -76,5 +84,13 @@ export default function Fi2tHeader() {
         </button>
       </div>
     </header>
+  )
+}
+
+export default function Fi2tHeader() {
+  return (
+    <ContentProvider page="global">
+      <Fi2tHeaderInner />
+    </ContentProvider>
   )
 }

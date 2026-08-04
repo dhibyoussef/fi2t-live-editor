@@ -1,13 +1,14 @@
 /** Shared structure for FI2T groupement detail pages. */
 
 export type PillarCard = { title: string; icon: string }
-export type ChallengeItem = { number: string; title: string; body: string; constat?: string }
+export type ChallengeItem = { number?: string; title: string; body: string; constat?: string }
 export type ProposalItem = { title: string; body: string }
 export type GroupementDefaults = Record<string, string>
 
 export function buildGroupementDefaults(opts: {
   title: string
   intro: string
+  heroImage?: string
   pillars?: PillarCard[]
   challengesTitle?: string
   challenges?: ChallengeItem[]
@@ -18,7 +19,7 @@ export function buildGroupementDefaults(opts: {
   proposals?: ProposalItem[]
 }): GroupementDefaults {
   return {
-    'hero.image': '/hero.jpg',
+    'hero.image': opts.heroImage ?? '/hero.jpg',
     'hero.title': opts.title,
     'positioning.title': 'Positionnement FI2T',
     'positioning.body': opts.intro,

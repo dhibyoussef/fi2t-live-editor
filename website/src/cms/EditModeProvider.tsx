@@ -29,6 +29,7 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
     if (urlToken) {
       sessionStorage.setItem(TOKEN_KEY, urlToken)
       params.delete('edit_token')
+      // Keep builder_preview in the URL so embed mode stays detected.
       const clean = `${window.location.pathname}${params.toString() ? '?' + params : ''}`
       window.history.replaceState({}, '', clean)
     }

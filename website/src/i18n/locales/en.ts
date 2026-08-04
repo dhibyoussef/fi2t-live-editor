@@ -187,6 +187,8 @@ export default {
       about: 'Who we are',
       organisation: 'Organisation',
       news: 'News',
+      news_short: 'News',
+      apropos: 'About',
       membership: 'Membership',
       contact: 'Contact',
       language: 'Language',

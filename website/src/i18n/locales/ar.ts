@@ -187,6 +187,8 @@ export default {
       about: 'من نحن؟',
       organisation: 'التنظيم',
       news: 'الأخبار',
+      news_short: 'الأخبار',
+      apropos: 'حول',
       membership: 'استمارة الانضمام',
       contact: 'اتصل بنا',
       language: 'اللغة',

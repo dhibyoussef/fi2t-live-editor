@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
 import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import EditableImage from '../../cms/EditableImage'
 import { useContent } from '../../cms/ContentProvider'
 import { useEditMode } from '../../cms/EditModeProvider'
@@ -140,7 +138,6 @@ function SpaGallerySlot({
 }
 
 export default function SpaGallerySection() {
-  const { t } = useTranslation()
   const { get, queueChange } = useContent()
   const { isEditMode } = useEditMode()
   const { items: galleryItems } = useCarousel(GALLERY_SLUG)

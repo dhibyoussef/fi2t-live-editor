@@ -4,7 +4,7 @@ import {
   LayoutTemplate, Save, Plus, X, Search, ChevronDown, ChevronRight,
   Image as ImageIcon, Type, Layers, Upload, Trash2, LayoutGrid, List,
 } from 'lucide-react'
-import JsonBlockEditor from './editors/JsonBlockEditor'
+import LocalizedJsonEditor from './editors/LocalizedJsonEditor'
 import PageSidebar, { type CmsPage } from './components/PageSidebar'
 import AddPageModal from './components/AddPageModal'
 import PageBuilder, { type InsertTarget } from './builder/PageBuilder'
@@ -66,14 +66,16 @@ const TEXT_LOCALES = [
 ] as const
 
 const SECTION_LABELS: Record<string, string> = {
-  hero: 'Hero',
+  custom: 'Contenu de la page',
+  hero: 'Bannière',
   about: 'Qui sommes-nous',
   mission: 'Histoire & Mission',
-  values: 'Nos valeurs',
+  values: 'Nos objectifs',
   diversify: 'Diversification',
-  join: 'CTA adhésion',
+  join: 'Appel à adhésion',
   intro: 'Introduction',
   benefits: 'Avantages',
+  adherer: 'Pourquoi adhérer',
   info: 'Informations de contact',
   positioning: 'Positionnement',
   challenges: 'Défis',
@@ -81,10 +83,11 @@ const SECTION_LABELS: Record<string, string> = {
   proposals: 'Propositions',
   form: 'Formulaire',
   discover: 'Découvrir',
-  stats: 'Statistiques',
+  stats: 'Chiffres clés',
   board: 'Composition actuelle',
   headquarters: 'Bureau du siège',
   regional: 'Bureaux régionaux',
+  article: 'Page article',
   grid: 'Grille des articles',
   objectifs: 'Nos objectifs',
   groupements: 'Groupements professionnels',
@@ -92,7 +95,22 @@ const SECTION_LABELS: Record<string, string> = {
   actualites: 'Actualités',
   cta: 'CTA rejoindre',
   footer: 'Pied de page',
+  header: 'En-tête',
+  settings: 'Paramètres du site',
   coords: 'Coordonnées',
+  types: 'Typologies',
+  growth: 'Croissance',
+  diag: 'Diagnostic',
+  atouts: 'Atouts',
+  artisan: 'Artisanat',
+  quote: 'Citation',
+  roadmap: 'Feuille de route',
+  pillars: 'Piliers',
+  cta: 'Appel à l’action',
+  split: 'Présentation',
+  diagnostic: 'Diagnostic',
+  defis: 'Défis',
+  plan: 'Plan de relance',
 }
 
 function sectionDisplayName(sec: SectionGroup) {
@@ -341,7 +359,27 @@ export default function WebsiteContentPage() {
   const uploadImage = async (file: File, section: string, block: BlockRow) => {
     try {
       const res = await uploadImageFile(file, '/admin/content/upload-image')
-      setValueChange(section, block, '_all', res.url)
+      const payload = {
+        page: activePage,
+        section,
+        key: block.key,
+        locale: '_all',
+        type: block.type,
+        value: res.url,
+        label: effectiveLabel(section, block) || block.label || undefined,
+      }
+      // File is already on disk — publish the new URL right away so the public
+      // site picks it up without waiting for the page's Save button.
+      await api.post('/admin/content/bulk', { blocks: [payload] })
+      setChanges(prev => {
+        const id = `${section}.${block.key}._all`
+        const next = { ...prev }
+        delete next[id]
+        return next
+      })
+      qc.invalidateQueries({ queryKey: ['content-matrix', activePage] })
+      notifyContentSaved(activePage, 'dashboard')
+      toast.success('Image enregistrée')
     } catch (e: any) {
       toast.error(e.message ?? 'Erreur lors du téléversement')
     }
@@ -684,13 +722,13 @@ export default function WebsiteContentPage() {
                           </div>
                         )}
 
-                        {/* Listes (cartes, photos, avis…) */}
+                        {/* Listes (cartes, photos, avis…) + pages Figma (custom.page) */}
                         {block.type === 'json' && (
-                          <JsonBlockEditor
+                          <LocalizedJsonEditor
                             section={sec.name}
-                            blockKey={block.key}
-                            value={effectiveValue(sec.name, block, '_all')}
-                            onChange={v => setValueChange(sec.name, block, '_all', v)}
+                            block={block}
+                            valueFor={(locale) => effectiveValue(sec.name, block, locale)}
+                            onChange={(locale, v) => setValueChange(sec.name, block, locale, v)}
                           />
                         )}
                       </div>

@@ -18,7 +18,14 @@ export const useAuthStore = create<AuthState>()(
       token: null,
       setAuth: (user, token) => {
         localStorage.setItem('gc_token', token)
-        set({ user, token })
+        set({
+          user: {
+            ...user,
+            roles: Array.isArray(user.roles) ? user.roles : [],
+            permissions: Array.isArray(user.permissions) ? user.permissions : [],
+          },
+          token,
+        })
       },
       logout: () => {
         localStorage.removeItem('gc_token')

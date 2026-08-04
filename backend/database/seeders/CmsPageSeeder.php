@@ -28,15 +28,21 @@ class CmsPageSeeder extends Seeder
             ['slug' => 'agences-de-voyages', 'title' => 'Agences de voyages', 'sort_order' => 7],
             ['slug' => 'hebergements-alternatifs', 'title' => 'Hébergements Alternatifs touristiques', 'sort_order' => 8],
             ['slug' => 'tourisme-culturel', 'title' => 'Tourisme culturel', 'sort_order' => 9],
-            ['slug' => 'thalassotherapie', 'title' => 'Thalassothérapie', 'sort_order' => 10],
-            ['slug' => 'tourisme-senior', 'title' => 'Tourisme des Sénior', 'sort_order' => 11],
-            ['slug' => 'tourisme-thermal', 'title' => 'Tourisme thermal', 'sort_order' => 12],
-            ['slug' => 'tourisme-medical', 'title' => 'Tourisme medical', 'sort_order' => 13],
-            ['slug' => 'tourisme-aventure', 'title' => "Tourisme d'aventure / Tourisme Alternatif", 'sort_order' => 14],
-            ['slug' => 'tourisme-affaire', 'title' => "Tourisme d'affaire", 'sort_order' => 15],
-            ['slug' => 'tourisme-golfique', 'title' => 'Tourisme golfique', 'sort_order' => 16],
-            ['slug' => 'tourisme-plaisance', 'title' => 'Tourisme la plaisance', 'sort_order' => 17],
-            ['slug' => 'tourisme-automobile', 'title' => 'Tourisme automobile', 'sort_order' => 18],
+            ['slug' => 'tourisme-de-sante', 'title' => 'Tourisme de santé', 'sort_order' => 10],
+            ['slug' => 'thalassotherapie', 'title' => 'Thalassothérapie', 'sort_order' => 11],
+            ['slug' => 'tourisme-senior', 'title' => 'Tourisme des Sénior', 'sort_order' => 12],
+            ['slug' => 'tourisme-thermal', 'title' => 'Tourisme thermal', 'sort_order' => 13],
+            ['slug' => 'tourisme-medical', 'title' => 'Tourisme medical', 'sort_order' => 14],
+            ['slug' => 'tourisme-aventure', 'title' => "Tourisme d'aventure / Tourisme Alternatif", 'sort_order' => 15],
+            ['slug' => 'tourisme-affaire', 'title' => "Tourisme d'affaire", 'sort_order' => 16],
+            ['slug' => 'tourisme-ecologique', 'title' => 'Tourisme écologique', 'sort_order' => 17],
+            ['slug' => 'tourisme-aeronautique', 'title' => 'Tourisme aéronautique', 'sort_order' => 18],
+            ['slug' => 'tourisme-automobile', 'title' => 'Tourisme automobile', 'sort_order' => 19],
+            ['slug' => 'tourisme-sportif', 'title' => 'Tourisme sportif', 'sort_order' => 20],
+            ['slug' => 'tourisme-golfique', 'title' => 'Tourisme golfique', 'sort_order' => 21],
+            ['slug' => 'tourisme-nautique', 'title' => 'Tourisme nautique', 'sort_order' => 22],
+            ['slug' => 'tourisme-plaisance', 'title' => 'Tourisme la plaisance', 'sort_order' => 23],
+            ['slug' => 'tourisme-subaquatique', 'title' => 'Tourisme subaquatique', 'sort_order' => 24],
         ];
 
         foreach ($groupementPages as $page) {
@@ -106,7 +112,7 @@ class CmsPageSeeder extends Seeder
                 $sections = [
                     ['slug' => 'hero', 'title' => 'Bannière Hero', 'pattern' => 'hero', 'sort_order' => 1],
                     ['slug' => 'intro', 'title' => 'Introduction', 'pattern' => 'text_image', 'sort_order' => 2],
-                    ['slug' => 'benefits', 'title' => 'Avantages', 'pattern' => 'cards_grid', 'sort_order' => 3],
+                    ['slug' => 'adherer', 'title' => 'Pourquoi adhérer', 'pattern' => 'cards_grid', 'sort_order' => 3],
                     ['slug' => 'form', 'title' => 'Formulaire', 'pattern' => 'text', 'sort_order' => 4],
                 ];
             } elseif ($slug === 'contact') {

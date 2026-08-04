@@ -1,14 +1,26 @@
 export const CONTACT_DEFAULTS: Record<string, string> = {
-  'hero.image': '/hero.jpg',
+  'hero.image': '/images/desert-banner.jpg?v=1',
   'hero.title': 'Contact',
 
   'info.title': 'Informations de contact',
-  'info.address_label': 'Adresse',
-  'info.address': "Rue du Lac Turkana, Les Berges du\nLac 1\n1053 Tunis, Tunisie",
-  'info.phone_label': 'Téléphone',
-  'info.phone': '+216 29 710 507',
-  'info.email_label': 'Email',
-  'info.email': 'contact@fi2t.tn',
+  'info.per_page': '3',
+  'info.items': JSON.stringify([
+    {
+      icon: '/images/icon-address.svg',
+      label: 'Adresse',
+      value: "Rue du Lac Turkana, Les Berges du\nLac 1\n1053 Tunis, Tunisie",
+    },
+    {
+      icon: '/images/icon-phone.svg',
+      label: 'Téléphone',
+      value: '+216 29 710 507',
+    },
+    {
+      icon: '/images/icon-email.svg',
+      label: 'Email',
+      value: 'contact@fi2t.tn',
+    },
+  ]),
 
   'form.label_name': 'NOM COMPLET',
   'form.placeholder_name': 'Nom et prénom',
@@ -19,4 +31,5 @@ export const CONTACT_DEFAULTS: Record<string, string> = {
   'form.label_message': 'MESSAGE',
   'form.placeholder_message': 'Votre message ici...',
   'form.submit': 'Envoyer',
+  'form.success': 'Merci — votre message a bien été envoyé.',
 }

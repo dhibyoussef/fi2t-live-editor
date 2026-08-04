@@ -24,8 +24,17 @@ export default function LoginPage() {
       setAuth(data.user, data.token)
       toast.success('Bienvenue sur FI2T')
       navigate('/dashboard')
-    } catch {
-      toast.error(t('login.invalid_credentials') || t('login.error') || 'Identifiants incorrects')
+    } catch (err: unknown) {
+      const ax = err as { code?: string; response?: { status?: number; data?: { message?: string } } }
+      if (ax.response?.status === 429) {
+        toast.error('Trop de tentatives — réessayez dans une minute')
+      } else if (ax.response?.status === 403) {
+        toast.error(ax.response.data?.message || 'Accès refusé')
+      } else if (ax.code === 'ECONNABORTED' || ax.code === 'ERR_NETWORK') {
+        toast.error('Serveur indisponible — vérifiez que MySQL (XAMPP) et l’API (:8000) sont démarrés')
+      } else {
+        toast.error(t('login.invalid_credentials') || t('login.error') || 'Identifiants incorrects')
+      }
     } finally {
       setLoading(false)
     }
@@ -39,7 +48,7 @@ export default function LoginPage() {
 
         <div className="login-brand-logo animate-fade-in">
           <div className="login-logo-icon">
-            <img src="/logo.png" alt="FI2T" />
+            <img src="/logo-white.png" alt="FI2T" />
           </div>
           <div>
             <p className="login-logo-name">FI2T</p>
@@ -122,7 +131,7 @@ export default function LoginPage() {
           </form>
 
           <p className="login-footer-note">
-            Compte : admin@fi2t.tn / 123456
+            Accès réservé aux administrateurs FI2T. Session chiffrée · jeton à durée limitée.
           </p>
         </div>
       </div>

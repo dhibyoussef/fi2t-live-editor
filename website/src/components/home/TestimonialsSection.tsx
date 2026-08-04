@@ -14,8 +14,6 @@ const ASSETS = {
   arrow: '/imgs/right-arrow 2.svg',
 } as const
 
-const MAX_REVIEWS = 2
-
 type Platform = 'google' | 'tripadvisor'
 
 interface Review {

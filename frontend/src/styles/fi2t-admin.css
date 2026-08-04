@@ -43,9 +43,9 @@
   object-fit: contain;
   object-position: left center;
   flex-shrink: 0;
-  border-radius: 8px;
-  background: #0a0a0a;
-  padding: 4px 6px;
+  /* transparent PNG on the white sidebar — same treatment as the public header */
+  background: transparent;
+  padding: 0;
 }
 
 .gc-sidebar-brand--mark,
@@ -440,15 +440,21 @@
 }
 
 .fi2t-login .login-logo-icon {
-  background: #0a0a0a !important;
-  border: 1px solid rgba(197, 198, 210, 0.35);
+  /* white mark sits straight on the navy panel — no plate */
+  background: transparent !important;
+  border: 0;
   box-shadow: none !important;
-  overflow: hidden;
+  overflow: visible;
   width: auto !important;
   height: auto !important;
-  min-width: 120px;
-  border-radius: 10px !important;
-  padding: 6px 8px;
+  min-width: 0;
+  border-radius: 0 !important;
+  padding: 0;
+}
+
+/* The mobile header of the login form sits on white — use the colour mark there. */
+.fi2t-login .login-mobile-logo .login-logo-icon {
+  background: transparent !important;
 }
 
 .fi2t-login .login-logo-icon img {

@@ -61,8 +61,10 @@ export default function PageBuilder({
   onDeleteLocale, onUploadImage,
 }: Props) {
   const selected = sections.find(s => s.name === selectedSection)
+  /* Structure + aperçu side by side with readable Structure cards */
   const [canvasMode, setCanvasMode] = useState<CanvasMode>('split')
   const [previewExpanded, setPreviewExpanded] = useState(false)
+  const [previewLocale, setPreviewLocale] = useState<'fr' | 'en' | 'ar'>('fr')
 
   const { data: publicCarousels = [] } = useQuery<Array<{ slug: string; active_items: PreviewCarouselItem[] }>>({
     queryKey: ['public-carousels-preview'],
@@ -134,7 +136,15 @@ export default function PageBuilder({
                   getValue={(key, locale = 'fr') => {
                     const block = sec.blocks.find(b => b.key === key)
                     if (!block) return ''
-                    return effectiveValue(sec.name, block, block.type === 'text' ? locale : '_all')
+                    if (block.type === 'image') return effectiveValue(sec.name, block, '_all')
+                    if (block.type === 'json') {
+                      return (
+                        effectiveValue(sec.name, block, locale)
+                        || effectiveValue(sec.name, block, 'fr')
+                        || effectiveValue(sec.name, block, '_all')
+                      )
+                    }
+                    return effectiveValue(sec.name, block, locale)
                   }}
                   onClick={() => {
                     onSetInsertTarget(null)
@@ -182,6 +192,7 @@ export default function PageBuilder({
             expanded={previewExpanded}
             onToggleExpand={() => setPreviewExpanded(e => !e)}
             showToolbar
+            onLocaleChange={setPreviewLocale}
           />
         </div>
       )}
@@ -192,6 +203,7 @@ export default function PageBuilder({
             <SectionEditorPanel
               section={selected}
               pageSlug={pageSlug}
+              preferredLocale={previewLocale}
               onBack={() => onSelectSection(null)}
               onDelete={() => onDeleteSection(selected.name)}
               effectiveValue={effectiveValue}

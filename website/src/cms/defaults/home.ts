@@ -1,6 +1,8 @@
 import { groupementsJson } from '../../lib/groupements'
 
 export const HOME_DEFAULTS: Record<string, string> = {
+  'about.image': '/images/qui-sommes-nous-card.png?v=home2',
+  // Keep the photograph clean: title, subtitle and CTAs are separate CMS blocks.
   'hero.image': '/hero.jpg',
   'hero.title': 'Le futur du tourisme tunisien se construit ici !',
   'hero.subtitle': 'Unir, innover et valoriser le tourisme tunisien',
@@ -11,30 +13,26 @@ export const HOME_DEFAULTS: Record<string, string> = {
   'about.body':
     'La Fédération Interprofessionnelle du Tourisme Tunisien est un syndicat professionnel patronal indépendant fondé en mars 2016 par divers opérateurs du tourisme tunisien, venant d’activités différentes : agences de voyages, hébergements alternatifs, loisirs, animation, sports, transports…',
   'about.cta': 'Voir plus',
-  'about.image': '/images/qui-sommes-nous.jpg',
   'about.badge': "10+\nANNÉES D'ENGAGEMENT",
+  'about.badge_pos': JSON.stringify({ left: -29, bottom: -43 }),
 
   'objectifs.title': 'Nos Objectifs',
   'objectifs.intro':
     "La Fi2T a pour objectif de fédérer différents opérateurs de tourisme au sein d'un même syndicat professionnel, en vue",
   'objectifs.items': JSON.stringify([
     {
-      num: '01',
       title: 'Vision stratégique',
       desc: 'Apporter sa contribution en matière de vision stratégique et pratique pour la diversification et l’innovation touristique en Tunisie',
     },
     {
-      num: '02',
       title: 'Intérêts des membres',
       desc: 'Sauvegarder les intérêts économiques et sociaux de ses membres',
     },
     {
-      num: '03',
       title: 'Synergie',
       desc: 'Créer une synergie entre les différents opérateurs du tourisme tunisien',
     },
     {
-      num: '04',
       title: 'Développement',
       desc: 'Contribuer au développement et à l’essor du tourisme tunisien',
     },
@@ -49,11 +47,12 @@ export const HOME_DEFAULTS: Record<string, string> = {
   'adherer.title': 'Pourquoi adhérer à la Fi2T ?',
   'adherer.image': '/images/Rectangle 27.png',
   'adherer.badge': "50+\nMEMBRES ACTIFS",
+  'adherer.badge_pos': JSON.stringify({ right: -26, bottom: -49 }),
   'adherer.cta': 'Adhérer maintenant',
   'adherer.reasons': JSON.stringify([
     {
       title: 'Représentation Institutionnelle',
-      desc: 'être représenté auprès des gouvernements et institutions',
+      desc: 'Être représenté auprès des gouvernements et institutions',
     },
     {
       title: 'Réseautage Stratégique',
@@ -81,21 +80,21 @@ export const HOME_DEFAULTS: Record<string, string> = {
       title: 'Tourisme: Walid Tritar, nouveau Président de la Fi2T',
       desc: 'Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....',
       date: '11 Mai 2026',
-      img: '/images/act1.jpg',
+      img: '/images/act1.jpg?v=home2',
     },
     {
       slug: 'secteur-sous-pression',
       title: 'Secteur touristique: sous pression, mais résilient...',
       desc: 'Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive....',
       date: '22 Mai 2026',
-      img: '/images/act2.jpg',
+      img: '/images/act2.jpg?v=home2',
     },
     {
       slug: 'houssem-azouz-centre-ouest',
       title: 'Houssem Azouz (Président de la Fédération interprofessionnelle...',
       desc: 'Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...',
       date: '7 Avril 2026',
-      img: '/images/act3.jpg',
+      img: '/images/act3.jpg?v=home2',
     },
   ]),
 

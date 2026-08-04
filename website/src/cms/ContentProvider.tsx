@@ -25,6 +25,8 @@ interface ContentContextValue {
   setLocal: (compoundKey: string, value: string) => void
   pending: PendingBlock[]
   queueChange: (block: PendingBlock) => void
+  /** Persist a single block right away (used by image uploads). */
+  saveBlock: (block: PendingBlock) => Promise<void>
   savePending: () => Promise<void>
   clearPending: () => void
   refresh: () => Promise<void>
@@ -149,6 +151,24 @@ export function ContentProvider({ page, children }: Props) {
     })
   }, [])
 
+  /**
+   * Images have no "draft" value worth keeping — the file is already uploaded,
+   * so persist immediately and drop any queued entry for the same block.
+   */
+  const saveBlock = useCallback(async (block: PendingBlock) => {
+    setBlocks((prev) => ({ ...prev, [`${block.section}.${block.key}`]: block.value }))
+    await api.post('/admin/content/bulk', { blocks: [block] })
+    setPending((prev) =>
+      prev.filter(
+        (p) =>
+          !(p.page === block.page && p.section === block.section && p.key === block.key && p.locale === block.locale),
+      ),
+    )
+    invalidateCache(cacheKey)
+    await fetchBlocks()
+    notifyContentSaved(block.page, 'website')
+  }, [cacheKey, fetchBlocks])
+
   const savePending = useCallback(async () => {
     if (!pending.length) return
     await api.post('/admin/content/bulk', { blocks: pending })
@@ -167,7 +187,7 @@ export function ContentProvider({ page, children }: Props) {
   return (
     <ContentContext.Provider value={{
       blocks, loading, get, getJson, setLocal, pending,
-      queueChange, savePending, clearPending, refresh: fetchBlocks,
+      queueChange, saveBlock, savePending, clearPending, refresh: fetchBlocks,
     }}>
       {children}
     </ContentContext.Provider>
@@ -191,7 +211,7 @@ export function useContentBlock(
     shared?: boolean
   } = {}
 ) {
-  const { get, queueChange } = useContent()
+  const { get, queueChange, saveBlock } = useContent()
   const { i18n } = useTranslation()
   const lang = (i18n.language || 'fr').split('-')[0]
   const type = opts.type ?? 'text'
@@ -200,17 +220,20 @@ export function useContentBlock(
   const { section, key } = parseCompound(compoundKey)
   const value = get(compoundKey, opts.fallback ?? '')
 
-  const update = (newValue: string) => {
-    queueChange({
-      page,
-      section,
-      key,
-      locale,
-      type,
-      value: newValue,
-      label: opts.label,
-    })
-  }
+  const asBlock = (newValue: string): PendingBlock => ({
+    page,
+    section,
+    key,
+    locale,
+    type,
+    value: newValue,
+    label: opts.label,
+  })
 
-  return { value, update }
+  const update = (newValue: string) => queueChange(asBlock(newValue))
+
+  /** Write straight through without waiting for the toolbar's Save. */
+  const commit = (newValue: string) => saveBlock(asBlock(newValue))
+
+  return { value, update, commit }
 }

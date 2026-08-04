@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
@@ -12,6 +12,7 @@ const DashboardPage = lazy(() => import('./pages/dashboard/Fi2tDashboardPage'))
 const UsersPage = lazy(() => import('./pages/users/UsersPage'))
 const RolesPage = lazy(() => import('./pages/users/RolesPage'))
 const WebsiteContentPage = lazy(() => import('./pages/content/WebsiteContentPage'))
+const TranslationsPage = lazy(() => import('./pages/translations/TranslationsPage'))
 
 const qc = new QueryClient({ defaultOptions: { queries: { retry: 1, staleTime: 30_000 } } })
 
@@ -23,14 +24,42 @@ function PageLoader() {
   )
 }
 
+function useAuthHydrated() {
+  const [hydrated, setHydrated] = useState(() => useAuthStore.persist.hasHydrated())
+
+  useEffect(() => {
+    if (useAuthStore.persist.hasHydrated()) {
+      setHydrated(true)
+      return
+    }
+    return useAuthStore.persist.onFinishHydration(() => setHydrated(true))
+  }, [])
+
+  return hydrated
+}
+
+/** Requires login — everything except /login */
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { token } = useAuthStore()
+  const hydrated = useAuthHydrated()
+  const token = useAuthStore((s) => s.token)
+
+  if (!hydrated) return <PageLoader />
   if (!token) return <Navigate to="/login" replace />
   return <>{children}</>
 }
 
+/** Login only when logged out */
+function GuestRoute({ children }: { children: React.ReactNode }) {
+  const hydrated = useAuthHydrated()
+  const token = useAuthStore((s) => s.token)
+
+  if (!hydrated) return <PageLoader />
+  if (token) return <Navigate to="/dashboard" replace />
+  return <>{children}</>
+}
+
 function I18nSync() {
-  const { token } = useAuthStore()
+  const token = useAuthStore((s) => s.token)
   useEffect(() => {
     if (token) syncTranslationsFromDB()
   }, [token])
@@ -44,13 +73,23 @@ export default function App() {
         <I18nSync />
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route
+              path="/login"
+              element={(
+                <GuestRoute>
+                  <LoginPage />
+                </GuestRoute>
+              )}
+            />
+
             <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/website-content" element={<WebsiteContentPage />} />
+              <Route path="/translations" element={<TranslationsPage />} />
               <Route path="/users" element={<UsersPage />} />
               <Route path="/roles" element={<RolesPage />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Route>
           </Routes>
         </Suspense>

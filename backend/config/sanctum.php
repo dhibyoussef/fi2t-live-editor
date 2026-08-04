@@ -50,7 +50,8 @@ return [
     |
     */
 
-    'expiration' => null,
+    /* Fallback expiry (minutes). Per-token expires_at from createToken takes precedence when set. */
+    'expiration' => (int) env('SANCTUM_EXPIRATION', 480),
 
     /*
     |--------------------------------------------------------------------------

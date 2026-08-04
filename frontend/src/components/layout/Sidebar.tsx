@@ -2,9 +2,11 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   LayoutDashboard, ShieldCheck, Settings, ExternalLink,
-  Globe, LayoutTemplate,
+  Globe, LayoutTemplate, Languages,
 } from 'lucide-react'
 import { useAuthStore } from '../../store/authStore'
+import { buildLiveEditorUrl } from '../../api/editSession'
+import toast from 'react-hot-toast'
 
 type NavItem = {
   to: string
@@ -30,6 +32,7 @@ const nav: NavGroup[] = [
     groupKey: 'website',
     items: [
       { to: '/website-content', icon: LayoutTemplate, label: 'nav.website_content' },
+      { to: '/translations', icon: Languages, label: 'nav.translations' },
       { to: '__website_edit__', icon: Globe, label: 'nav.website_edit', external: true },
     ],
   },
@@ -48,10 +51,14 @@ export default function Sidebar({ collapsed = false }: SidebarProps) {
   const { t } = useTranslation()
   const token = useAuthStore((s) => s.token)
 
-  const openWebsiteEdit = () => {
+  const openWebsiteEdit = async () => {
     if (!token) return
-    const url = `http://localhost:3002/?edit_token=${encodeURIComponent(token)}`
-    window.open(url, '_blank', 'noopener,noreferrer')
+    try {
+      const url = await buildLiveEditorUrl('/')
+      window.open(url, '_blank', 'noopener,noreferrer')
+    } catch {
+      toast.error('Impossible d’ouvrir le Live Editor — reconnectez-vous')
+    }
   }
 
   return (
@@ -59,7 +66,7 @@ export default function Sidebar({ collapsed = false }: SidebarProps) {
       <div className="gc-sidebar-logo">
         {collapsed ? (
           <img
-            src="/favicon.svg"
+            src="/logo.png"
             alt="FI2T"
             className="gc-sidebar-brand gc-sidebar-brand--mark"
           />

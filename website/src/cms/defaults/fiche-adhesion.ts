@@ -1,17 +1,37 @@
 export const FICHE_ADHESION_DEFAULTS: Record<string, string> = {
-  'hero.image': '/hero.jpg',
+  'hero.image': '/images/desert-banner.jpg?v=1',
   'hero.title': 'Fiche adhésion',
 
   'intro.title': 'Rejoignez la FI2T',
   'intro.body':
     "Devenez membre de la Fédération Interprofessionnelle du Tourisme Tunisien et participez activement à la modernisation, la diversification et la professionnalisation du tourisme tunisien.",
 
-  'benefits.title': 'Pourquoi adhérer ?',
-  'benefits.items': JSON.stringify([
-    { title: 'Représentation', desc: 'Défense collective des intérêts professionnels auprès des autorités.' },
-    { title: 'Réseau', desc: 'Accès à un réseau d’opérateurs et de partenaires du secteur.' },
-    { title: 'Visibilité', desc: 'Valorisation de votre activité au sein de la Fédération.' },
-    { title: 'Ressources', desc: 'Formations, informations et accompagnement métier.' },
+  'adherer.title': 'Pourquoi adhérer à la Fi2T ?',
+  'adherer.image': '/images/Rectangle 27.png',
+  'adherer.badge': "50+\nMEMBRES ACTIFS",
+  'adherer.badge_pos': JSON.stringify({ right: -26, bottom: -41 }),
+  'adherer.per_page': '5',
+  'adherer.reasons': JSON.stringify([
+    {
+      title: 'Représentation Institutionnelle',
+      desc: 'Être représenté auprès des gouvernements et institutions',
+    },
+    {
+      title: 'Réseautage Stratégique',
+      desc: 'Participer à un réseau professionnel structuré',
+    },
+    {
+      title: 'Visibilité Accrue',
+      desc: 'Améliorer sa visibilité et ses opportunités commerciales',
+    },
+    {
+      title: 'Label de Qualité',
+      desc: 'Bénéficier d’un label de qualité et de conformité',
+    },
+    {
+      title: 'Ressources & Expertise',
+      desc: 'Accéder à des ressources professionnelles et formations, renforçant ainsi sa compétitivité sur le marché tunisien et international',
+    },
   ]),
 
   'form.title': 'Demande d’adhésion',
@@ -28,4 +48,5 @@ export const FICHE_ADHESION_DEFAULTS: Record<string, string> = {
   'form.label_message': 'MESSAGE',
   'form.placeholder_message': 'Présentez brièvement votre activité…',
   'form.submit': 'Envoyer la demande',
+  'form.success': 'Merci — votre demande d’adhésion a bien été envoyée.',
 }

@@ -20,7 +20,7 @@ interface TopBarProps {
 export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
-  const { user, clearAuth } = useAuthStore()
+  const { user, logout } = useAuthStore()
   const [langOpen, setLangOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
 
@@ -33,9 +33,13 @@ export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
   }
 
   const handleLogout = async () => {
-    try { await apiClient.post('/auth/logout') } catch { /* ignore */ }
-    clearAuth()
-    navigate('/login')
+    try {
+      await apiClient.post('/auth/logout', undefined, { timeout: 4000 })
+    } catch {
+      /* still clear local session */
+    }
+    logout()
+    navigate('/login', { replace: true })
     toast.success('Déconnexion réussie')
   }
 

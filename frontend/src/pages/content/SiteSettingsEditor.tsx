@@ -34,12 +34,12 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
   identity: [
     { section: 'settings', key: 'logo', label: 'Logo du site', type: 'image', locales: ['_all'] },
     { section: 'settings', key: 'hotel_name', label: 'Nom du site', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'FI2T' },
-    { section: 'settings', key: 'hotel_tagline', label: 'Sous-titre / baseline', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'Fédération Interprofessionnelle du Tourisme Tunisien' },
+    { section: 'settings', key: 'tagline', label: 'Sous-titre / baseline', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'Fédération Interprofessionnelle du Tourisme Tunisien' },
   ],
   contact: [
-    { section: 'settings', key: 'address', label: 'Adresse', type: 'textarea', locales: ['fr', 'en', 'ar'], placeholder: 'Résidence MERIEM - Appt N°2 - Les Berges du Lac 1, 1053 Tunis' },
-    { section: 'settings', key: 'phone', label: 'Téléphone (affichage)', type: 'text', locales: ['_all'], placeholder: '+216 29 710 507' },
-    { section: 'settings', key: 'phone_secondary', label: 'Téléphone secondaire (optionnel)', type: 'text', locales: ['_all'], placeholder: '+216 24 940 022' },
+    { section: 'settings', key: 'address', label: 'Adresse (réglages)', type: 'textarea', locales: ['fr', 'en', 'ar'], placeholder: 'Résidence MERIEM - Appt N°2 - Les Berges du Lac 1, 1053 Tunis' },
+    { section: 'settings', key: 'phone', label: 'Téléphone principal', type: 'text', locales: ['_all'], placeholder: '+216 29 710 507' },
+    { section: 'settings', key: 'phone_secondary', label: 'Téléphone secondaire', type: 'text', locales: ['_all'], placeholder: '+216 24 940 022' },
     { section: 'settings', key: 'email', label: 'E-mail principal', type: 'text', locales: ['_all'], placeholder: 'contact@fit-tunisie.org' },
   ],
   social: [
@@ -49,10 +49,12 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
     { section: 'settings', key: 'social_x', label: 'X (Twitter)', type: 'text', locales: ['_all'], placeholder: 'https://x.com/...' },
   ],
   footer: [
-    { section: 'footer', key: 'logo', label: 'Logo du pied de page', type: 'image', locales: ['_all'] },
     { section: 'footer', key: 'about', label: 'Description (colonne 1)', type: 'textarea', locales: ['fr', 'en', 'ar'] },
+    { section: 'footer', key: 'address', label: 'Adresse (pied de page)', type: 'textarea', locales: ['fr', 'en', 'ar'] },
+    { section: 'footer', key: 'phone_1', label: 'Téléphone 1', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: '+216 29 710 507' },
+    { section: 'footer', key: 'phone_2', label: 'Téléphone 2', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: '+216 24 940 022' },
+    { section: 'footer', key: 'email', label: 'E-mail (pied de page)', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'contact@fit-tunisie.org' },
     { section: 'footer', key: 'newsletter', label: 'Texte newsletter', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'Restez informé de nos dernières initiatives.' },
-    { section: 'footer', key: 'newsletter_placeholder', label: 'Placeholder champ e-mail', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'Votre adresse e-mail' },
   ],
 }
 
@@ -75,7 +77,12 @@ function valuesFromSections(sections: SectionGroup[]): Values {
     for (const field of tab) {
       out[field.key] = {}
       for (const loc of field.locales) {
-        out[field.key][loc] = blockValue(sections, field.section, field.key, loc)
+        let value = blockValue(sections, field.section, field.key, loc)
+        // Legacy key used before Global settings rename
+        if (!value && field.key === 'tagline') {
+          value = blockValue(sections, 'settings', 'hotel_tagline', loc)
+        }
+        out[field.key][loc] = value
       }
     }
   }

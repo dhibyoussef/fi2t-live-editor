@@ -1,12 +1,6 @@
 import { ArrowLeft, Trash2, Image as ImageIcon, Type, Layers, Upload } from 'lucide-react'
-import JsonBlockEditor from '../editors/JsonBlockEditor'
-import { Button } from '../../../components/ui/Button'
-
-const TEXT_LOCALES = [
-  { code: 'fr', flag: '🇫🇷', name: 'Français' },
-  { code: 'en', flag: '🇬🇧', name: 'English' },
-  { code: 'ar', flag: '🇹🇳', name: 'العربية' },
-] as const
+import LocalizedJsonEditor from '../editors/LocalizedJsonEditor'
+import { TEXT_LOCALES } from '../editors/jsonLocale'
 
 interface BlockRow {
   key: string
@@ -25,6 +19,7 @@ interface Section {
 interface Props {
   section: Section
   pageSlug: string
+  preferredLocale?: string
   onBack: () => void
   onDelete: () => void
   effectiveValue: (section: string, block: BlockRow, locale: string) => string
@@ -37,7 +32,7 @@ interface Props {
 }
 
 export default function SectionEditorPanel({
-  section, pageSlug, onBack, onDelete,
+  section, pageSlug, preferredLocale = 'fr', onBack, onDelete,
   effectiveValue, effectiveLabel, setLabelChange, setValueChange,
   changes, onDeleteLocale, onUploadImage,
 }: Props) {
@@ -114,11 +109,12 @@ export default function SectionEditorPanel({
             )}
 
             {block.type === 'json' && (
-              <JsonBlockEditor
+              <LocalizedJsonEditor
                 section={section.name}
-                blockKey={block.key}
-                value={effectiveValue(section.name, block, '_all')}
-                onChange={v => setValueChange(section.name, block, '_all', v)}
+                block={block}
+                preferredLocale={preferredLocale}
+                valueFor={(locale) => effectiveValue(section.name, block, locale)}
+                onChange={(locale, v) => setValueChange(section.name, block, locale, v)}
               />
             )}
           </div>

@@ -3,13 +3,17 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ContentProvider } from '../cms/ContentProvider'
 import EditableText from '../cms/EditableText'
-import EditableImage from '../cms/EditableImage'
+import EditableImage, { useEditableImageSrc } from '../cms/EditableImage'
 import EditableJsonList from '../cms/EditableJsonList'
+import EditablePositioned from '../cms/EditablePositioned'
 import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
 import { GROUPEMENTS, type GroupementItem } from '../lib/groupements'
 
 const OBJECTIFS_PER_PAGE = 4
+
+/** Objectives are numbered from their position, so editors never type it. */
+const objectifNumber = (index: number) => String(index + 1).padStart(2, '0')
 
 function ObjectifsDots({
   itemCount,
@@ -22,30 +26,33 @@ function ObjectifsDots({
   onPage: (page: number) => void
   editMode: boolean
 }) {
-  const pageCount = itemCount === 0 ? 0 : Math.max(1, Math.ceil(itemCount / OBJECTIFS_PER_PAGE))
+  const pageCount = Math.ceil(itemCount / OBJECTIFS_PER_PAGE)
 
   useEffect(() => {
     if (pageCount === 0) return
     if (page > pageCount - 1) onPage(pageCount - 1)
   }, [page, pageCount, onPage])
 
-  if (pageCount === 0) return null
+  // Only when there is another page to reach — no decorative spare dots.
+  if (pageCount <= 1) return null
 
-  // In edit mode every card is visible — still show accurate page count (1 if ≤4 items)
   return (
     <div className="fi2t-dots" role="tablist" aria-label="Pages des objectifs">
-      {Array.from({ length: pageCount }, (_, i) => (
-        <button
-          key={i}
-          type="button"
-          className={i === Math.min(page, pageCount - 1) ? 'is-active' : undefined}
-          aria-label={`Page ${i + 1}`}
-          aria-current={i === Math.min(page, pageCount - 1) ? 'true' : undefined}
-          onClick={() => {
-            if (!editMode) onPage(i)
-          }}
-        />
-      ))}
+      {Array.from({ length: pageCount }, (_, i) => {
+        const active = i === page
+        return (
+          <button
+            key={i}
+            type="button"
+            className={active ? 'is-active' : undefined}
+            aria-label={`Page ${i + 1}`}
+            aria-current={active ? 'true' : undefined}
+            onClick={() => {
+              if (!editMode) onPage(i)
+            }}
+          />
+        )
+      })}
     </div>
   )
 }
@@ -56,7 +63,7 @@ function ChevronIcon({ dir }: { dir: 'left' | 'right' }) {
       <path
         d={dir === 'left' ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'}
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="2.75"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -64,28 +71,52 @@ function ChevronIcon({ dir }: { dir: 'left' | 'right' }) {
   )
 }
 
-type ObjectifItem = { num: string; title: string; desc: string }
+function NewsArrowIcon() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path
+        d="M2 6h7M6.5 2.5L10 6l-3.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function CtaLeadIcon() {
+  return (
+    <svg className="fi2t-cta__btn-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+      <path
+        d="M2.25 7.5h8.5M7.5 3.75 11.25 7.5 7.5 11.25"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+type ObjectifItem = { title: string; desc: string }
 type ReasonItem = { title: string; desc: string }
 type NewsItem = { slug: string; title: string; desc: string; date: string; img: string }
 
 const OBJECTIFS_FALLBACK: ObjectifItem[] = [
   {
-    num: '01',
     title: 'Vision stratégique',
     desc: 'Apporter sa contribution en matière de vision stratégique et pratique pour la diversification et l’innovation touristique en Tunisie',
   },
   {
-    num: '02',
     title: 'Intérêts des membres',
     desc: 'Sauvegarder les intérêts économiques et sociaux de ses membres',
   },
   {
-    num: '03',
     title: 'Synergie',
     desc: 'Créer une synergie entre les différents opérateurs du tourisme tunisien',
   },
   {
-    num: '04',
     title: 'Développement',
     desc: 'Contribuer au développement et à l’essor du tourisme tunisien',
   },
@@ -94,7 +125,7 @@ const OBJECTIFS_FALLBACK: ObjectifItem[] = [
 const REASONS_FALLBACK: ReasonItem[] = [
   {
     title: 'Représentation Institutionnelle',
-    desc: 'être représenté auprès des gouvernements et institutions',
+    desc: 'Être représenté auprès des gouvernements et institutions',
   },
   {
     title: 'Réseautage Stratégique',
@@ -120,21 +151,21 @@ const NEWS_FALLBACK: NewsItem[] = [
     title: 'Tourisme: Walid Tritar, nouveau Président de la Fi2T',
     desc: 'Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....',
     date: '11 Mai 2026',
-    img: '/images/act1.jpg',
+    img: '/images/act1.jpg?v=home2',
   },
   {
     slug: 'secteur-sous-pression',
     title: 'Secteur touristique: sous pression, mais résilient...',
     desc: 'Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive....',
     date: '22 Mai 2026',
-    img: '/images/act2.jpg',
+    img: '/images/act2.jpg?v=home2',
   },
   {
     slug: 'houssem-azouz-centre-ouest',
     title: 'Houssem Azouz (Président de la Fédération interprofessionnelle...',
     desc: 'Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...',
     date: '7 Avril 2026',
-    img: '/images/act3.jpg',
+    img: '/images/act3.jpg?v=home2',
   },
 ]
 
@@ -142,18 +173,27 @@ function HomeInner() {
   const { t } = useTranslation()
   const { isEditMode } = useEditMode()
   const [objectifsPage, setObjectifsPage] = useState(0)
+  const heroImgSrc = useEditableImageSrc('home', 'hero.image', '/hero.jpg')
+  const aboutImgSrc = useEditableImageSrc('home', 'about.image', '/images/qui-sommes-nous-card.png?v=home2')
+  const groupementsBgSrc = useEditableImageSrc('home', 'groupements.bg', '/images/bg 1.png')
+  const ctaBgSrc = useEditableImageSrc('home', 'cta.bg', '/images/bg--1.png')
 
   return (
     <div className="fi2t-home">
       <section className="fi2t-hero">
-        <EditableImage
-          page="home"
-          blockKey="hero.image"
-          className="fi2t-hero__bg"
-          alt="FI2T"
-          fallback="/hero.jpg"
-        />
-        <div className="fi2t-hero__overlay" />
+        {/* Plain <img> keeps absolute full-bleed CSS; chip edits without wrapping the bg. */}
+        <img src={heroImgSrc} alt="FI2T" className="fi2t-hero__bg" />
+        {isEditMode && (
+          <EditableImage
+            page="home"
+            blockKey="hero.image"
+            variant="chip"
+            label="Image hero"
+            className="fi2t-hero__edit-chip"
+            fallback="/hero.jpg"
+          />
+        )}
+        <div className="fi2t-hero__overlay" aria-hidden="true" />
         <div className="fi2t-hero__content">
           <EditableText
             page="home"
@@ -195,14 +235,28 @@ function HomeInner() {
           </Link>
         </div>
         <div className="fi2t-about__media">
-          <EditableImage
-            page="home"
-            blockKey="about.image"
-            className="fi2t-about__image"
+          <img
+            src={aboutImgSrc}
             alt="Qui sommes-nous"
-            fallback="/images/qui-sommes-nous.jpg"
+            className="fi2t-about__image"
           />
-          <div className="fi2t-about__badge">
+          {isEditMode && (
+            <EditableImage
+              page="home"
+              blockKey="about.image"
+              variant="chip"
+              label="Image à propos"
+              className="fi2t-about__edit-chip"
+              fallback="/images/qui-sommes-nous-card.png?v=home2"
+            />
+          )}
+          <EditablePositioned
+            page="home"
+            blockKey="about.badge_pos"
+            label="Badge 10+ — Position"
+            className="fi2t-about__badge"
+            fallback={{ left: -29, bottom: -43 }}
+          >
             <EditableText
               page="home"
               blockKey="about.badge"
@@ -211,7 +265,7 @@ function HomeInner() {
               multiline
               fallback={"10+\nANNÉES D'ENGAGEMENT"}
             />
-          </div>
+          </EditablePositioned>
         </div>
       </section>
 
@@ -241,20 +295,16 @@ function HomeInner() {
               return base
             }}
             fallback={OBJECTIFS_FALLBACK}
-            emptyItem={(items) => ({
-              num: String(items.length + 1).padStart(2, '0'),
-              title: 'Nouvel objectif',
-              desc: 'Description…',
-            })}
+            emptyItem={() => ({ title: 'Nouvel objectif', desc: 'Description…' })}
             addLabel="Ajouter un objectif"
             fields={[
-              { key: 'num', label: 'Numéro' },
               { key: 'title', label: 'Titre' },
               { key: 'desc', label: 'Description', multiline: true },
             ]}
-            renderItem={(_item, _index, { editField }) => (
+            renderItem={(_item, index, { editField }) => (
               <>
-                {editField('num', 'span', 'fi2t-objectif-card__num')}
+                {/* Numbered by position: reordering or deleting can't leave a gap. */}
+                <span className="fi2t-objectif-card__num">{objectifNumber(index)}</span>
                 {editField('title', 'h3')}
                 {editField('desc', 'p')}
               </>
@@ -272,13 +322,17 @@ function HomeInner() {
       </section>
 
       <section className="fi2t-groupements" id="groupements">
-        <EditableImage
-          page="home"
-          blockKey="groupements.bg"
-          className="fi2t-groupements__bg"
-          alt=""
-          fallback="/images/bg 1.png"
-        />
+        <img src={groupementsBgSrc} alt="" className="fi2t-groupements__bg" />
+        {isEditMode && (
+          <EditableImage
+            page="home"
+            blockKey="groupements.bg"
+            variant="chip"
+            label="Fond groupements"
+            className="fi2t-groupements__edit-chip"
+            fallback="/images/bg 1.png"
+          />
+        )}
         <div className="fi2t-groupements__overlay" />
         <div className="fi2t-groupements__inner">
           <EditableText page="home" blockKey="groupements.title" as="h2" fallback="Les Groupements Professionnels" />
@@ -295,9 +349,9 @@ function HomeInner() {
             blockKey="groupements.items"
             label="Groupements — Cartes"
             className="fi2t-groupements__grid"
-            shared
+            shared={false}
             fallback={GROUPEMENTS}
-            emptyItem={{ label: 'Nouveau groupement', slug: '', icon: '/images/icon1.png' }}
+            emptyItem={{ label: 'Nouveau groupement', slug: '', icon: '/images/icon1.png?v=5' }}
             addLabel="Ajouter un groupement"
             fields={[
               { key: 'label', label: 'Nom' },
@@ -337,16 +391,38 @@ function HomeInner() {
             alt="Adhésion"
             fallback="/images/Rectangle 27.png"
           />
-          <div className="fi2t-adherer__badge">
-            <EditableText
+          {isEditMode ? (
+            <EditablePositioned
               page="home"
-              blockKey="adherer.badge"
-              as="p"
-              className="fi2t-stat-badge"
-              multiline
-              fallback={"50+\nMEMBRES ACTIFS"}
-            />
-          </div>
+              blockKey="adherer.badge_pos"
+              label="Badge 50+ — Position"
+              className="fi2t-adherer__badge"
+              fallback={{ right: -26, bottom: -49 }}
+            >
+              <EditableText
+                page="home"
+                blockKey="adherer.badge"
+                as="p"
+                className="fi2t-stat-badge"
+                multiline
+                fallback={"50+\nMEMBRES ACTIFS"}
+              />
+            </EditablePositioned>
+          ) : (
+            <div
+              className="fi2t-adherer__badge"
+              style={{ position: 'absolute', right: -26, bottom: -49 }}
+            >
+              <EditableText
+                page="home"
+                blockKey="adherer.badge"
+                as="p"
+                className="fi2t-stat-badge"
+                multiline
+                fallback={"50+\nMEMBRES ACTIFS"}
+              />
+            </div>
+          )}
         </div>
         <div className="fi2t-adherer__content">
           <EditableText page="home" blockKey="adherer.title" as="h2" fallback="Pourquoi adhérer à la Fi2T ?" />
@@ -365,17 +441,14 @@ function HomeInner() {
             ]}
             renderItem={(_item, _index, { editField }) => (
               <>
-                <span className="fi2t-reasons__check" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M20 6L9 17l-5-5"
-                      stroke="currentColor"
-                      strokeWidth="2.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
+                <img
+                  src="/images/adherer-check.svg"
+                  alt=""
+                  className="fi2t-reasons__check"
+                  width={20}
+                  height={20}
+                  aria-hidden="true"
+                />
                 <div>
                   {editField('title', 'strong')}
                   {editField('desc', 'span')}
@@ -423,20 +496,38 @@ function HomeInner() {
                 { key: 'img', label: 'Image', image: true },
                 { key: 'slug', label: 'Slug article' },
               ]}
-              renderItem={(item, _index, { editable, editField, editImage }) => (
+              renderItem={(item, index, { editable, editField, editImage }) => (
                 <>
-                  {editImage('img', 'fi2t-news-card__media', item.title)}
+                  {editable ? (
+                    editImage('img', 'fi2t-news-card__media', item.title)
+                  ) : (
+                    <img
+                      src={
+                        index < 3
+                          ? `/images/act${index + 1}-home.jpg?v=1`
+                          : item.img || '/images/act1.jpg'
+                      }
+                      alt={item.title}
+                      className="fi2t-news-card__media"
+                    />
+                  )}
                   <div className="fi2t-news-card__body">
                     {editField('title', 'h3')}
                     {editField('desc', 'p')}
                     <footer>
                       {editField('date', 'time')}
                       {!editable && item.slug ? (
-                        <Link to={`/actualites/${item.slug}`} className="fi2t-news-card__link">
-                          {t('fi2t.ui.read_more')}
+                        <Link
+                          to={`/actualites/${item.slug}`}
+                          className="fi2t-news-card__link"
+                          aria-label={t('fi2t.ui.read_more')}
+                        >
+                          <NewsArrowIcon />
                         </Link>
                       ) : (
-                        <span className="fi2t-news-card__link">{t('fi2t.ui.read_more')}</span>
+                        <span className="fi2t-news-card__link" aria-hidden="true">
+                          <NewsArrowIcon />
+                        </span>
                       )}
                     </footer>
                   </div>
@@ -451,13 +542,17 @@ function HomeInner() {
       </section>
 
       <section className="fi2t-cta">
-        <EditableImage
-          page="home"
-          blockKey="cta.bg"
-          className="fi2t-cta__bg"
-          alt=""
-          fallback="/images/bg--1.png"
-        />
+        <img src={ctaBgSrc} alt="" className="fi2t-cta__bg" />
+        {isEditMode && (
+          <EditableImage
+            page="home"
+            blockKey="cta.bg"
+            variant="chip"
+            label="Fond CTA"
+            className="fi2t-cta__edit-chip"
+            fallback="/images/bg--1.png"
+          />
+        )}
         <div className="fi2t-cta__overlay" />
         <div className="fi2t-cta__inner">
           <EditableText page="home" blockKey="cta.title" as="h2" fallback="Rejoignez notre vision pour le futur" />
@@ -470,6 +565,7 @@ function HomeInner() {
           />
           <div className="fi2t-hero__actions">
             <Link to="/fiche-adhesion" className="fi2t-btn fi2t-btn--light">
+              <CtaLeadIcon />
               <EditableText page="home" blockKey="cta.primary" as="span" fallback="Rejoindre la fédération" />
             </Link>
             <Link to="/contact" className="fi2t-btn fi2t-btn--ghost">

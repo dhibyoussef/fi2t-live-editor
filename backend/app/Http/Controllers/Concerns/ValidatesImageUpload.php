@@ -21,14 +21,20 @@ trait ValidatesImageUpload
                     $mime = strtolower($value->getMimeType() ?: '');
                     $ext  = strtolower($value->getClientOriginalExtension() ?: '');
 
-                    $imageMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/avif', 'image/bmp', 'image/x-icon', 'image/vnd.microsoft.icon'];
-                    $imageExts  = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'avif', 'bmp', 'ico'];
+                    $imageMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/bmp'];
+                    $imageExts  = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'bmp'];
+
+                    if (in_array($ext, ['svg', 'svgz'], true) || str_contains($mime, 'svg')) {
+                        $fail('Les fichiers SVG ne sont pas autorisés (sécurité).');
+
+                        return;
+                    }
 
                     if (str_starts_with($mime, 'image/') || in_array($mime, $imageMimes, true) || in_array($ext, $imageExts, true)) {
                         return;
                     }
 
-                    $fail('Le fichier doit être une image (JPEG, PNG, WebP, GIF, SVG…).');
+                    $fail('Le fichier doit être une image (JPEG, PNG, WebP, GIF…).');
                 },
             ],
         ];

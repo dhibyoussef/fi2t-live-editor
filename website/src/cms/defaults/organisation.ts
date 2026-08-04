@@ -1,14 +1,15 @@
 import { groupementsJson } from '../../lib/groupements'
 
 export const ORGANISATION_DEFAULTS: Record<string, string> = {
-  'hero.image': '/hero.jpg',
+  'hero.image': '/images/qui-sommes-nous-banner.png?v=8',
   'hero.title': 'Organisation',
 
-  'stats.items': JSON.stringify([
-    { value: '12', label: 'GROUPEMENTS' },
-    { value: '11', label: 'RÉGIONS' },
-    { value: '03', label: 'ANS DE MANDAT' },
-  ]),
+  'stats.mandate_years': '03',
+  'stats.value_groupements': '12',
+  'stats.value_regions': '11',
+  'stats.label_groupements': 'GROUPEMENTS',
+  'stats.label_regions': 'RÉGIONS',
+  'stats.label_mandate': 'ANS DE MANDAT',
 
   'board.title': 'Composition Actuelle',
   'board.members': JSON.stringify([
@@ -28,15 +29,15 @@ export const ORGANISATION_DEFAULTS: Record<string, string> = {
 
   'regional.title': 'Les Bureaux Régionaux',
   'regional.map_label': '11 Bureaux Régionaux',
-  'regional.map_image': '/hero.jpg',
+  'regional.map_image': '/images/org-regional-map-card.png?v=2',
   'regional.items': JSON.stringify([
     { name: 'Mr Nebil Azouz', region: 'Bizerte' },
-    { name: 'Mr Foued Ben Ammar', region: 'Hammamet/Nabeul' },
-    { name: 'Mr Khaled Hayouni', region: 'Monastir/Mahdia' },
-    { name: 'Mr Alaeddine Khodhri', region: 'Gabes' },
     { name: 'Mme Chahla Khekhia', region: 'Le Kef' },
+    { name: 'Mr Foued Ben Ammar', region: 'Hammamet/Nabeul' },
     { name: 'Mr Akram Bouzguarrou', region: 'Sousse' },
+    { name: 'Mr Khaled Hayouni', region: 'Monastir/Mahdia' },
     { name: 'Mr Belgacem Kalawi', region: 'Kairouan' },
+    { name: 'Mr Alaeddine Khodhri', region: 'Gabes' },
     { name: 'Mr Hatem Mejlissi', region: 'Djerba' },
   ]),
 

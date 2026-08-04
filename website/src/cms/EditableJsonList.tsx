@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { useEditMode } from './EditModeProvider'
 import { useContentBlock } from './ContentProvider'
@@ -11,6 +12,11 @@ export type EditableListField = {
   visible?: boolean
   /** When true, field is edited via image upload (path stored as string). */
   image?: boolean
+  /** When true, field is a 0–100 percentage edited with a slider (not typed). */
+  percent?: boolean
+  min?: number
+  max?: number
+  step?: number
 }
 
 type Props<T extends Record<string, string>> = {
@@ -23,6 +29,8 @@ type Props<T extends Record<string, string>> = {
   className?: string
   itemClassName?: string | ((item: T, index: number) => string)
   emptyItem: T | ((items: T[]) => T)
+  /** Normalize items after parse (e.g. migrate legacy icon keys → paths). */
+  transform?: (items: T[]) => T[]
   renderItem: (item: T, index: number, ctx: {
     editable: boolean
     editField: (
@@ -30,11 +38,24 @@ type Props<T extends Record<string, string>> = {
       as?: 'h3' | 'p' | 'span' | 'strong' | 'time',
       className?: string,
     ) => ReactNode
-    editImage: (fieldKey: string, className?: string, alt?: string) => ReactNode
+    /** Live percentage slider (0–100 by default). Prefer over editField for percent fields. */
+    editPercent: (
+      fieldKey: string,
+      className?: string,
+    ) => ReactNode
+    editImage: (
+      fieldKey: string,
+      className?: string,
+      alt?: string,
+      /** Shown when the stored value is not an image URL (e.g. SVG icon key). */
+      fallback?: ReactNode,
+    ) => ReactNode
   }) => ReactNode
   renderAfter?: (items: T[]) => ReactNode
   allowAddRemove?: boolean
   addLabel?: string
+  /** Label for the on-page list button (default: Gérer la liste). */
+  manageLabel?: string
 }
 
 function parseItems<T>(raw: string, fallback: T[]): T[] {
@@ -71,22 +92,27 @@ export default function EditableJsonList<T extends Record<string, string>>({
   className = '',
   itemClassName = '',
   emptyItem,
+  transform,
   renderItem,
   renderAfter,
   allowAddRemove = true,
   addLabel = 'Ajouter un élément',
+  manageLabel = 'Gérer la liste',
 }: Props<T>) {
   const { i18n } = useTranslation()
   const { isEditMode } = useEditMode()
   const lang = (i18n.language || 'fr').split('-')[0]
-  const { value, update } = useContentBlock(page, blockKey, {
+  const { value, update, commit } = useContentBlock(page, blockKey, {
     type: 'json',
     label,
     fallback: JSON.stringify(fallback),
     shared,
   })
 
-  const items = useMemo(() => parseItems<T>(value, fallback), [value, fallback])
+  const items = useMemo(() => {
+    const parsed = parseItems<T>(value, fallback)
+    return transform ? transform(parsed) : parsed
+  }, [value, fallback, transform])
   const [open, setOpen] = useState(false)
   const [editing, setEditing] = useState<{ index: number; field: string } | null>(null)
   const [draft, setDraft] = useState('')
@@ -109,12 +135,12 @@ export default function EditableJsonList<T extends Record<string, string>>({
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  const commit = (next: T[]) => {
+  const queueItems = (next: T[]) => {
     update(JSON.stringify(next))
   }
 
   const updateField = (index: number, fieldKey: string, fieldValue: string) => {
-    commit(
+    queueItems(
       items.map((item, i) =>
         i === index ? { ...item, [fieldKey]: fieldValue } as T : item,
       ),
@@ -136,16 +162,16 @@ export default function EditableJsonList<T extends Record<string, string>>({
   const cancelInline = () => setEditing(null)
 
   const removeItem = (index: number) => {
-    commit(items.filter((_, i) => i !== index))
+    queueItems(items.filter((_, i) => i !== index))
   }
 
   const addItem = () => {
     const next = typeof emptyItem === 'function' ? emptyItem(items) : { ...emptyItem }
-    commit([...items, next])
+    queueItems([...items, next])
   }
 
   const restoreDefaults = () => {
-    commit(fallback.map((item) => ({ ...item })))
+    queueItems(fallback.map((item) => ({ ...item })))
   }
 
   const handleUpload = async (index: number, fieldKey: string, file: File) => {
@@ -153,7 +179,11 @@ export default function EditableJsonList<T extends Record<string, string>>({
     setUploading(key)
     try {
       const url = await uploadListImage(file)
-      updateField(index, fieldKey, url)
+      const next = items.map((item, i) =>
+        i === index ? ({ ...item, [fieldKey]: url } as T) : item,
+      )
+      // Images publish immediately — text edits still wait for the toolbar Save.
+      await commit(JSON.stringify(next))
     } catch {
       alert('Erreur lors du téléversement.')
     } finally {
@@ -176,13 +206,30 @@ export default function EditableJsonList<T extends Record<string, string>>({
     }
 
     if (editing?.index === index && editing.field === fieldKey) {
+      const min = fieldMeta?.min ?? 0
+      const max = fieldMeta?.max ?? 100
+      const step = fieldMeta?.step ?? 1
       return (
         <div className="cms-edit-popup cms-edit-popup--inline" onClick={(e) => e.stopPropagation()}>
           <div className="cms-edit-popup__label">
             {fieldMeta?.label ?? fieldKey}
             <span className="cms-edit-popup__lang">{shared ? 'ALL' : lang.toUpperCase()}</span>
           </div>
-          {fieldMeta?.multiline ? (
+          {fieldMeta?.percent ? (
+            <div className="cms-edit-popup__range">
+              <input
+                type="range"
+                className="cms-edit-popup__slider"
+                min={min}
+                max={max}
+                step={step}
+                value={Number(draft) || 0}
+                onChange={(e) => setDraft(e.target.value)}
+                autoFocus
+              />
+              <strong className="cms-edit-popup__range-value">{Number(draft) || 0}%</strong>
+            </div>
+          ) : fieldMeta?.multiline ? (
             <textarea
               className="cms-edit-popup__input"
               rows={4}
@@ -222,13 +269,60 @@ export default function EditableJsonList<T extends Record<string, string>>({
     )
   }
 
-  const editImage = (index: number, fieldKey: string, className = '', alt = '') => {
-    const src = String(items[index]?.[fieldKey] ?? '') || '/images/icon1.png'
+  const editPercent = (index: number, fieldKey: string, className = '') => {
+    const fieldMeta = fields.find((f) => f.key === fieldKey)
+    const min = fieldMeta?.min ?? 0
+    const max = fieldMeta?.max ?? 100
+    const step = fieldMeta?.step ?? 1
+    const pct = Math.min(max, Math.max(min, Number(items[index]?.[fieldKey]) || 0))
+
+    if (!isEditMode) {
+      return <strong className={className || undefined}>{pct}%</strong>
+    }
+
+    return (
+      <label
+        className={`cms-percent-edit ${className}`.trim()}
+        onClick={(e) => e.stopPropagation()}
+        title={`Modifier — ${fieldMeta?.label ?? fieldKey}`}
+      >
+        <input
+          type="range"
+          className="cms-percent-edit__slider"
+          min={min}
+          max={max}
+          step={step}
+          value={pct}
+          onChange={(e) => updateField(index, fieldKey, e.target.value)}
+          aria-label={fieldMeta?.label ?? fieldKey}
+        />
+        <strong className="cms-percent-edit__value">{pct}%</strong>
+      </label>
+    )
+  }
+
+  const isImageSrc = (value: string) =>
+    value.startsWith('/') ||
+    value.startsWith('http://') ||
+    value.startsWith('https://') ||
+    value.startsWith('data:') ||
+    value.startsWith('blob:')
+
+  const editImage = (
+    index: number,
+    fieldKey: string,
+    className = '',
+    alt = '',
+    fallback?: ReactNode,
+  ) => {
+    const raw = String(items[index]?.[fieldKey] ?? '')
+    const src = isImageSrc(raw) ? raw : ''
     const inputKey = `${index}:${fieldKey}`
     const busy = uploading === inputKey
 
     if (!isEditMode) {
-      return <img src={src} alt={alt} className={className || undefined} />
+      if (src) return <img src={src} alt={alt} className={className || undefined} />
+      return fallback ?? <img src="/images/icon1.png?v=5" alt={alt} className={className || undefined} />
     }
 
     return (
@@ -242,7 +336,11 @@ export default function EditableJsonList<T extends Record<string, string>>({
           fileRefs.current[inputKey]?.click()
         }}
       >
-        <img src={src} alt={alt} />
+        {src ? (
+          <img src={src} alt={alt} />
+        ) : (
+          <span className="cms-list-image-btn__fallback">{fallback ?? (raw || 'Icône')}</span>
+        )}
         <span className="cms-list-image-btn__overlay">
           {busy ? (
             <i className="fa-solid fa-spinner fa-spin" />
@@ -267,7 +365,8 @@ export default function EditableJsonList<T extends Record<string, string>>({
 
   const renderModalField = (item: T, index: number, field: EditableListField) => {
     if (field.image) {
-      const src = String(item[field.key] ?? '') || '/images/icon1.png'
+      const raw = String(item[field.key] ?? '')
+      const src = isImageSrc(raw) ? raw : ''
       const inputKey = `modal:${index}:${field.key}`
       const busy = uploading === `${index}:${field.key}`
       return (
@@ -280,15 +379,15 @@ export default function EditableJsonList<T extends Record<string, string>>({
               onClick={() => fileRefs.current[inputKey]?.click()}
               title="Changer l’image"
             >
-              <img src={src} alt="" />
+              {src ? <img src={src} alt="" /> : <span>{raw || 'Aucune image'}</span>}
               <span>{busy ? 'Envoi…' : 'Changer'}</span>
             </button>
             <input
               className="cms-list-panel__field-input"
               type="text"
-              value={String(item[field.key] ?? '')}
+              value={raw}
               onChange={(e) => updateField(index, field.key, e.target.value)}
-              placeholder="/images/icon1.png"
+              placeholder="/images/icon1.png?v=5"
             />
             <input
               ref={(el) => { fileRefs.current[inputKey] = el }}
@@ -303,6 +402,29 @@ export default function EditableJsonList<T extends Record<string, string>>({
             />
           </div>
         </div>
+      )
+    }
+
+    if (field.percent) {
+      const min = field.min ?? 0
+      const max = field.max ?? 100
+      const step = field.step ?? 1
+      const pct = Math.min(max, Math.max(min, Number(item[field.key]) || 0))
+      return (
+        <label key={field.key} className="cms-list-panel__field cms-list-panel__field--percent">
+          <span>{field.label}</span>
+          <div className="cms-list-panel__range">
+            <input
+              type="range"
+              min={min}
+              max={max}
+              step={step}
+              value={pct}
+              onChange={(e) => updateField(index, field.key, e.target.value)}
+            />
+            <strong>{pct}%</strong>
+          </div>
+        </label>
       )
     }
 
@@ -327,7 +449,11 @@ export default function EditableJsonList<T extends Record<string, string>>({
   }
 
   return (
-    <div className={`cms-json-list${isEditMode ? ' is-editing' : ''} ${className}`.trim()}>
+    <div
+      className={`cms-json-list${isEditMode ? ' is-editing' : ''} ${className}`.trim()}
+      data-cms-page={page}
+      data-cms-block={blockKey}
+    >
       {isEditMode && (
         <div className="cms-list-trigger-wrap">
           <button
@@ -336,7 +462,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
             onClick={() => setOpen(true)}
           >
             <i className="fa-solid fa-list" aria-hidden />
-            Gérer la liste
+            {manageLabel}
             <span className="cms-list-trigger__count">{items.length}</span>
           </button>
         </div>
@@ -353,7 +479,8 @@ export default function EditableJsonList<T extends Record<string, string>>({
             {renderItem(item, index, {
               editable: isEditMode,
               editField: (fieldKey, as, cls) => editField(index, fieldKey, as, cls),
-              editImage: (fieldKey, cls, alt) => editImage(index, fieldKey, cls, alt),
+              editPercent: (fieldKey, cls) => editPercent(index, fieldKey, cls),
+              editImage: (fieldKey, cls, alt, fallback) => editImage(index, fieldKey, cls, alt, fallback),
             })}
           </div>
         )
@@ -361,7 +488,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
 
       {renderAfter?.(items)}
 
-      {isEditMode && open && (
+      {isEditMode && open && createPortal(
         <div
           className="cms-list-modal"
           role="dialog"
@@ -446,7 +573,8 @@ export default function EditableJsonList<T extends Record<string, string>>({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </div>
   )

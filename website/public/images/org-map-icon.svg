@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="44" viewBox="5.3 5.8 34.4 32.9" fill="none" aria-hidden="true">
+  <!-- Tri-fold map icon  Figma #00113A.
+       viewBox is the stroked path's bounding box so the glyph fills the box and can be
+       placed straight at the artboard coordinates. -->
+  <path
+    d="M6.5 10.5l10.5-3.5 10.5 3.5 11-3.5v27l-11 3.5-10.5-3.5-10.5 3.5v-27z"
+    stroke="#00113A"
+    stroke-width="2.4"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  <path d="M17 7.2v26.8" stroke="#00113A" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M27.5 10.5v26.8" stroke="#00113A" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

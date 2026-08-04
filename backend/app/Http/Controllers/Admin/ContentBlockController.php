@@ -210,8 +210,20 @@ class ContentBlockController extends Controller
     /** DELETE /admin/content/image */
     public function deleteImage(Request $request): JsonResponse
     {
-        $request->validate(['path' => 'required|string']);
-        Storage::disk('public')->delete($request->path);
+        $request->validate(['path' => 'required|string|max:500']);
+        $path = str_replace('\\', '/', ltrim($request->input('path'), '/'));
+
+        // Only allow deletes under the website media prefix (no path traversal)
+        if (
+            str_contains($path, '..')
+            || (! str_starts_with($path, 'website/') && ! str_starts_with($path, 'storage/website/'))
+        ) {
+            return response()->json(['message' => 'Chemin d’image non autorisé.'], 422);
+        }
+
+        $relative = str_starts_with($path, 'storage/') ? substr($path, strlen('storage/')) : $path;
+        Storage::disk('public')->delete($relative);
+
         return response()->json(['message' => 'Image supprimée']);
     }
 }

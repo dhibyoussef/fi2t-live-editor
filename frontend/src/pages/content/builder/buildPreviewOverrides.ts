@@ -34,13 +34,20 @@ export function buildPreviewOverrides(
 
   for (const sec of sections) {
     for (const block of sec.blocks) {
-      const loc = block.type === 'text' ? locale : '_all'
-      const changeId = `${sec.name}.${block.key}.${loc}`
-      const value =
-        changes[changeId]?.value
-        ?? block.locales[loc]?.value
-        ?? block.locales['_all']?.value
-        ?? ''
+      // Images stay shared. Text + per-language JSON (`<band>.data`) follow the preview locale.
+      const candidates =
+        block.type === 'image'
+          ? ['_all']
+          : block.type === 'json'
+            ? [locale, 'fr', '_all']
+            : [locale, 'fr']
+
+      let value = ''
+      for (const loc of candidates) {
+        const changeId = `${sec.name}.${block.key}.${loc}`
+        value = changes[changeId]?.value ?? block.locales[loc]?.value ?? ''
+        if (value) break
+      }
 
       if (value) {
         overrides[`${sec.name}.${block.key}`] = value

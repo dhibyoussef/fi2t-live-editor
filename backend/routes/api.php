@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('auth')->group(function () {
-    Route::post('login', [AuthController::class, 'login']);
+    Route::post('login', [AuthController::class, 'login'])->middleware('throttle:login');
 });
 
 // Public website content
@@ -37,6 +37,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::middleware('role:super-admin|admin')->group(function () {
+            // Short-lived Live Editor token (never put the long admin PAT in a URL)
+            Route::post('edit-session', [AuthController::class, 'createEditSession'])
+                ->middleware('throttle:30,1');
+
             Route::apiResource('users', UserController::class);
             Route::patch('users/{user}/toggle-status', [UserController::class, 'toggleStatus']);
             Route::apiResource('roles', RoleController::class);

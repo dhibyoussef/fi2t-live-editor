@@ -8,6 +8,7 @@ export interface BuilderPreviewPayload {
   overrides: Record<string, string>
   highlightSection: string | null
   scrollToSection?: string | null
+  device?: 'desktop' | 'tablet' | 'mobile'
 }
 
 export function isBuilderEmbed(): boolean {

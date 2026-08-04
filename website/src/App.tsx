@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { EditModeProvider, useEditMode } from './cms/EditModeProvider'
 import { BuilderPreviewProvider } from './cms/BuilderPreviewProvider'
 import Layout from './components/layout/Layout'
@@ -13,6 +13,7 @@ import Fi2tQuiSommesNousPage from './pages/Fi2tQuiSommesNousPage'
 import Fi2tFicheAdhesionPage from './pages/Fi2tFicheAdhesionPage'
 import Fi2tGroupementPage from './pages/Fi2tGroupementPage'
 import { isGroupementSlug } from './cms/defaults/groupements-index'
+import { GROUPEMENT_REDIRECTS } from './lib/groupements'
 import { syncTranslationsFromDB } from './i18n/syncFromDB'
 
 function EditModeBodyClass() {
@@ -33,6 +34,8 @@ function I18nSync() {
 
 function GroupementOrDynamic() {
   const { slug = '' } = useParams<{ slug: string }>()
+  const redirectTo = GROUPEMENT_REDIRECTS[slug]
+  if (redirectTo) return <Navigate to={`/${redirectTo}`} replace />
   if (isGroupementSlug(slug)) return <Fi2tGroupementPage />
   return <CmsDynamicPage />
 }

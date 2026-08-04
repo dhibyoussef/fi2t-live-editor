@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const api = axios.create({
   baseURL: '/api',
+  timeout: 12_000,
   headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 })
 
@@ -22,7 +23,13 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('gc_token')
-      window.location.href = '/login'
+      try {
+        // Clear persisted zustand auth so ProtectedRoute cannot stay "logged in"
+        localStorage.removeItem('gc-auth')
+      } catch { /* ignore */ }
+      if (!window.location.pathname.startsWith('/login')) {
+        window.location.href = '/login'
+      }
     }
     return Promise.reject(error)
   }

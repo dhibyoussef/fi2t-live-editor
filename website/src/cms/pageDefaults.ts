@@ -17,6 +17,7 @@ const PAGE_DEFAULTS: Record<string, Record<string, string>> = {
   actualites: ACTUALITES_DEFAULTS,
   'fiche-adhesion': FICHE_ADHESION_DEFAULTS,
   global: {
+    'header.logo': '/logo.png',
     'settings.tagline': 'Fédération Interprofessionnelle du Tourisme Tunisien',
     'footer.about':
       'La Fédération Interprofessionnelle du Tourisme Tunisien œuvre pour le rayonnement et la modernisation du secteur.',

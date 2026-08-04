@@ -25,7 +25,7 @@ interface Props {
   page: string
   blockKey: string
   label?: string
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div'
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div' | 'blockquote' | 'strong' | 'time'
   className?: string
   multiline?: boolean
   fallback?: string
@@ -36,7 +36,7 @@ export default function EditableText({
 }: Props) {
   const { i18n } = useTranslation()
   const { isEditMode } = useEditMode()
-  const { value, update } = useContentBlock(page, blockKey, { type: 'text', label, fallback })
+  const { value, update, commit } = useContentBlock(page, blockKey, { type: 'text', label, fallback })
   const lang = (i18n.language || 'fr').split('-')[0]
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(value)
@@ -49,7 +49,13 @@ export default function EditableText({
   }, [editing])
 
   const save = () => {
-    update(draft)
+    // Footer / header live in a separate ContentProvider without the page toolbar —
+    // commit immediately so edits aren't stranded in an unreachable pending queue.
+    if (page === 'global') {
+      void commit(draft)
+    } else {
+      update(draft)
+    }
     setEditing(false)
   }
 
@@ -58,8 +64,14 @@ export default function EditableText({
     setEditing(false)
   }
 
+  // `data-cms-block` marks the real anatomy of the page: the back-office reads
+  // it to build a structure that matches what visitors actually see.
   if (!isEditMode) {
-    return <Tag className={className}>{renderTextContent(value, multiline, Tag)}</Tag>
+    return (
+      <Tag className={className} data-cms-page={page} data-cms-block={blockKey}>
+        {renderTextContent(value, multiline, Tag)}
+      </Tag>
+    )
   }
 
   if (editing) {
@@ -100,6 +112,8 @@ export default function EditableText({
       className={`cms-editable cms-editable--text ${className}`}
       onClick={() => setEditing(true)}
       title={label || 'Cliquer pour modifier'}
+      data-cms-page={page}
+      data-cms-block={blockKey}
     >
       {renderTextContent(value, multiline, Tag)}
       <span className="cms-editable__badge"><i className="fa-solid fa-pen" /></span>

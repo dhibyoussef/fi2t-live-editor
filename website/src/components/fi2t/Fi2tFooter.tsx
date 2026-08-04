@@ -4,8 +4,9 @@ import EditableText from '../../cms/EditableText'
 import { ContentProvider } from '../../cms/ContentProvider'
 
 const FOOTER_LINKS = [
+  { key: 'apropos', href: '/' },
   { key: 'about', href: '/qui-sommes-nous' },
-  { key: 'news', href: '/actualites' },
+  { key: 'news_short', href: '/actualites' },
   { key: 'organisation', href: '/organisation' },
   { key: 'membership', href: '/fiche-adhesion' },
   { key: 'contact', href: '/contact' },
@@ -40,7 +41,7 @@ function FooterInner() {
     <footer className="fi2t-footer">
       <div className="fi2t-footer__grid">
         <div>
-          <img src="/logo.png" alt="FI2T" className="fi2t-footer__logo" />
+          <img src="/images/logo-white.png" alt="FI2T" className="fi2t-footer__logo" />
           <EditableText
             page="global"
             blockKey="footer.about"
@@ -49,17 +50,6 @@ function FooterInner() {
             multiline
             fallback="La Fédération Interprofessionnelle du Tourisme Tunisien œuvre pour le rayonnement et la modernisation du secteur."
           />
-          <div className="fi2t-footer__social">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer noopener" aria-label="Facebook">
-              <SocialIcon name="facebook" />
-            </a>
-            <a href="https://x.com" target="_blank" rel="noreferrer noopener" aria-label="X">
-              <SocialIcon name="x" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
-              <SocialIcon name="linkedin" />
-            </a>
-          </div>
         </div>
 
         <div>
@@ -73,7 +63,7 @@ function FooterInner() {
           </ul>
         </div>
 
-        <div>
+        <div className="fi2t-footer__contact">
           <h4>{t('fi2t.footer.contact')}</h4>
           <EditableText
             page="global"
@@ -82,12 +72,20 @@ function FooterInner() {
             multiline
             fallback={"Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisie"}
           />
-          <EditableText page="global" blockKey="footer.phone_1" as="p" fallback="+216 29 710 507" />
-          <EditableText page="global" blockKey="footer.phone_2" as="p" fallback="+216 24 940 022" />
-          <EditableText page="global" blockKey="footer.email" as="p" fallback="contact@fit-tunisie.org" />
+          <div className="fi2t-footer__phones">
+            <a href="tel:+21629710507" className="fi2t-footer__phone">
+              <EditableText page="global" blockKey="footer.phone_1" as="span" fallback="+216 29 710 507" />
+            </a>
+            <a href="tel:+21624940022" className="fi2t-footer__phone">
+              <EditableText page="global" blockKey="footer.phone_2" as="span" fallback="+216 24 940 022" />
+            </a>
+          </div>
+          <a href="mailto:contact@fit-tunisie.org" className="fi2t-footer__email">
+            <EditableText page="global" blockKey="footer.email" as="span" fallback="contact@fit-tunisie.org" />
+          </a>
         </div>
 
-        <div>
+        <div className="fi2t-footer__newsletter-wrap">
           <h4>{t('fi2t.footer.newsletter')}</h4>
           <EditableText
             page="global"
@@ -102,12 +100,37 @@ function FooterInner() {
               aria-label={t('fi2t.footer.emailPlaceholder')}
             />
             <button type="submit" aria-label={t('fi2t.footer.newsletter')}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M22 2L11 13"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M22 2L15 22L11 13L2 9L22 2Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           </form>
         </div>
+      </div>
+
+      <div className="fi2t-footer__social">
+        <a href="https://facebook.com" target="_blank" rel="noreferrer noopener" aria-label="Facebook">
+          <SocialIcon name="facebook" />
+        </a>
+        <a href="https://x.com" target="_blank" rel="noreferrer noopener" aria-label="X">
+          <SocialIcon name="x" />
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
+          <SocialIcon name="linkedin" />
+        </a>
       </div>
     </footer>
   )

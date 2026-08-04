@@ -31,6 +31,22 @@ interface Props {
   onClick: () => void
 }
 
+/** Human wording for the raw pattern id shown on each section chip. */
+const PATTERN_LABELS: Record<string, string> = {
+  custom_band: 'Bande',
+  hero: 'Bannière',
+  heading: 'Titre',
+  text: 'Texte',
+  image: 'Image',
+  text_image: 'Texte + image',
+  gallery: 'Galerie',
+  testimonials: 'Avis',
+  simple_list: 'Liste',
+  cards_grid: 'Grille de cartes',
+  cta_banner: 'Bandeau CTA',
+  stats: 'Chiffres clés',
+}
+
 function PreviewImg({ src, alt = '', className }: { src: string; alt?: string; className?: string }) {
   const url = resolvePreviewImageUrl(src)
   if (!url) {
@@ -73,6 +89,8 @@ export default function BuilderSectionPreview({
 
   const heroBg =
     carouselBySlug['home-hero']?.[0]?.image_url
+    || val('image')
+    || val('bg')
     || val('slide_1')
     || val('slide_2')
 
@@ -98,6 +116,32 @@ export default function BuilderSectionPreview({
   const serviceItems = parseJsonArray<{ title?: string; icons?: { base?: string } }>(val('items'))
   const reviews = parseJsonArray<{ text?: string; name?: string; avatar?: string }>(val('reviews'))
 
+  /*
+   * FI2T bands name their list differently per section (`items`, `members`,
+   * `reasons`, `pillars`…). Preview whichever one this band carries so the
+   * structure shows the page's real cards instead of an empty strip.
+   */
+  type PreviewCard = {
+    image?: string
+    icon?: string
+    photo?: string
+    title?: string
+    label?: string
+    name?: string
+    text?: string
+    body?: string
+    desc?: string
+    value?: string
+  }
+  const LIST_KEYS = ['items', 'cards', 'members', 'staff', 'reasons', 'pillars', 'photos']
+  const gridCards = LIST_KEYS.reduce<PreviewCard[]>(
+    (found, key) => (found.length ? found : parseJsonArray<PreviewCard>(val(key))),
+    [],
+  )
+  const cardImage = (c: PreviewCard) => c.image ?? c.icon ?? c.photo ?? ''
+  const cardTitle = (c: PreviewCard) => c.title ?? c.label ?? c.name ?? ''
+  const cardBody = (c: PreviewCard) => c.text ?? c.body ?? c.desc ?? c.value ?? ''
+
   return (
     <div
       className={`pb-section${selected ? ' pb-section--selected' : ''}`}
@@ -107,7 +151,7 @@ export default function BuilderSectionPreview({
       onKeyDown={e => { if (e.key === 'Enter') onClick() }}
     >
       <div className="pb-section__toolbar">
-        <span className="pb-section__type">{section.pattern ?? 'texte'}</span>
+        <span className="pb-section__type">{PATTERN_LABELS[section.pattern ?? ''] ?? section.pattern ?? 'texte'}</span>
         <span className="pb-section__name">{section.title ?? section.name}</span>
         <span className="pb-section__edit">Cliquer pour modifier →</span>
       </div>
@@ -277,6 +321,53 @@ export default function BuilderSectionPreview({
           <div className="pb-preview__cards">
             {[0, 1, 2].map(i => (
               <div key={i} className="pb-preview__card" />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {(pattern === 'cards_grid' || pattern === 'custom_band') && (
+        <div className="pb-preview pb-preview--cards">
+          <h3>{truncateText(title.replace(/\n/g, ' '), 50)}</h3>
+          {desc && <p className="pb-preview__sub">{truncateText(desc, 90)}</p>}
+          <div className="pb-preview__cards">
+            {(gridCards.length ? gridCards : [{}, {}, {}]).slice(0, 3).map((c, i) => (
+              <div key={i} className="pb-preview__card">
+                {cardImage(c) ? (
+                  <PreviewImg src={cardImage(c)} className="pb-preview__icon-img" alt="" />
+                ) : null}
+                <span>{truncateText(cardTitle(c) || `Élément ${i + 1}`, 28)}</span>
+                {cardBody(c) ? <p>{truncateText(cardBody(c).replace(/\n/g, ' '), 60)}</p> : null}
+              </div>
+            ))}
+          </div>
+          {gridCards.length > 3 && (
+            <span className="pb-preview__more">+{gridCards.length - 3} autres</span>
+          )}
+        </div>
+      )}
+
+      {pattern === 'cta_banner' && (
+        <div
+          className="pb-preview pb-preview--hero pb-preview--hero-img"
+          style={heroBg ? { backgroundImage: `url(${resolvePreviewImageUrl(heroBg)})` } : undefined}
+        >
+          <div className="pb-preview--hero__shade" />
+          <div className="pb-preview--hero__body">
+            <h2>{truncateText(title.replace(/\n/g, ' '), 60)}</h2>
+            <p>{truncateText(val('body') || desc, 90)}</p>
+          </div>
+        </div>
+      )}
+
+      {pattern === 'stats' && (
+        <div className="pb-preview pb-preview--cards">
+          <div className="pb-preview__cards">
+            {['groupements', 'regions', 'mandate'].map(key => (
+              <div key={key} className="pb-preview__card">
+                <strong>{val(`value_${key}`) || val('mandate_years') || '—'}</strong>
+                <span>{truncateText(val(`label_${key}`), 20)}</span>
+              </div>
             ))}
           </div>
         </div>

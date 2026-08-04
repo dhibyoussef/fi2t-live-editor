@@ -21,22 +21,42 @@ export const AGENCES_DE_VOYAGES_DEFAULTS = buildGroupementDefaults({
     {
       number: '02',
       title: 'Fragilité économique des agences de voyages',
-      body: 'Marges réduites, dépendance aux tour-opérateurs et saisonnalité forte limitent la capacité d’investissement et de modernisation des agences.',
+      body: `• Marges commerciales en constante compression face à la concurrence des plateformes et des TO internationaux.
+• Forte dépendance aux tour-opérateurs étrangers et aux commissions réduites.
+• Saisonnalité marquée limitant la trésorerie et la capacité d’investissement.
+• Accès difficile au financement bancaire et aux dispositifs de soutien.`,
+      constat:
+        'Constat FI2T : sans renforcement économique, les agences ne peuvent ni moderniser ni résister aux chocs.',
     },
     {
       number: '03',
       title: 'Insuffisante diversification',
-      body: 'L’offre reste trop concentrée sur le tourisme de masse, au détriment des produits à forte valeur ajoutée (culturel, durable, sportif, MICE).',
+      body: `• Offre encore trop centrée sur le tourisme balnéaire de masse.
+• Sous-exploitation des niches à forte valeur (culturel, durable, sportif, MICE, senior).
+• Manque de packaging et de mise en marché des produits différenciés.
+• Coordination insuffisante avec les autres filières de la Fédération.`,
+      constat:
+        'Constat FI2T : la diversification est la condition d’un tourisme de valeur et de résilience.',
     },
     {
       number: '04',
       title: 'Retard numérique',
-      body: 'Digitalisation partielle des process, faible présence en ligne et outils de distribution insuffisamment adaptés aux nouveaux comportements clients.',
+      body: `• Digitalisation partielle des process internes (réservation, CRM, reporting).
+• Faible présence et visibilité sur les canaux digitaux.
+• Outils de distribution peu adaptés aux comportements clients actuels.
+• Retard structurel face aux OTA et aux plateformes internationales.`,
+      constat:
+        'Constat FI2T : sans accélération digitale, les agences perdent parts de marché et clients.',
     },
     {
       number: '05',
       title: 'Déficit de compétences',
-      body: 'Besoin de formation continue sur les métiers émergents, la relation client digitale et la conception de produits d’expérience.',
+      body: `• Besoin de formation continue sur les métiers émergents du voyage.
+• Lacunes en relation client digitale et en e-commerce.
+• Manque de compétences en conception de produits d’expérience.
+• Faible culture de la data et du yield management.`,
+      constat:
+        'Constat FI2T : la montée en compétences est un levier prioritaire de compétitivité.',
     },
   ],
   enjeuxItems: [
@@ -53,7 +73,6 @@ export const AGENCES_DE_VOYAGES_DEFAULTS = buildGroupementDefaults({
 • Reconnaissance officielle des nouvelles catégories d’opérateurs.
 • Simplification et digitalisation des procédures administratives.
 • Révision des garanties financières selon l’activité réelle et le risque.
-
 Rôle FI2T : force de proposition et partenaire technique de l’État dans la réforme.`,
     },
     {

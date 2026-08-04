@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
+import { buildLiveEditorUrl } from '../../api/editSession'
+import toast from 'react-hot-toast'
 import {
-  ExternalLink, LayoutTemplate, Globe,
+  ExternalLink, LayoutTemplate, Globe, Languages,
   Users, ShieldCheck, ArrowRight,
 } from 'lucide-react'
 
@@ -9,13 +11,14 @@ export default function Fi2tDashboardPage() {
   const token = useAuthStore((s) => s.token)
   const user = useAuthStore((s) => s.user)
 
-  const openLiveEditor = () => {
+  const openLiveEditor = async () => {
     if (!token) return
-    window.open(
-      `http://localhost:3002/?edit_token=${encodeURIComponent(token)}`,
-      '_blank',
-      'noopener,noreferrer',
-    )
+    try {
+      const url = await buildLiveEditorUrl('/')
+      window.open(url, '_blank', 'noopener,noreferrer')
+    } catch {
+      toast.error('Impossible d’ouvrir le Live Editor — reconnectez-vous')
+    }
   }
 
   return (
@@ -68,6 +71,13 @@ export default function Fi2tDashboardPage() {
             <div className="fi2t-dash-card__icon"><LayoutTemplate size={20} /></div>
             <strong>Contenu du site</strong>
             <span>Page builder : pages, sections et blocs (textes, images, JSON).</span>
+            <div className="fi2t-dash-card__cta">Ouvrir <ArrowRight size={14} /></div>
+          </Link>
+
+          <Link to="/translations" className="fi2t-dash-card">
+            <div className="fi2t-dash-card__icon"><Languages size={20} /></div>
+            <strong>Traductions</strong>
+            <span>Traduire les textes de l’interface (FR → EN / AR).</span>
             <div className="fi2t-dash-card__cta">Ouvrir <ArrowRight size={14} /></div>
           </Link>
 

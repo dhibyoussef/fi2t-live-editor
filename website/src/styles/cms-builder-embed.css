@@ -1,34 +1,54 @@
-/* Embedded in admin builder iframe */
+/* Embedded in admin Contenu du site — Aperçu live iframe (editable with edit_token) */
 body.cms-builder-embed {
   overflow-x: hidden;
 }
 
+/* Hide floating site toolbars in the iframe (admin has its own chrome) */
+body.cms-builder-embed .cms-toolbar,
 body.cms-builder-embed .cms-edit-toolbar,
 body.cms-builder-embed .edit-toolbar {
   display: none !important;
 }
 
-body.cms-builder-embed [data-editable] {
-  pointer-events: none;
+/* Edit popups must sit above the preview chrome */
+body.cms-builder-embed .cms-edit-popup {
+  z-index: 10050;
 }
 
+/*
+ * Section highlight = thin ring on ONE band only.
+ * Never a full-page blue wash — barriers stay per-component like Accueil.
+ */
 body.cms-builder-embed .cms-section-highlight {
-  outline: 3px solid #D4A017;
-  outline-offset: -3px;
   position: relative;
+  outline: 2px solid #00a98d !important;
+  outline-offset: -2px;
 }
 
 body.cms-builder-embed .cms-section-highlight::after {
-  content: 'Section sélectionnée';
+  content: 'Section';
   position: absolute;
   top: 8px;
-  right: 8px;
+  left: 8px;
+  right: auto;
   z-index: 50;
-  padding: 4px 10px;
-  background: #D4A017;
-  color: #1C1811;
-  font-size: 11px;
+  padding: 3px 8px;
+  background: #00a98d;
+  color: #fff;
+  font-size: 10px;
   font-weight: 700;
   border-radius: 4px;
   pointer-events: none;
+  font-family: 'Montserrat Alternates', system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Accueil-style: outlines only on hover — always-on rings clutter artboards */
+body.cms-edit-active .cms-editable--text {
+  outline-color: transparent;
+}
+
+body.cms-edit-active .cms-editable--text:hover {
+  outline-color: var(--fi2t-teal, #00a98d);
 }

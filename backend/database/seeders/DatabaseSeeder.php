@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
             CmsPageSeeder::class,
             TranslationSeeder::class,
             ContentBlockSeeder::class,
+            CustomGroupementPageSeeder::class,
+            // Align Structure de la page with the live markers after content exists.
+            PageStructureSeeder::class,
             FillAllContentLocalesSeeder::class,
             SiteNavSeeder::class,
         ]);

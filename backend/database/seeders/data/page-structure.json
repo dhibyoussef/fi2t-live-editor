@@ -1,0 +1,1098 @@
+{
+  "home": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title",
+        "subtitle",
+        "cta_primary",
+        "cta_secondary"
+      ],
+      "values": {
+        "fr": {
+          "image": "/hero.jpg",
+          "title": "Le futur du tourisme tunisien se construit ici !",
+          "subtitle": "Unir, innover et valoriser le tourisme tunisien",
+          "cta_primary": "Découvrir la Fédération",
+          "cta_secondary": "Adhérer maintenant"
+        },
+        "en": {
+          "image": "/hero.jpg",
+          "title": "The future of Tunisian tourism is built here!",
+          "subtitle": "Unite, innovate and promote Tunisian tourism",
+          "cta_primary": "Discover the Federation",
+          "cta_secondary": "Join now"
+        },
+        "ar": {
+          "image": "/hero.jpg",
+          "title": "مستقبل السياحة التونسية يُبنى هنا!",
+          "subtitle": "توحيد وابتكار وتعزيز السياحة التونسية",
+          "cta_primary": "اكتشف الفيدرالية",
+          "cta_secondary": "انضم الآن"
+        }
+      }
+    },
+    {
+      "slug": "about",
+      "title": "Qui sommes-nous",
+      "pattern": "text_image",
+      "sort_order": 2,
+      "keys": [
+        "title",
+        "body",
+        "cta",
+        "badge_pos",
+        "badge",
+        "image"
+      ],
+      "values": {
+        "fr": {
+          "title": "Qui sommes-nous ?",
+          "body": "La Fédération Interprofessionnelle du Tourisme Tunisien est un syndicat professionnel patronal indépendant fondé en mars 2016 par divers opérateurs du tourisme tunisien, venant d’activités différentes : agences de voyages, hébergements alternatifs, loisirs, animation, sports, transports…",
+          "cta": "Voir plus",
+          "badge_pos": "{\"left\":-29,\"bottom\":-43}",
+          "badge": "10+\nANNÉES D'ENGAGEMENT",
+          "image": "/images/qui-sommes-nous-card.png?v=home2"
+        },
+        "en": {
+          "title": "Who we are",
+          "body": "The Interprofessional Federation of Tunisian Tourism is an independent employers’ professional union founded in March 2016 by operators from different tourism activities: travel agencies, alternative accommodation, leisure, entertainment, sports, transport…",
+          "cta": "See more",
+          "badge_pos": "{\"left\":-29,\"bottom\":-43}",
+          "badge": "10+\nYEARS OF COMMITMENT",
+          "image": "/images/qui-sommes-nous-card.png?v=home2"
+        },
+        "ar": {
+          "title": "من نحن؟",
+          "body": "الاتحاد المهني المشترك للسياحة التونسية هو نقابة مهنية لأرباب العمل مستقلة تأسست في مارس 2016 من قبل فاعلين من أنشطة سياحية مختلفة: وكالات أسفار، إقامة بديلة، ترفيه، تنشيط، رياضة، نقل…",
+          "cta": "المزيد",
+          "badge_pos": "{\"left\":-29,\"bottom\":-43}",
+          "badge": "10+\nسنوات من الالتزام",
+          "image": "/images/qui-sommes-nous-card.png?v=home2"
+        }
+      }
+    },
+    {
+      "slug": "objectifs",
+      "title": "Nos objectifs",
+      "pattern": "cards_grid",
+      "sort_order": 3,
+      "keys": [
+        "title",
+        "intro",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Nos Objectifs",
+          "intro": "La Fi2T a pour objectif de fédérer différents opérateurs de tourisme au sein d'un même syndicat professionnel, en vue",
+          "items": "[{\"title\":\"Vision stratégique\",\"desc\":\"Apporter sa contribution en matière de vision stratégique et pratique pour la diversification et l’innovation touristique en Tunisie\"},{\"title\":\"Intérêts des membres\",\"desc\":\"Sauvegarder les intérêts économiques et sociaux de ses membres\"},{\"title\":\"Synergie\",\"desc\":\"Créer une synergie entre les différents opérateurs du tourisme tunisien\"},{\"title\":\"Développement\",\"desc\":\"Contribuer au développement et à l’essor du tourisme tunisien\"}]"
+        },
+        "en": {
+          "title": "Our Objectives",
+          "intro": "Fi2T aims to bring together different tourism operators within a single professional union.",
+          "items": "[{\"title\":\"Strategic vision\",\"desc\":\"Contribute to strategic vision for the sector\"},{\"title\":\"Members’ interests\",\"desc\":\"Safeguard economic and social interests\"},{\"title\":\"Synergy\",\"desc\":\"Create synergy between operators\"},{\"title\":\"Development\",\"desc\":\"Contribute to the development of Tunisian tourism\"}]"
+        },
+        "ar": {
+          "title": "أهدافنا",
+          "intro": "تهدف Fi2T إلى جمع مختلف الفاعلين السياحيين ضمن نقابة مهنية واحدة.",
+          "items": "[{\"title\":\"رؤية استراتيجية\",\"desc\":\"المساهمة في الرؤية الاستراتيجية للقطاع\"},{\"title\":\"مصالح الأعضاء\",\"desc\":\"حماية المصالح الاقتصادية والاجتماعية\"},{\"title\":\"التآزر\",\"desc\":\"خلق تآزر بين الفاعلين\"},{\"title\":\"التطوير\",\"desc\":\"المساهمة في تطوير السياحة التونسية\"}]"
+        }
+      }
+    },
+    {
+      "slug": "groupements",
+      "title": "Groupements professionnels",
+      "pattern": "cards_grid",
+      "sort_order": 4,
+      "keys": [
+        "bg",
+        "title",
+        "intro",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "bg": "/images/bg 1.png",
+          "title": "Les Groupements Professionnels",
+          "intro": "Dirigés par 3 membres élus, ils représentent et défendent les intérêts des opérateurs. Chaque groupement définit sa stratégie en toute autonomie pour une expertise métier ciblée.",
+          "items": "[{\"label\":\"Agences de voyages\",\"slug\":\"agences-de-voyages\",\"icon\":\"/images/icon1.png?v=5\"},{\"label\":\"Hébergement alternatif\",\"slug\":\"hebergements-alternatifs\",\"icon\":\"/images/icon2.png?v=5\"},{\"label\":\"Tourisme culturel\",\"slug\":\"tourisme-culturel\",\"icon\":\"/images/icon3.png?v=5\"},{\"label\":\"Tourisme de santé\",\"slug\":\"tourisme-de-sante\",\"icon\":\"/images/icon4.png?v=5\"},{\"label\":\"Tourisme d'aventure\",\"slug\":\"tourisme-aventure\",\"icon\":\"/images/icon5.png?v=5\"},{\"label\":\"Tourisme d'affaires\",\"slug\":\"tourisme-affaire\",\"icon\":\"/images/icon6.png?v=5\"},{\"label\":\"Tourisme écologique\",\"slug\":\"tourisme-ecologique\",\"icon\":\"/images/icon7.png?v=5\"},{\"label\":\"Tourisme aéronautique\",\"slug\":\"tourisme-aeronautique\",\"icon\":\"/images/icon8.png?v=5\"},{\"label\":\"Tourisme automobile\",\"slug\":\"tourisme-automobile\",\"icon\":\"/images/icon9.png?v=5\"},{\"label\":\"Tourisme sportif\",\"slug\":\"tourisme-sportif\",\"icon\":\"/images/icon10.png?v=5\"},{\"label\":\"Tourisme nautique\",\"slug\":\"tourisme-nautique\",\"icon\":\"/images/icon11.png?v=5\"},{\"label\":\"Tourisme subaquatique\",\"slug\":\"tourisme-subaquatique\",\"icon\":\"/images/icon12.png?v=5\"}]"
+        },
+        "en": {
+          "bg": "/images/bg 1.png",
+          "title": "Professional Groups",
+          "intro": "Led by 3 elected members, they represent and defend operators’ interests.\nEach group defines its own strategy for targeted industry expertise.",
+          "items": "[{\"label\":\"Travel agencies\",\"slug\":\"agences-de-voyages\",\"icon\":\"/images/icon1.png?v=5\"},{\"label\":\"Alternative accommodation\",\"slug\":\"hebergements-alternatifs\",\"icon\":\"/images/icon2.png?v=5\"},{\"label\":\"Cultural tourism\",\"slug\":\"tourisme-culturel\",\"icon\":\"/images/icon3.png?v=5\"},{\"label\":\"Health tourism\",\"slug\":\"tourisme-de-sante\",\"icon\":\"/images/icon4.png?v=5\"},{\"label\":\"Adventure tourism\",\"slug\":\"tourisme-aventure\",\"icon\":\"/images/icon5.png?v=5\"},{\"label\":\"Business tourism\",\"slug\":\"tourisme-affaire\",\"icon\":\"/images/icon6.png?v=5\"},{\"label\":\"Ecological tourism\",\"slug\":\"tourisme-ecologique\",\"icon\":\"/images/icon7.png?v=5\"},{\"label\":\"Aeronautical tourism\",\"slug\":\"tourisme-aeronautique\",\"icon\":\"/images/icon8.png?v=5\"},{\"label\":\"Automotive tourism\",\"slug\":\"tourisme-automobile\",\"icon\":\"/images/icon9.png?v=5\"},{\"label\":\"Sports tourism\",\"slug\":\"tourisme-sportif\",\"icon\":\"/images/icon10.png?v=5\"},{\"label\":\"Nautical tourism\",\"slug\":\"tourisme-nautique\",\"icon\":\"/images/icon11.png?v=5\"},{\"label\":\"Underwater tourism\",\"slug\":\"tourisme-subaquatique\",\"icon\":\"/images/icon12.png?v=5\"}]"
+        },
+        "ar": {
+          "bg": "/images/bg 1.png",
+          "title": "التجمعات المهنية",
+          "intro": "يديرها 3 أعضاء منتخبون، وتمثل وتدافع عن مصالح الفاعلين.\nيحدد كل تجمع استراتيجيته باستقلالية لخبرة مهنية مستهدفة.",
+          "items": "[{\"label\":\"وكالات الأسفار\",\"slug\":\"agences-de-voyages\",\"icon\":\"/images/icon1.png?v=5\"},{\"label\":\"الإقامة البديلة\",\"slug\":\"hebergements-alternatifs\",\"icon\":\"/images/icon2.png?v=5\"},{\"label\":\"السياحة الثقافية\",\"slug\":\"tourisme-culturel\",\"icon\":\"/images/icon3.png?v=5\"},{\"label\":\"سياحة الصحة\",\"slug\":\"tourisme-de-sante\",\"icon\":\"/images/icon4.png?v=5\"},{\"label\":\"سياحة المغامرة\",\"slug\":\"tourisme-aventure\",\"icon\":\"/images/icon5.png?v=5\"},{\"label\":\"سياحة الأعمال\",\"slug\":\"tourisme-affaire\",\"icon\":\"/images/icon6.png?v=5\"},{\"label\":\"السياحة البيئية\",\"slug\":\"tourisme-ecologique\",\"icon\":\"/images/icon7.png?v=5\"},{\"label\":\"السياحة الجوية\",\"slug\":\"tourisme-aeronautique\",\"icon\":\"/images/icon8.png?v=5\"},{\"label\":\"سياحة السيارات\",\"slug\":\"tourisme-automobile\",\"icon\":\"/images/icon9.png?v=5\"},{\"label\":\"السياحة الرياضية\",\"slug\":\"tourisme-sportif\",\"icon\":\"/images/icon10.png?v=5\"},{\"label\":\"السياحة البحرية\",\"slug\":\"tourisme-nautique\",\"icon\":\"/images/icon11.png?v=5\"},{\"label\":\"السياحة تحت الماء\",\"slug\":\"tourisme-subaquatique\",\"icon\":\"/images/icon12.png?v=5\"}]"
+        }
+      }
+    },
+    {
+      "slug": "adherer",
+      "title": "Pourquoi adhérer",
+      "pattern": "cards_grid",
+      "sort_order": 5,
+      "keys": [
+        "image",
+        "badge",
+        "title",
+        "reasons",
+        "cta",
+        "badge_pos"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/Rectangle 27.png",
+          "badge": "50+\nMEMBRES ACTIFS",
+          "title": "Pourquoi adhérer à la Fi2T ?",
+          "reasons": "[{\"title\":\"Représentation Institutionnelle\",\"desc\":\"Être représenté auprès des gouvernements et institutions\"},{\"title\":\"Réseautage Stratégique\",\"desc\":\"Participer à un réseau professionnel structuré\"},{\"title\":\"Visibilité Accrue\",\"desc\":\"Améliorer sa visibilité et ses opportunités commerciales\"},{\"title\":\"Label de Qualité\",\"desc\":\"Bénéficier d’un label de qualité et de conformité\"},{\"title\":\"Ressources & Expertise\",\"desc\":\"Accéder à des ressources professionnelles et formations, renforçant ainsi sa compétitivité sur le marché tunisien et international\"}]",
+          "cta": "Adhérer maintenant",
+          "badge_pos": "{\"right\":-26,\"bottom\":-49}"
+        },
+        "en": {
+          "image": "/images/Rectangle 27.png",
+          "badge": "50+\nACTIVE MEMBERS",
+          "title": "Why join Fi2T?",
+          "reasons": "[{\"title\":\"Institutional representation\",\"desc\":\"Be represented before governments and institutions\"},{\"title\":\"Strategic networking\",\"desc\":\"Join a structured professional network\"},{\"title\":\"Greater visibility\",\"desc\":\"Improve visibility and business opportunities\"},{\"title\":\"Quality label\",\"desc\":\"Benefit from a quality and compliance label\"},{\"title\":\"Resources & expertise\",\"desc\":\"Access professional resources and training\"}]",
+          "cta": "Join now",
+          "badge_pos": "{\"right\":-26,\"bottom\":-49}"
+        },
+        "ar": {
+          "image": "/images/Rectangle 27.png",
+          "badge": "50+\nأعضاء نشطون",
+          "title": "لماذا الانضمام إلى Fi2T؟",
+          "reasons": "[{\"title\":\"التمثيل المؤسسي\",\"desc\":\"التمثيل أمام الحكومات والمؤسسات\"},{\"title\":\"التواصل الاستراتيجي\",\"desc\":\"المشاركة في شبكة مهنية منظمة\"},{\"title\":\"رؤية أكبر\",\"desc\":\"تعزيز الظهور والفرص التجارية\"},{\"title\":\"علامة الجودة\",\"desc\":\"الاستفادة من علامة جودة وامتثال\"},{\"title\":\"موارد وخبرة\",\"desc\":\"الوصول إلى موارد مهنية وتكوينات\"}]",
+          "cta": "انضم الآن",
+          "badge_pos": "{\"right\":-26,\"bottom\":-49}"
+        }
+      }
+    },
+    {
+      "slug": "actualites",
+      "title": "Actualités",
+      "pattern": "cards_grid",
+      "sort_order": 6,
+      "keys": [
+        "title",
+        "cta",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Dernières Actualités",
+          "cta": "Voir plus",
+          "items": "[{\"slug\":\"walid-tritar-president-fi2t\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.jpg?v=home2\"},{\"slug\":\"secteur-sous-pression\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive....\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.jpg?v=home2\"},{\"slug\":\"houssem-azouz-centre-ouest\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.jpg?v=home2\"}]"
+        },
+        "en": {
+          "title": "Latest News",
+          "cta": "See more",
+          "items": "[{\"slug\":\"walid-tritar-president-fi2t\",\"title\":\"Tourism: Walid Tritar, new President of Fi2T\",\"desc\":\"Walid Tritar has been elected new President of Fi2T (Interprofessional Federation of Tunisian Tourism) for 2026–2029....\",\"date\":\"11 May 2026\",\"img\":\"/images/act1.jpg\"},{\"slug\":\"secteur-sous-pression\",\"title\":\"Tourism sector: under pressure, but resilient...\",\"desc\":\"The global tourism sector is going through a challenging phase, with more demanding markets and later booking decisions....\",\"date\":\"22 May 2026\",\"img\":\"/images/act2.jpg\"},{\"slug\":\"houssem-azouz-centre-ouest\",\"title\":\"Houssem Azouz (President of the Interprofessional Federation...\",\"desc\":\"Houssem Azouz — the Centre-West of the country, marked by the scale of its heritage and its colours...\",\"date\":\"7 April 2026\",\"img\":\"/images/act3.jpg\"}]"
+        },
+        "ar": {
+          "title": "آخر الأخبار",
+          "cta": "المزيد",
+          "items": "[{\"slug\":\"walid-tritar-president-fi2t\",\"title\":\"السياحة: وليد تريتار، الرئيس الجديد لـ Fi2T\",\"desc\":\"تم انتخاب وليد تريتار رئيساً جديداً لـ Fi2T للفترة 2026–2029....\",\"date\":\"11 مايو 2026\",\"img\":\"/images/act1.jpg\"},{\"slug\":\"secteur-sous-pression\",\"title\":\"القطاع السياحي: تحت الضغط لكنه صامد...\",\"desc\":\"يشهد القطاع السياحي العالمي مرحلة صعبة مع أسواق أكثر تطلباً وقرارات سفر متأخرة....\",\"date\":\"22 مايو 2026\",\"img\":\"/images/act2.jpg\"},{\"slug\":\"houssem-azouz-centre-ouest\",\"title\":\"حسام عزوز (رئيس الاتحاد المهني المشترك...\",\"desc\":\"حسام عزوز — الوسط الغربي للبلاد بما يحمله من آثار وألوان...\",\"date\":\"7 أبريل 2026\",\"img\":\"/images/act3.jpg\"}]"
+        }
+      }
+    },
+    {
+      "slug": "cta",
+      "title": "Appel à l’action",
+      "pattern": "cta_banner",
+      "sort_order": 7,
+      "keys": [
+        "bg",
+        "title",
+        "body",
+        "primary",
+        "secondary"
+      ],
+      "values": {
+        "fr": {
+          "bg": "/images/bg--1.png",
+          "title": "Rejoignez notre vision pour le futur",
+          "body": "Devenez membre de la Fédération et participez activement à la construction d'un tourisme tunisien d'exception.",
+          "primary": "Rejoindre la fédération",
+          "secondary": "Contacter le bureau"
+        },
+        "en": {
+          "bg": "/images/bg--1.png",
+          "title": "Join our vision for the future",
+          "body": "Become a member of the Federation and take an active part in building\noutstanding Tunisian tourism.",
+          "primary": "Join the federation",
+          "secondary": "Contact the board"
+        },
+        "ar": {
+          "bg": "/images/bg--1.png",
+          "title": "انضموا إلى رؤيتنا للمستقبل",
+          "body": "كن عضواً في الفيدرالية وشارك بفعالية في بناء\nسياحة تونسية استثنائية.",
+          "primary": "الانضمام إلى الفيدرالية",
+          "secondary": "اتصل بالمكتب"
+        }
+      }
+    }
+  ],
+  "qui-sommes-nous": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/qui-sommes-nous-banner.png?v=8",
+          "title": "Qui sommes-nous"
+        },
+        "en": {
+          "image": "/images/qui-sommes-nous-banner.png?v=8",
+          "title": "Who we are"
+        },
+        "ar": {
+          "image": "/images/qui-sommes-nous-banner.png?v=8",
+          "title": "من نحن"
+        }
+      }
+    },
+    {
+      "slug": "mission",
+      "title": "Histoire & mission",
+      "pattern": "text_image",
+      "sort_order": 2,
+      "keys": [
+        "title",
+        "body",
+        "image"
+      ],
+      "values": {
+        "fr": {
+          "title": "Notre Histoire & Mission",
+          "body": "La Fédération Interprofessionnelle du Tourisme Tunisien est un syndicat professionnel patronal indépendant fondé en mars 2016 par divers opérateurs du tourisme tunisien, venant d’activités différentes : agences de voyages, hébergements alternatifs, loisirs, animation, sports, transports…\nLa Fi2T est ouverte à tous les acteurs du tourisme tunisien ayant un lien direct avec le secteur. Les adhérents peuvent être des personnes morales, des personnes physiques, des associations, des syndicats.",
+          "image": "/images/qui-sommes-nous-mission-card.png?v=1"
+        },
+        "en": {
+          "title": "Our history & mission",
+          "body": "The Interprofessional Federation of Tunisian Tourism is an independent employers’ professional union founded in March 2016 by operators from different tourism activities: travel agencies, alternative accommodation, leisure, entertainment, sports, transport…\nFi2T is open to all Tunisian tourism stakeholders with a direct link to the sector. Members may be legal entities, individuals, associations or unions.",
+          "image": "/images/qui-sommes-nous-mission-card.png?v=1"
+        },
+        "ar": {
+          "title": "تاريخنا ورسالتنا",
+          "body": "الاتحاد المهني المشترك للسياحة التونسية هو نقابة مهنية لأرباب العمل مستقلة تأسست في مارس 2016 من قبل فاعلين من أنشطة سياحية مختلفة.\nFi2T مفتوحة لجميع الفاعلين في السياحة التونسية ذوي الصلة المباشرة بالقطاع.",
+          "image": "/images/qui-sommes-nous-mission-card.png?v=1"
+        }
+      }
+    },
+    {
+      "slug": "values",
+      "title": "Nos objectifs",
+      "pattern": "cards_grid",
+      "sort_order": 3,
+      "keys": [
+        "title",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Nos objectifs",
+          "items": "[{\"title\":\"INTÉGRITÉ\",\"desc\":\"Transparence totale et éthique irréprochable au cœur de toutes nos actions institutionnelles.\",\"icon\":\"/images/value-integrity.svg\"},{\"title\":\"INNOVATION\",\"desc\":\"Anticipation des tendances mondiales pour proposer des solutions créatives aux défis de l’industrie.\",\"icon\":\"/images/value-innovation.svg\"},{\"title\":\"SYNERGIE\",\"desc\":\"Faire collaborer les acteurs publics et privés vers une vision de croissance partagée.\",\"icon\":\"/images/value-synergie.svg\"},{\"title\":\"EXCELLENCE\",\"desc\":\"Promouvoir des standards élevés et une qualité de service reconnue à l’international.\",\"icon\":\"/images/value-excellence.svg\"},{\"title\":\"REPRESENTATION\",\"desc\":\"Défendre les intérêts de l’ensemble des professionnels du tourisme tunisien.\",\"icon\":\"/images/value-representation.svg\"},{\"title\":\"DURABILITÉ\",\"desc\":\"Encourager un tourisme responsable, inclusif et respectueux des ressources du pays.\",\"icon\":\"/images/value-durabilite.svg\"}]"
+        },
+        "en": {
+          "title": "Our objectives",
+          "items": "[{\"title\":\"INTEGRITY\",\"desc\":\"Full transparency and impeccable ethics at the heart of all our institutional actions.\",\"icon\":\"/images/value-integrity.svg\"},{\"title\":\"INNOVATION\",\"desc\":\"Anticipating global trends to offer creative solutions to industry challenges.\",\"icon\":\"/images/value-innovation.svg\"},{\"title\":\"SYNERGY\",\"desc\":\"Bringing public and private actors together around a shared growth vision.\",\"icon\":\"/images/value-synergie.svg\"},{\"title\":\"EXCELLENCE\",\"desc\":\"Promoting high standards and internationally recognised service quality.\",\"icon\":\"/images/value-excellence.svg\"},{\"title\":\"REPRESENTATION\",\"desc\":\"Defending the interests of all Tunisian tourism professionals.\",\"icon\":\"/images/value-representation.svg\"},{\"title\":\"SUSTAINABILITY\",\"desc\":\"Encouraging responsible, inclusive tourism that respects the country’s resources.\",\"icon\":\"/images/value-durabilite.svg\"}]"
+        },
+        "ar": {
+          "title": "أهدافنا",
+          "items": "[{\"title\":\"النزاهة\",\"desc\":\"شفافية تامة وأخلاقيات لا تشوبها شائبة في كل أعمالنا المؤسسية.\",\"icon\":\"/images/value-integrity.svg\"},{\"title\":\"الابتكار\",\"desc\":\"استباق الاتجاهات العالمية لاقتراح حلول إبداعية لتحديات القطاع.\",\"icon\":\"/images/value-innovation.svg\"},{\"title\":\"التآزر\",\"desc\":\"جمع الفاعلين العموميين والخواص حول رؤية نمو مشتركة.\",\"icon\":\"/images/value-synergie.svg\"},{\"title\":\"التميز\",\"desc\":\"تعزيز معايير عالية وجودة خدمة معترف بها دولياً.\",\"icon\":\"/images/value-excellence.svg\"},{\"title\":\"التمثيل\",\"desc\":\"الدفاع عن مصالح جميع مهنيي السياحة التونسية.\",\"icon\":\"/images/value-representation.svg\"},{\"title\":\"الاستدامة\",\"desc\":\"تشجيع سياحة مسؤولة وشاملة وتحترم موارد البلاد.\",\"icon\":\"/images/value-durabilite.svg\"}]"
+        }
+      }
+    },
+    {
+      "slug": "diversify",
+      "title": "Diversification",
+      "pattern": "cards_grid",
+      "sort_order": 4,
+      "keys": [
+        "title",
+        "intro",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Pourquoi diversifier et innover ?",
+          "intro": "La diversification des produits touristique n’est pas un luxe, c’est plutôt :",
+          "items": "[{\"title\":\"Adaptation à la demande\",\"desc\":\"Une adaptation à la demande touristique mondiale et nationale, de plus en plus segmentée\"},{\"title\":\"Extension temporelle\",\"desc\":\"Une extension de l’activité touristique dans le temps\"},{\"title\":\"Extension spatiale\",\"desc\":\"Une extension de l’activité touristique dans l’espace\"},{\"title\":\"Optimisation des revenus\",\"desc\":\"La réalisation de meilleures recettes en devises par l’attraction de clientèles à fort pouvoir d’achat\"}]"
+        },
+        "en": {
+          "title": "Why diversify and innovate?",
+          "intro": "Diversifying tourism products is not a luxury — it is rather:",
+          "items": "[{\"title\":\"Adapting to demand\",\"desc\":\"Adapting to increasingly segmented global and national tourism demand\"},{\"title\":\"Temporal extension\",\"desc\":\"Extending tourism activity over time\"},{\"title\":\"Spatial extension\",\"desc\":\"Extending tourism activity across space\"},{\"title\":\"Revenue optimisation\",\"desc\":\"Generating better foreign-currency revenue by attracting high-spending clienteles\"}]"
+        },
+        "ar": {
+          "title": "لماذا التنويع والابتكار؟",
+          "intro": "تنويع المنتجات السياحية ليس ترفاً، بل هو:",
+          "items": "[{\"title\":\"التكيف مع الطلب\",\"desc\":\"التكيف مع الطلب السياحي العالمي والوطني المتزايد التجزئة\"},{\"title\":\"الامتداد الزمني\",\"desc\":\"تمديد النشاط السياحي عبر الزمن\"},{\"title\":\"الامتداد المكاني\",\"desc\":\"تمديد النشاط السياحي عبر الفضاء\"},{\"title\":\"تحسين العائدات\",\"desc\":\"تحقيق عائدات أفضل بالعملة الأجنبية عبر جذب زبائن ذوي قدرة شرائية عالية\"}]"
+        }
+      }
+    },
+    {
+      "slug": "join",
+      "title": "Appel à adhésion",
+      "pattern": "cta_banner",
+      "sort_order": 5,
+      "keys": [
+        "title",
+        "body",
+        "cta"
+      ],
+      "values": {
+        "fr": {
+          "title": "Prêt à rejoindre l'excellence ?",
+          "body": "Contribuez activement à la transformation du tourisme tunisien en devenant membre de notre fédération interprofessionnelle.",
+          "cta": "Devenir membre"
+        },
+        "en": {
+          "title": "Ready to join excellence?",
+          "body": "Actively contribute to transforming Tunisian tourism by becoming a member of our interprofessional federation.",
+          "cta": "Become a member"
+        },
+        "ar": {
+          "title": "هل أنتم مستعدون للانضمام إلى التميز؟",
+          "body": "ساهموا بفعالية في تحويل السياحة التونسية بالانضمام إلى فيدراليتنا.",
+          "cta": "كن عضواً"
+        }
+      }
+    }
+  ],
+  "organisation": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/qui-sommes-nous-banner.png?v=8",
+          "title": "Organisation"
+        },
+        "en": {
+          "image": "/images/qui-sommes-nous-banner.png?v=8",
+          "title": "Organisation"
+        },
+        "ar": {
+          "image": "/images/qui-sommes-nous-banner.png?v=8",
+          "title": "التنظيم"
+        }
+      }
+    },
+    {
+      "slug": "stats",
+      "title": "Chiffres clés",
+      "pattern": "stats",
+      "sort_order": 2,
+      "keys": [
+        "value_groupements",
+        "label_groupements",
+        "value_regions",
+        "label_regions",
+        "mandate_years",
+        "label_mandate"
+      ],
+      "values": {
+        "fr": {
+          "value_groupements": "12",
+          "label_groupements": "GROUPEMENTS",
+          "value_regions": "11",
+          "label_regions": "RÉGIONS",
+          "mandate_years": "03",
+          "label_mandate": "ANS DE MANDAT"
+        },
+        "en": {
+          "value_groupements": "12",
+          "label_groupements": "GROUPS",
+          "value_regions": "11",
+          "label_regions": "REGIONS",
+          "mandate_years": "03",
+          "label_mandate": "YEARS OF MANDATE"
+        },
+        "ar": {
+          "value_groupements": "12",
+          "label_groupements": "تجمعات",
+          "value_regions": "11",
+          "label_regions": "جهات",
+          "mandate_years": "03",
+          "label_mandate": "سنوات الولاية"
+        }
+      }
+    },
+    {
+      "slug": "board",
+      "title": "Composition actuelle",
+      "pattern": "cards_grid",
+      "sort_order": 3,
+      "keys": [
+        "title",
+        "members"
+      ],
+      "values": {
+        "fr": {
+          "title": "Composition Actuelle",
+          "members": "[{\"name\":\"Houssem Ben Azouz\",\"role\":\"PRÉSIDENT\",\"image\":\"\"},{\"name\":\"Chahla Khekhia\",\"role\":\"SECRÉTAIRE GÉNÉRALE\",\"image\":\"\"},{\"name\":\"Ahmed Oubaia\",\"role\":\"TRÉSORIER\",\"image\":\"\"},{\"name\":\"Néjib Gana\",\"role\":\"VICE-PRÉSIDENT\",\"image\":\"\"},{\"name\":\"Omar Cherif\",\"role\":\"CONSEILLER\",\"image\":\"\"}]"
+        },
+        "en": {
+          "title": "Current composition",
+          "members": "[{\"name\":\"Houssem Ben Azouz\",\"role\":\"PRESIDENT\",\"image\":\"\"},{\"name\":\"Chahla Khekhia\",\"role\":\"SECRETARY GENERAL\",\"image\":\"\"},{\"name\":\"Ahmed Oubaia\",\"role\":\"TREASURER\",\"image\":\"\"},{\"name\":\"Néjib Gana\",\"role\":\"VICE-PRESIDENT\",\"image\":\"\"},{\"name\":\"Omar Cherif\",\"role\":\"ADVISOR\",\"image\":\"\"}]"
+        },
+        "ar": {
+          "title": "التشكيلة الحالية",
+          "members": "[{\"name\":\"حسام بن عزوز\",\"role\":\"الرئيس\",\"image\":\"\"},{\"name\":\"شهلة خيخية\",\"role\":\"الأمينة العامة\",\"image\":\"\"},{\"name\":\"أحمد عباية\",\"role\":\"أمين المال\",\"image\":\"\"},{\"name\":\"نجيب قانة\",\"role\":\"نائب الرئيس\",\"image\":\"\"},{\"name\":\"عمر شريف\",\"role\":\"مستشار\",\"image\":\"\"}]"
+        }
+      }
+    },
+    {
+      "slug": "headquarters",
+      "title": "Bureau du siège",
+      "pattern": "cards_grid",
+      "sort_order": 4,
+      "keys": [
+        "title",
+        "staff"
+      ],
+      "values": {
+        "fr": {
+          "title": "Le bureau du siège de la Fi2T",
+          "staff": "[{\"initials\":\"KB\",\"name\":\"Khawla B'Chir\",\"role\":\"Directrice Administrative\"},{\"initials\":\"HI\",\"name\":\"Hiba Inoubli\",\"role\":\"Webmaster\"},{\"initials\":\"SS\",\"name\":\"Sarra Sallemi\",\"role\":\"Affaires administratives et comptables\"}]"
+        },
+        "en": {
+          "title": "Fi2T headquarters office",
+          "staff": "[{\"initials\":\"KB\",\"name\":\"Khawla B'Chir\",\"role\":\"Administrative Director\"},{\"initials\":\"HI\",\"name\":\"Hiba Inoubli\",\"role\":\"Webmaster\"},{\"initials\":\"SS\",\"name\":\"Sarra Sallemi\",\"role\":\"Administrative and accounting affairs\"}]"
+        },
+        "ar": {
+          "title": "مكتب مقر Fi2T",
+          "staff": "[{\"initials\":\"KB\",\"name\":\"خولة بشير\",\"role\":\"المديرة الإدارية\"},{\"initials\":\"HI\",\"name\":\"هبة إنوبلي\",\"role\":\"مسؤولة الموقع\"},{\"initials\":\"SS\",\"name\":\"سارة سالمي\",\"role\":\"الشؤون الإدارية والمحاسبية\"}]"
+        }
+      }
+    },
+    {
+      "slug": "regional",
+      "title": "Bureaux régionaux",
+      "pattern": "cards_grid",
+      "sort_order": 5,
+      "keys": [
+        "title",
+        "items",
+        "map_image",
+        "map_label"
+      ],
+      "values": {
+        "fr": {
+          "title": "Les Bureaux Régionaux",
+          "items": "[{\"name\":\"Mr Nebil Azouz\",\"region\":\"Bizerte\"},{\"name\":\"Mme Chahla Khekhia\",\"region\":\"Le Kef\"},{\"name\":\"Mr Foued Ben Ammar\",\"region\":\"Hammamet/Nabeul\"},{\"name\":\"Mr Akram Bouzguarrou\",\"region\":\"Sousse\"},{\"name\":\"Mr Khaled Hayouni\",\"region\":\"Monastir/Mahdia\"},{\"name\":\"Mr Belgacem Kalawi\",\"region\":\"Kairouan\"},{\"name\":\"Mr Alaeddine Khodhri\",\"region\":\"Gabes\"},{\"name\":\"Mr Hatem Mejlissi\",\"region\":\"Djerba\"}]",
+          "map_image": "/images/org-regional-map-card.png?v=2",
+          "map_label": "11 Bureaux Régionaux"
+        },
+        "en": {
+          "title": "Regional offices",
+          "items": "[{\"name\":\"Mr Nebil Azouz\",\"region\":\"Bizerte\"},{\"name\":\"Mme Chahla Khekhia\",\"region\":\"Le Kef\"},{\"name\":\"Mr Foued Ben Ammar\",\"region\":\"Hammamet/Nabeul\"},{\"name\":\"Mr Akram Bouzguarrou\",\"region\":\"Sousse\"},{\"name\":\"Mr Khaled Hayouni\",\"region\":\"Monastir/Mahdia\"},{\"name\":\"Mr Belgacem Kalawi\",\"region\":\"Kairouan\"},{\"name\":\"Mr Alaeddine Khodhri\",\"region\":\"Gabes\"},{\"name\":\"Mr Hatem Mejlissi\",\"region\":\"Djerba\"}]",
+          "map_image": "/images/org-regional-map-card.png?v=2",
+          "map_label": "11 Regional Offices"
+        },
+        "ar": {
+          "title": "المكاتب الجهوية",
+          "items": "[{\"name\":\"السيد نبيل عزوز\",\"region\":\"بنزرت\"},{\"name\":\"السيدة شهلة خيخية\",\"region\":\"الكاف\"},{\"name\":\"السيد فؤاد بن عمار\",\"region\":\"الحمامات/نابل\"},{\"name\":\"السيد أكرم بوزقرو\",\"region\":\"سوسة\"},{\"name\":\"السيد خالد حيوني\",\"region\":\"المنستير/المهدية\"},{\"name\":\"السيد بلقاسم قلاوي\",\"region\":\"القيروان\"},{\"name\":\"السيد علاء الدين خضري\",\"region\":\"قابس\"},{\"name\":\"السيد حاتم المجلسي\",\"region\":\"جربة\"}]",
+          "map_image": "/images/org-regional-map-card.png?v=2",
+          "map_label": "11 مكتباً جهوياً"
+        }
+      }
+    },
+    {
+      "slug": "groupements",
+      "title": "Groupements professionnels",
+      "pattern": "cards_grid",
+      "sort_order": 6,
+      "keys": [
+        "title",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Les Groupements Professionnels",
+          "items": "[{\"label\":\"Agences de voyages\",\"slug\":\"agences-de-voyages\",\"icon\":\"/images/icon1.png?v=5\"},{\"label\":\"Hébergement alternatif\",\"slug\":\"hebergements-alternatifs\",\"icon\":\"/images/icon2.png?v=5\"},{\"label\":\"Tourisme culturel\",\"slug\":\"tourisme-culturel\",\"icon\":\"/images/icon3.png?v=5\"},{\"label\":\"Tourisme de santé\",\"slug\":\"tourisme-de-sante\",\"icon\":\"/images/icon4.png?v=5\"},{\"label\":\"Tourisme d'aventure\",\"slug\":\"tourisme-aventure\",\"icon\":\"/images/icon5.png?v=5\"},{\"label\":\"Tourisme d'affaires\",\"slug\":\"tourisme-affaire\",\"icon\":\"/images/icon6.png?v=5\"},{\"label\":\"Tourisme écologique\",\"slug\":\"tourisme-ecologique\",\"icon\":\"/images/icon7.png?v=5\"},{\"label\":\"Tourisme aéronautique\",\"slug\":\"tourisme-aeronautique\",\"icon\":\"/images/icon8.png?v=5\"},{\"label\":\"Tourisme automobile\",\"slug\":\"tourisme-automobile\",\"icon\":\"/images/icon9.png?v=5\"},{\"label\":\"Tourisme sportif\",\"slug\":\"tourisme-sportif\",\"icon\":\"/images/icon10.png?v=5\"},{\"label\":\"Tourisme nautique\",\"slug\":\"tourisme-nautique\",\"icon\":\"/images/icon11.png?v=5\"},{\"label\":\"Tourisme subaquatique\",\"slug\":\"tourisme-subaquatique\",\"icon\":\"/images/icon12.png?v=5\"}]"
+        },
+        "en": {
+          "title": "Professional Groups",
+          "items": "[{\"label\":\"Travel agencies\",\"slug\":\"agences-de-voyages\",\"icon\":\"/images/icon1.png?v=5\"},{\"label\":\"Alternative accommodation\",\"slug\":\"hebergements-alternatifs\",\"icon\":\"/images/icon2.png?v=5\"},{\"label\":\"Cultural tourism\",\"slug\":\"tourisme-culturel\",\"icon\":\"/images/icon3.png?v=5\"},{\"label\":\"Health tourism\",\"slug\":\"tourisme-de-sante\",\"icon\":\"/images/icon4.png?v=5\"},{\"label\":\"Adventure tourism\",\"slug\":\"tourisme-aventure\",\"icon\":\"/images/icon5.png?v=5\"},{\"label\":\"Business tourism\",\"slug\":\"tourisme-affaire\",\"icon\":\"/images/icon6.png?v=5\"},{\"label\":\"Ecological tourism\",\"slug\":\"tourisme-ecologique\",\"icon\":\"/images/icon7.png?v=5\"},{\"label\":\"Aeronautical tourism\",\"slug\":\"tourisme-aeronautique\",\"icon\":\"/images/icon8.png?v=5\"},{\"label\":\"Automotive tourism\",\"slug\":\"tourisme-automobile\",\"icon\":\"/images/icon9.png?v=5\"},{\"label\":\"Sports tourism\",\"slug\":\"tourisme-sportif\",\"icon\":\"/images/icon10.png?v=5\"},{\"label\":\"Nautical tourism\",\"slug\":\"tourisme-nautique\",\"icon\":\"/images/icon11.png?v=5\"},{\"label\":\"Underwater tourism\",\"slug\":\"tourisme-subaquatique\",\"icon\":\"/images/icon12.png?v=5\"}]"
+        },
+        "ar": {
+          "title": "التجمعات المهنية",
+          "items": "[{\"label\":\"وكالات الأسفار\",\"slug\":\"agences-de-voyages\",\"icon\":\"/images/icon1.png?v=5\"},{\"label\":\"الإقامة البديلة\",\"slug\":\"hebergements-alternatifs\",\"icon\":\"/images/icon2.png?v=5\"},{\"label\":\"السياحة الثقافية\",\"slug\":\"tourisme-culturel\",\"icon\":\"/images/icon3.png?v=5\"},{\"label\":\"سياحة الصحة\",\"slug\":\"tourisme-de-sante\",\"icon\":\"/images/icon4.png?v=5\"},{\"label\":\"سياحة المغامرة\",\"slug\":\"tourisme-aventure\",\"icon\":\"/images/icon5.png?v=5\"},{\"label\":\"سياحة الأعمال\",\"slug\":\"tourisme-affaire\",\"icon\":\"/images/icon6.png?v=5\"},{\"label\":\"السياحة البيئية\",\"slug\":\"tourisme-ecologique\",\"icon\":\"/images/icon7.png?v=5\"},{\"label\":\"السياحة الجوية\",\"slug\":\"tourisme-aeronautique\",\"icon\":\"/images/icon8.png?v=5\"},{\"label\":\"سياحة السيارات\",\"slug\":\"tourisme-automobile\",\"icon\":\"/images/icon9.png?v=5\"},{\"label\":\"السياحة الرياضية\",\"slug\":\"tourisme-sportif\",\"icon\":\"/images/icon10.png?v=5\"},{\"label\":\"السياحة البحرية\",\"slug\":\"tourisme-nautique\",\"icon\":\"/images/icon11.png?v=5\"},{\"label\":\"السياحة تحت الماء\",\"slug\":\"tourisme-subaquatique\",\"icon\":\"/images/icon12.png?v=5\"}]"
+        }
+      }
+    }
+  ],
+  "actualites": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "Actualités"
+        },
+        "en": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "News"
+        },
+        "ar": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "الأخبار"
+        }
+      }
+    },
+    {
+      "slug": "grid",
+      "title": "Grille des articles",
+      "pattern": "cards_grid",
+      "sort_order": 2,
+      "keys": [
+        "items",
+        "per_page"
+      ],
+      "values": {
+        "fr": {
+          "items": "[{\"slug\":\"walid-tritar-president-fi2t\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.png?v=6\"},{\"slug\":\"trois-questions-walid-tritar\",\"title\":\"Tourisme tunisien — Trois questions à Walid Tritar\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/article-featured-walid.png?v=2\",\"hero_title\":\"Tourisme tunisien\\nTrois questions à Walid Tritar\",\"subtitle\":\"Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)\",\"quote\":\"« Le All Inclusive n'est plus un choix, c'est une nécessité imposée par le marché »\",\"intro\":\"Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.\",\"sections\":[{\"question\":\"Q1 — Le « all inclusive » profite-t-il vraiment à l'économie tunisienne ?\",\"answer\":\"Il faut d'emblée remettre les choses dans leur contexte. Beaucoup d'idées reçues et d'informations erronées circulent autour du concept du « all inclusive » en Tunisie. La question elle-même laisse entendre que cette formule ne profiterait pas réellement au tourisme tunisien, en partant du principe que le client ne quitte jamais son hôtel et ne consomme rien en dehors du montant déjà payé pour son séjour. Or, cette vision est réductrice. Si l'on analyse le « all inclusive » sous l'angle de la gestion hôtelière, il faut prendre en considération certaines variables essentielles en matière de gestion.\\n\\nD'abord, cette formule est devenue aujourd'hui une nécessité commerciale imposée par le marché international. Nos principaux concurrents directs, notamment l'Égypte, la Turquie et la Bulgarie, proposent pratiquement les mêmes packages touristiques. Le client européen qui souhaite passer des vacances dans le bassin méditerranéen compare avant tout des offres similaires, souvent pour un budget équivalent.\\n\\nLa différence se joue essentiellement sur le transport aérien et sur la compétitivité de l'offre globale. Dans ce contexte, le « all inclusive » n'est plus réellement un choix pour les hôteliers tunisiens : c'est une obligation dictée par le marché. La Tunisie a, d'ailleurs, fait très tôt le choix du tourisme de masse.\\n\\nPendant la période de croissance du tourisme tunisien dans les années 70, les pays de la Méditerranée se livraient à une concurrence féroce sur le segment « Soleil et plage », en particulier avec l'Espagne, la Grèce, le Maroc et la Turquie. Cette orientation n'avait rien de négatif en soi ; elle était choisie comme un levier rapide et efficace de développement économique et social avec des retombées visibles en devises et en emploi.\\n\\nElle répondait à une volonté de positionnement de la Tunisie sur la carte du tourisme méditerranéen. Pour un hôtelier, le « all inclusive » peut se résumer ainsi : c'est une garantie d'extra dans la mesure où le client règle à l'avance une grande partie de ses dépenses.\\n\\nCe modèle permet donc à l'hôtelier de mieux prévoir son chiffre d'affaires en amont et de mieux gérer ses charges directes, contrairement aux autres arrangements (logement et petit-déjeuner, demi-pension) qui reposent davantage sur des hypothèses de consommation et des dépenses variables du client durant son séjour. Personnellement, au cours de ma carrière, j'ai géré un hôtel fonctionnant en demi-pension.\\n\\nMais, face aux impératifs de rentabilité, aux demandes des tour-opérateurs et à l'évolution des attentes de la clientèle, nous avons progressivement adopté le modèle du « all inclusive ». L'objectif était avant tout économique. Par ailleurs, lorsqu'on parle de demi-pension, il faut aussi se poser une question essentielle : si le client quitte son hôtel, trouve-t-il réellement à l'extérieur des espaces attractifs où dépenser son argent ?\\n\\nDispose-t-on, dans certaines régions touristiques, d'une véritable offre d'animation, des restaurants de qualité avec des spécialités culinaires différentes, des loisirs ou des activités para-touristiques ? La réalité est que ces infrastructures restent insuffisamment développées dans plusieurs zones du pays. L'animation touristique hors des hôtels demeure souvent quasi-inexistante. Dans ces conditions, il est difficile d'imposer un modèle basé sur la demi-pension ou logement et petit-déjeuner.\\n\\nIl convient également de souligner que la destination pâtit de l'absence de marques fortes en matière de restauration et d'animation, susceptibles de rassurer la clientèle. Même les plus grands hôtels balnéaires du pays se sont finalement orientés vers le « all inclusive ». Cela montre bien qu'il s'agit d'une stratégie réfléchie et non d'un choix improvisé.\\n\\nIl faut aussi rappeler que cette formule contribue au développement de l'économie nationale, notamment en matière d'employabilité et de maintien de l'activité touristique. Contrairement à certaines idées répandues, le « all inclusive » n'a jamais pénalisé l'économie tunisienne. Le jour où la Tunisie développera davantage ses infrastructures d'animation, modernisera son offre de loisirs et adaptera certaines lois liées à l'investissement touristique, il sera alors possible de porter un regard plus critique sur ce modèle.\"},{\"question\":\"Q2 — Le modèle « all inclusive » nuit-il aujourd'hui à la qualité du tourisme tunisien ?\",\"answer\":\"Beaucoup de critiques du « all inclusive » reposent également sur une mauvaise compréhension du concept. Il faut savoir qu'il n'existe pas un seul modèle de « all inclusive » en Tunisie. La qualité varie considérablement d'un établissement à un autre. Certains hôtels proposent un « all inclusive » très basique, mais d'autres, « ultra all inclusive » et même « 24h all inclusive », offrent des prestations haut de gamme incluant des restaurants à la carte, des animations variées, des services premium et une expérience client plus raffinée.\\n\\nDans certains établissements, les boissons sont servies dans des gobelets jetables alors que dans d'autres, tout est pensé pour offrir un service de qualité supérieure. Le problème ne réside donc pas dans le concept lui-même, mais dans la manière dont il est appliqué. En Tunisie, plusieurs chaînes hôtelières sont reconnues pour l'excellence de leurs prestations et ont démontré qu'il était tout à fait possible de concilier « all inclusive » et qualité de service.\\n\\nPlus l'hôtel s'investit dans le confort et la propreté de l'hébergement, la qualité de la restauration, de l'animation et de l'expérience client, plus le produit devient attractif. L'hôtelier a donc le choix : soit proposer un « all inclusive » low cost fondé uniquement sur le volume, soit développer un produit qualitatif capable de fidéliser une clientèle plus exigeante et de valoriser l'image de la destination tunisienne.\\n\\nLe « all inclusive » ne se limite d'ailleurs pas à la nourriture et aux boissons. C'est un concept global qui englobe l'ensemble de l'expérience touristique : hébergement, restauration, bien-être, loisirs, animation, services et confort. Et cette expérience diffère fortement d'un hôtel à un autre.\"},{\"question\":\"Q3 — Un dernier message pour lever l'équivoque autour du « all inclusive »\",\"answer\":\"Il est important que le client, notamment tunisien, lise attentivement le contenu de l'offre qu'il achète. Tous les « all inclusive » ne se valent pas. Avant de réserver, il faut vérifier précisément ce qui est inclus dans la formule, à savoir la qualité de la restauration, les équipements, les activités d'animation, les prestations de la piscine, le confort des chambres ou encore les services annexes proposés par l'hôtel.\\n\\nLe point essentiel est donc de bien consulter le descriptif du produit touristique et de comprendre qu'un « all inclusive » peut être très différent d'un établissement à un autre.\"}],\"source\":\"Source : La Presse de Tunisie | lapresse.tn\"},{\"slug\":\"resilience-secteur-touristique\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act9.png?v=6\"},{\"slug\":\"walid-tritar-president-fi2t-p2-9\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression-p2-10\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest-p2-11\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.png?v=6\"},{\"slug\":\"trois-questions-walid-tritar-p2-12\",\"title\":\"Tourisme tunisien — Trois questions à Walid Tritar\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/article-featured-walid.png?v=2\",\"hero_title\":\"Tourisme tunisien\\nTrois questions à Walid Tritar\",\"subtitle\":\"Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)\",\"quote\":\"« Le All Inclusive n'est plus un choix, c'est une nécessité imposée par le marché »\",\"intro\":\"Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.\",\"sections\":[{\"question\":\"Q1 — Le « all inclusive » profite-t-il vraiment à l'économie tunisienne ?\",\"answer\":\"Il faut d'emblée remettre les choses dans leur contexte. Beaucoup d'idées reçues et d'informations erronées circulent autour du concept du « all inclusive » en Tunisie. La question elle-même laisse entendre que cette formule ne profiterait pas réellement au tourisme tunisien, en partant du principe que le client ne quitte jamais son hôtel et ne consomme rien en dehors du montant déjà payé pour son séjour. Or, cette vision est réductrice. Si l'on analyse le « all inclusive » sous l'angle de la gestion hôtelière, il faut prendre en considération certaines variables essentielles en matière de gestion.\\n\\nD'abord, cette formule est devenue aujourd'hui une nécessité commerciale imposée par le marché international. Nos principaux concurrents directs, notamment l'Égypte, la Turquie et la Bulgarie, proposent pratiquement les mêmes packages touristiques. Le client européen qui souhaite passer des vacances dans le bassin méditerranéen compare avant tout des offres similaires, souvent pour un budget équivalent.\\n\\nLa différence se joue essentiellement sur le transport aérien et sur la compétitivité de l'offre globale. Dans ce contexte, le « all inclusive » n'est plus réellement un choix pour les hôteliers tunisiens : c'est une obligation dictée par le marché. La Tunisie a, d'ailleurs, fait très tôt le choix du tourisme de masse.\\n\\nPendant la période de croissance du tourisme tunisien dans les années 70, les pays de la Méditerranée se livraient à une concurrence féroce sur le segment « Soleil et plage », en particulier avec l'Espagne, la Grèce, le Maroc et la Turquie. Cette orientation n'avait rien de négatif en soi ; elle était choisie comme un levier rapide et efficace de développement économique et social avec des retombées visibles en devises et en emploi.\\n\\nElle répondait à une volonté de positionnement de la Tunisie sur la carte du tourisme méditerranéen. Pour un hôtelier, le « all inclusive » peut se résumer ainsi : c'est une garantie d'extra dans la mesure où le client règle à l'avance une grande partie de ses dépenses.\\n\\nCe modèle permet donc à l'hôtelier de mieux prévoir son chiffre d'affaires en amont et de mieux gérer ses charges directes, contrairement aux autres arrangements (logement et petit-déjeuner, demi-pension) qui reposent davantage sur des hypothèses de consommation et des dépenses variables du client durant son séjour. Personnellement, au cours de ma carrière, j'ai géré un hôtel fonctionnant en demi-pension.\\n\\nMais, face aux impératifs de rentabilité, aux demandes des tour-opérateurs et à l'évolution des attentes de la clientèle, nous avons progressivement adopté le modèle du « all inclusive ». L'objectif était avant tout économique. Par ailleurs, lorsqu'on parle de demi-pension, il faut aussi se poser une question essentielle : si le client quitte son hôtel, trouve-t-il réellement à l'extérieur des espaces attractifs où dépenser son argent ?\\n\\nDispose-t-on, dans certaines régions touristiques, d'une véritable offre d'animation, des restaurants de qualité avec des spécialités culinaires différentes, des loisirs ou des activités para-touristiques ? La réalité est que ces infrastructures restent insuffisamment développées dans plusieurs zones du pays. L'animation touristique hors des hôtels demeure souvent quasi-inexistante. Dans ces conditions, il est difficile d'imposer un modèle basé sur la demi-pension ou logement et petit-déjeuner.\\n\\nIl convient également de souligner que la destination pâtit de l'absence de marques fortes en matière de restauration et d'animation, susceptibles de rassurer la clientèle. Même les plus grands hôtels balnéaires du pays se sont finalement orientés vers le « all inclusive ». Cela montre bien qu'il s'agit d'une stratégie réfléchie et non d'un choix improvisé.\\n\\nIl faut aussi rappeler que cette formule contribue au développement de l'économie nationale, notamment en matière d'employabilité et de maintien de l'activité touristique. Contrairement à certaines idées répandues, le « all inclusive » n'a jamais pénalisé l'économie tunisienne. Le jour où la Tunisie développera davantage ses infrastructures d'animation, modernisera son offre de loisirs et adaptera certaines lois liées à l'investissement touristique, il sera alors possible de porter un regard plus critique sur ce modèle.\"},{\"question\":\"Q2 — Le modèle « all inclusive » nuit-il aujourd'hui à la qualité du tourisme tunisien ?\",\"answer\":\"Beaucoup de critiques du « all inclusive » reposent également sur une mauvaise compréhension du concept. Il faut savoir qu'il n'existe pas un seul modèle de « all inclusive » en Tunisie. La qualité varie considérablement d'un établissement à un autre. Certains hôtels proposent un « all inclusive » très basique, mais d'autres, « ultra all inclusive » et même « 24h all inclusive », offrent des prestations haut de gamme incluant des restaurants à la carte, des animations variées, des services premium et une expérience client plus raffinée.\\n\\nDans certains établissements, les boissons sont servies dans des gobelets jetables alors que dans d'autres, tout est pensé pour offrir un service de qualité supérieure. Le problème ne réside donc pas dans le concept lui-même, mais dans la manière dont il est appliqué. En Tunisie, plusieurs chaînes hôtelières sont reconnues pour l'excellence de leurs prestations et ont démontré qu'il était tout à fait possible de concilier « all inclusive » et qualité de service.\\n\\nPlus l'hôtel s'investit dans le confort et la propreté de l'hébergement, la qualité de la restauration, de l'animation et de l'expérience client, plus le produit devient attractif. L'hôtelier a donc le choix : soit proposer un « all inclusive » low cost fondé uniquement sur le volume, soit développer un produit qualitatif capable de fidéliser une clientèle plus exigeante et de valoriser l'image de la destination tunisienne.\\n\\nLe « all inclusive » ne se limite d'ailleurs pas à la nourriture et aux boissons. C'est un concept global qui englobe l'ensemble de l'expérience touristique : hébergement, restauration, bien-être, loisirs, animation, services et confort. Et cette expérience diffère fortement d'un hôtel à un autre.\"},{\"question\":\"Q3 — Un dernier message pour lever l'équivoque autour du « all inclusive »\",\"answer\":\"Il est important que le client, notamment tunisien, lise attentivement le contenu de l'offre qu'il achète. Tous les « all inclusive » ne se valent pas. Avant de réserver, il faut vérifier précisément ce qui est inclus dans la formule, à savoir la qualité de la restauration, les équipements, les activités d'animation, les prestations de la piscine, le confort des chambres ou encore les services annexes proposés par l'hôtel.\\n\\nLe point essentiel est donc de bien consulter le descriptif du produit touristique et de comprendre qu'un « all inclusive » peut être très différent d'un établissement à un autre.\"}],\"source\":\"Source : La Presse de Tunisie | lapresse.tn\"},{\"slug\":\"resilience-secteur-touristique-p2-13\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest-p2-14\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026-p2-15\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026-p2-16\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest-p2-17\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act9.png?v=6\"},{\"slug\":\"walid-tritar-president-fi2t-p3-18\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression-p3-19\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest-p3-20\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.png?v=6\"},{\"slug\":\"trois-questions-walid-tritar-p3-21\",\"title\":\"Tourisme tunisien — Trois questions à Walid Tritar\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/article-featured-walid.png?v=2\",\"hero_title\":\"Tourisme tunisien\\nTrois questions à Walid Tritar\",\"subtitle\":\"Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)\",\"quote\":\"« Le All Inclusive n'est plus un choix, c'est une nécessité imposée par le marché »\",\"intro\":\"Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.\",\"sections\":[{\"question\":\"Q1 — Le « all inclusive » profite-t-il vraiment à l'économie tunisienne ?\",\"answer\":\"Il faut d'emblée remettre les choses dans leur contexte. Beaucoup d'idées reçues et d'informations erronées circulent autour du concept du « all inclusive » en Tunisie. La question elle-même laisse entendre que cette formule ne profiterait pas réellement au tourisme tunisien, en partant du principe que le client ne quitte jamais son hôtel et ne consomme rien en dehors du montant déjà payé pour son séjour. Or, cette vision est réductrice. Si l'on analyse le « all inclusive » sous l'angle de la gestion hôtelière, il faut prendre en considération certaines variables essentielles en matière de gestion.\\n\\nD'abord, cette formule est devenue aujourd'hui une nécessité commerciale imposée par le marché international. Nos principaux concurrents directs, notamment l'Égypte, la Turquie et la Bulgarie, proposent pratiquement les mêmes packages touristiques. Le client européen qui souhaite passer des vacances dans le bassin méditerranéen compare avant tout des offres similaires, souvent pour un budget équivalent.\\n\\nLa différence se joue essentiellement sur le transport aérien et sur la compétitivité de l'offre globale. Dans ce contexte, le « all inclusive » n'est plus réellement un choix pour les hôteliers tunisiens : c'est une obligation dictée par le marché. La Tunisie a, d'ailleurs, fait très tôt le choix du tourisme de masse.\\n\\nPendant la période de croissance du tourisme tunisien dans les années 70, les pays de la Méditerranée se livraient à une concurrence féroce sur le segment « Soleil et plage », en particulier avec l'Espagne, la Grèce, le Maroc et la Turquie. Cette orientation n'avait rien de négatif en soi ; elle était choisie comme un levier rapide et efficace de développement économique et social avec des retombées visibles en devises et en emploi.\\n\\nElle répondait à une volonté de positionnement de la Tunisie sur la carte du tourisme méditerranéen. Pour un hôtelier, le « all inclusive » peut se résumer ainsi : c'est une garantie d'extra dans la mesure où le client règle à l'avance une grande partie de ses dépenses.\\n\\nCe modèle permet donc à l'hôtelier de mieux prévoir son chiffre d'affaires en amont et de mieux gérer ses charges directes, contrairement aux autres arrangements (logement et petit-déjeuner, demi-pension) qui reposent davantage sur des hypothèses de consommation et des dépenses variables du client durant son séjour. Personnellement, au cours de ma carrière, j'ai géré un hôtel fonctionnant en demi-pension.\\n\\nMais, face aux impératifs de rentabilité, aux demandes des tour-opérateurs et à l'évolution des attentes de la clientèle, nous avons progressivement adopté le modèle du « all inclusive ». L'objectif était avant tout économique. Par ailleurs, lorsqu'on parle de demi-pension, il faut aussi se poser une question essentielle : si le client quitte son hôtel, trouve-t-il réellement à l'extérieur des espaces attractifs où dépenser son argent ?\\n\\nDispose-t-on, dans certaines régions touristiques, d'une véritable offre d'animation, des restaurants de qualité avec des spécialités culinaires différentes, des loisirs ou des activités para-touristiques ? La réalité est que ces infrastructures restent insuffisamment développées dans plusieurs zones du pays. L'animation touristique hors des hôtels demeure souvent quasi-inexistante. Dans ces conditions, il est difficile d'imposer un modèle basé sur la demi-pension ou logement et petit-déjeuner.\\n\\nIl convient également de souligner que la destination pâtit de l'absence de marques fortes en matière de restauration et d'animation, susceptibles de rassurer la clientèle. Même les plus grands hôtels balnéaires du pays se sont finalement orientés vers le « all inclusive ». Cela montre bien qu'il s'agit d'une stratégie réfléchie et non d'un choix improvisé.\\n\\nIl faut aussi rappeler que cette formule contribue au développement de l'économie nationale, notamment en matière d'employabilité et de maintien de l'activité touristique. Contrairement à certaines idées répandues, le « all inclusive » n'a jamais pénalisé l'économie tunisienne. Le jour où la Tunisie développera davantage ses infrastructures d'animation, modernisera son offre de loisirs et adaptera certaines lois liées à l'investissement touristique, il sera alors possible de porter un regard plus critique sur ce modèle.\"},{\"question\":\"Q2 — Le modèle « all inclusive » nuit-il aujourd'hui à la qualité du tourisme tunisien ?\",\"answer\":\"Beaucoup de critiques du « all inclusive » reposent également sur une mauvaise compréhension du concept. Il faut savoir qu'il n'existe pas un seul modèle de « all inclusive » en Tunisie. La qualité varie considérablement d'un établissement à un autre. Certains hôtels proposent un « all inclusive » très basique, mais d'autres, « ultra all inclusive » et même « 24h all inclusive », offrent des prestations haut de gamme incluant des restaurants à la carte, des animations variées, des services premium et une expérience client plus raffinée.\\n\\nDans certains établissements, les boissons sont servies dans des gobelets jetables alors que dans d'autres, tout est pensé pour offrir un service de qualité supérieure. Le problème ne réside donc pas dans le concept lui-même, mais dans la manière dont il est appliqué. En Tunisie, plusieurs chaînes hôtelières sont reconnues pour l'excellence de leurs prestations et ont démontré qu'il était tout à fait possible de concilier « all inclusive » et qualité de service.\\n\\nPlus l'hôtel s'investit dans le confort et la propreté de l'hébergement, la qualité de la restauration, de l'animation et de l'expérience client, plus le produit devient attractif. L'hôtelier a donc le choix : soit proposer un « all inclusive » low cost fondé uniquement sur le volume, soit développer un produit qualitatif capable de fidéliser une clientèle plus exigeante et de valoriser l'image de la destination tunisienne.\\n\\nLe « all inclusive » ne se limite d'ailleurs pas à la nourriture et aux boissons. C'est un concept global qui englobe l'ensemble de l'expérience touristique : hébergement, restauration, bien-être, loisirs, animation, services et confort. Et cette expérience diffère fortement d'un hôtel à un autre.\"},{\"question\":\"Q3 — Un dernier message pour lever l'équivoque autour du « all inclusive »\",\"answer\":\"Il est important que le client, notamment tunisien, lise attentivement le contenu de l'offre qu'il achète. Tous les « all inclusive » ne se valent pas. Avant de réserver, il faut vérifier précisément ce qui est inclus dans la formule, à savoir la qualité de la restauration, les équipements, les activités d'animation, les prestations de la piscine, le confort des chambres ou encore les services annexes proposés par l'hôtel.\\n\\nLe point essentiel est donc de bien consulter le descriptif du produit touristique et de comprendre qu'un « all inclusive » peut être très différent d'un établissement à un autre.\"}],\"source\":\"Source : La Presse de Tunisie | lapresse.tn\"},{\"slug\":\"resilience-secteur-touristique-p3-22\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest-p3-23\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026-p3-24\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026-p3-25\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest-p3-26\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act9.png?v=6\"},{\"slug\":\"walid-tritar-president-fi2t-p4-27\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression-p4-28\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest-p4-29\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.png?v=6\"},{\"slug\":\"trois-questions-walid-tritar-p4-30\",\"title\":\"Tourisme tunisien — Trois questions à Walid Tritar\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/article-featured-walid.png?v=2\",\"hero_title\":\"Tourisme tunisien\\nTrois questions à Walid Tritar\",\"subtitle\":\"Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)\",\"quote\":\"« Le All Inclusive n'est plus un choix, c'est une nécessité imposée par le marché »\",\"intro\":\"Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.\",\"sections\":[{\"question\":\"Q1 — Le « all inclusive » profite-t-il vraiment à l'économie tunisienne ?\",\"answer\":\"Il faut d'emblée remettre les choses dans leur contexte. Beaucoup d'idées reçues et d'informations erronées circulent autour du concept du « all inclusive » en Tunisie. La question elle-même laisse entendre que cette formule ne profiterait pas réellement au tourisme tunisien, en partant du principe que le client ne quitte jamais son hôtel et ne consomme rien en dehors du montant déjà payé pour son séjour. Or, cette vision est réductrice. Si l'on analyse le « all inclusive » sous l'angle de la gestion hôtelière, il faut prendre en considération certaines variables essentielles en matière de gestion.\\n\\nD'abord, cette formule est devenue aujourd'hui une nécessité commerciale imposée par le marché international. Nos principaux concurrents directs, notamment l'Égypte, la Turquie et la Bulgarie, proposent pratiquement les mêmes packages touristiques. Le client européen qui souhaite passer des vacances dans le bassin méditerranéen compare avant tout des offres similaires, souvent pour un budget équivalent.\\n\\nLa différence se joue essentiellement sur le transport aérien et sur la compétitivité de l'offre globale. Dans ce contexte, le « all inclusive » n'est plus réellement un choix pour les hôteliers tunisiens : c'est une obligation dictée par le marché. La Tunisie a, d'ailleurs, fait très tôt le choix du tourisme de masse.\\n\\nPendant la période de croissance du tourisme tunisien dans les années 70, les pays de la Méditerranée se livraient à une concurrence féroce sur le segment « Soleil et plage », en particulier avec l'Espagne, la Grèce, le Maroc et la Turquie. Cette orientation n'avait rien de négatif en soi ; elle était choisie comme un levier rapide et efficace de développement économique et social avec des retombées visibles en devises et en emploi.\\n\\nElle répondait à une volonté de positionnement de la Tunisie sur la carte du tourisme méditerranéen. Pour un hôtelier, le « all inclusive » peut se résumer ainsi : c'est une garantie d'extra dans la mesure où le client règle à l'avance une grande partie de ses dépenses.\\n\\nCe modèle permet donc à l'hôtelier de mieux prévoir son chiffre d'affaires en amont et de mieux gérer ses charges directes, contrairement aux autres arrangements (logement et petit-déjeuner, demi-pension) qui reposent davantage sur des hypothèses de consommation et des dépenses variables du client durant son séjour. Personnellement, au cours de ma carrière, j'ai géré un hôtel fonctionnant en demi-pension.\\n\\nMais, face aux impératifs de rentabilité, aux demandes des tour-opérateurs et à l'évolution des attentes de la clientèle, nous avons progressivement adopté le modèle du « all inclusive ». L'objectif était avant tout économique. Par ailleurs, lorsqu'on parle de demi-pension, il faut aussi se poser une question essentielle : si le client quitte son hôtel, trouve-t-il réellement à l'extérieur des espaces attractifs où dépenser son argent ?\\n\\nDispose-t-on, dans certaines régions touristiques, d'une véritable offre d'animation, des restaurants de qualité avec des spécialités culinaires différentes, des loisirs ou des activités para-touristiques ? La réalité est que ces infrastructures restent insuffisamment développées dans plusieurs zones du pays. L'animation touristique hors des hôtels demeure souvent quasi-inexistante. Dans ces conditions, il est difficile d'imposer un modèle basé sur la demi-pension ou logement et petit-déjeuner.\\n\\nIl convient également de souligner que la destination pâtit de l'absence de marques fortes en matière de restauration et d'animation, susceptibles de rassurer la clientèle. Même les plus grands hôtels balnéaires du pays se sont finalement orientés vers le « all inclusive ». Cela montre bien qu'il s'agit d'une stratégie réfléchie et non d'un choix improvisé.\\n\\nIl faut aussi rappeler que cette formule contribue au développement de l'économie nationale, notamment en matière d'employabilité et de maintien de l'activité touristique. Contrairement à certaines idées répandues, le « all inclusive » n'a jamais pénalisé l'économie tunisienne. Le jour où la Tunisie développera davantage ses infrastructures d'animation, modernisera son offre de loisirs et adaptera certaines lois liées à l'investissement touristique, il sera alors possible de porter un regard plus critique sur ce modèle.\"},{\"question\":\"Q2 — Le modèle « all inclusive » nuit-il aujourd'hui à la qualité du tourisme tunisien ?\",\"answer\":\"Beaucoup de critiques du « all inclusive » reposent également sur une mauvaise compréhension du concept. Il faut savoir qu'il n'existe pas un seul modèle de « all inclusive » en Tunisie. La qualité varie considérablement d'un établissement à un autre. Certains hôtels proposent un « all inclusive » très basique, mais d'autres, « ultra all inclusive » et même « 24h all inclusive », offrent des prestations haut de gamme incluant des restaurants à la carte, des animations variées, des services premium et une expérience client plus raffinée.\\n\\nDans certains établissements, les boissons sont servies dans des gobelets jetables alors que dans d'autres, tout est pensé pour offrir un service de qualité supérieure. Le problème ne réside donc pas dans le concept lui-même, mais dans la manière dont il est appliqué. En Tunisie, plusieurs chaînes hôtelières sont reconnues pour l'excellence de leurs prestations et ont démontré qu'il était tout à fait possible de concilier « all inclusive » et qualité de service.\\n\\nPlus l'hôtel s'investit dans le confort et la propreté de l'hébergement, la qualité de la restauration, de l'animation et de l'expérience client, plus le produit devient attractif. L'hôtelier a donc le choix : soit proposer un « all inclusive » low cost fondé uniquement sur le volume, soit développer un produit qualitatif capable de fidéliser une clientèle plus exigeante et de valoriser l'image de la destination tunisienne.\\n\\nLe « all inclusive » ne se limite d'ailleurs pas à la nourriture et aux boissons. C'est un concept global qui englobe l'ensemble de l'expérience touristique : hébergement, restauration, bien-être, loisirs, animation, services et confort. Et cette expérience diffère fortement d'un hôtel à un autre.\"},{\"question\":\"Q3 — Un dernier message pour lever l'équivoque autour du « all inclusive »\",\"answer\":\"Il est important que le client, notamment tunisien, lise attentivement le contenu de l'offre qu'il achète. Tous les « all inclusive » ne se valent pas. Avant de réserver, il faut vérifier précisément ce qui est inclus dans la formule, à savoir la qualité de la restauration, les équipements, les activités d'animation, les prestations de la piscine, le confort des chambres ou encore les services annexes proposés par l'hôtel.\\n\\nLe point essentiel est donc de bien consulter le descriptif du produit touristique et de comprendre qu'un « all inclusive » peut être très différent d'un établissement à un autre.\"}],\"source\":\"Source : La Presse de Tunisie | lapresse.tn\"},{\"slug\":\"resilience-secteur-touristique-p4-31\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest-p4-32\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026-p4-33\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026-p4-34\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest-p4-35\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act9.png?v=6\"},{\"slug\":\"walid-tritar-president-fi2t-p5-36\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression-p5-37\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest-p5-38\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.png?v=6\"},{\"slug\":\"trois-questions-walid-tritar-p5-39\",\"title\":\"Tourisme tunisien — Trois questions à Walid Tritar\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/article-featured-walid.png?v=2\",\"hero_title\":\"Tourisme tunisien\\nTrois questions à Walid Tritar\",\"subtitle\":\"Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)\",\"quote\":\"« Le All Inclusive n'est plus un choix, c'est une nécessité imposée par le marché »\",\"intro\":\"Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.\",\"sections\":[{\"question\":\"Q1 — Le « all inclusive » profite-t-il vraiment à l'économie tunisienne ?\",\"answer\":\"Il faut d'emblée remettre les choses dans leur contexte. Beaucoup d'idées reçues et d'informations erronées circulent autour du concept du « all inclusive » en Tunisie. La question elle-même laisse entendre que cette formule ne profiterait pas réellement au tourisme tunisien, en partant du principe que le client ne quitte jamais son hôtel et ne consomme rien en dehors du montant déjà payé pour son séjour. Or, cette vision est réductrice. Si l'on analyse le « all inclusive » sous l'angle de la gestion hôtelière, il faut prendre en considération certaines variables essentielles en matière de gestion.\\n\\nD'abord, cette formule est devenue aujourd'hui une nécessité commerciale imposée par le marché international. Nos principaux concurrents directs, notamment l'Égypte, la Turquie et la Bulgarie, proposent pratiquement les mêmes packages touristiques. Le client européen qui souhaite passer des vacances dans le bassin méditerranéen compare avant tout des offres similaires, souvent pour un budget équivalent.\\n\\nLa différence se joue essentiellement sur le transport aérien et sur la compétitivité de l'offre globale. Dans ce contexte, le « all inclusive » n'est plus réellement un choix pour les hôteliers tunisiens : c'est une obligation dictée par le marché. La Tunisie a, d'ailleurs, fait très tôt le choix du tourisme de masse.\\n\\nPendant la période de croissance du tourisme tunisien dans les années 70, les pays de la Méditerranée se livraient à une concurrence féroce sur le segment « Soleil et plage », en particulier avec l'Espagne, la Grèce, le Maroc et la Turquie. Cette orientation n'avait rien de négatif en soi ; elle était choisie comme un levier rapide et efficace de développement économique et social avec des retombées visibles en devises et en emploi.\\n\\nElle répondait à une volonté de positionnement de la Tunisie sur la carte du tourisme méditerranéen. Pour un hôtelier, le « all inclusive » peut se résumer ainsi : c'est une garantie d'extra dans la mesure où le client règle à l'avance une grande partie de ses dépenses.\\n\\nCe modèle permet donc à l'hôtelier de mieux prévoir son chiffre d'affaires en amont et de mieux gérer ses charges directes, contrairement aux autres arrangements (logement et petit-déjeuner, demi-pension) qui reposent davantage sur des hypothèses de consommation et des dépenses variables du client durant son séjour. Personnellement, au cours de ma carrière, j'ai géré un hôtel fonctionnant en demi-pension.\\n\\nMais, face aux impératifs de rentabilité, aux demandes des tour-opérateurs et à l'évolution des attentes de la clientèle, nous avons progressivement adopté le modèle du « all inclusive ». L'objectif était avant tout économique. Par ailleurs, lorsqu'on parle de demi-pension, il faut aussi se poser une question essentielle : si le client quitte son hôtel, trouve-t-il réellement à l'extérieur des espaces attractifs où dépenser son argent ?\\n\\nDispose-t-on, dans certaines régions touristiques, d'une véritable offre d'animation, des restaurants de qualité avec des spécialités culinaires différentes, des loisirs ou des activités para-touristiques ? La réalité est que ces infrastructures restent insuffisamment développées dans plusieurs zones du pays. L'animation touristique hors des hôtels demeure souvent quasi-inexistante. Dans ces conditions, il est difficile d'imposer un modèle basé sur la demi-pension ou logement et petit-déjeuner.\\n\\nIl convient également de souligner que la destination pâtit de l'absence de marques fortes en matière de restauration et d'animation, susceptibles de rassurer la clientèle. Même les plus grands hôtels balnéaires du pays se sont finalement orientés vers le « all inclusive ». Cela montre bien qu'il s'agit d'une stratégie réfléchie et non d'un choix improvisé.\\n\\nIl faut aussi rappeler que cette formule contribue au développement de l'économie nationale, notamment en matière d'employabilité et de maintien de l'activité touristique. Contrairement à certaines idées répandues, le « all inclusive » n'a jamais pénalisé l'économie tunisienne. Le jour où la Tunisie développera davantage ses infrastructures d'animation, modernisera son offre de loisirs et adaptera certaines lois liées à l'investissement touristique, il sera alors possible de porter un regard plus critique sur ce modèle.\"},{\"question\":\"Q2 — Le modèle « all inclusive » nuit-il aujourd'hui à la qualité du tourisme tunisien ?\",\"answer\":\"Beaucoup de critiques du « all inclusive » reposent également sur une mauvaise compréhension du concept. Il faut savoir qu'il n'existe pas un seul modèle de « all inclusive » en Tunisie. La qualité varie considérablement d'un établissement à un autre. Certains hôtels proposent un « all inclusive » très basique, mais d'autres, « ultra all inclusive » et même « 24h all inclusive », offrent des prestations haut de gamme incluant des restaurants à la carte, des animations variées, des services premium et une expérience client plus raffinée.\\n\\nDans certains établissements, les boissons sont servies dans des gobelets jetables alors que dans d'autres, tout est pensé pour offrir un service de qualité supérieure. Le problème ne réside donc pas dans le concept lui-même, mais dans la manière dont il est appliqué. En Tunisie, plusieurs chaînes hôtelières sont reconnues pour l'excellence de leurs prestations et ont démontré qu'il était tout à fait possible de concilier « all inclusive » et qualité de service.\\n\\nPlus l'hôtel s'investit dans le confort et la propreté de l'hébergement, la qualité de la restauration, de l'animation et de l'expérience client, plus le produit devient attractif. L'hôtelier a donc le choix : soit proposer un « all inclusive » low cost fondé uniquement sur le volume, soit développer un produit qualitatif capable de fidéliser une clientèle plus exigeante et de valoriser l'image de la destination tunisienne.\\n\\nLe « all inclusive » ne se limite d'ailleurs pas à la nourriture et aux boissons. C'est un concept global qui englobe l'ensemble de l'expérience touristique : hébergement, restauration, bien-être, loisirs, animation, services et confort. Et cette expérience diffère fortement d'un hôtel à un autre.\"},{\"question\":\"Q3 — Un dernier message pour lever l'équivoque autour du « all inclusive »\",\"answer\":\"Il est important que le client, notamment tunisien, lise attentivement le contenu de l'offre qu'il achète. Tous les « all inclusive » ne se valent pas. Avant de réserver, il faut vérifier précisément ce qui est inclus dans la formule, à savoir la qualité de la restauration, les équipements, les activités d'animation, les prestations de la piscine, le confort des chambres ou encore les services annexes proposés par l'hôtel.\\n\\nLe point essentiel est donc de bien consulter le descriptif du produit touristique et de comprendre qu'un « all inclusive » peut être très différent d'un établissement à un autre.\"}],\"source\":\"Source : La Presse de Tunisie | lapresse.tn\"},{\"slug\":\"resilience-secteur-touristique-p5-40\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest-p5-41\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026-p5-42\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026-p5-43\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest-p5-44\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act9.png?v=6\"},{\"slug\":\"walid-tritar-president-fi2t-p6-45\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression-p6-46\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest-p6-47\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act3.png?v=6\"},{\"slug\":\"trois-questions-walid-tritar-p6-48\",\"title\":\"Tourisme tunisien — Trois questions à Walid Tritar\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/article-featured-walid.png?v=2\",\"hero_title\":\"Tourisme tunisien\\nTrois questions à Walid Tritar\",\"subtitle\":\"Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)\",\"quote\":\"« Le All Inclusive n'est plus un choix, c'est une nécessité imposée par le marché »\",\"intro\":\"Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.\",\"sections\":[{\"question\":\"Q1 — Le « all inclusive » profite-t-il vraiment à l'économie tunisienne ?\",\"answer\":\"Il faut d'emblée remettre les choses dans leur contexte. Beaucoup d'idées reçues et d'informations erronées circulent autour du concept du « all inclusive » en Tunisie. La question elle-même laisse entendre que cette formule ne profiterait pas réellement au tourisme tunisien, en partant du principe que le client ne quitte jamais son hôtel et ne consomme rien en dehors du montant déjà payé pour son séjour. Or, cette vision est réductrice. Si l'on analyse le « all inclusive » sous l'angle de la gestion hôtelière, il faut prendre en considération certaines variables essentielles en matière de gestion.\\n\\nD'abord, cette formule est devenue aujourd'hui une nécessité commerciale imposée par le marché international. Nos principaux concurrents directs, notamment l'Égypte, la Turquie et la Bulgarie, proposent pratiquement les mêmes packages touristiques. Le client européen qui souhaite passer des vacances dans le bassin méditerranéen compare avant tout des offres similaires, souvent pour un budget équivalent.\\n\\nLa différence se joue essentiellement sur le transport aérien et sur la compétitivité de l'offre globale. Dans ce contexte, le « all inclusive » n'est plus réellement un choix pour les hôteliers tunisiens : c'est une obligation dictée par le marché. La Tunisie a, d'ailleurs, fait très tôt le choix du tourisme de masse.\\n\\nPendant la période de croissance du tourisme tunisien dans les années 70, les pays de la Méditerranée se livraient à une concurrence féroce sur le segment « Soleil et plage », en particulier avec l'Espagne, la Grèce, le Maroc et la Turquie. Cette orientation n'avait rien de négatif en soi ; elle était choisie comme un levier rapide et efficace de développement économique et social avec des retombées visibles en devises et en emploi.\\n\\nElle répondait à une volonté de positionnement de la Tunisie sur la carte du tourisme méditerranéen. Pour un hôtelier, le « all inclusive » peut se résumer ainsi : c'est une garantie d'extra dans la mesure où le client règle à l'avance une grande partie de ses dépenses.\\n\\nCe modèle permet donc à l'hôtelier de mieux prévoir son chiffre d'affaires en amont et de mieux gérer ses charges directes, contrairement aux autres arrangements (logement et petit-déjeuner, demi-pension) qui reposent davantage sur des hypothèses de consommation et des dépenses variables du client durant son séjour. Personnellement, au cours de ma carrière, j'ai géré un hôtel fonctionnant en demi-pension.\\n\\nMais, face aux impératifs de rentabilité, aux demandes des tour-opérateurs et à l'évolution des attentes de la clientèle, nous avons progressivement adopté le modèle du « all inclusive ». L'objectif était avant tout économique. Par ailleurs, lorsqu'on parle de demi-pension, il faut aussi se poser une question essentielle : si le client quitte son hôtel, trouve-t-il réellement à l'extérieur des espaces attractifs où dépenser son argent ?\\n\\nDispose-t-on, dans certaines régions touristiques, d'une véritable offre d'animation, des restaurants de qualité avec des spécialités culinaires différentes, des loisirs ou des activités para-touristiques ? La réalité est que ces infrastructures restent insuffisamment développées dans plusieurs zones du pays. L'animation touristique hors des hôtels demeure souvent quasi-inexistante. Dans ces conditions, il est difficile d'imposer un modèle basé sur la demi-pension ou logement et petit-déjeuner.\\n\\nIl convient également de souligner que la destination pâtit de l'absence de marques fortes en matière de restauration et d'animation, susceptibles de rassurer la clientèle. Même les plus grands hôtels balnéaires du pays se sont finalement orientés vers le « all inclusive ». Cela montre bien qu'il s'agit d'une stratégie réfléchie et non d'un choix improvisé.\\n\\nIl faut aussi rappeler que cette formule contribue au développement de l'économie nationale, notamment en matière d'employabilité et de maintien de l'activité touristique. Contrairement à certaines idées répandues, le « all inclusive » n'a jamais pénalisé l'économie tunisienne. Le jour où la Tunisie développera davantage ses infrastructures d'animation, modernisera son offre de loisirs et adaptera certaines lois liées à l'investissement touristique, il sera alors possible de porter un regard plus critique sur ce modèle.\"},{\"question\":\"Q2 — Le modèle « all inclusive » nuit-il aujourd'hui à la qualité du tourisme tunisien ?\",\"answer\":\"Beaucoup de critiques du « all inclusive » reposent également sur une mauvaise compréhension du concept. Il faut savoir qu'il n'existe pas un seul modèle de « all inclusive » en Tunisie. La qualité varie considérablement d'un établissement à un autre. Certains hôtels proposent un « all inclusive » très basique, mais d'autres, « ultra all inclusive » et même « 24h all inclusive », offrent des prestations haut de gamme incluant des restaurants à la carte, des animations variées, des services premium et une expérience client plus raffinée.\\n\\nDans certains établissements, les boissons sont servies dans des gobelets jetables alors que dans d'autres, tout est pensé pour offrir un service de qualité supérieure. Le problème ne réside donc pas dans le concept lui-même, mais dans la manière dont il est appliqué. En Tunisie, plusieurs chaînes hôtelières sont reconnues pour l'excellence de leurs prestations et ont démontré qu'il était tout à fait possible de concilier « all inclusive » et qualité de service.\\n\\nPlus l'hôtel s'investit dans le confort et la propreté de l'hébergement, la qualité de la restauration, de l'animation et de l'expérience client, plus le produit devient attractif. L'hôtelier a donc le choix : soit proposer un « all inclusive » low cost fondé uniquement sur le volume, soit développer un produit qualitatif capable de fidéliser une clientèle plus exigeante et de valoriser l'image de la destination tunisienne.\\n\\nLe « all inclusive » ne se limite d'ailleurs pas à la nourriture et aux boissons. C'est un concept global qui englobe l'ensemble de l'expérience touristique : hébergement, restauration, bien-être, loisirs, animation, services et confort. Et cette expérience diffère fortement d'un hôtel à un autre.\"},{\"question\":\"Q3 — Un dernier message pour lever l'équivoque autour du « all inclusive »\",\"answer\":\"Il est important que le client, notamment tunisien, lise attentivement le contenu de l'offre qu'il achète. Tous les « all inclusive » ne se valent pas. Avant de réserver, il faut vérifier précisément ce qui est inclus dans la formule, à savoir la qualité de la restauration, les équipements, les activités d'animation, les prestations de la piscine, le confort des chambres ou encore les services annexes proposés par l'hôtel.\\n\\nLe point essentiel est donc de bien consulter le descriptif du produit touristique et de comprendre qu'un « all inclusive » peut être très différent d'un établissement à un autre.\"}],\"source\":\"Source : La Presse de Tunisie | lapresse.tn\"},{\"slug\":\"resilience-secteur-touristique-p6-49\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest-p6-50\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026-p6-51\",\"title\":\"Tourisme: Walid Tritar, nouveau Président de la Fi2T\",\"desc\":\"Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....\",\"date\":\"11 Mai 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026-p6-52\",\"title\":\"Secteur touristique: sous pression, mais résilient...\",\"desc\":\"Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive.... .\",\"date\":\"22 Mai 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest-p6-53\",\"title\":\"Houssem Azouz (Président de la Fédération interprofessionnelle...\",\"desc\":\"Houssem Azouz Le Centre Ouest du pays frappé par l’immensité de ses vestiges et leur couleur...\",\"date\":\"7 Avril 2026\",\"img\":\"/images/act9.png?v=6\"}]",
+          "per_page": "9"
+        },
+        "en": {
+          "items": "[{\"slug\":\"walid-tritar-president-fi2t\",\"title\":\"Tourism: Walid Tritar, new President of Fi2T\",\"desc\":\"Walid Tritar has been elected new President of Fi2T (Interprofessional Federation of Tunisian Tourism) for 2026–2029....\",\"date\":\"11 May 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression\",\"title\":\"Tourism sector: under pressure, but resilient...\",\"desc\":\"The global tourism sector is going through a challenging phase, with more demanding markets and later booking decisions....\",\"date\":\"22 May 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest\",\"title\":\"Houssem Azouz (President of the Interprofessional Federation...\",\"desc\":\"Houssem Azouz — the Centre-West of the country, marked by the scale of its heritage and its colours...\",\"date\":\"7 April 2026\",\"img\":\"/images/act3.png?v=6\",\"hero_title\":\"Houssem Azouz (President of the\\nInterprofessional Federation\"},{\"slug\":\"trois-questions-walid-tritar\",\"title\":\"Tunisian tourism — Three questions for Walid Tritar\",\"desc\":\"Walid Tritar has been elected new President of Fi2T for 2026–2029....\",\"date\":\"11 May 2026\",\"img\":\"/images/article-featured-walid.png?v=2\"},{\"slug\":\"resilience-secteur-touristique\",\"title\":\"Tourism sector: under pressure, but resilient...\",\"desc\":\"The global tourism sector is going through a challenging phase....\",\"date\":\"22 May 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest\",\"title\":\"Houssem Azouz (President of the Interprofessional Federation...\",\"desc\":\"Houssem Azouz — the Centre-West of the country...\",\"date\":\"7 April 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026\",\"title\":\"Tourism: Walid Tritar, new President of Fi2T\",\"desc\":\"Walid Tritar has been elected new President of Fi2T for 2026–2029....\",\"date\":\"11 May 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026\",\"title\":\"Tourism sector: under pressure, but resilient...\",\"desc\":\"The global tourism sector is going through a challenging phase....\",\"date\":\"22 May 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest\",\"title\":\"Houssem Azouz (President of the Interprofessional Federation...\",\"desc\":\"Houssem Azouz — the Centre-West of the country...\",\"date\":\"7 April 2026\",\"img\":\"/images/act9.png?v=6\"}]",
+          "per_page": "9"
+        },
+        "ar": {
+          "items": "[{\"slug\":\"walid-tritar-president-fi2t\",\"title\":\"السياحة: وليد تريتار، الرئيس الجديد لـ Fi2T\",\"desc\":\"تم انتخاب وليد تريتار رئيساً جديداً لـ Fi2T للفترة 2026–2029....\",\"date\":\"11 مايو 2026\",\"img\":\"/images/act1.png?v=6\"},{\"slug\":\"secteur-sous-pression\",\"title\":\"القطاع السياحي: تحت الضغط لكنه صامد...\",\"desc\":\"يشهد القطاع السياحي العالمي مرحلة صعبة مع أسواق أكثر تطلباً وقرارات سفر متأخرة....\",\"date\":\"22 مايو 2026\",\"img\":\"/images/act2.png?v=6\"},{\"slug\":\"houssem-azouz-centre-ouest\",\"title\":\"حسام عزوز (رئيس الاتحاد المهني المشترك...\",\"desc\":\"حسام عزوز — الوسط الغربي للبلاد بما يحمله من آثار وألوان...\",\"date\":\"7 أبريل 2026\",\"img\":\"/images/act3.png?v=6\",\"hero_title\":\"حسام عزوز (رئيس الاتحاد\\nالمهني المشترك\"},{\"slug\":\"trois-questions-walid-tritar\",\"title\":\"السياحة التونسية — ثلاثة أسئلة لوليد تريتار\",\"desc\":\"تم انتخاب وليد تريتار رئيساً جديداً لـ Fi2T للفترة 2026–2029....\",\"date\":\"11 مايو 2026\",\"img\":\"/images/article-featured-walid.png?v=2\"},{\"slug\":\"resilience-secteur-touristique\",\"title\":\"القطاع السياحي: تحت الضغط لكنه صامد...\",\"desc\":\"يشهد القطاع السياحي العالمي مرحلة صعبة....\",\"date\":\"22 مايو 2026\",\"img\":\"/images/act5.png?v=6\"},{\"slug\":\"fi2t-centre-ouest\",\"title\":\"حسام عزوز (رئيس الاتحاد المهني المشترك...\",\"desc\":\"حسام عزوز — الوسط الغربي للبلاد...\",\"date\":\"7 أبريل 2026\",\"img\":\"/images/act6.png?v=6\"},{\"slug\":\"mandat-fi2t-2026\",\"title\":\"السياحة: وليد تريتار، الرئيس الجديد لـ Fi2T\",\"desc\":\"تم انتخاب وليد تريتار رئيساً جديداً لـ Fi2T للفترة 2026–2029....\",\"date\":\"11 مايو 2026\",\"img\":\"/images/act7.png?v=6\"},{\"slug\":\"marches-touristiques-2026\",\"title\":\"القطاع السياحي: تحت الضغط لكنه صامد...\",\"desc\":\"يشهد القطاع السياحي العالمي مرحلة صعبة....\",\"date\":\"22 مايو 2026\",\"img\":\"/images/act8.png?v=6\"},{\"slug\":\"patrimoine-centre-ouest\",\"title\":\"حسام عزوز (رئيس الاتحاد المهني المشترك...\",\"desc\":\"حسام عزوز — الوسط الغربي للبلاد...\",\"date\":\"7 أبريل 2026\",\"img\":\"/images/act9.png?v=6\"}]",
+          "per_page": "9"
+        }
+      }
+    },
+    {
+      "slug": "article",
+      "title": "Page article",
+      "pattern": "text",
+      "sort_order": 3,
+      "keys": [
+        "banner"
+      ],
+      "values": {
+        "fr": {
+          "banner": "/images/article-banner.jpg?v=1"
+        },
+        "en": {
+          "banner": "/images/article-banner.jpg?v=1"
+        },
+        "ar": {
+          "banner": "/images/article-banner.jpg?v=1"
+        }
+      }
+    }
+  ],
+  "fiche-adhesion": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "Fiche adhésion"
+        },
+        "en": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "Membership form"
+        },
+        "ar": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "استمارة الانضمام"
+        }
+      }
+    },
+    {
+      "slug": "intro",
+      "title": "Introduction",
+      "pattern": "text",
+      "sort_order": 2,
+      "keys": [
+        "title",
+        "body"
+      ],
+      "values": {
+        "fr": {
+          "title": "Rejoignez la FI2T",
+          "body": "Devenez membre de la Fédération Interprofessionnelle du Tourisme Tunisien et participez activement à la modernisation, la diversification et la professionnalisation du tourisme tunisien."
+        },
+        "en": {
+          "title": "Join FI2T",
+          "body": "Become a member of the Interprofessional Federation of Tunisian Tourism and take an active part in modernising, diversifying and professionalising Tunisian tourism."
+        },
+        "ar": {
+          "title": "انضموا إلى FI2T",
+          "body": "انضموا إلى الاتحاد المهني المشترك للسياحة التونسية وشاركوا في تحديث وتنويع واحتراف السياحة التونسية."
+        }
+      }
+    },
+    {
+      "slug": "adherer",
+      "title": "Pourquoi adhérer",
+      "pattern": "cards_grid",
+      "sort_order": 3,
+      "keys": [
+        "image",
+        "badge_pos",
+        "badge",
+        "title",
+        "reasons",
+        "per_page"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/Rectangle 27.png",
+          "badge_pos": "{\"right\":-26,\"bottom\":-41}",
+          "badge": "50+\nMEMBRES ACTIFS",
+          "title": "Pourquoi adhérer à la Fi2T ?",
+          "reasons": "[{\"title\":\"Représentation Institutionnelle\",\"desc\":\"Être représenté auprès des gouvernements et institutions\"},{\"title\":\"Réseautage Stratégique\",\"desc\":\"Participer à un réseau professionnel structuré\"},{\"title\":\"Visibilité Accrue\",\"desc\":\"Améliorer sa visibilité et ses opportunités commerciales\"},{\"title\":\"Label de Qualité\",\"desc\":\"Bénéficier d’un label de qualité et de conformité\"},{\"title\":\"Ressources & Expertise\",\"desc\":\"Accéder à des ressources professionnelles et formations, renforçant ainsi sa compétitivité sur le marché tunisien et international\"}]",
+          "per_page": "5"
+        },
+        "en": {
+          "image": "/images/Rectangle 27.png",
+          "badge_pos": "{\"right\":-26,\"bottom\":-41}",
+          "badge": "50+\nACTIVE MEMBERS",
+          "title": "Why join Fi2T?",
+          "reasons": "[{\"title\":\"Institutional representation\",\"desc\":\"Be represented before governments and institutions\"},{\"title\":\"Strategic networking\",\"desc\":\"Join a structured professional network\"},{\"title\":\"Greater visibility\",\"desc\":\"Improve your visibility and commercial opportunities\"},{\"title\":\"Quality label\",\"desc\":\"Benefit from a quality and compliance label\"},{\"title\":\"Resources & expertise\",\"desc\":\"Access professional resources and training, strengthening competitiveness on the Tunisian and international market\"}]",
+          "per_page": "5"
+        },
+        "ar": {
+          "image": "/images/Rectangle 27.png",
+          "badge_pos": "{\"right\":-26,\"bottom\":-41}",
+          "badge": "50+\nأعضاء نشطون",
+          "title": "لماذا الانضمام إلى Fi2T؟",
+          "reasons": "[{\"title\":\"التمثيل المؤسسي\",\"desc\":\"التمثيل أمام الحكومات والمؤسسات\"},{\"title\":\"التشبيك الاستراتيجي\",\"desc\":\"المشاركة في شبكة مهنية منظّمة\"},{\"title\":\"ظهور أكبر\",\"desc\":\"تحسين الظهور والفرص التجارية\"},{\"title\":\"علامة الجودة\",\"desc\":\"الاستفادة من علامة جودة ومطابقة\"},{\"title\":\"الموارد والخبرة\",\"desc\":\"الوصول إلى موارد مهنية وتكوين يعزّز التنافسية في السوق التونسي والدولي\"}]",
+          "per_page": "5"
+        }
+      }
+    },
+    {
+      "slug": "form",
+      "title": "Formulaire",
+      "pattern": "text",
+      "sort_order": 4,
+      "keys": [
+        "title",
+        "label_org",
+        "label_contact",
+        "label_email",
+        "label_phone",
+        "label_activity",
+        "label_message",
+        "submit",
+        "success",
+        "placeholder_org",
+        "placeholder_contact",
+        "placeholder_email",
+        "placeholder_phone",
+        "placeholder_activity",
+        "placeholder_message"
+      ],
+      "values": {
+        "fr": {
+          "title": "Demande d’adhésion",
+          "label_org": "RAISON SOCIALE",
+          "label_contact": "NOM DU CONTACT",
+          "label_email": "ADRESSE EMAIL",
+          "label_phone": "TÉLÉPHONE",
+          "label_activity": "ACTIVITÉ / GROUPEMENT",
+          "label_message": "MESSAGE",
+          "submit": "Envoyer la demande",
+          "success": "Merci — votre demande d’adhésion a bien été envoyée.",
+          "placeholder_org": "Nom de votre structure",
+          "placeholder_contact": "Nom et prénom",
+          "placeholder_email": "nom@exemple.com",
+          "placeholder_phone": "+216 XX XXX XXX",
+          "placeholder_activity": "Ex: Agences de voyages",
+          "placeholder_message": "Présentez brièvement votre activité…"
+        },
+        "en": {
+          "title": "Membership application",
+          "label_org": "COMPANY NAME",
+          "label_contact": "CONTACT NAME",
+          "label_email": "EMAIL ADDRESS",
+          "label_phone": "PHONE",
+          "label_activity": "ACTIVITY / GROUP",
+          "label_message": "MESSAGE",
+          "submit": "Submit application",
+          "success": "Thank you — your membership application has been sent.",
+          "placeholder_org": "Name of your organisation",
+          "placeholder_contact": "First and last name",
+          "placeholder_email": "name@example.com",
+          "placeholder_phone": "+216 XX XXX XXX",
+          "placeholder_activity": "E.g.: Travel agencies",
+          "placeholder_message": "Briefly describe your activity…"
+        },
+        "ar": {
+          "title": "طلب انضمام",
+          "label_org": "الاسم الاجتماعي",
+          "label_contact": "اسم جهة الاتصال",
+          "label_email": "البريد الإلكتروني",
+          "label_phone": "الهاتف",
+          "label_activity": "النشاط / التجمع",
+          "label_message": "الرسالة",
+          "submit": "إرسال الطلب",
+          "success": "شكراً — تم إرسال طلب انضمامكم بنجاح.",
+          "placeholder_org": "اسم مؤسستكم",
+          "placeholder_contact": "الاسم واللقب",
+          "placeholder_email": "name@example.com",
+          "placeholder_phone": "+216 XX XXX XXX",
+          "placeholder_activity": "مثال: وكالات الأسفار",
+          "placeholder_message": "قدّموا نشاطكم باختصار…"
+        }
+      }
+    }
+  ],
+  "contact": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "Contact"
+        },
+        "en": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "Contact"
+        },
+        "ar": {
+          "image": "/images/desert-banner.jpg?v=1",
+          "title": "اتصل بنا"
+        }
+      }
+    },
+    {
+      "slug": "info",
+      "title": "Informations de contact",
+      "pattern": "cards_grid",
+      "sort_order": 2,
+      "keys": [
+        "title",
+        "items",
+        "per_page"
+      ],
+      "values": {
+        "fr": {
+          "title": "Informations de contact",
+          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"Adresse\",\"value\":\"Rue du Lac Turkana, Les Berges du\\nLac 1\\n1053 Tunis, Tunisie\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"Téléphone\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"Email\",\"value\":\"contact@fi2t.tn\"}]",
+          "per_page": "3"
+        },
+        "en": {
+          "title": "Contact information",
+          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"Address\",\"value\":\"Rue du Lac Turkana, Les Berges du\\nLac 1\\n1053 Tunis, Tunisia\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"Phone\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"Email\",\"value\":\"contact@fi2t.tn\"}]",
+          "per_page": "3"
+        },
+        "ar": {
+          "title": "معلومات الاتصال",
+          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"العنوان\",\"value\":\"شارع بحيرة تركانا، ضفاف البحيرة 1\\n1053 تونس، تونس\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"الهاتف\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"البريد الإلكتروني\",\"value\":\"contact@fi2t.tn\"}]",
+          "per_page": "3"
+        }
+      }
+    },
+    {
+      "slug": "form",
+      "title": "Formulaire",
+      "pattern": "text",
+      "sort_order": 3,
+      "keys": [
+        "label_name",
+        "label_email",
+        "label_subject",
+        "label_message",
+        "submit",
+        "success",
+        "placeholder_name",
+        "placeholder_email",
+        "placeholder_subject",
+        "placeholder_message"
+      ],
+      "values": {
+        "fr": {
+          "label_name": "NOM COMPLET",
+          "label_email": "ADRESSE EMAIL",
+          "label_subject": "SUJET",
+          "label_message": "MESSAGE",
+          "submit": "Envoyer",
+          "success": "Merci — votre message a bien été envoyé.",
+          "placeholder_name": "Nom et prénom",
+          "placeholder_email": "nom@exemple.com",
+          "placeholder_subject": "Ex: Demande de...",
+          "placeholder_message": "Votre message ici..."
+        },
+        "en": {
+          "label_name": "FULL NAME",
+          "label_email": "EMAIL ADDRESS",
+          "label_subject": "SUBJECT",
+          "label_message": "MESSAGE",
+          "submit": "Send",
+          "success": "Thank you — your message has been sent.",
+          "placeholder_name": "First and last name",
+          "placeholder_email": "name@example.com",
+          "placeholder_subject": "E.g.: Request for...",
+          "placeholder_message": "Your message here..."
+        },
+        "ar": {
+          "label_name": "الاسم الكامل",
+          "label_email": "البريد الإلكتروني",
+          "label_subject": "الموضوع",
+          "label_message": "الرسالة",
+          "submit": "إرسال",
+          "success": "شكراً — تم إرسال رسالتكم بنجاح.",
+          "placeholder_name": "الاسم واللقب",
+          "placeholder_email": "name@example.com",
+          "placeholder_subject": "مثال: طلب...",
+          "placeholder_message": "رسالتكم هنا..."
+        }
+      }
+    }
+  ],
+  "agences-de-voyages": [
+    {
+      "slug": "hero",
+      "title": "Bannière",
+      "pattern": "hero",
+      "sort_order": 1,
+      "keys": [
+        "image",
+        "title"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/groupement-photos/hero-agences-de-voyages.jpg",
+          "title": "Agences de voyages"
+        },
+        "en": {
+          "image": "/images/groupement-photos/hero-agences-de-voyages.jpg",
+          "title": "Travel agencies"
+        },
+        "ar": {
+          "image": "/images/groupement-photos/hero-agences-de-voyages.jpg",
+          "title": "وكالات الأسفار"
+        }
+      }
+    },
+    {
+      "slug": "positioning",
+      "title": "Positionnement",
+      "pattern": "text",
+      "sort_order": 2,
+      "keys": [
+        "title",
+        "body",
+        "pillars"
+      ],
+      "values": {
+        "fr": {
+          "title": "Positionnement FI2T",
+          "body": "La Fédération Interprofessionnelle du Tourisme Tunisien (FI2T) représente un ensemble d’acteurs engagés dans la modernisation, la diversification et la professionnalisation du tourisme tunisien.\nÀ travers ses membres, notamment les agences de voyages, la Fi2T œuvre pour :",
+          "pillars": "[{\"title\":\"Secteur structuré\",\"icon\":\"/images/g-icon-structure.svg\"},{\"title\":\"Intérêts professionnels\",\"icon\":\"/images/g-icon-interets.svg\"},{\"title\":\"Valeur ajoutée\",\"icon\":\"/images/g-icon-valeur.svg\"},{\"title\":\"Cadre réglementaire\",\"icon\":\"/images/g-icon-cadre.svg\"}]"
+        },
+        "en": {
+          "title": "FI2T Positioning",
+          "body": "The Interprofessional Federation of Tunisian Tourism (FI2T) represents actors committed to modernising, diversifying and professionalising Tunisian tourism.\nThrough its members, notably travel agencies, Fi2T works to:",
+          "pillars": "[{\"title\":\"Structured sector\",\"icon\":\"/images/g-icon-structure.svg\"},{\"title\":\"Professional interests\",\"icon\":\"/images/g-icon-interets.svg\"},{\"title\":\"Added value\",\"icon\":\"/images/g-icon-valeur.svg\"},{\"title\":\"Regulatory framework\",\"icon\":\"/images/g-icon-cadre.svg\"}]"
+        },
+        "ar": {
+          "title": "تموضع FI2T",
+          "body": "يمثل الاتحاد المهني المشترك للسياحة التونسية (FI2T) مجموعة من الفاعلين الملتزمين بتحديث وتنويع واحتراف السياحة التونسية.\nومن خلال أعضائه، ولا سيما وكالات الأسفار، تعمل Fi2T على:",
+          "pillars": "[{\"title\":\"قطاع منظّم\",\"icon\":\"/images/g-icon-structure.svg\"},{\"title\":\"المصالح المهنية\",\"icon\":\"/images/g-icon-interets.svg\"},{\"title\":\"قيمة مضافة\",\"icon\":\"/images/g-icon-valeur.svg\"},{\"title\":\"إطار تنظيمي\",\"icon\":\"/images/g-icon-cadre.svg\"}]"
+        }
+      }
+    },
+    {
+      "slug": "challenges",
+      "title": "Défis",
+      "pattern": "cards_grid",
+      "sort_order": 3,
+      "keys": [
+        "title",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Positionnement FI2T",
+          "items": "[{\"number\":\"01\",\"title\":\"Cadre réglementaire obsolète\",\"body\":\"• Législation obsolète ne tenant pas compte de la diversification des métiers du voyage.\\n• Absence de reconnaissance formelle des :\\n  - DMC,\\n  - agences spécialisées,\\n  - opérateurs de tourisme alternatif, culturel, sportif ou durable\\n  - catégorie Tour Opérateur (surtout pour les opérateurs outgoing et DMC)\\n• Procédures administratives lourdes et garanties financières dissuasives.\",\"constat\":\"Constat FI2T : le cadre actuel freine l’innovation, encourage l’informel et pénalise les initiatives structurées.\"},{\"number\":\"02\",\"title\":\"Fragilité économique des agences de voyages\",\"body\":\"• Marges commerciales en constante compression face à la concurrence des plateformes et des TO internationaux.\\n• Forte dépendance aux tour-opérateurs étrangers et aux commissions réduites.\\n• Saisonnalité marquée limitant la trésorerie et la capacité d’investissement.\\n• Accès difficile au financement bancaire et aux dispositifs de soutien.\",\"constat\":\"Constat FI2T : sans renforcement économique, les agences ne peuvent ni moderniser ni résister aux chocs.\"},{\"number\":\"03\",\"title\":\"Insuffisante diversification\",\"body\":\"• Offre encore trop centrée sur le tourisme balnéaire de masse.\\n• Sous-exploitation des niches à forte valeur (culturel, durable, sportif, MICE, senior).\\n• Manque de packaging et de mise en marché des produits différenciés.\\n• Coordination insuffisante avec les autres filières de la Fédération.\",\"constat\":\"Constat FI2T : la diversification est la condition d’un tourisme de valeur et de résilience.\"},{\"number\":\"04\",\"title\":\"Retard numérique\",\"body\":\"• Digitalisation partielle des process internes (réservation, CRM, reporting).\\n• Faible présence et visibilité sur les canaux digitaux.\\n• Outils de distribution peu adaptés aux comportements clients actuels.\\n• Retard structurel face aux OTA et aux plateformes internationales.\",\"constat\":\"Constat FI2T : sans accélération digitale, les agences perdent parts de marché et clients.\"},{\"number\":\"05\",\"title\":\"Déficit de compétences\",\"body\":\"• Besoin de formation continue sur les métiers émergents du voyage.\\n• Lacunes en relation client digitale et en e-commerce.\\n• Manque de compétences en conception de produits d’expérience.\\n• Faible culture de la data et du yield management.\",\"constat\":\"Constat FI2T : la montée en compétences est un levier prioritaire de compétitivité.\"}]"
+        },
+        "en": {
+          "title": "FI2T Positioning",
+          "items": "[{\"number\":\"01\",\"title\":\"Outdated regulatory framework\",\"body\":\"• Obsolete legislation that does not reflect the diversification of travel professions.\\n• No formal recognition of:\\n  - DMCs,\\n  - specialised agencies,\\n  - alternative, cultural, sports or sustainable tourism operators\\n  - Tour Operator category (especially for outgoing operators and DMCs)\\n• Heavy administrative procedures and discouraging financial guarantees.\",\"constat\":\"FI2T finding: the current framework slows innovation, encourages informality and penalises structured initiatives.\"},{\"number\":\"02\",\"title\":\"Economic fragility of travel agencies\",\"body\":\"• Commercial margins under constant pressure from platforms and international tour operators.\\n• Heavy reliance on foreign tour operators and reduced commissions.\\n• Strong seasonality limiting cash flow and investment capacity.\\n• Difficult access to bank financing and support schemes.\",\"constat\":\"FI2T finding: without economic strengthening, agencies can neither modernise nor withstand shocks.\"},{\"number\":\"03\",\"title\":\"Insufficient diversification\",\"body\":\"• Offer still too focused on mass seaside tourism.\\n• Underuse of high-value niches (cultural, sustainable, sports, MICE, senior).\\n• Lack of packaging and go-to-market for differentiated products.\\n• Insufficient coordination with the Federation’s other sectors.\",\"constat\":\"FI2T finding: diversification is the condition for value-driven and resilient tourism.\"},{\"number\":\"04\",\"title\":\"Digital lag\",\"body\":\"• Partial digitisation of internal processes (booking, CRM, reporting).\\n• Weak presence and visibility on digital channels.\\n• Distribution tools poorly suited to current customer behaviours.\\n• Structural lag versus OTAs and international platforms.\",\"constat\":\"FI2T finding: without digital acceleration, agencies lose market share and clients.\"},{\"number\":\"05\",\"title\":\"Skills gap\",\"body\":\"• Need for continuous training on emerging travel professions.\\n• Gaps in digital customer relations and e-commerce.\\n• Lack of skills in designing experience products.\\n• Weak data and yield-management culture.\",\"constat\":\"FI2T finding: upskilling is a priority lever for competitiveness.\"}]"
+        },
+        "ar": {
+          "title": "تموضع FI2T",
+          "items": "[{\"number\":\"01\",\"title\":\"إطار تنظيمي متقادم\",\"body\":\"• تشريع متقادم لا يأخذ بعين الاعتبار تنوّع مهن السفر.\\n• غياب اعتراف رسمي بـ:\\n  - منظمي الوجهات (DMC)،\\n  - الوكالات المتخصصة،\\n  - مشغّلي السياحة البديلة والثقافية والرياضية والمستدامة\\n  - فئة منظّم الرحلات (خاصة للعمليات الصادرة وDMC)\\n• إجراءات إدارية ثقيلة وضمانات مالية مُنفّرة.\",\"constat\":\"ملاحظة FI2T: الإطار الحالي يعيق الابتكار ويشجّع القطاع غير المنظم ويُعاقب المبادرات المنظّمة.\"},{\"number\":\"02\",\"title\":\"هشاشة اقتصادية لوكالات الأسفار\",\"body\":\"• هوامش تجارية تحت ضغط مستمر أمام المنصات ومنظمي الرحلات الدوليين.\\n• اعتماد قوي على منظمي الرحلات الأجانب والعمولات المخفّضة.\\n• موسمية حادة تحدّ من السيولة وقدرة الاستثمار.\\n• صعوبة الولوج إلى التمويل البنكي وآليات الدعم.\",\"constat\":\"ملاحظة FI2T: بدون تعزيز اقتصادي، لا تستطيع الوكالات التحديث ولا مواجهة الصدمات.\"},{\"number\":\"03\",\"title\":\"تنويع غير كافٍ\",\"body\":\"• عرض ما زال مركّزاً أكثر من اللازم على السياحة الشاطئية الجماعية.\\n• ضعف استغلال المجالات ذات القيمة العالية (ثقافي، مستدام، رياضي، أعمال، كبار السن).\\n• نقص في تغليف المنتجات المميزة وتسويقها.\\n• تنسيق غير كافٍ مع باقي فروع الجامعة.\",\"constat\":\"ملاحظة FI2T: التنويع شرط لسياحة ذات قيمة ومرونة.\"},{\"number\":\"04\",\"title\":\"تأخّر رقمي\",\"body\":\"• رقمنة جزئية للعمليات الداخلية (الحجز، إدارة العملاء، التقارير).\\n• حضور ضعيف على القنوات الرقمية.\\n• أدوات توزيع غير ملائمة لسلوك العملاء الحالي.\\n• تأخّر هيكلي أمام منصات الحجز الدولية.\",\"constat\":\"ملاحظة FI2T: بدون تسريع رقمي، تفقد الوكالات حصص السوق والعملاء.\"},{\"number\":\"05\",\"title\":\"عجز في الكفاءات\",\"body\":\"• حاجة إلى تكوين مستمر في المهن الناشئة للسفر.\\n• ثغرات في علاقة العميل الرقمية والتجارة الإلكترونية.\\n• نقص كفاءات في تصميم منتجات التجربة.\\n• ثقافة ضعيفة للبيانات وإدارة العائد.\",\"constat\":\"ملاحظة FI2T: رفع الكفاءات رافعة أولوية للقدرة التنافسية.\"}]"
+        }
+      }
+    },
+    {
+      "slug": "enjeux",
+      "title": "Enjeux stratégiques",
+      "pattern": "cards_grid",
+      "sort_order": 4,
+      "keys": [
+        "image",
+        "title",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "image": "/images/groupement-enjeux.jpg",
+          "title": "Enjeux stratégiques",
+          "items": "[\"Positionner les agences de voyages comme acteurs centraux de la stratégie touristique nationale.\",\"Passer d’un tourisme de volume à un tourisme de valeur, d’expérience et de durabilité.\",\"Renforcer la résilience économique des agences.\",\"Favoriser l’investissement, l’innovation et l’emploi qualifié.\",\"Réduire l’informel par un cadre incitatif et moderne.\"]"
+        },
+        "en": {
+          "image": "/images/groupement-enjeux.jpg",
+          "title": "Strategic stakes",
+          "items": "[\"Position travel agencies as central actors of the national tourism strategy.\",\"Move from volume tourism to value, experience and sustainability tourism.\",\"Strengthen the economic resilience of agencies.\",\"Foster investment, innovation and skilled employment.\",\"Reduce informality through an incentive-based, modern framework.\"]"
+        },
+        "ar": {
+          "image": "/images/groupement-enjeux.jpg",
+          "title": "التحديات الاستراتيجية",
+          "items": "[\"تموضع وكالات الأسفار كفاعلين محوريين في الاستراتيجية السياحية الوطنية.\",\"الانتقال من سياحة الحجم إلى سياحة القيمة والتجربة والاستدامة.\",\"تعزيز المرونة الاقتصادية للوكالات.\",\"تشجيع الاستثمار والابتكار والتشغيل المؤهل.\",\"الحد من القطاع غير المنظم عبر إطار تحفيزي وحديث.\"]"
+        }
+      }
+    },
+    {
+      "slug": "proposals",
+      "title": "Propositions",
+      "pattern": "cards_grid",
+      "sort_order": 5,
+      "keys": [
+        "title",
+        "items"
+      ],
+      "values": {
+        "fr": {
+          "title": "Propositions stratégiques",
+          "items": "[{\"title\":\"Réforme du cadre réglementaire (priorité FI2T)\",\"body\":\"• Révision de la loi régissant les agences de voyages.\\n• Reconnaissance officielle des nouvelles catégories d’opérateurs.\\n• Simplification et digitalisation des procédures administratives.\\n• Révision des garanties financières selon l’activité réelle et le risque.\\nRôle FI2T : force de proposition et partenaire technique de l’État dans la réforme.\"},{\"title\":\"Soutien à la diversification et à la montée en gamme\",\"body\":\"Accompagner le développement de produits différenciés et à forte valeur ajoutée, en lien avec les autres groupements de la Fédération.\"},{\"title\":\"Accélération de la transformation digitale\",\"body\":\"Favoriser l’adoption d’outils numériques, la distribution en ligne et la modernisation des systèmes de réservation.\"},{\"title\":\"Formation et professionnalisation\",\"body\":\"Programmes de formation continue pour renforcer les compétences métier, commerciales et digitales des équipes.\"},{\"title\":\"Gouvernance et dialogue public–privé\",\"body\":\"Structurer un dialogue permanent avec les institutions pour aligner réglementation, investissement et stratégie nationale.\"}]"
+        },
+        "en": {
+          "title": "Strategic proposals",
+          "items": "[{\"title\":\"Regulatory reform (FI2T priority)\",\"body\":\"• Revision of the law governing travel agencies.\\n• Official recognition of new operator categories.\\n• Simplification and digitisation of administrative procedures.\\n• Revision of financial guarantees according to real activity and risk.\\nFI2T role: proposal force and technical partner of the State in the reform.\"},{\"title\":\"Support for diversification and upmarket positioning\",\"body\":\"Support the development of differentiated, high-value products, in link with the Federation’s other groups.\"},{\"title\":\"Acceleration of digital transformation\",\"body\":\"Foster the adoption of digital tools, online distribution and the modernisation of booking systems.\"},{\"title\":\"Training and professionalisation\",\"body\":\"Continuous training programmes to strengthen the business, commercial and digital skills of teams.\"},{\"title\":\"Governance and public–private dialogue\",\"body\":\"Structure an ongoing dialogue with institutions to align regulation, investment and national strategy.\"}]"
+        },
+        "ar": {
+          "title": "المقترحات الاستراتيجية",
+          "items": "[{\"title\":\"إصلاح الإطار التنظيمي (أولوية FI2T)\",\"body\":\"• مراجعة القانون المنظّم لوكالات الأسفار.\\n• اعتراف رسمي بفئات المشغّلين الجديدة.\\n• تبسيط ورقمنة الإجراءات الإدارية.\\n• مراجعة الضمانات المالية وفق النشاط الفعلي والمخاطر.\\nدور FI2T: قوة اقتراح وشريك تقني للدولة في الإصلاح.\"},{\"title\":\"دعم التنويع والارتقاء بالجودة\",\"body\":\"مواكبة تطوير منتجات مميزة وذات قيمة مضافة عالية، بالتنسيق مع باقي تجمعات الجامعة.\"},{\"title\":\"تسريع التحول الرقمي\",\"body\":\"تشجيع اعتماد الأدوات الرقمية والتوزيع عبر الإنترنت وتحديث أنظمة الحجز.\"},{\"title\":\"التكوين والاحتراف\",\"body\":\"برامج تكوين مستمر لتعزيز كفاءات الفرق المهنية والتجارية والرقمية.\"},{\"title\":\"الحوكمة والحوار بين القطاعين العام والخاص\",\"body\":\"هيكلة حوار دائم مع المؤسسات لمواءمة التنظيم والاستثمار والاستراتيجية الوطنية.\"}]"
+        }
+      }
+    }
+  ],
+  "global": [
+    {
+      "slug": "header",
+      "title": "En-tête",
+      "pattern": "text_image",
+      "sort_order": 1,
+      "keys": [
+        "logo"
+      ],
+      "values": {
+        "fr": {
+          "logo": "/logo.png"
+        },
+        "en": {
+          "logo": "/logo.png"
+        },
+        "ar": {
+          "logo": "/logo.png"
+        }
+      }
+    },
+    {
+      "slug": "footer",
+      "title": "Pied de page",
+      "pattern": "text",
+      "sort_order": 2,
+      "keys": [
+        "about",
+        "address",
+        "phone_1",
+        "phone_2",
+        "email",
+        "newsletter"
+      ],
+      "values": {
+        "fr": {
+          "about": "La Fédération Interprofessionnelle du Tourisme Tunisien œuvre pour le rayonnement et la modernisation du secteur.",
+          "address": "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisie",
+          "newsletter": "Restez informé de nos dernières initiatives."
+        },
+        "en": {
+          "about": "The Interprofessional Federation of Tunisian Tourism works for the outreach and modernisation of the sector.",
+          "address": "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisie",
+          "newsletter": "Stay informed about our latest initiatives."
+        },
+        "ar": {
+          "about": "يعمل الاتحاد المهني المشترك للسياحة التونسية على إشعاع القطاع وتحديثه.",
+          "address": "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisie",
+          "newsletter": "ابقوا على اطلاع بآخر مبادراتنا."
+        }
+      }
+    },
+    {
+      "slug": "settings",
+      "title": "Paramètres du site",
+      "pattern": "text",
+      "sort_order": 3,
+      "keys": [
+        "hotel_name",
+        "tagline"
+      ],
+      "values": {
+        "fr": {
+          "tagline": "Fédération Interprofessionnelle du Tourisme Tunisien"
+        },
+        "en": {
+          "tagline": "Interprofessional Federation of Tunisian Tourism"
+        },
+        "ar": {
+          "tagline": "الاتحاد المهني المشترك للسياحة التونسية"
+        }
+      }
+    }
+  ]
+}

@@ -1,10 +1,18 @@
 ﻿/* Editable overlays */
 .cms-editable {
-  position: relative;
   cursor: pointer;
   outline: 2px dashed transparent;
   outline-offset: 4px;
   transition: outline-color 0.2s;
+}
+
+/*
+ * Only text fields need a local positioning context (pen badge).
+ * Never force position on images / absolute artboard nodes — that overrides
+ * layout CSS (e.g. .fi2t-page-hero__bg { position:absolute; inset:0 }).
+ */
+.cms-editable--text {
+  position: relative;
 }
 
 .cms-editable:hover {
@@ -32,7 +40,55 @@
 
 .cms-editable:hover .cms-editable__badge { opacity: 1; }
 
-.cms-editable--image { overflow: hidden; }
+/*
+ * Image wrappers MUST create a containing block so .cms-editable__overlay
+ * (position:absolute; inset:0) stays inside the photo — otherwise it paints
+ * over unrelated page content (accordion text, etc.).
+ * Full-bleed heroes use variant="chip" and never get this class.
+ */
+.cms-editable--image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.cms-editable__img-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #191c1d;
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* Standalone chip (not nested in a full-bleed editable image) */
+.cms-editable__img-label--chip {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 6;
+  margin: 0;
+  width: auto;
+  height: auto;
+  max-width: none;
+  pointer-events: auto;
+}
+
+.cms-editable__img-label--chip:hover {
+  background: #2a2f33;
+}
 
 .cms-editable__overlay {
   position: absolute;
@@ -47,6 +103,8 @@
   gap: 8px;
   opacity: 0;
   transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .cms-editable--image:hover .cms-editable__overlay { opacity: 1; }
@@ -96,6 +154,59 @@
   outline: none;
   resize: vertical;
   border-radius: 4px;
+}
+
+.cms-edit-popup__range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cms-edit-popup__slider,
+.cms-percent-edit__slider,
+.cms-list-panel__range input[type='range'] {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--fi2t-teal, #00a98d);
+  cursor: pointer;
+}
+
+.cms-edit-popup__range-value {
+  min-width: 3.2rem;
+  text-align: right;
+  font-size: 15px;
+  color: #fff;
+}
+
+.cms-percent-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 140px;
+  max-width: 220px;
+  cursor: pointer;
+}
+
+.cms-percent-edit__value {
+  min-width: 2.75rem;
+  text-align: right;
+  font-family: Montserrat, var(--fi2t-font), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #00a98d;
+  font-synthesis: none;
+}
+
+.cms-list-panel__field--percent .cms-list-panel__range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cms-list-panel__field--percent .cms-list-panel__range strong {
+  min-width: 3rem;
+  text-align: right;
+  color: #00a98d;
 }
 
 .cms-edit-popup__actions {
@@ -266,9 +377,463 @@ body.cms-edit-active {
   padding-bottom: 76px;
 }
 
-/* List keeps public layout; full editor opens in a modal */
+/*
+ * List keeps public layout; full editor opens in a modal.
+ * Do NOT force position:relative — that overrides absolute artboard
+ * containers (Thalasso atouts/défis/diag/plan) and hides list triggers
+ * or covers section titles in edit mode.
+ */
 .cms-json-list.is-editing {
+  isolation: isolate;
+}
+
+/* Only establish a positioning context when the list is in normal flow.
+ * Exclude Figma-locked absolute artboards (thalasso / senior / thermal / medical). */
+.cms-json-list.is-editing:not([class*='fi2t-gl-thal-']):not([class*='fi2t-gl-sen-']):not([class*='fi2t-gl-therm-']):not([class*='fi2t-gl-med-']):not([class*='fi2t-gl-av-']):not([class*='fi2t-gl-aff-']):not([class*='fi2t-gl-golf-']):not([class*='fi2t-gl-plais-']):not([class*='fi2t-gl-auto-']):not(.fi2t-gl-stats--thal):not(.fi2t-gl-numgrid--thal) {
   position: relative;
+}
+
+/* Absolute artboard lists must stay absolute in edit mode */
+.cms-json-list.is-editing.fi2t-gl-thal-atouts,
+.cms-json-list.is-editing.fi2t-gl-thal-defis__grid,
+.cms-json-list.is-editing.fi2t-gl-stats--thal,
+.cms-json-list.is-editing.fi2t-gl-numgrid--thal,
+.cms-json-list.is-editing.fi2t-gl-sen-pourquoi__cards,
+.cms-json-list.is-editing.fi2t-gl-sen-services__row,
+.cms-json-list.is-editing.fi2t-gl-sen-defis__cards,
+.cms-json-list.is-editing.fi2t-gl-sen-roadmap__list,
+.cms-json-list.is-editing.fi2t-gl-therm-pot__cards,
+.cms-json-list.is-editing.fi2t-gl-therm-places,
+.cms-json-list.is-editing.fi2t-gl-therm-defis__row,
+.cms-json-list.is-editing.fi2t-gl-therm-roadmap__grid,
+.cms-json-list.is-editing.fi2t-gl-med-adv__grid,
+.cms-json-list.is-editing.fi2t-gl-med-diag__row,
+.cms-json-list.is-editing.fi2t-gl-med-actions__grid,
+.cms-json-list.is-editing.fi2t-gl-av-wealth__photos,
+.cms-json-list.is-editing.fi2t-gl-av-freins__row,
+.cms-json-list.is-editing.fi2t-gl-av-roadmap__list,
+.cms-json-list.is-editing.fi2t-gl-aff-mondial__row,
+.cms-json-list.is-editing.fi2t-gl-aff-tn__stats,
+.cms-json-list.is-editing.fi2t-gl-aff-atouts__grid,
+.cms-json-list.is-editing.fi2t-gl-aff-diag__grid,
+.cms-json-list.is-editing.fi2t-gl-aff-axes__row,
+.cms-json-list.is-editing.fi2t-gl-golf-pot__row,
+.cms-json-list.is-editing.fi2t-gl-golf-defis__grid,
+.cms-json-list.is-editing.fi2t-gl-golf-map__grid,
+.cms-json-list.is-editing.fi2t-gl-plais-probs__grid,
+.cms-json-list.is-editing.fi2t-gl-plais-actions__list,
+.cms-json-list.is-editing.fi2t-gl-auto-stats-row {
+  position: absolute;
+}
+
+.fi2t-gl-therm-pot__cards > .cms-list-trigger-wrap,
+.fi2t-gl-therm-places > .cms-list-trigger-wrap,
+.fi2t-gl-therm-defis__row > .cms-list-trigger-wrap,
+.fi2t-gl-therm-roadmap__grid > .cms-list-trigger-wrap,
+.fi2t-gl-med-adv__grid > .cms-list-trigger-wrap,
+.fi2t-gl-med-diag__row > .cms-list-trigger-wrap,
+.fi2t-gl-med-actions__grid > .cms-list-trigger-wrap,
+.fi2t-gl-av-wealth__photos > .cms-list-trigger-wrap,
+.fi2t-gl-av-freins__row > .cms-list-trigger-wrap,
+.fi2t-gl-av-roadmap__list > .cms-list-trigger-wrap,
+.fi2t-gl-aff-mondial__row > .cms-list-trigger-wrap,
+.fi2t-gl-aff-tn__stats > .cms-list-trigger-wrap,
+.fi2t-gl-aff-atouts__grid > .cms-list-trigger-wrap,
+.fi2t-gl-aff-diag__grid > .cms-list-trigger-wrap,
+.fi2t-gl-aff-axes__row > .cms-list-trigger-wrap,
+.fi2t-gl-golf-pot__row > .cms-list-trigger-wrap,
+.fi2t-gl-golf-etat__stats > .cms-list-trigger-wrap,
+.fi2t-gl-golf-defis__grid > .cms-list-trigger-wrap,
+.fi2t-gl-golf-map__grid > .cms-list-trigger-wrap,
+.fi2t-gl-plais-probs__grid > .cms-list-trigger-wrap,
+.fi2t-gl-plais-actions__list > .cms-list-trigger-wrap,
+.fi2t-gl-plais-impact__cards > .cms-list-trigger-wrap,
+.fi2t-gl-auto-stats-row > .cms-list-trigger-wrap {
+  position: absolute;
+  top: 16px;
+  right: max(16px, calc((100% - 1440px) / 2 + 16px));
+  z-index: 6;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1439px) {
+  .fi2t-gl-therm-pot__cards > .cms-list-trigger-wrap,
+  .fi2t-gl-therm-places > .cms-list-trigger-wrap,
+  .fi2t-gl-therm-defis__row > .cms-list-trigger-wrap,
+  .fi2t-gl-therm-roadmap__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-med-adv__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-med-diag__row > .cms-list-trigger-wrap,
+  .fi2t-gl-med-actions__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-av-wealth__photos > .cms-list-trigger-wrap,
+  .fi2t-gl-av-freins__row > .cms-list-trigger-wrap,
+  .fi2t-gl-av-roadmap__list > .cms-list-trigger-wrap,
+  .fi2t-gl-aff-mondial__row > .cms-list-trigger-wrap,
+  .fi2t-gl-aff-tn__stats > .cms-list-trigger-wrap,
+  .fi2t-gl-aff-atouts__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-aff-diag__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-aff-axes__row > .cms-list-trigger-wrap,
+  .fi2t-gl-golf-pot__row > .cms-list-trigger-wrap,
+  .fi2t-gl-golf-etat__stats > .cms-list-trigger-wrap,
+  .fi2t-gl-golf-defis__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-golf-map__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-plais-probs__grid > .cms-list-trigger-wrap,
+  .fi2t-gl-plais-actions__list > .cms-list-trigger-wrap,
+  .fi2t-gl-plais-impact__cards > .cms-list-trigger-wrap,
+  .fi2t-gl-auto-stats-row > .cms-list-trigger-wrap {
+    position: static;
+    top: auto;
+    right: auto;
+    margin: 0 0 12px;
+    justify-content: flex-start;
+  }
+
+  .cms-json-list.is-editing.fi2t-gl-therm-pot__cards,
+  .cms-json-list.is-editing.fi2t-gl-therm-places,
+  .cms-json-list.is-editing.fi2t-gl-therm-defis__row,
+  .cms-json-list.is-editing.fi2t-gl-therm-roadmap__grid,
+  .cms-json-list.is-editing.fi2t-gl-med-adv__grid,
+  .cms-json-list.is-editing.fi2t-gl-med-diag__row,
+  .cms-json-list.is-editing.fi2t-gl-med-actions__grid,
+  .cms-json-list.is-editing.fi2t-gl-av-wealth__photos,
+  .cms-json-list.is-editing.fi2t-gl-av-freins__row,
+  .cms-json-list.is-editing.fi2t-gl-av-roadmap__list,
+  .cms-json-list.is-editing.fi2t-gl-aff-mondial__row,
+  .cms-json-list.is-editing.fi2t-gl-aff-tn__stats,
+  .cms-json-list.is-editing.fi2t-gl-aff-atouts__grid,
+  .cms-json-list.is-editing.fi2t-gl-aff-diag__grid,
+  .cms-json-list.is-editing.fi2t-gl-aff-axes__row,
+  .cms-json-list.is-editing.fi2t-gl-golf-pot__row,
+  .cms-json-list.is-editing.fi2t-gl-golf-defis__grid,
+  .cms-json-list.is-editing.fi2t-gl-golf-map__grid,
+  .cms-json-list.is-editing.fi2t-gl-plais-probs__grid,
+  .cms-json-list.is-editing.fi2t-gl-plais-actions__list,
+  .cms-json-list.is-editing.fi2t-gl-auto-stats-row {
+    position: static;
+  }
+}
+
+/* Station photo edit hit area = card bounds only */
+.fi2t-gl-therm-place .cms-list-image-btn.fi2t-gl-therm-place__image,
+.fi2t-gl-therm-place .cms-list-image-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fi2t-gl-therm-place .cms-list-image-btn img,
+.fi2t-gl-therm-place .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.fi2t-gl-therm-defis-item .cms-list-image-btn {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.fi2t-gl-therm-defis-item .cms-list-image-btn img,
+.fi2t-gl-therm-defis-item .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Medical — icon edit hit areas stay compact */
+.fi2t-gl-med-adv__card .cms-list-image-btn.fi2t-gl-med-adv__icon,
+.fi2t-gl-med-diag__card .cms-list-image-btn.fi2t-gl-med-diag__icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.fi2t-gl-med-adv__card .cms-list-image-btn.fi2t-gl-med-adv__icon {
+  width: 48px;
+  height: 48px;
+}
+
+.fi2t-gl-med-adv__card .cms-list-image-btn img,
+.fi2t-gl-med-adv__card .cms-list-image-btn__fallback,
+.fi2t-gl-med-diag__card .cms-list-image-btn img,
+.fi2t-gl-med-diag__card .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.fi2t-gl-med-bars > .cms-list-trigger-wrap {
+  position: relative;
+  z-index: 4;
+  margin: 0 0 16px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Auto stats — band clips absolute children; keep trigger inside in edit mode */
+body.cms-edit-active .fi2t-gl-auto-stats-band {
+  overflow: visible;
+}
+
+.fi2t-gl-auto-stats-row > .cms-list-trigger-wrap {
+  position: absolute;
+  top: 16px;
+  right: max(16px, calc((100% - 1440px) / 2 + 16px));
+  z-index: 6;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Golf défis — icon must match 64×64 artboard circle, centered */
+.fi2t-gl-golf-defis__card .cms-list-image-btn.fi2t-gl-golf-defis__icon {
+  width: 64px;
+  height: 64px;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.fi2t-gl-golf-defis__card .cms-list-image-btn.fi2t-gl-golf-defis__icon img,
+.fi2t-gl-golf-defis__card .cms-list-image-btn.fi2t-gl-golf-defis__icon .cms-list-image-btn__fallback {
+  width: 64px;
+  height: 64px;
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0 auto;
+}
+
+.fi2t-gl-golf-defis__card .cms-list-image-btn__overlay {
+  border-radius: 50%;
+}
+
+/* Aventure — photo + freins icon edit hit areas */
+.fi2t-gl-av-wealth__photo .cms-list-image-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  overflow: hidden;
+}
+
+.fi2t-gl-av-freins__card .cms-list-image-btn.fi2t-gl-av-freins__icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.fi2t-gl-av-freins__card .cms-list-image-btn img,
+.fi2t-gl-av-freins__card .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.fi2t-gl-av-market__kpis > .cms-list-trigger-wrap {
+  margin: 0 0 12px;
+}
+
+/* Affaire — icon edit hit areas */
+.fi2t-gl-aff-atouts__card .cms-list-image-btn.fi2t-gl-aff-atouts__icon,
+.fi2t-gl-aff-diag__cell .cms-list-image-btn.fi2t-gl-aff-diag__icon {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.fi2t-gl-aff-atouts__card .cms-list-image-btn.fi2t-gl-aff-atouts__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.fi2t-gl-aff-diag__cell .cms-list-image-btn.fi2t-gl-aff-diag__icon {
+  width: 21px;
+  height: 18px;
+  margin-right: 16px;
+}
+
+.fi2t-gl-aff-atouts__card .cms-list-image-btn img,
+.fi2t-gl-aff-atouts__card .cms-list-image-btn__fallback,
+.fi2t-gl-aff-diag__cell .cms-list-image-btn img,
+.fi2t-gl-aff-diag__cell .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Golf — icon edit hit areas */
+.fi2t-gl-golf-pot__card .cms-list-image-btn.fi2t-gl-golf-pot__icon {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+
+.fi2t-gl-golf-pot__card .cms-list-image-btn img,
+.fi2t-gl-golf-pot__card .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Plaisance — icon edit hit areas */
+.fi2t-gl-plais-impact__chip .cms-list-image-btn.fi2t-gl-plais-impact__icon,
+.fi2t-gl-plais-probs__card .cms-list-image-btn.fi2t-gl-plais-probs__icon {
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.fi2t-gl-plais-impact__chip .cms-list-image-btn.fi2t-gl-plais-impact__icon {
+  width: 33px;
+  height: 24px;
+}
+
+.fi2t-gl-plais-impact__card--2 .fi2t-gl-plais-impact__chip .cms-list-image-btn.fi2t-gl-plais-impact__icon {
+  width: 27px;
+  height: 27px;
+}
+
+.fi2t-gl-plais-probs__card .cms-list-image-btn.fi2t-gl-plais-probs__icon {
+  width: 23px;
+  height: 24px;
+}
+
+.fi2t-gl-plais-impact__chip .cms-list-image-btn img,
+.fi2t-gl-plais-impact__chip .cms-list-image-btn__fallback,
+.fi2t-gl-plais-probs__card .cms-list-image-btn img,
+.fi2t-gl-plais-probs__card .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.fi2t-gl-plais-actions__item em .cms-field,
+.fi2t-gl-plais-actions__item em > span {
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+.fi2t-gl-plais-parent__icon.cms-editable--image img {
+  object-fit: contain;
+}
+
+.fi2t-gl-auto-real__img.cms-editable--image,
+.fi2t-gl-auto-actions__img.cms-editable--image {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* Senior absolute bands — list trigger sits above the artboard grid */
+.fi2t-gl-sen-pourquoi > .cms-list-trigger-wrap,
+.fi2t-gl-sen-services > .cms-list-trigger-wrap,
+.fi2t-gl-sen-defis > .cms-list-trigger-wrap,
+.fi2t-gl-sen-roadmap > .cms-list-trigger-wrap {
+  display: none;
+}
+
+.fi2t-gl-sen-pourquoi__cards > .cms-list-trigger-wrap,
+.fi2t-gl-sen-services__row > .cms-list-trigger-wrap,
+.fi2t-gl-sen-defis__cards > .cms-list-trigger-wrap,
+.fi2t-gl-sen-roadmap__list > .cms-list-trigger-wrap {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  z-index: 6;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fi2t-gl-sen-card .cms-list-image-btn,
+.fi2t-gl-sen-defis-card .cms-list-image-btn {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  margin: 0 0 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fi2t-gl-sen-card .cms-list-image-btn img,
+.fi2t-gl-sen-defis-card .cms-list-image-btn img,
+.fi2t-gl-sen-card .cms-list-image-btn__fallback,
+.fi2t-gl-sen-defis-card .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fi2t-gl-sen-defis-card .cms-list-image-btn {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+}
+
+.fi2t-gl-sen-services__item .cms-list-image-btn {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 32px;
+  padding: 0;
+}
+
+.fi2t-gl-sen-services__item--1 .cms-list-image-btn { top: 5px; width: 28px; height: 32px; }
+.fi2t-gl-sen-services__item--2 .cms-list-image-btn { top: 11px; width: 30px; height: 24px; }
+.fi2t-gl-sen-services__item--3 .cms-list-image-btn { top: 22px; width: 30px; height: 32px; }
+
+.fi2t-gl-sen-services__item .cms-list-image-btn img,
+.fi2t-gl-sen-services__item .cms-list-image-btn__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .cms-list-trigger-wrap {
@@ -310,20 +875,88 @@ body.cms-edit-active {
   text-align: center;
 }
 
+/* —— Add article (Actualités Live Editor) —— */
+.cms-add-article-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  width: min(100% - 2rem, 1280px);
+  margin: 28px auto 8px;
+}
+
+.cms-add-article-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--fi2t-teal, #00a98d);
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 169, 141, 0.28);
+}
+
+.cms-add-article-btn:hover {
+  background: #008f78;
+}
+
+.cms-add-article-btn--section {
+  margin: 24px 0 8px;
+  box-shadow: none;
+  background: #001e40;
+}
+
+.cms-add-article-btn--section:hover {
+  background: #002a58;
+}
+
+.cms-add-article-bar__hint {
+  margin: 0;
+  font-size: 13px;
+  color: #5a6570;
+}
+
+.cms-add-article-panel__error {
+  margin: 0 0 12px;
+  color: #b42318;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fi2t-actu-card__edit-link {
+  display: inline-block;
+  margin: 0 18px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fi2t-teal, #00a98d);
+  text-decoration: none;
+}
+
+.fi2t-actu-card__edit-link:hover {
+  text-decoration: underline;
+}
+
 .cms-list-modal {
   position: fixed;
   inset: 0;
   z-index: 12000;
-  display: grid;
-  place-items: center;
-  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(0.75rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
   background: rgba(15, 23, 32, 0.55);
   backdrop-filter: blur(3px);
+  box-sizing: border-box;
 }
 
 .cms-list-panel {
-  width: 100%;
-  max-width: 720px;
+  width: min(100%, 720px);
+  max-width: 100%;
   max-height: min(88vh, 900px);
   overflow: auto;
   padding: 1.25rem 1.35rem 1.35rem;
@@ -333,6 +966,8 @@ body.cms-edit-active {
   box-shadow: 0 18px 50px rgba(15, 40, 60, 0.28);
   color: #191c1d;
   text-align: left;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .cms-list-panel__head {
@@ -341,12 +976,14 @@ body.cms-edit-active {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.75rem;
+  min-width: 0;
 }
 
 .cms-list-panel__badge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  flex: 0 0 auto;
   padding: 0.25rem 0.55rem;
   border-radius: 6px;
   background: rgba(196, 120, 40, 0.12);
@@ -354,27 +991,37 @@ body.cms-edit-active {
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .cms-list-panel__key {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
   background: #f1f3f5;
   color: #5c6370;
   font-size: 0.72rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cms-list-panel__lang {
+  flex: 0 0 auto;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
   background: rgba(0, 169, 141, 0.12);
   color: var(--fi2t-teal, #00a98d);
   font-size: 0.72rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .cms-list-panel__close {
+  flex: 0 0 auto;
   margin-left: auto;
   width: 32px;
   height: 32px;
@@ -552,8 +1199,8 @@ body.cms-edit-active {
   position: relative;
   display: grid;
   place-items: center;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   min-width: 28px;
   min-height: 28px;
   padding: 0;
@@ -563,11 +1210,42 @@ body.cms-edit-active {
   border-radius: inherit;
 }
 
+/* Full-bleed photo slots (cards, heroes) — not icons */
+.fi2t-gl-hub-card__media .cms-list-image-btn,
+.fi2t-actu-card .cms-list-image-btn,
+.fi2t-news-card .cms-list-image-btn,
+.fi2t-gl-typecard__image .cms-list-image-btn {
+  width: 100%;
+  height: 100%;
+}
+
 .cms-list-image-btn img {
   width: 28px;
   height: 28px;
   object-fit: contain;
   display: block;
+}
+
+.cms-list-image-btn__fallback {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: inherit;
+}
+
+.cms-list-image-btn__fallback svg {
+  width: 22px;
+  height: 22px;
+}
+
+.fi2t-gl-card__icon .cms-list-image-btn,
+.fi2t-gl-thal-atout .cms-list-image-btn {
+  width: auto;
+  height: auto;
+  min-width: 40px;
+  min-height: 40px;
+  color: #00a98d;
 }
 
 .cms-list-image-btn__overlay {
@@ -693,12 +1371,102 @@ body.cms-edit-active {
   }
 
   .cms-list-modal {
-    padding: 0.75rem;
-    align-items: end;
+    padding: 0;
+    align-items: stretch;
+    justify-content: stretch;
   }
 
   .cms-list-panel {
-    max-height: 85vh;
-    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    height: 100%;
+    border-radius: 0;
+    padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));
   }
+
+  .cms-list-panel__head {
+    gap: 0.4rem;
+  }
+
+  .cms-list-panel__key {
+    order: 3;
+    flex: 1 1 100%;
+    border-radius: 8px;
+  }
+
+  .cms-list-panel__close {
+    margin-left: 0;
+  }
+}
+
+/* Position editor (badges, floating blocks) */
+.cms-editable--position {
+  outline-offset: 2px;
+}
+
+.cms-pos-handle {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: var(--fi2t-teal, #00a98d);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+}
+
+.cms-pos-handle:active {
+  cursor: grabbing;
+}
+
+.cms-pos-popup {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  z-index: 30;
+  min-width: 260px;
+}
+
+.cms-pos-popup__hint {
+  margin: 0 0 10px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.35;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.cms-pos-popup__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.cms-pos-popup__grid label {
+  display: grid;
+  gap: 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cms-pos-popup__grid input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 14px;
 }

@@ -65,10 +65,10 @@ return [
         'title' => 'Tourisme tunisien — Trois questions à Walid Tritar',
         'desc' => 'Walid Tritar, a été élu nouveau Président de la Fi2T (Fédération interprofessionnelle du tourisme tunisien) pour la période 2026-2029....',
         'date' => '11 Mai 2026',
-        'img' => '/images/act1.jpg',
+        'img' => '/images/article-featured-walid.jpg?v=1',
         'hero_title' => "Tourisme tunisien\nTrois questions à Walid Tritar",
         'subtitle' => 'Président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT)',
-        'quote' => '« Le All inclusive n\'est plus un choix, c\'est une nécessité imposée par le marché »',
+        'quote' => '« Le All Inclusive n\'est plus un choix, c\'est une nécessité imposée par le marché »',
         'intro' => 'Longtemps accusé de tirer le tourisme tunisien vers le bas, le « all inclusive » demeure pourtant un pilier du modèle hôtelier national. Pour Walid Tritar, président de la Fédération Interprofessionnelle du Tourisme Tunisien (FITT), cette formule répond avant tout aux exigences du marché international et aux réalités économiques du secteur. Il revient sur les idées reçues qui entourent ce modèle, ses limites, mais aussi les conditions nécessaires pour faire évoluer l\'offre touristique tunisienne vers davantage de qualité et de valeur ajoutée.',
         'sections' => [
             [

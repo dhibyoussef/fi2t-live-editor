@@ -187,6 +187,8 @@ export default {
       about: 'Qui sommes-nous ?',
       organisation: 'Organisation',
       news: 'Actualités',
+      news_short: 'Actualité',
+      apropos: 'A propos',
       membership: 'Fiche adhésion',
       contact: 'Contact',
       language: 'Langue',
