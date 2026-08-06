@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SiteNavController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\FormSubmissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,12 @@ Route::get('content', [ContentBlockController::class, 'all']);
 Route::get('content/{page}', [ContentBlockController::class, 'show']);
 Route::get('pages/{slug}', [CmsPageController::class, 'publicShow']);
 Route::get('site-nav', [SiteNavController::class, 'publicIndex']);
+
+Route::prefix('forms')->middleware('throttle:20,1')->group(function () {
+    Route::post('contact', [FormSubmissionController::class, 'contact']);
+    Route::post('newsletter', [FormSubmissionController::class, 'newsletter']);
+    Route::post('adhesion', [FormSubmissionController::class, 'adhesion']);
+});
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('auth')->group(function () {

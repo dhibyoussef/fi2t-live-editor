@@ -11,6 +11,8 @@ import { createEditSessionToken, websiteOrigin } from '../../../api/editSession'
 const WEBSITE_ORIGIN = websiteOrigin()
 const PREVIEW_MSG = 'gc-builder-preview'
 const PREVIEW_READY = 'gc-builder-preview-ready'
+const PREVIEW_EDIT = 'gc-builder-preview-edit'
+const PREVIEW_SAVED = 'gc-builder-preview-saved'
 
 type Device = 'desktop' | 'tablet' | 'mobile'
 type PreviewLocale = 'fr' | 'en' | 'ar'
@@ -35,6 +37,16 @@ interface PendingChange {
   value: string
 }
 
+export interface EmbedEditPayload {
+  page: string
+  section: string
+  key: string
+  locale: string
+  type: 'text' | 'image' | 'json'
+  value: string
+  label?: string
+}
+
 interface Props {
   pageSlug: string
   sections: BuilderSection[]
@@ -44,6 +56,10 @@ interface Props {
   onToggleExpand?: () => void
   showToolbar?: boolean
   onLocaleChange?: (locale: PreviewLocale) => void
+  /** Mirror iframe Live Editor drafts into the admin Enregistrer queue. */
+  onEmbedEdit?: (edit: EmbedEditPayload) => void
+  /** Iframe saved or discarded — drop mirrored drafts for this page. */
+  onEmbedSaved?: (page: string) => void
 }
 
 const LOCALES: { code: PreviewLocale; flag: string; label: string }[] = [
@@ -68,6 +84,8 @@ export default function BuilderLivePreview({
   onToggleExpand,
   showToolbar = true,
   onLocaleChange,
+  onEmbedEdit,
+  onEmbedSaved,
 }: Props) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -75,14 +93,16 @@ export default function BuilderLivePreview({
   const [locale, setLocale] = useState<PreviewLocale>('fr')
   const [zoom, setZoom] = useState(100)
   const [wrapWidth, setWrapWidth] = useState(0)
+  const [wrapHeight, setWrapHeight] = useState(0)
   const [iframeReady, setIframeReady] = useState(false)
   const [iframeKey, setIframeKey] = useState(0)
   const [editToken, setEditToken] = useState<string | null>(null)
 
-  // Short-lived Live Editor token — never put the long admin PAT in the iframe URL
+  // Short-lived Live Editor token — never put the long admin PAT in the iframe URL.
+  // Do not clear the token before the new one arrives (that unmounts the iframe and
+  // wipes unsaved Aperçu edits). Remount only when page / refresh / token changes.
   useEffect(() => {
     let cancelled = false
-    setEditToken(null)
     createEditSessionToken()
       .then((t) => { if (!cancelled) setEditToken(t) })
       .catch(() => { if (!cancelled) setEditToken(null) })
@@ -122,10 +142,24 @@ export default function BuilderLivePreview({
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== WEBSITE_ORIGIN) return
       if (e.data?.type === PREVIEW_READY) setIframeReady(true)
+      if (e.data?.type === PREVIEW_EDIT && e.data.page === pageSlug) {
+        onEmbedEdit?.({
+          page: e.data.page,
+          section: e.data.section,
+          key: e.data.key,
+          locale: e.data.locale,
+          type: e.data.blockType ?? 'text',
+          value: e.data.value ?? '',
+          label: e.data.label,
+        })
+      }
+      if (e.data?.type === PREVIEW_SAVED && e.data.cleared && e.data.page === pageSlug) {
+        onEmbedSaved?.(e.data.page)
+      }
     }
     window.addEventListener('message', onMessage)
     return () => window.removeEventListener('message', onMessage)
-  }, [])
+  }, [pageSlug, onEmbedEdit, onEmbedSaved])
 
   useEffect(() => {
     if (!iframeReady) return
@@ -142,7 +176,10 @@ export default function BuilderLivePreview({
   useLayoutEffect(() => {
     const wrap = wrapRef.current
     if (!wrap) return
-    const measure = () => setWrapWidth(wrap.clientWidth)
+    const measure = () => {
+      setWrapWidth(wrap.clientWidth)
+      setWrapHeight(wrap.clientHeight)
+    }
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(wrap)
@@ -150,14 +187,18 @@ export default function BuilderLivePreview({
   }, [expanded, device])
 
   const artboardW = DEVICE_WIDTH[device]
-  const artboardH = DEVICE_HEIGHT[device]
   /*
-   * Fit the artboard to the panel (no forced 75% floor — that clipped the hero).
-   * Zoom above 100% still lets editors get closer when they want.
+   * Always use the real device WIDTH (1440 / 768 / 390) so media queries match
+   * the public site. HEIGHT matches the visible aperçu panel so `position:fixed`
+   * toolbars (Sauvegarder) stick to the bottom of what you see — not the end of
+   * a 3200px tall document you have to scroll to.
    */
-  const available = Math.max(280, wrapWidth - (device === 'desktop' ? 0 : 24))
+  const available = Math.max(280, wrapWidth - 24)
   const fitScale = wrapWidth > 0 ? Math.min(1, available / artboardW) : 1
   const scale = fitScale * (zoom / 100)
+  const artboardH = wrapHeight > 0
+    ? Math.max(560, Math.round((wrapHeight - 4) / Math.max(scale, 0.01)))
+    : DEVICE_HEIGHT[device]
   const shellW = Math.round(artboardW * scale)
   const shellH = Math.round(artboardH * scale)
   const effectivePct = Math.round(scale * 100)
@@ -255,7 +296,9 @@ export default function BuilderLivePreview({
           >
             <iframe
               ref={iframeRef}
-              key={`${iframeKey}-${artboardW}-${editToken?.slice(-8) ?? 'x'}`}
+              /* Never key on artboardW — ResizeObserver width changes were remounting
+                 the iframe on every pixel, wiping pending edits and blocking Enregistrer. */
+              key={`${iframeKey}-${pageSlug}-${editToken?.slice(-12) ?? 'x'}`}
               src={previewUrl}
               title="Aperçu du site"
               className="pb-live__iframe"

@@ -23,7 +23,16 @@ type Props = {
 function parseOffset(raw: string, fallback: BlockOffset): BlockOffset {
   try {
     const parsed = JSON.parse(raw) as BlockOffset
-    if (parsed && typeof parsed === 'object') return { ...fallback, ...parsed }
+    if (parsed && typeof parsed === 'object') {
+      const merged = { ...fallback, ...parsed }
+      // One horizontal anchor only — left+right together stretches the badge
+      // (looks like two overlapping cards, especially in Arabic).
+      if (merged.left != null && merged.right != null) {
+        if (fallback.left != null) delete merged.right
+        else delete merged.left
+      }
+      return merged
+    }
   } catch {
     /* keep fallback */
   }
@@ -31,7 +40,7 @@ function parseOffset(raw: string, fallback: BlockOffset): BlockOffset {
 }
 
 function offsetToStyle(pos: BlockOffset, rtl = false): CSSProperties {
-  const style: CSSProperties = { position: 'absolute' }
+  const style: CSSProperties = { position: 'absolute', left: '', right: '' }
   /*
    * Offsets are authored for LTR (left:-29 hangs the about badge into the
    * text column). In RTL the media column flips sides, so the same physical
@@ -40,10 +49,10 @@ function offsetToStyle(pos: BlockOffset, rtl = false): CSSProperties {
    */
   if (rtl) {
     if (pos.left != null) style.right = `${pos.left}px`
-    if (pos.right != null) style.left = `${pos.right}px`
+    else if (pos.right != null) style.left = `${pos.right}px`
   } else {
     if (pos.left != null) style.left = `${pos.left}px`
-    if (pos.right != null) style.right = `${pos.right}px`
+    else if (pos.right != null) style.right = `${pos.right}px`
   }
   if (pos.top != null) style.top = `${pos.top}px`
   if (pos.bottom != null) style.bottom = `${pos.bottom}px`
@@ -95,7 +104,7 @@ export default function EditablePositioned({
   const commit = (next: BlockOffset) => {
     const cleaned: BlockOffset = {}
     if (next.left != null) cleaned.left = Math.round(next.left)
-    if (next.right != null) cleaned.right = Math.round(next.right)
+    else if (next.right != null) cleaned.right = Math.round(next.right)
     if (next.top != null) cleaned.top = Math.round(next.top)
     if (next.bottom != null) cleaned.bottom = Math.round(next.bottom)
     update(JSON.stringify(cleaned))
@@ -215,9 +224,11 @@ export default function EditablePositioned({
         <div className="cms-edit-popup cms-pos-popup" onPointerDown={(e) => e.stopPropagation()}>
           <div className="cms-edit-popup__label">
             {label}
-            <span className="cms-edit-popup__lang">{lang.toUpperCase()}</span>
+            <span className="cms-edit-popup__lang" title="Partagé — toutes les langues">ALL</span>
           </div>
-          <p className="cms-pos-popup__hint">Offsets en px par rapport à l’image (Figma X/Y)</p>
+          <p className="cms-pos-popup__hint">
+            Position partagée (toutes les langues). Offsets en px par rapport à l’image.
+          </p>
           <div className="cms-pos-popup__grid">
             {draft.left != null && (
               <label>

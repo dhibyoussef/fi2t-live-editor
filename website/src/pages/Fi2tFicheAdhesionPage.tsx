@@ -9,6 +9,7 @@ import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
 import Fi2tPagination from '../components/fi2t/Fi2tPagination'
 import { FICHE_ADHESION_DEFAULTS } from '../cms/defaults/fiche-adhesion'
+import api from '../api/client'
 
 type ReasonItem = { title: string; desc: string }
 
@@ -43,6 +44,8 @@ function FicheInner() {
   const { get } = useContent()
   const { isEditMode } = useEditMode()
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState('')
   const [reasonsPage, setReasonsPage] = useState(1)
 
   const reasonsRaw = get('adherer.reasons', FICHE_ADHESION_DEFAULTS['adherer.reasons'])
@@ -63,9 +66,29 @@ function FicheInner() {
     if (reasonsPage > totalPages) setReasonsPage(totalPages)
   }, [reasonsPage, totalPages])
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setSent(true)
+    if (isEditMode) return
+    setSending(true)
+    setSendError('')
+    setSent(false)
+    const fd = new FormData(e.currentTarget)
+    try {
+      await api.post('/forms/adhesion', {
+        org: String(fd.get('org') || ''),
+        contact: String(fd.get('contact') || ''),
+        email: String(fd.get('email') || ''),
+        phone: String(fd.get('phone') || ''),
+        activity: String(fd.get('activity') || ''),
+        message: String(fd.get('message') || ''),
+      })
+      setSent(true)
+      e.currentTarget.reset()
+    } catch {
+      setSendError('Impossible d’envoyer la demande pour le moment. Réessayez plus tard.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -292,7 +315,7 @@ function FicheInner() {
                 required
               />
             </label>
-            <button type="submit" className="fi2t-contact__submit">
+            <button type="submit" className="fi2t-contact__submit" disabled={sending || isEditMode}>
               <EditableText
                 page="fiche-adhesion"
                 blockKey="form.submit"
@@ -300,6 +323,11 @@ function FicheInner() {
                 fallback="Envoyer la demande"
               />
             </button>
+            {sendError && (
+              <p className="fi2t-contact__success" role="alert" style={{ color: '#b42318' }}>
+                {sendError}
+              </p>
+            )}
             {sent && (
               <p className="fi2t-contact__success" role="status">
                 <EditableText

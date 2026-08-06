@@ -7,6 +7,7 @@ import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
 import Fi2tPagination from '../components/fi2t/Fi2tPagination'
 import { CONTACT_DEFAULTS } from '../cms/defaults/contact'
+import api from '../api/client'
 
 type ContactInfoItem = { icon: string; label: string; value: string }
 
@@ -26,6 +27,8 @@ function ContactInner() {
   const { get } = useContent()
   const { isEditMode } = useEditMode()
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [sendError, setSendError] = useState('')
   const [infoPage, setInfoPage] = useState(1)
   const infoRaw = get('info.items', CONTACT_DEFAULTS['info.items'])
   const infoItems = useMemo(
@@ -42,9 +45,27 @@ function ContactInner() {
     if (infoPage > totalPages) setInfoPage(totalPages)
   }, [infoPage, totalPages])
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setSent(true)
+    if (isEditMode) return
+    setSending(true)
+    setSendError('')
+    setSent(false)
+    const fd = new FormData(e.currentTarget)
+    try {
+      await api.post('/forms/contact', {
+        name: String(fd.get('name') || ''),
+        email: String(fd.get('email') || ''),
+        subject: String(fd.get('subject') || ''),
+        message: String(fd.get('message') || ''),
+      })
+      setSent(true)
+      e.currentTarget.reset()
+    } catch {
+      setSendError('Impossible d’envoyer le message pour le moment. Réessayez plus tard.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -99,17 +120,38 @@ function ContactInner() {
               { key: 'value', label: 'Valeur', multiline: true },
               { key: 'icon', label: 'Icône', image: true },
             ]}
-            renderItem={(_item, _index, { editField, editImage }) => (
-              <>
-                <span className="fi2t-contact__icon" aria-hidden="true">
-                  {editImage('icon', '', '')}
-                </span>
-                <div>
-                  {editField('label', 'strong')}
-                  {editField('value', 'p')}
-                </div>
-              </>
-            )}
+            renderItem={(item, _index, { editField, editImage, editable }) => {
+              const label = (item.label || '').toLowerCase()
+              const raw = (item.value || '').replace(/\s+/g, ' ').trim()
+              const tel = raw.replace(/[^\d+]/g, '')
+              const isEmail = label.includes('email') || label.includes('mail') || /@/.test(raw)
+              const isPhone = label.includes('téléphone') || label.includes('telephone') || label.includes('phone') || label.includes('tél')
+              const href = isEmail
+                ? `mailto:${raw}`
+                : isPhone
+                  ? `tel:${tel}`
+                  : undefined
+
+              return (
+                <>
+                  <span className="fi2t-contact__icon" aria-hidden="true">
+                    {editImage('icon', '', '')}
+                  </span>
+                  <div>
+                    {editField('label', 'strong')}
+                    {editable || !href ? (
+                      editField('value', 'p')
+                    ) : (
+                      <p>
+                        <a className="fi2t-contact__link" href={href}>
+                          {item.value}
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                </>
+              )
+            }}
             renderAfter={() =>
               !isEditMode ? (
                 <Fi2tPagination
@@ -132,7 +174,7 @@ function ContactInner() {
                   page="contact"
                   blockKey="form.label_name"
                   as="span"
-                  fallback="NOM COMPLET"
+                  fallback="Nom complet"
                 />
                 <input
                   type="text"
@@ -146,7 +188,7 @@ function ContactInner() {
                   page="contact"
                   blockKey="form.label_email"
                   as="span"
-                  fallback="ADRESSE EMAIL"
+                  fallback="Adresse email"
                 />
                 <input
                   type="email"
@@ -162,7 +204,7 @@ function ContactInner() {
                 page="contact"
                 blockKey="form.label_subject"
                 as="span"
-                fallback="SUJET"
+                fallback="Sujet"
               />
               <input
                 type="text"
@@ -177,7 +219,7 @@ function ContactInner() {
                 page="contact"
                 blockKey="form.label_message"
                 as="span"
-                fallback="MESSAGE"
+                fallback="Message"
               />
               <textarea
                 name="message"
@@ -187,9 +229,15 @@ function ContactInner() {
               />
             </label>
 
-            <button type="submit" className="fi2t-contact__submit">
+            <button type="submit" className="fi2t-contact__submit" disabled={sending || isEditMode}>
               <EditableText page="contact" blockKey="form.submit" as="span" fallback="Envoyer" />
             </button>
+
+            {sendError && (
+              <p className="fi2t-contact__success" role="alert" style={{ color: '#b42318' }}>
+                {sendError}
+              </p>
+            )}
 
             {sent && (
               <p className="fi2t-contact__success" role="status">

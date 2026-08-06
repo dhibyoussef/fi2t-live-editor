@@ -164,24 +164,64 @@ class ContentBlockController extends Controller
             'blocks.*.value'      => 'nullable|string',
             'blocks.*.label'      => 'nullable|string|max:191',
             'blocks.*.sort_order' => 'nullable|integer|min:0',
+            'blocks.*.sync_locales' => 'nullable|array',
+            'blocks.*.sync_locales.*' => 'string|max:10',
         ]);
 
         $saved = [];
         foreach ($data['blocks'] as $block) {
+            $locale = $block['locale'] ?? '_all';
+            $type = $block['type'] ?? 'text';
+
             $saved[] = ContentBlock::updateOrCreate(
                 [
                     'page'    => $block['page'],
                     'section' => $block['section'],
                     'key'     => $block['key'],
-                    'locale'  => $block['locale'] ?? '_all',
+                    'locale'  => $locale,
                 ],
                 [
-                    'type'       => $block['type'] ?? 'text',
+                    'type'       => $type,
                     'value'      => $block['value'] ?? null,
                     'label'      => $block['label'] ?? null,
                     'sort_order' => $block['sort_order'] ?? 0,
                 ]
             );
+
+            // Shared (_all) images/positions must win — drop per-language duplicates
+            // so uploads/edits are visible in FR, EN and AR.
+            if ($locale === '_all') {
+                ContentBlock::query()
+                    ->where('page', $block['page'])
+                    ->where('section', $block['section'])
+                    ->where('key', $block['key'])
+                    ->whereIn('locale', ['fr', 'en', 'ar'])
+                    ->delete();
+            }
+
+            // Live Editor "apply to all languages": fan-out text/json to every locale.
+            if (! empty($block['sync_locales']) && is_array($block['sync_locales'])) {
+                foreach ($block['sync_locales'] as $syncLocale) {
+                    $syncLocale = (string) $syncLocale;
+                    if ($syncLocale === '' || $syncLocale === $locale) {
+                        continue;
+                    }
+                    ContentBlock::updateOrCreate(
+                        [
+                            'page'    => $block['page'],
+                            'section' => $block['section'],
+                            'key'     => $block['key'],
+                            'locale'  => $syncLocale,
+                        ],
+                        [
+                            'type'       => $type,
+                            'value'      => $block['value'] ?? null,
+                            'label'      => $block['label'] ?? null,
+                            'sort_order' => $block['sort_order'] ?? 0,
+                        ]
+                    );
+                }
+            }
 
             // Keep block title (label) in sync across all locale rows
             if (! empty($block['label'])) {

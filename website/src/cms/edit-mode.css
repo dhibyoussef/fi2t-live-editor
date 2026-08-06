@@ -40,6 +40,174 @@
 
 .cms-editable:hover .cms-editable__badge { opacity: 1; }
 
+.cms-editable__badge--always {
+  opacity: 1;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 11px;
+  pointer-events: auto;
+  cursor: pointer;
+  border: 0;
+}
+
+/* Pencil-only control for full-bleed heroes (does not wrap the background img) */
+.cms-editable--image-chip {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 6;
+  width: 28px;
+  height: 28px;
+  outline: none !important;
+}
+
+.cms-editable--image-chip .cms-editable__badge--always {
+  top: 0;
+  right: auto;
+  left: 0;
+}
+
+.cms-editable--image-chip .cms-image-panel {
+  top: 36px;
+  left: 0;
+  right: auto;
+}
+
+.cms-image-panel {
+  position: absolute;
+  z-index: 40;
+  top: 40px;
+  right: 8px;
+  width: min(340px, calc(100vw - 24px));
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff;
+  color: #191c1d;
+  border: 1px solid rgba(25, 28, 29, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 30, 64, 0.18);
+  text-align: left;
+}
+
+.cms-image-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cms-image-panel__head strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #001e40;
+}
+
+.cms-image-panel__close {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(25, 28, 29, 0.06);
+  color: #444650;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.cms-image-panel__close:hover {
+  background: rgba(25, 28, 29, 0.1);
+}
+
+.cms-image-panel__row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.cms-image-panel__preview-btn {
+  width: 72px;
+  min-height: 72px;
+  border-radius: 12px;
+  border: 1px dashed rgba(25, 28, 29, 0.25);
+  background: #faf8ff;
+  display: grid;
+  place-items: center;
+  gap: 0.2rem;
+  padding: 0.4rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--fi2t-teal, #00a98d);
+}
+
+.cms-image-panel__preview-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.cms-image-panel__preview-btn img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cms-image-panel__empty {
+  font-size: 10px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cms-image-panel__change {
+  line-height: 1;
+}
+
+.cms-image-panel__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.cms-image-panel__field--grow {
+  margin-bottom: 0;
+  min-width: 0;
+}
+
+.cms-image-panel__input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(25, 28, 29, 0.14);
+  background: #fff;
+  color: #191c1d;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cms-image-panel__input:focus {
+  outline: none;
+  border-color: var(--fi2t-teal, #00a98d);
+  box-shadow: 0 0 0 3px rgba(0, 169, 141, 0.15);
+}
+
+.cms-image-panel__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
 /*
  * Image wrappers MUST create a containing block so .cms-editable__overlay
  * (position:absolute; inset:0) stays inside the photo — otherwise it paints

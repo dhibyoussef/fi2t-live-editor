@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { Settings, Building2, Phone, Share2, FileText, Save } from 'lucide-react'
+import { Settings, Building2, Phone, Share2, FileText, Save, Mail } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { ImageUploader } from '../../components/ui/ImageUploader'
@@ -15,7 +15,7 @@ const LOCALES = [
   { code: 'ar', label: 'العربية' },
 ] as const
 
-type Tab = 'identity' | 'contact' | 'social' | 'footer'
+type Tab = 'identity' | 'contact' | 'social' | 'footer' | 'forms'
 
 interface BlockRow {
   key: string
@@ -30,7 +30,7 @@ interface SectionGroup {
 
 type Values = Record<string, Record<string, string>>
 
-const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; type: 'text' | 'image' | 'textarea'; locales: string[]; placeholder?: string }[]> = {
+const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; type: 'text' | 'image' | 'textarea'; locales: string[]; placeholder?: string; help?: string }[]> = {
   identity: [
     { section: 'settings', key: 'logo', label: 'Logo du site', type: 'image', locales: ['_all'] },
     { section: 'settings', key: 'hotel_name', label: 'Nom du site', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'FI2T' },
@@ -56,11 +56,41 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
     { section: 'footer', key: 'email', label: 'E-mail (pied de page)', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'contact@fit-tunisie.org' },
     { section: 'footer', key: 'newsletter', label: 'Texte newsletter', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'Restez informé de nos dernières initiatives.' },
   ],
+  forms: [
+    {
+      section: 'forms',
+      key: 'notify_contact',
+      label: 'Contact — e-mail de réception',
+      type: 'text',
+      locales: ['_all'],
+      placeholder: 'contact@votre-domaine.tn',
+      help: 'Reçoit les messages du formulaire /contact.',
+    },
+    {
+      section: 'forms',
+      key: 'notify_newsletter',
+      label: 'Newsletter — e-mail de réception',
+      type: 'text',
+      locales: ['_all'],
+      placeholder: 'newsletter@votre-domaine.tn',
+      help: 'Reçoit les inscriptions newsletter du pied de page.',
+    },
+    {
+      section: 'forms',
+      key: 'notify_adhesion',
+      label: 'Demande d’adhésion — e-mail de réception',
+      type: 'text',
+      locales: ['_all'],
+      placeholder: 'adhesion@votre-domaine.tn',
+      help: 'Reçoit les demandes du formulaire /fiche-adhesion.',
+    },
+  ],
 }
 
 const TABS: { id: Tab; label: string; icon: typeof Settings }[] = [
   { id: 'identity', label: 'Identité', icon: Building2 },
   { id: 'contact', label: 'Contact', icon: Phone },
+  { id: 'forms', label: 'Formulaires', icon: Mail },
   { id: 'social', label: 'Réseaux & apps', icon: Share2 },
   { id: 'footer', label: 'Pied de page', icon: FileText },
 ]
@@ -155,7 +185,7 @@ export default function SiteSettingsEditor() {
           <Settings size={20} />
           <div>
             <h3>Paramètres du site</h3>
-            <p>Logo, coordonnées, réseaux sociaux et textes affichés sur tout le site public</p>
+            <p>Logo, coordonnées, formulaires, réseaux sociaux et textes du site</p>
           </div>
         </div>
         <Button icon={<Save size={14} />} loading={saveM.isPending} disabled={!dirty} onClick={() => saveM.mutate()}>
@@ -181,9 +211,21 @@ export default function SiteSettingsEditor() {
         <div className="site-settings-loading"><div className="gc-spinner" /></div>
       ) : (
         <div className="site-settings-panel">
+          {tab === 'forms' && (
+            <div className="site-settings-field" style={{ marginBottom: '1.25rem' }}>
+              <p className="wc-page-settings-help" style={{ margin: 0 }}>
+                Indiquez où recevoir les soumissions (Contact, Newsletter, Adhésion).
+                L’envoi utilise la config mail Laravel (<code>MAIL_*</code> dans <code>backend/.env</code>).
+                Avec <code>MAIL_MAILER=log</code>, les messages sont écrits dans les logs.
+              </p>
+            </div>
+          )}
           {fields.map(field => (
             <div key={field.key} className="site-settings-field">
               <label className="gc-label">{field.label}</label>
+              {'help' in field && field.help ? (
+                <p className="wc-page-settings-help" style={{ marginTop: 0 }}>{field.help}</p>
+              ) : null}
 
               {field.type === 'image' ? (
                 <ImageUploader

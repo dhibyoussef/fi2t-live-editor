@@ -548,3 +548,117 @@
   border-top-color: #00a98d !important;
 }
 
+/* ── Professional dashboard ── */
+.fi2t-dash__hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.fi2t-dash__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+}
+.fi2t-dash__btn--primary {
+  background: #00a98d;
+  color: #fff;
+}
+.fi2t-dash__btn--ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.fi2t-stat--wide {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #5a6570;
+}
+.fi2t-dash__pages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fi2t-dash__page-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #EDE8DA;
+  text-decoration: none;
+  color: inherit;
+}
+.fi2t-dash__page-row:hover {
+  border-color: #00a98d;
+}
+.fi2t-dash__page-icon {
+  color: #00a98d;
+}
+.fi2t-dash__page-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 14px;
+}
+.fi2t-dash__pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.fi2t-dash__pill--published {
+  background: rgba(0, 169, 141, 0.12);
+  color: #00806c;
+}
+.fi2t-dash__pill--draft {
+  background: #F5F0E4;
+  color: #8B7355;
+}
+.fi2t-dash__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-weight: 700;
+  color: #00a98d;
+  text-decoration: none;
+}
+.fi2t-dash__tips {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #4B5563;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.fi2t-dash__empty {
+  color: #8B7355;
+  font-size: 13px;
+}
+.wc-page-settings-help {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #F5F0E4;
+  color: #5a4a2e;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.wc-page-settings .gc-select,
+.wc-page-settings .gc-textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+

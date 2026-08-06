@@ -130,15 +130,12 @@ export default function EditableArticleField({
 
   const upload = async (file: File) => {
     setUploading(true)
-    const form = new FormData()
-    form.append('image', file)
     try {
-      const { data } = await api.post('/admin/content/upload-image', form, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      patch(data.url as string)
-    } catch {
-      alert('Erreur lors du téléversement.')
+      const { uploadWebsiteImage } = await import('./uploadWebsiteImage')
+      const url = await uploadWebsiteImage(file)
+      patch(url)
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Erreur lors du téléversement.')
     } finally {
       setUploading(false)
     }

@@ -473,27 +473,45 @@ export default function WebsiteContentPage() {
       {pageSettingsOpen && activePageMeta && (
         <div className="wc-page-settings">
           <h4>Paramètres de la page</h4>
+          <p className="wc-page-settings-help">
+            <strong>Statut</strong> — <em>Brouillon</em> : page visible seulement pour les admins connectés.
+            <em> Publié</em> : visible sur le site public.
+            <br />
+            <strong>Modèle</strong> — classement CMS uniquement (accueil / landing / standard / global). Ne change pas le design de la page.
+            <br />
+            <strong>SEO</strong> — titre et description pour Google et les partages sociaux.
+            <br />
+            <br />
+            Pour <strong>Contact</strong>, <strong>Newsletter</strong> et <strong>Demande d’adhésion</strong> :
+            allez dans la page <em>Global</em> → onglet <em>Formulaires</em> pour définir les e-mails de réception.
+          </p>
           <div className="wc-page-settings-grid">
             <div>
               <label className="gc-label">Statut</label>
-              <select className="gc-field" value={pageSettings.status} onChange={e => setPageSettings(p => ({ ...p, status: e.target.value as 'draft' | 'published' }))}>
+              <select className="gc-select" value={pageSettings.status} onChange={e => setPageSettings(p => ({ ...p, status: e.target.value as 'draft' | 'published' }))}>
                 <option value="draft">Brouillon</option>
                 <option value="published">Publié</option>
               </select>
             </div>
             <div>
               <label className="gc-label">Modèle</label>
-              <select className="gc-field" value={pageSettings.template} onChange={e => setPageSettings(p => ({ ...p, template: e.target.value }))}>
-                <option value="default">Page standard</option>
-                <option value="landing">Landing page</option>
-                <option value="home">Page d'accueil</option>
-                <option value="global">Global</option>
+              <select className="gc-select" value={pageSettings.template} onChange={e => setPageSettings(p => ({ ...p, template: e.target.value }))}>
+                <option value="default">Page standard — contenu classique</option>
+                <option value="landing">Landing page — page de conversion</option>
+                <option value="home">Page d&apos;accueil — accueil du site</option>
+                <option value="global">Global — réglages partagés (header/footer)</option>
               </select>
             </div>
-            <Input label="Titre SEO" value={pageSettings.meta_title} onChange={e => setPageSettings(p => ({ ...p, meta_title: e.target.value }))} />
+            <Input label="Titre SEO" value={pageSettings.meta_title} onChange={e => setPageSettings(p => ({ ...p, meta_title: e.target.value }))} placeholder="Titre dans l’onglet / Google" />
             <div>
               <label className="gc-label">Description SEO</label>
-              <textarea className="gc-field" rows={2} value={pageSettings.meta_description} onChange={e => setPageSettings(p => ({ ...p, meta_description: e.target.value }))} />
+              <textarea
+                className="gc-textarea"
+                rows={3}
+                value={pageSettings.meta_description}
+                onChange={e => setPageSettings(p => ({ ...p, meta_description: e.target.value }))}
+                placeholder="Courte description (≈ 150–160 caractères) pour les résultats de recherche"
+              />
             </div>
           </div>
           <Button size="sm" loading={updatePageM.isPending} onClick={() => updatePageM.mutate()}>Enregistrer les paramètres</Button>
@@ -560,6 +578,21 @@ export default function WebsiteContentPage() {
           setValueChange={setValueChange}
           onDeleteLocale={(section, key, locale) => deleteLocaleM.mutate({ section, key, locale })}
           onUploadImage={(section, block, file) => uploadImage(file, section, block)}
+          onEmbedEdit={(edit) => {
+            setChange({
+              page: edit.page,
+              section: edit.section,
+              key: edit.key,
+              locale: edit.locale,
+              type: edit.type,
+              value: edit.value,
+              label: edit.label,
+            })
+          }}
+          onEmbedSaved={(page) => {
+            // Iframe already persisted — refresh matrix. Keep other admin drafts.
+            qc.invalidateQueries({ queryKey: ['content-matrix', page] })
+          }}
         />
       )}
 

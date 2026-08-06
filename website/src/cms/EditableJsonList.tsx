@@ -68,12 +68,8 @@ function parseItems<T>(raw: string, fallback: T[]): T[] {
 }
 
 async function uploadListImage(file: File): Promise<string> {
-  const form = new FormData()
-  form.append('image', file)
-  const { data } = await api.post('/admin/content/upload-image', form, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  })
-  return data.url as string
+  const { uploadWebsiteImage } = await import('./uploadWebsiteImage')
+  return uploadWebsiteImage(file)
 }
 
 /**
@@ -102,7 +98,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
   const { i18n } = useTranslation()
   const { isEditMode } = useEditMode()
   const lang = (i18n.language || 'fr').split('-')[0]
-  const { value, update, commit } = useContentBlock(page, blockKey, {
+  const { value, update } = useContentBlock(page, blockKey, {
     type: 'json',
     label,
     fallback: JSON.stringify(fallback),
@@ -183,7 +179,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
         i === index ? ({ ...item, [fieldKey]: url } as T) : item,
       )
       // Images publish immediately — text edits still wait for the toolbar Save.
-      await commit(JSON.stringify(next))
+      queueItems(next)
     } catch {
       alert('Erreur lors du téléversement.')
     } finally {

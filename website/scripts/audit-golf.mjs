@@ -5,7 +5,7 @@ import { spawnSync } from 'child_process'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const out = path.join(__dirname, 'audit-out')
-const designPath = path.resolve(__dirname, '../../Untitled (1)/Tourisme golfique.png')
+const designPath = path.resolve(__dirname, '../public/design-refs/Tourisme golfique.png')
 
 const browser = await chromium.launch({ headless: true })
 const page = await (

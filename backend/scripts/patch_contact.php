@@ -81,5 +81,33 @@ foreach ($empty as $b) {
     echo "EMPTY {$b->section}.{$b->key} {$b->locale}\n";
 }
 
+// Sentence-case form labels (match fiche adhésion style)
+$sentenceLabels = [
+    'fr' => [
+        'label_name' => 'Nom complet',
+        'label_email' => 'Adresse email',
+        'label_subject' => 'Sujet',
+        'label_message' => 'Message',
+    ],
+    'en' => [
+        'label_name' => 'Full name',
+        'label_email' => 'Email address',
+        'label_subject' => 'Subject',
+        'label_message' => 'Message',
+    ],
+];
+
+$sn = 0;
+foreach ($sentenceLabels as $locale => $keys) {
+    foreach ($keys as $key => $value) {
+        $sn += ContentBlock::where('page', 'contact')
+            ->where('section', 'form')
+            ->where('key', $key)
+            ->where('locale', $locale)
+            ->update(['value' => $value]);
+    }
+}
+
 echo "updated labels on {$n} row(s)\n";
+echo "updated sentence-case values on {$sn} row(s)\n";
 echo $empty->isEmpty() ? "no empty blocks\n" : '';

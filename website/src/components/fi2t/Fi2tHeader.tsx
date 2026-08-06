@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import i18n from '../../i18n'
@@ -15,22 +15,43 @@ const NAV = [
 ] as const
 
 const LANGS = [
-  { code: 'fr', label: 'FR' },
-  { code: 'en', label: 'EN' },
-  { code: 'ar', label: 'AR' },
-]
+  { code: 'fr', label: 'FR', full: 'Français' },
+  { code: 'en', label: 'EN', full: 'English' },
+  { code: 'ar', label: 'AR', full: 'العربية' },
+] as const
 
 function Fi2tHeaderInner() {
   const [open, setOpen] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+  const langRef = useRef<HTMLDivElement>(null)
   const { t, i18n: i18nHook } = useTranslation()
   const currentLang = (i18nHook.language || 'fr').split('-')[0]
+  const current = LANGS.find((l) => l.code === currentLang) ?? LANGS[0]
 
   const setLang = (code: string) => {
     void i18n.changeLanguage(code)
     localStorage.setItem('fi2t_lang', code)
     document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr'
     document.documentElement.lang = code
+    setLangOpen(false)
+    setOpen(false)
   }
+
+  useEffect(() => {
+    if (!langOpen) return
+    const onDoc = (e: MouseEvent) => {
+      if (!langRef.current?.contains(e.target as Node)) setLangOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLangOpen(false)
+    }
+    document.addEventListener('mousedown', onDoc)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDoc)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [langOpen])
 
   return (
     <header className="fi2t-header">
@@ -58,17 +79,34 @@ function Fi2tHeaderInner() {
             </NavLink>
           ))}
 
-          <div className="fi2t-header__langs" role="group" aria-label={t('fi2t.nav.language')}>
-            {LANGS.map((lang) => (
-              <button
-                key={lang.code}
-                type="button"
-                className={`fi2t-header__lang${currentLang === lang.code ? ' is-active' : ''}`}
-                onClick={() => setLang(lang.code)}
-              >
-                {lang.label}
-              </button>
-            ))}
+          <div className="fi2t-header__langs" ref={langRef}>
+            <button
+              type="button"
+              className="fi2t-header__lang-btn"
+              aria-expanded={langOpen}
+              aria-haspopup="listbox"
+              aria-label={t('fi2t.nav.language')}
+              onClick={() => setLangOpen((v) => !v)}
+            >
+              <span>{current.label}</span>
+              <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+            </button>
+            {langOpen && (
+              <ul className="fi2t-header__lang-menu" role="listbox" aria-label={t('fi2t.nav.language')}>
+                {LANGS.map((lang) => (
+                  <li key={lang.code} role="option" aria-selected={currentLang === lang.code}>
+                    <button
+                      type="button"
+                      className={`fi2t-header__lang-option${currentLang === lang.code ? ' is-active' : ''}`}
+                      onClick={() => setLang(lang.code)}
+                    >
+                      <span>{lang.full}</span>
+                      <span className="fi2t-header__lang-code">{lang.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </nav>
 

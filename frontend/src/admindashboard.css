@@ -4615,7 +4615,7 @@
 
 .pb-live__frame-wrap {
   flex: 1;
-  overflow: auto;
+  overflow: hidden; /* scroll happens inside the iframe so the save bar stays visible */
   padding: 0;
   background: #E8E4DC;
   display: flex;
@@ -5326,7 +5326,7 @@
 ──────────────────────────────────────── */
 .site-menu-editor {
   margin-bottom: 24px;
-  border: 1px solid #EDE5D0;
+  border: 0;
   border-radius: 14px;
   background: #fff;
   overflow: hidden;
@@ -5339,7 +5339,7 @@
   gap: 16px;
   padding: 18px 20px;
   background: linear-gradient(135deg, #FAF7F2 0%, #fff 100%);
-  border-bottom: 1px solid #EDE5D0;
+  border-bottom: 0;
 }
 
 .site-menu-editor-title {

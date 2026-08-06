@@ -36,7 +36,7 @@ export default function EditableText({
 }: Props) {
   const { i18n } = useTranslation()
   const { isEditMode } = useEditMode()
-  const { value, update, commit } = useContentBlock(page, blockKey, { type: 'text', label, fallback })
+  const { value, update, shared } = useContentBlock(page, blockKey, { type: 'text', label, fallback })
   const lang = (i18n.language || 'fr').split('-')[0]
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(value)
@@ -49,13 +49,7 @@ export default function EditableText({
   }, [editing])
 
   const save = () => {
-    // Footer / header live in a separate ContentProvider without the page toolbar —
-    // commit immediately so edits aren't stranded in an unreachable pending queue.
-    if (page === 'global') {
-      void commit(draft)
-    } else {
-      update(draft)
-    }
+    update(draft)
     setEditing(false)
   }
 
@@ -80,7 +74,9 @@ export default function EditableText({
         {label && (
           <div className="cms-edit-popup__label">
             {label}
-            <span className="cms-edit-popup__lang">{LANG_BADGE[lang] ?? lang}</span>
+            <span className="cms-edit-popup__lang" title={shared ? 'Toutes les langues' : lang}>
+              {shared ? 'ALL' : (LANG_BADGE[lang] ?? lang)}
+            </span>
           </div>
         )}
         {multiline ? (

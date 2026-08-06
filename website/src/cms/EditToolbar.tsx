@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { useEditMode } from './EditModeProvider'
 import { useContent } from './ContentProvider'
@@ -11,7 +12,7 @@ const LANG_LABELS: Record<string, string> = {
   ar: 'العربية',
 }
 
-export default function EditToolbar() {
+export default function EditToolbar({ onlyWhenPending = false }: { onlyWhenPending?: boolean } = {}) {
   const { t, i18n } = useTranslation()
   const { isEditMode, isAdmin, user, exitEditMode } = useEditMode()
   const { isEmbed } = useBuilderPreview()
@@ -21,7 +22,8 @@ export default function EditToolbar() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
 
-  if (!isEditMode || isEmbed) return null
+  if (!isEditMode) return null
+  if (onlyWhenPending && pending.length === 0 && !saved) return null
 
   const handleSave = async () => {
     if (!pending.length) return
@@ -30,8 +32,13 @@ export default function EditToolbar() {
       await savePending()
       setSaved(true)
       setTimeout(() => setSaved(false), 2500)
-    } catch {
-      alert('Erreur lors de la sauvegarde. Vérifiez votre connexion.')
+    } catch (err: unknown) {
+      const status = (err as { response?: { status?: number } })?.response?.status
+      if (status === 401 || status === 403) {
+        alert('Session d’édition expirée. Rouvrez l’Aperçu live depuis le back-office (bouton Actualiser).')
+      } else {
+        alert('Erreur lors de la sauvegarde. Vérifiez votre connexion.')
+      }
     } finally {
       setSaving(false)
     }
@@ -40,26 +47,30 @@ export default function EditToolbar() {
   const roleLabel = isAdmin ? t('fi2t.edit.super_admin') : t('fi2t.edit.admin')
   const changesLabel = pending.length > 1 ? t('fi2t.edit.changes_many') : t('fi2t.edit.changes_one')
 
-  return (
-    <div className="cms-toolbar">
+  const bar = (
+    <div className={`cms-toolbar${isEmbed ? ' cms-toolbar--embed' : ''}`}>
       <div className="cms-toolbar__left">
         <span className="cms-toolbar__badge" aria-hidden="true">
           <i className="fa-solid fa-pen-to-square" />
         </span>
         <div>
-          <strong>{t('fi2t.edit.mode')}</strong>
-          <span className="cms-toolbar__user">
-            {roleLabel}
-            {user?.email ? ` · ${user.email}` : user?.name && user.name !== 'Super Admin' ? ` · ${user.name}` : ''}
-          </span>
+          <strong>{isEmbed ? 'Aperçu live' : t('fi2t.edit.mode')}</strong>
+          {!isEmbed && (
+            <span className="cms-toolbar__user">
+              {roleLabel}
+              {user?.email ? ` · ${user.email}` : user?.name && user.name !== 'Super Admin' ? ` · ${user.name}` : ''}
+            </span>
+          )}
         </div>
       </div>
 
-      <div className="cms-toolbar__hint">
-        {t('fi2t.edit.lang_current')} : <strong>{langLabel}</strong>
-        <span className="cms-toolbar__sep">·</span>
-        {t('fi2t.edit.hint')}
-      </div>
+      {!isEmbed && (
+        <div className="cms-toolbar__hint">
+          {t('fi2t.edit.lang_current')} : <strong>{langLabel}</strong>
+          <span className="cms-toolbar__sep">·</span>
+          {t('fi2t.edit.hint')}
+        </div>
+      )}
 
       <div className="cms-toolbar__actions">
         {pending.length > 0 && (
@@ -88,10 +99,18 @@ export default function EditToolbar() {
         >
           {t('fi2t.edit.cancel')}
         </button>
-        <button type="button" className="cms-toolbar__btn cms-toolbar__btn--exit" onClick={exitEditMode}>
-          {t('fi2t.edit.exit')}
-        </button>
+        {!isEmbed && (
+          <button type="button" className="cms-toolbar__btn cms-toolbar__btn--exit" onClick={exitEditMode}>
+            {t('fi2t.edit.exit')}
+          </button>
+        )}
       </div>
     </div>
   )
+
+  // Portal to <body> so fixed positioning is never trapped by page transforms.
+  if (typeof document !== 'undefined') {
+    return createPortal(bar, document.body)
+  }
+  return bar
 }

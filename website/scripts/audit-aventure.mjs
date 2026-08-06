@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const out = path.join(__dirname, 'audit-out')
 const designPath = path.resolve(
   __dirname,
-  '../../Untitled (1)/Tourisme d’aventure/Tourisme Alternatif.png',
+  '../public/design-refs/Tourisme d’aventure/Tourisme Alternatif.png',
 )
 
 const browser = await chromium.launch({ headless: true })

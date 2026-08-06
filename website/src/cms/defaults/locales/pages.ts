@@ -216,6 +216,7 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
     'footer.about':
       'The Interprofessional Federation of Tunisian Tourism works for the outreach and modernisation of the sector.',
     'footer.newsletter': 'Stay informed about our latest initiatives.',
+    'footer.address': "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisia",
   },
 }
 
@@ -433,5 +434,6 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
     'settings.tagline': 'الاتحاد المهني المشترك للسياحة التونسية',
     'footer.about': 'يعمل الاتحاد المهني المشترك للسياحة التونسية على إشعاع القطاع وتحديثه.',
     'footer.newsletter': 'ابقوا على اطلاع بآخر مبادراتنا.',
+    'footer.address': "إقامة مريم - شقة رقم 2 -\nضفاف البحيرة 1\n1053 تونس، تونس",
   },
 }

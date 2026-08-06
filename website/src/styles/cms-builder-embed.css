@@ -1,10 +1,29 @@
 /* Embedded in admin Contenu du site — Aperçu live iframe (editable with edit_token) */
 body.cms-builder-embed {
   overflow-x: hidden;
+  padding-bottom: 72px;
 }
 
-/* Hide floating site toolbars in the iframe (admin has its own chrome) */
+/*
+ * Save bar must stay pinned to the visible bottom of the aperçu — never at the
+ * end of the page where you have to scroll to confirm.
+ */
 body.cms-builder-embed .cms-toolbar,
+body.cms-builder-embed .cms-toolbar--embed {
+  display: flex !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  z-index: 2147483000 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  transform: none !important;
+  inset-inline: 0 !important;
+}
+
 body.cms-builder-embed .cms-edit-toolbar,
 body.cms-builder-embed .edit-toolbar {
   display: none !important;
@@ -12,7 +31,7 @@ body.cms-builder-embed .edit-toolbar {
 
 /* Edit popups must sit above the preview chrome */
 body.cms-builder-embed .cms-edit-popup {
-  z-index: 10050;
+  z-index: 2147483001;
 }
 
 /*

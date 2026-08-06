@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ContentProvider } from '../cms/ContentProvider'
 import EditableText from '../cms/EditableText'
-import EditableImage, { useEditableImageSrc } from '../cms/EditableImage'
+import EditableImage, { useEditableImageSrc, useEditableImageAlt } from '../cms/EditableImage'
 import EditableJsonList from '../cms/EditableJsonList'
 import EditablePositioned from '../cms/EditablePositioned'
 import EditToolbar from '../cms/EditToolbar'
@@ -174,6 +174,7 @@ function HomeInner() {
   const { isEditMode } = useEditMode()
   const [objectifsPage, setObjectifsPage] = useState(0)
   const heroImgSrc = useEditableImageSrc('home', 'hero.image', '/hero.jpg')
+  const heroImgAlt = useEditableImageAlt('home', 'hero.image', 'FI2T')
   const aboutImgSrc = useEditableImageSrc('home', 'about.image', '/images/qui-sommes-nous-card.png?v=home2')
   const groupementsBgSrc = useEditableImageSrc('home', 'groupements.bg', '/images/bg 1.png')
   const ctaBgSrc = useEditableImageSrc('home', 'cta.bg', '/images/bg--1.png')
@@ -181,14 +182,15 @@ function HomeInner() {
   return (
     <div className="fi2t-home">
       <section className="fi2t-hero">
-        {/* Plain <img> keeps absolute full-bleed CSS; chip edits without wrapping the bg. */}
-        <img src={heroImgSrc} alt="FI2T" className="fi2t-hero__bg" />
+        {/* Plain <img> keeps absolute full-bleed CSS; pencil opens the image panel. */}
+        <img src={heroImgSrc} alt={heroImgAlt} className="fi2t-hero__bg" />
         {isEditMode && (
           <EditableImage
             page="home"
             blockKey="hero.image"
             variant="chip"
             label="Image hero"
+            alt="FI2T"
             className="fi2t-hero__edit-chip"
             fallback="/hero.jpg"
           />
@@ -391,38 +393,22 @@ function HomeInner() {
             alt="Adhésion"
             fallback="/images/Rectangle 27.png"
           />
-          {isEditMode ? (
-            <EditablePositioned
+          <EditablePositioned
+            page="home"
+            blockKey="adherer.badge_pos"
+            label="Badge 50+ — Position"
+            className="fi2t-adherer__badge"
+            fallback={{ right: -26, bottom: -49 }}
+          >
+            <EditableText
               page="home"
-              blockKey="adherer.badge_pos"
-              label="Badge 50+ — Position"
-              className="fi2t-adherer__badge"
-              fallback={{ right: -26, bottom: -49 }}
-            >
-              <EditableText
-                page="home"
-                blockKey="adherer.badge"
-                as="p"
-                className="fi2t-stat-badge"
-                multiline
-                fallback={"50+\nMEMBRES ACTIFS"}
-              />
-            </EditablePositioned>
-          ) : (
-            <div
-              className="fi2t-adherer__badge"
-              style={{ position: 'absolute', right: -26, bottom: -49 }}
-            >
-              <EditableText
-                page="home"
-                blockKey="adherer.badge"
-                as="p"
-                className="fi2t-stat-badge"
-                multiline
-                fallback={"50+\nMEMBRES ACTIFS"}
-              />
-            </div>
-          )}
+              blockKey="adherer.badge"
+              as="p"
+              className="fi2t-stat-badge"
+              multiline
+              fallback={"50+\nMEMBRES ACTIFS"}
+            />
+          </EditablePositioned>
         </div>
         <div className="fi2t-adherer__content">
           <EditableText page="home" blockKey="adherer.title" as="h2" fallback="Pourquoi adhérer à la Fi2T ?" />

@@ -3061,12 +3061,9 @@ function EditableJsonPathImage({
 
   const upload = async (file: File) => {
     setUploading(true)
-    const form = new FormData()
-    form.append('image', file)
     try {
-      const { data } = await api.post('/admin/content/upload-image', form, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })
+      const { uploadWebsiteImage } = await import('../../cms/uploadWebsiteImage')
+      const url = await uploadWebsiteImage(file)
       let current: Record<string, unknown> = fallbackData
       try {
         const parsed = JSON.parse(block.value) as Record<string, unknown>
@@ -3074,9 +3071,9 @@ function EditableJsonPathImage({
       } catch {
         // Keep the rendered CMS values when an old block is malformed.
       }
-      await block.commit(JSON.stringify(setAtPath(current, path, data.url as string)))
-    } catch {
-      alert('Erreur lors du téléversement.')
+      block.update(JSON.stringify(setAtPath(current, path, url)))
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Erreur lors du téléversement.')
     } finally {
       setUploading(false)
     }

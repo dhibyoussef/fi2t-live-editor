@@ -11,6 +11,9 @@ use Illuminate\Database\Seeder;
  */
 class FillAllContentLocalesSeeder extends Seeder
 {
+    /** @var array<string, true> */
+    private array $mapKeys = [];
+
     public function run(): void
     {
         $this->migrateAllJsonToFr();
@@ -45,11 +48,13 @@ class FillAllContentLocalesSeeder extends Seeder
     private function seedKnownMaps(): void
     {
         $maps = require __DIR__ . '/data/content-locale-maps.php';
+        $this->mapKeys = [];
 
         foreach (['en', 'ar'] as $locale) {
             foreach ($maps[$locale] ?? [] as $page => $blocks) {
                 foreach ($blocks as $compound => $value) {
                     [$section, $key] = explode('.', $compound, 2);
+                    $this->mapKeys["{$locale}|{$page}|{$section}|{$key}"] = true;
                     $fr = ContentBlock::query()
                         ->where(['page' => $page, 'section' => $section, 'key' => $key, 'locale' => 'fr'])
                         ->first();
@@ -84,6 +89,10 @@ class FillAllContentLocalesSeeder extends Seeder
             ->orderBy('id')
             ->each(function (ContentBlock $fr) use ($titles, $phrases) {
                 foreach (['en', 'ar'] as $locale) {
+                    if (isset($this->mapKeys["{$locale}|{$fr->page}|{$fr->section}|{$fr->key}"])) {
+                        continue;
+                    }
+
                     $existing = ContentBlock::query()
                         ->where([
                             'page' => $fr->page,

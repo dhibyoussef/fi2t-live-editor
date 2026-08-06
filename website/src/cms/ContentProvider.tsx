@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, useRef, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import api from '../api/client'
 import { mergePageBlocks, getPageDefaults } from './pageDefaults'
@@ -57,6 +57,8 @@ export function ContentProvider({ page, children }: Props) {
   })
   const [loading, setLoading] = useState(true)
   const [pending, setPending] = useState<PendingBlock[]>([])
+  const pendingRef = useRef(pending)
+  pendingRef.current = pending
 
   const fetchBlocks = useCallback(async () => {
     const defaults = getPageDefaults(page, locale)
@@ -105,7 +107,9 @@ export function ContentProvider({ page, children }: Props) {
       }
     })
     const onVisible = () => {
-      if (document.visibilityState === 'visible') fetchBlocks()
+      if (document.visibilityState !== 'visible') return
+      if (pendingRef.current.length > 0) return
+      void fetchBlocks()
     }
     document.addEventListener('visibilitychange', onVisible)
     window.addEventListener('focus', onVisible)
@@ -118,19 +122,32 @@ export function ContentProvider({ page, children }: Props) {
 
   const get = useCallback((compoundKey: string, fallback = '') => {
     const defaults = getPageDefaults(page, locale)
+    // Priority: local draft → parent Aperçu overrides → API blocks → defaults.
+    // Overrides MUST beat blocks, or side-panel edits never appear in Aperçu instantané.
+    const pendingHit = pending.find(
+      (p) => `${p.section}.${p.key}` === compoundKey,
+    )
+    if (pendingHit) return pendingHit.value
     return pickContentValue(
       overrides[compoundKey],
       blocks[compoundKey],
       defaults[compoundKey],
       fallback,
     )
-  }, [blocks, overrides, page, locale])
+  }, [blocks, overrides, page, locale, pending])
 
   const getJson = useCallback(<T,>(compoundKey: string, fallback: T): T => {
-    const raw = pickContentValue(overrides[compoundKey], blocks[compoundKey])
+    const pendingHit = pending.find(
+      (p) => `${p.section}.${p.key}` === compoundKey,
+    )
+    const raw = pickContentValue(
+      pendingHit?.value,
+      overrides[compoundKey],
+      blocks[compoundKey],
+    )
     if (!raw) return fallback
     try { return JSON.parse(raw) as T } catch { return fallback }
-  }, [blocks, overrides])
+  }, [blocks, overrides, pending])
 
   const setLocal = useCallback((compoundKey: string, value: string) => {
     setBlocks((prev) => ({ ...prev, [compoundKey]: value }))
@@ -149,6 +166,24 @@ export function ContentProvider({ page, children }: Props) {
       }
       return [...prev, block]
     })
+    // Mirror into the admin draft so the header « Enregistrer » works from Aperçu.
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+      try {
+        const parentOrigin = document.referrer ? new URL(document.referrer).origin : '*'
+        window.parent.postMessage({
+          type: 'gc-builder-preview-edit',
+          page: block.page,
+          section: block.section,
+          key: block.key,
+          locale: block.locale,
+          blockType: block.type,
+          value: block.value,
+          label: block.label,
+        }, parentOrigin)
+      } catch {
+        /* ignore */
+      }
+    }
   }, [])
 
   /**
@@ -161,28 +196,59 @@ export function ContentProvider({ page, children }: Props) {
     setPending((prev) =>
       prev.filter(
         (p) =>
-          !(p.page === block.page && p.section === block.section && p.key === block.key && p.locale === block.locale),
+          !(p.page === block.page && p.section === block.section && p.key === block.key),
       ),
     )
-    invalidateCache(cacheKey)
+    // Drop every locale cache so FR/EN/AR all reload the shared value
+    invalidateCache(`content:${block.page}:`)
     await fetchBlocks()
     notifyContentSaved(block.page, 'website')
-  }, [cacheKey, fetchBlocks])
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+      try {
+        const parentOrigin = document.referrer ? new URL(document.referrer).origin : '*'
+        window.parent.postMessage({
+          type: 'gc-builder-preview-saved',
+          page: block.page,
+          cleared: true,
+        }, parentOrigin)
+      } catch { /* ignore */ }
+    }
+  }, [fetchBlocks])
 
   const savePending = useCallback(async () => {
     if (!pending.length) return
     await api.post('/admin/content/bulk', { blocks: pending })
     setPending([])
-    invalidateCache(cacheKey)
+    invalidateCache(`content:${page}:`)
     await fetchBlocks()
     notifyContentSaved(page, 'website')
-  }, [pending, page, fetchBlocks, cacheKey])
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+      try {
+        const parentOrigin = document.referrer ? new URL(document.referrer).origin : '*'
+        window.parent.postMessage({
+          type: 'gc-builder-preview-saved',
+          page,
+          cleared: true,
+        }, parentOrigin)
+      } catch { /* ignore */ }
+    }
+  }, [pending, page, fetchBlocks])
 
   const clearPending = useCallback(() => {
     setPending([])
     invalidateCache(cacheKey)
     fetchBlocks()
-  }, [fetchBlocks, cacheKey])
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+      try {
+        const parentOrigin = document.referrer ? new URL(document.referrer).origin : '*'
+        window.parent.postMessage({
+          type: 'gc-builder-preview-saved',
+          page,
+          cleared: true,
+        }, parentOrigin)
+      } catch { /* ignore */ }
+    }
+  }, [fetchBlocks, cacheKey, page])
 
   return (
     <ContentContext.Provider value={{
@@ -207,17 +273,23 @@ export function useContentBlock(
     type?: 'text' | 'image' | 'json'
     label?: string
     fallback?: string
-    /** When true, JSON/images are stored under locale `_all` (shared). Default: images shared, JSON per language. */
+    /**
+     * Shared across FR/EN/AR (`_all`).
+     * Default: images (and position JSON) are shared; text/json stay per language.
+     */
     shared?: boolean
   } = {}
 ) {
-  const { get, queueChange, saveBlock } = useContent()
+  const { get, queueChange } = useContent()
+  // saveBlock kept available on context for rare explicit callers (e.g. admin tools)
   const { i18n } = useTranslation()
   const lang = (i18n.language || 'fr').split('-')[0]
   const type = opts.type ?? 'text'
-  const shared = opts.shared ?? type === 'image'
-  const locale = shared ? '_all' : lang
   const { section, key } = parseCompound(compoundKey)
+  const shared =
+    opts.shared ??
+    (type === 'image' || key === 'badge_pos' || key.endsWith('_pos') || key.endsWith('_alt'))
+  const locale = shared ? '_all' : lang
   const value = get(compoundKey, opts.fallback ?? '')
 
   const asBlock = (newValue: string): PendingBlock => ({
@@ -231,9 +303,8 @@ export function useContentBlock(
   })
 
   const update = (newValue: string) => queueChange(asBlock(newValue))
+  /** Queue only — nothing persists until the toolbar « Enregistrer » button. */
+  const commit = (newValue: string) => queueChange(asBlock(newValue))
 
-  /** Write straight through without waiting for the toolbar's Save. */
-  const commit = (newValue: string) => saveBlock(asBlock(newValue))
-
-  return { value, update, commit }
+  return { value, update, commit, shared, locale }
 }

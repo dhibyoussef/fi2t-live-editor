@@ -108,8 +108,13 @@ class AuthController extends Controller
             return response()->json(['message' => 'Accès refusé.'], 403);
         }
 
-        // Drop previous live-edit tokens for this user (keep admin-token)
-        $user->tokens()->where('name', 'cms-edit')->delete();
+        // Drop only expired live-edit tokens — never invalidate an active Aperçu session.
+        $user->tokens()
+            ->where('name', 'cms-edit')
+            ->where(function ($q) {
+                $q->whereNotNull('expires_at')->where('expires_at', '<', now());
+            })
+            ->delete();
 
         $expiresAt = now()->addMinutes(self::EDIT_TOKEN_MINUTES);
         $token = $user->createToken(

@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const out = path.join(__dirname, 'audit-out', 'site')
-const designDir = path.resolve(__dirname, '../../Untitled (1)')
+const designDir = path.resolve(__dirname, '../public/design-refs')
 fs.mkdirSync(out, { recursive: true })
 const BASE = process.env.AUDIT_BASE || 'http://localhost:3002'
 

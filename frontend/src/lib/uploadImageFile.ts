@@ -45,7 +45,7 @@ function uploadFormData(
 
 export async function uploadImageFile(
   file: File,
-  endpoint: UploadEndpoint = '/admin/carousels/upload-image',
+  endpoint: UploadEndpoint = '/admin/content/upload-image',
   onProgress?: (percent: number) => void,
   onPhase?: (phase: 'compressing' | 'uploading') => void,
 ): Promise<{ url: string; path?: string; compressed?: boolean }> {

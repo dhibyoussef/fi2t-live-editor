@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { FormEvent, useState } from 'react'
 import EditableText from '../../cms/EditableText'
 import { ContentProvider } from '../../cms/ContentProvider'
+import EditToolbar from '../../cms/EditToolbar'
+import { useEditMode } from '../../cms/EditModeProvider'
+import api from '../../api/client'
 
 const FOOTER_LINKS = [
   { key: 'apropos', href: '/' },
@@ -36,9 +40,26 @@ function SocialIcon({ name }: { name: 'facebook' | 'x' | 'linkedin' }) {
 
 function FooterInner() {
   const { t } = useTranslation()
+  const { isEditMode } = useEditMode()
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'ok' | 'err'>('idle')
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+
+  const submitNewsletter = async (e: FormEvent) => {
+    e.preventDefault()
+    if (!newsletterEmail.trim()) return
+    setNewsletterStatus('loading')
+    try {
+      await api.post('/forms/newsletter', { email: newsletterEmail.trim() })
+      setNewsletterStatus('ok')
+      setNewsletterEmail('')
+    } catch {
+      setNewsletterStatus('err')
+    }
+  }
 
   return (
     <footer className="fi2t-footer">
+      {isEditMode && <EditToolbar onlyWhenPending />}
       <div className="fi2t-footer__grid">
         <div>
           <img src="/images/logo-white.png" alt="FI2T" className="fi2t-footer__logo" />
@@ -93,13 +114,18 @@ function FooterInner() {
             as="p"
             fallback="Restez informé de nos dernières initiatives."
           />
-          <form className="fi2t-footer__newsletter" onSubmit={(e) => e.preventDefault()}>
+          <form className="fi2t-footer__newsletter" onSubmit={submitNewsletter}>
             <input
               type="email"
+              name="email"
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
               placeholder={t('fi2t.footer.emailPlaceholder')}
               aria-label={t('fi2t.footer.emailPlaceholder')}
+              required
+              disabled={newsletterStatus === 'loading'}
             />
-            <button type="submit" aria-label={t('fi2t.footer.newsletter')}>
+            <button type="submit" aria-label={t('fi2t.footer.newsletter')} disabled={newsletterStatus === 'loading'}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M22 2L11 13"
@@ -118,6 +144,16 @@ function FooterInner() {
               </svg>
             </button>
           </form>
+          {newsletterStatus === 'ok' && (
+            <p className="fi2t-footer__newsletter-msg" role="status">
+              {t('fi2t.footer.newsletterSuccess', { defaultValue: 'Merci — inscription enregistrée.' })}
+            </p>
+          )}
+          {newsletterStatus === 'err' && (
+            <p className="fi2t-footer__newsletter-msg" role="alert">
+              {t('fi2t.footer.newsletterError', { defaultValue: 'Impossible d’envoyer pour le moment.' })}
+            </p>
+          )}
         </div>
       </div>
 

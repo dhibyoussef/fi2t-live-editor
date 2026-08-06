@@ -1,4 +1,4 @@
-import EditableImage, { useEditableImageSrc } from './EditableImage'
+import EditableImage, { useEditableImageSrc, useEditableImageAlt } from './EditableImage'
 import { useEditMode } from './EditModeProvider'
 
 type Props = {
@@ -8,12 +8,11 @@ type Props = {
   alt?: string
   className?: string
   label?: string
-  /** Extra class on the section wrapper when needed by callers — leave empty; section is owned by parent. */
 }
 
 /**
  * Full-bleed page banner: plain <img> keeps absolute CSS intact;
- * edit mode only adds a chip so title/CTAs stay clickable.
+ * edit mode shows a pencil that opens the image panel (preview / path / alt / Changer).
  */
 export default function EditableHeroBackground({
   page,
@@ -25,16 +24,18 @@ export default function EditableHeroBackground({
 }: Props) {
   const { isEditMode } = useEditMode()
   const src = useEditableImageSrc(page, blockKey, fallback)
+  const altText = useEditableImageAlt(page, blockKey, alt)
 
   return (
     <>
-      <img src={src || fallback} alt={alt} className={className} />
+      <img src={src || fallback} alt={altText || alt} className={className} />
       {isEditMode ? (
         <EditableImage
           page={page}
           blockKey={blockKey}
           variant="chip"
           label={label}
+          alt={alt}
           className="fi2t-page-hero__edit-chip"
           fallback={fallback}
         />

@@ -1,4 +1,4 @@
-const PREFIX = 'fi2t:v165:'
+const PREFIX = 'fi2t:v173:'
 
 interface CacheEntry<T> {
   data: T
@@ -41,10 +41,27 @@ export function writeCache<T>(key: string, data: T, ttlMs: number): void {
   }
 }
 
-export function invalidateCache(key: string): void {
-  memory.delete(key)
+export function invalidateCache(keyOrPrefix: string): void {
+  const exactMem = keyOrPrefix
+  memory.delete(exactMem)
+
+  // Prefix invalidation: `content:home:` clears fr/en/ar caches for that page
+  if (keyOrPrefix.endsWith(':')) {
+    for (const k of [...memory.keys()]) {
+      if (k.startsWith(keyOrPrefix)) memory.delete(k)
+    }
+  }
+
   try {
-    localStorage.removeItem(`${PREFIX}${key}`)
+    localStorage.removeItem(`${PREFIX}${keyOrPrefix}`)
+    if (keyOrPrefix.endsWith(':')) {
+      const toRemove: string[] = []
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i)
+        if (k && k.startsWith(`${PREFIX}${keyOrPrefix}`)) toRemove.push(k)
+      }
+      toRemove.forEach((k) => localStorage.removeItem(k))
+    }
   } catch {
     /* ignore */
   }

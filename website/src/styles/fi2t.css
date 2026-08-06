@@ -34,6 +34,11 @@ body {
   line-height: 1.5;
 }
 
+html[dir='rtl'] body {
+  direction: rtl;
+  text-align: right;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -57,8 +62,8 @@ a {
   /* keep objectifs @1468 after pulling about image up 32px */
   padding-bottom: calc(5.875rem + 32px);
   width: min(100% - 2rem, 1183px); /* 130 → 737+576 */
-  margin-left: max(1rem, calc((100% - 1440px) / 2 + 130px));
-  margin-right: auto;
+  margin-inline-start: max(1rem, calc((100% - 1440px) / 2 + 130px));
+  margin-inline-end: auto;
 }
 
 .fi2t-home > .fi2t-objectifs-wrap > .fi2t-objectifs-section {
@@ -71,8 +76,8 @@ a {
 .fi2t-home > .fi2t-adherer {
   /* image @3229; groupements ends 3133 → 96px gap */
   width: min(100% - 2rem, 1308px);
-  margin-left: max(1rem, calc((100% - 1440px) / 2 + 66px));
-  margin-right: auto;
+  margin-inline-start: max(1rem, calc((100% - 1440px) / 2 + 66px));
+  margin-inline-end: auto;
   padding-top: 6rem; /* 3229 − 3133 */
   padding-bottom: 5.625rem; /* +2px → page 5450, cards @4055 */
 }
@@ -80,8 +85,8 @@ a {
 .fi2t-home > .fi2t-news > .fi2t-section {
   /* arrows @54 / cards @134–1290 / arrow @1329 */
   width: min(100% - 2rem, 1320px);
-  margin-left: max(1rem, calc((100% - 1440px) / 2 + 54px));
-  margin-right: auto;
+  margin-inline-start: max(1rem, calc((100% - 1440px) / 2 + 54px));
+  margin-inline-end: auto;
   padding-top: 4.9375rem; /* 3939−3860 = 79px */
   padding-bottom: 4.5rem;
   min-height: 817px;
@@ -213,26 +218,101 @@ a {
   font-weight: 800;
 }
 
-.fi2t-header__link.is-active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -0.55rem;
-  height: 3px;
-  background: var(--fi2t-teal);
-  border-radius: 1px;
-}
-
 .fi2t-header__langs {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.15rem;
-  margin-left: 0.5rem;
-  padding-left: 0.85rem;
-  border-left: 1px solid rgba(68, 70, 80, 0.15);
+  margin-inline-start: 0.5rem;
+  padding-inline-start: 0.85rem;
+  border-inline-start: 1px solid rgba(68, 70, 80, 0.15);
 }
 
+.fi2t-header__lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 0;
+  background: transparent;
+  color: var(--fi2t-ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.55rem;
+  cursor: pointer;
+  border-radius: 6px;
+  opacity: 0.85;
+}
+
+.fi2t-header__lang-btn:hover,
+.fi2t-header__lang-btn[aria-expanded='true'] {
+  opacity: 1;
+  color: var(--fi2t-teal);
+  background: rgba(0, 169, 141, 0.1);
+}
+
+.fi2t-header__lang-btn i {
+  font-size: 0.65rem;
+  opacity: 0.7;
+  transition: transform 0.15s ease;
+}
+
+.fi2t-header__lang-btn[aria-expanded='true'] i {
+  transform: rotate(180deg);
+}
+
+.fi2t-header__lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 40;
+  min-width: 148px;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  background: #fff;
+  border: 1px solid rgba(68, 70, 80, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(0, 30, 64, 0.12);
+}
+
+.fi2t-header__lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--fi2t-ink);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: start;
+  padding: 0.55rem 0.65rem;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.fi2t-header__lang-option:hover {
+  background: rgba(0, 169, 141, 0.08);
+  color: var(--fi2t-teal-dark, #00696b);
+}
+
+.fi2t-header__lang-option.is-active {
+  background: rgba(0, 169, 141, 0.12);
+  color: var(--fi2t-teal);
+  font-weight: 700;
+}
+
+.fi2t-header__lang-code {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+}
+
+/* legacy chip styles kept for safety */
 .fi2t-header__lang {
   border: 0;
   background: transparent;
@@ -443,11 +523,15 @@ a {
   margin-top: -32px;
   margin-bottom: 1.5rem;
   justify-self: end;
+  /* Room for the gold badge hanging off the bottom-left */
+  padding-bottom: 52px;
+  overflow: visible;
 }
 
 .fi2t-about__image {
   width: 100%;
   height: 414px;
+  max-height: min(414px, 72vw);
   object-fit: cover;
   border-radius: 12px;
   display: block;
@@ -460,7 +544,8 @@ a {
 .fi2t-about__badge {
   /* position via EditablePositioned inline style (Figma default left:-29 bottom:-43) */
   z-index: 2;
-  width: 251px;
+  width: max(251px, max-content);
+  max-width: min(320px, 100%);
   min-height: 100px;
   background: var(--fi2t-gold);
   color: white;
@@ -471,6 +556,28 @@ a {
   box-sizing: border-box;
   cursor: inherit;
   box-shadow: none;
+  transform-origin: bottom left;
+}
+
+/* RTL: hang badge toward the text column (inline-end of the image) */
+[dir='rtl'] .fi2t-about__media {
+  justify-self: start;
+}
+
+[dir='rtl'] .fi2t-about__badge {
+  /* Inline styles from EditablePositioned already mirror left↔right;
+     keep a sane min size so Arabic label doesn’t look like two cards. */
+  width: max(251px, max-content);
+  max-width: min(320px, calc(100% + 40px));
+  transform-origin: bottom right;
+}
+
+[dir='rtl'] .fi2t-about__text {
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-about__text .fi2t-btn {
+  margin-inline-start: auto;
 }
 
 .fi2t-stat-badge {
@@ -497,6 +604,33 @@ a {
   text-align: right;
 }
 
+/* Home + shared sections: respect RTL reading direction */
+[dir='rtl'] .fi2t-objectifs-section,
+[dir='rtl'] .fi2t-objectif-card,
+[dir='rtl'] .fi2t-adherer__content,
+[dir='rtl'] .fi2t-reasons,
+[dir='rtl'] .fi2t-news__head,
+[dir='rtl'] .fi2t-news-card__body,
+[dir='rtl'] .fi2t-cta__content,
+[dir='rtl'] .fi2t-footer {
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-adherer__content .fi2t-btn {
+  margin-inline-start: 0;
+}
+
+[dir='rtl'] .fi2t-reasons__item,
+[dir='rtl'] .fi2t-reasons li {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+}
+
+[dir='rtl'] .fi2t-news__head {
+  padding-left: 0;
+  padding-right: 80px;
+}
+
 /* Objectifs */
 .fi2t-objectifs-wrap {
   background: #faf8ff;
@@ -504,7 +638,7 @@ a {
 }
 
 .fi2t-objectifs-section {
-  text-align: left;
+  text-align: start;
 }
 
 .fi2t-objectifs-section__title {
@@ -529,7 +663,7 @@ a {
   justify-content: space-between;
   gap: 2rem 0;
   margin-top: 0;
-  text-align: left;
+  text-align: start;
 }
 
 .fi2t-objectif-card {
@@ -632,7 +766,7 @@ a {
   max-width: 1232px;
   margin: 32px 0 0; /* 2224 − (2141+51) */
   opacity: 1;
-  text-align: left;
+  text-align: start;
   white-space: normal;
   font-size: 16px;
   line-height: 26px;
@@ -644,8 +778,8 @@ a {
   z-index: 1;
   width: min(100% - 2rem, 1170px); /* 135 → ~1305 */
   margin: 0 auto;
-  margin-left: max(1rem, calc((100% - 1440px) / 2 + 135px));
-  text-align: left;
+  margin-inline-start: max(1rem, calc((100% - 1440px) / 2 + 135px));
+  text-align: start;
   height: 100%;
   box-sizing: border-box;
 }
@@ -656,6 +790,7 @@ a {
   font-size: 42px;
   font-weight: 700;
   line-height: 50px;
+  text-align: start;
 }
 
 .fi2t-groupements__grid {
@@ -665,7 +800,7 @@ a {
   column-gap: 0;
   row-gap: 24px; /* 2570 − (2336+210) */
   margin-top: 60px; /* 2336 − (2224+52) */
-  text-align: left;
+  text-align: start;
 }
 
 .fi2t-group-card {
@@ -686,6 +821,7 @@ a {
   isolation: isolate;
   overflow: hidden;
   box-sizing: border-box;
+  text-align: start;
 }
 
 .fi2t-group-card::before {
@@ -761,11 +897,15 @@ a {
 .fi2t-adherer__media {
   position: relative;
   margin-bottom: 1.5rem;
+  padding-bottom: 48px;
+  overflow: visible;
 }
 
 .fi2t-adherer__image {
+  display: block;
   width: 100%;
-  height: 511px;
+  height: auto;
+  aspect-ratio: 576 / 511;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -773,7 +913,8 @@ a {
 .fi2t-adherer__badge {
   /* position via EditablePositioned (Figma default right:-26 bottom:-41) */
   z-index: 2;
-  width: 220px;
+  width: max(220px, max-content);
+  max-width: min(300px, 100%);
   min-height: 100px;
   background: var(--fi2t-gold);
   color: white;
@@ -784,13 +925,14 @@ a {
   align-items: center;
   box-sizing: border-box;
   cursor: inherit;
+  transform-origin: bottom right;
 }
 
 .fi2t-adherer__content .fi2t-btn {
   min-width: 272px;
   width: 272px;
   height: 55px;
-  margin-left: 7px; /* Figma btn @761 vs content @754 */
+  margin-inline-start: 7px; /* Figma btn @761 vs content @754 */
 }
 
 .fi2t-reasons {
@@ -1255,12 +1397,24 @@ a {
   left: 4px;
   color: var(--fi2t-teal);
   font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
   background: white;
   padding: 0 0.25rem;
   line-height: 16px;
+}
+
+.fi2t-contact__link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(0, 169, 141, 0.45);
+}
+
+.fi2t-contact__link:hover {
+  color: var(--fi2t-teal);
+  text-decoration-color: var(--fi2t-teal);
 }
 
 .fi2t-contact__field input,
@@ -1603,8 +1757,8 @@ a {
 .fi2t-about-page__mission {
   /* Artboard: text column at x=139, card at x=860 — not a centred block. */
   width: min(100% - 2rem, 1159px); /* 676 + 45 + 438 */
-  margin-left: max(1rem, calc((100% - 1440px) / 2 + 139px));
-  margin-right: auto;
+  margin-inline-start: max(1rem, calc((100% - 1440px) / 2 + 139px));
+  margin-inline-end: auto;
   display: grid;
   grid-template-columns: minmax(0, 676px) minmax(0, 438px);
   justify-content: start;
@@ -1622,6 +1776,7 @@ a {
   line-height: 47px !important;
   opacity: 0.8;
   max-width: 544px;
+  text-align: start;
 }
 
 .fi2t-about-page__body {
@@ -1629,7 +1784,7 @@ a {
   line-height: 29px;
   font-size: 18px;
   white-space: pre-line;
-  text-align: left;
+  text-align: start;
   max-width: 676px;
   margin: 0;
   opacity: 0.8;
@@ -1701,7 +1856,7 @@ a {
 }
 
 .fi2t-value-card {
-  text-align: left;
+  text-align: start;
   width: 318px;
   max-width: 100%;
 }
@@ -1761,8 +1916,13 @@ a {
 .fi2t-about-page__diversify {
   background: #ceb68e;
   color: white;
-  padding: 3.6875rem 4rem 3.5rem 4.625rem; /* title 59; left 74 */
-  border-radius: 24px 0 0 24px;
+  padding-block: 3.6875rem 3.5rem;
+  padding-inline: 4.625rem 4rem;
+  border-start-start-radius: 24px;
+  border-end-start-radius: 24px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+  text-align: start;
 }
 
 .fi2t-about-page__diversify h2 {
@@ -1772,6 +1932,7 @@ a {
   font-weight: 600 !important;
   line-height: 47px !important;
   opacity: 0.8;
+  text-align: start;
 }
 
 .fi2t-about-page__diversify-intro {
@@ -1779,6 +1940,7 @@ a {
   font-size: 16px;
   line-height: 24px;
   color: rgba(255, 255, 255, 0.8);
+  text-align: start;
 }
 
 .fi2t-diversify-list {
@@ -1787,6 +1949,7 @@ a {
   margin: 0;
   display: grid;
   gap: 2.25rem; /* ~36px between items */
+  text-align: start;
 }
 
 .fi2t-diversify-list .cms-list-trigger-wrap {
@@ -1838,11 +2001,16 @@ a {
 .fi2t-about-page__join {
   background: #00a98d;
   color: white;
-  padding: 0 2.75rem 0 3.6875rem; /* left 59px; vertical via flex center */
-  border-radius: 0 24px 24px 0;
+  padding-block: 0;
+  padding-inline: 3.6875rem 2.75rem;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  border-start-end-radius: 24px;
+  border-end-end-radius: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: start;
 }
 
 .fi2t-about-page__join h2 {
@@ -1852,6 +2020,7 @@ a {
   font-weight: 500 !important;
   line-height: 32px !important;
   max-width: 305px;
+  text-align: start;
 }
 
 .fi2t-about-page__join p {
@@ -1861,6 +2030,7 @@ a {
   color: #fff;
   max-width: 315px;
   opacity: 1;
+  text-align: start;
 }
 
 .fi2t-about-page__join-btn {
@@ -1879,6 +2049,165 @@ a {
   line-height: 24px !important;
   display: inline-grid !important;
   place-items: center;
+}
+
+/* Arabic: force RTL reading direction on Qui sommes-nous + common page chrome */
+[dir='rtl'] .fi2t-about-page,
+[dir='rtl'] .fi2t-about-page__mission,
+[dir='rtl'] .fi2t-about-page__mission-text,
+[dir='rtl'] .fi2t-about-page__body,
+[dir='rtl'] .fi2t-about-page__values,
+[dir='rtl'] .fi2t-value-card,
+[dir='rtl'] .fi2t-about-page__diversify,
+[dir='rtl'] .fi2t-about-page__join,
+[dir='rtl'] .fi2t-diversify-list,
+[dir='rtl'] .fi2t-org-page,
+[dir='rtl'] .fi2t-contact-page,
+[dir='rtl'] .fi2t-actu-page,
+[dir='rtl'] .fi2t-adhesion-page {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-about-page__mission-title,
+[dir='rtl'] .fi2t-about-page__body,
+[dir='rtl'] .fi2t-value-card,
+[dir='rtl'] .fi2t-value-card h3,
+[dir='rtl'] .fi2t-value-card__title,
+[dir='rtl'] .fi2t-value-card p,
+[dir='rtl'] .fi2t-about-page__diversify h2,
+[dir='rtl'] .fi2t-about-page__diversify-intro,
+[dir='rtl'] .fi2t-diversify-list strong,
+[dir='rtl'] .fi2t-diversify-list p,
+[dir='rtl'] .fi2t-about-page__join h2,
+[dir='rtl'] .fi2t-about-page__join p {
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-about-page__mission-media {
+  justify-self: start;
+}
+
+[dir='rtl'] .fi2t-about-page__join-btn {
+  align-self: flex-start;
+}
+
+[dir='rtl'] .fi2t-page-hero,
+[dir='rtl'] .fi2t-hero {
+  direction: rtl;
+}
+
+[dir='rtl'] .fi2t-page-hero {
+  text-align: center;
+}
+
+[dir='rtl'] .fi2t-group-card,
+[dir='rtl'] .fi2t-groupements__intro,
+[dir='rtl'] .fi2t-groupements h2,
+[dir='rtl'] .fi2t-about__text,
+[dir='rtl'] .fi2t-objectif-card p,
+[dir='rtl'] .fi2t-objectif-card h3 {
+  text-align: right;
+}
+
+/* —— Site-wide Arabic RTL: pages that still forced LTR alignment —— */
+[dir='rtl'] .fi2t-groupement-page,
+[dir='rtl'] .fi2t-gl,
+[dir='rtl'] .fi2t-org-page,
+[dir='rtl'] .fi2t-contact-page,
+[dir='rtl'] .fi2t-actu-page,
+[dir='rtl'] .fi2t-adhesion-page,
+[dir='rtl'] .fi2t-article,
+[dir='rtl'] .fi2t-footer {
+  direction: rtl;
+}
+
+[dir='rtl'] .fi2t-org-member,
+[dir='rtl'] .fi2t-org-regional__row-btn,
+[dir='rtl'] .fi2t-org-board,
+[dir='rtl'] .fi2t-org-hq__inner,
+[dir='rtl'] .fi2t-org-staff,
+[dir='rtl'] .fi2t-org-groupements,
+[dir='rtl'] .fi2t-actu-card__body,
+[dir='rtl'] .fi2t-article__q-btn,
+[dir='rtl'] .fi2t-article__body,
+[dir='rtl'] .fi2t-contact__info,
+[dir='rtl'] .fi2t-contact__form,
+[dir='rtl'] .fi2t-adhesion-intro,
+[dir='rtl'] .fi2t-adhesion-adherer,
+[dir='rtl'] .fi2t-adhesion-form,
+[dir='rtl'] .fi2t-g-acc__head,
+[dir='rtl'] .fi2t-g-acc__body,
+[dir='rtl'] .fi2t-g-pillar,
+[dir='rtl'] .fi2t-g-enjeux,
+[dir='rtl'] .fi2t-g-proposals,
+[dir='rtl'] .fi2t-gl-seg-split h2,
+[dir='rtl'] .fi2t-gl-seg-split__copy,
+[dir='rtl'] .fi2t-gl-tree-stat,
+[dir='rtl'] .fi2t-gl-stat--icon,
+[dir='rtl'] .fi2t-gl-zigzag__copy,
+[dir='rtl'] .fi2t-gl-split__text,
+[dir='rtl'] .fi2t-gl-intro,
+[dir='rtl'] .fi2t-gl-callout,
+[dir='rtl'] .fi2t-gl-info-banner,
+[dir='rtl'] .fi2t-footer__col,
+[dir='rtl'] .fi2t-footer__about,
+[dir='rtl'] .fi2t-footer__newsletter {
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-org-stats,
+[dir='rtl'] .fi2t-org-board,
+[dir='rtl'] .fi2t-org-hq__inner,
+[dir='rtl'] .fi2t-org-regional,
+[dir='rtl'] .fi2t-org-groupements,
+[dir='rtl'] .fi2t-actu-grid,
+[dir='rtl'] .fi2t-contact,
+[dir='rtl'] .fi2t-adhesion-adherer {
+  margin-left: auto;
+  margin-right: max(1rem, calc((100% - 1440px) / 2 + 100px));
+}
+
+[dir='rtl'] .fi2t-contact__field > span {
+  left: auto;
+  right: 4px;
+}
+
+[dir='rtl'] .fi2t-footer__social {
+  right: auto;
+  left: max(1rem, calc((100% - 1440px) / 2 + 66px));
+}
+
+[dir='rtl'] .fi2t-g-acc__head,
+[dir='rtl'] .fi2t-gl-split__bordered,
+[dir='rtl'] .fi2t-gl-callout,
+[dir='rtl'] .fi2t-gl-info-banner,
+[dir='rtl'] .fi2t-gl-therm-metric,
+[dir='rtl'] .fi2t-gl-av-callout,
+[dir='rtl'] .fi2t-gl-golf-banner,
+[dir='rtl'] .fi2t-gl-tn-stats li {
+  border-left-color: transparent;
+  border-right-style: solid;
+  border-right-width: 3px;
+  border-right-color: currentColor;
+}
+
+[dir='rtl'] .fi2t-gl-bullets,
+[dir='rtl'] .fi2t-gl-seg-split li,
+[dir='rtl'] .fi2t-gl-seg-split__item {
+  padding-left: 0;
+  padding-right: 1.15rem;
+}
+
+[dir='rtl'] .fi2t-gl-seg-split li::before,
+[dir='rtl'] .fi2t-gl-seg-split__item::before {
+  left: auto;
+  right: 0;
+}
+
+[dir='rtl'] .fi2t-header__lang-menu {
+  right: auto;
+  left: 0;
 }
 
 /* ── Organisation page — Figma « Organisation » 1440×3252 ── */
@@ -3200,9 +3529,10 @@ body.fi2t-design-face-page main {
 }
 
 .fi2t-gl-band {
-  padding: 80px 48px;
-  max-width: 1440px;
-  margin: 0 auto;
+  padding: 80px max(48px, calc((100% - 1344px) / 2));
+  width: 100%;
+  max-width: none;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -4536,7 +4866,7 @@ body.fi2t-design-face-page main {
 /* —— Tourisme thermal (Figma 1440×3521) —— */
 .fi2t-gl-therm-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -5285,7 +5615,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme médical (Figma 1440×3323) —— */
 .fi2t-gl-med-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -5562,8 +5892,9 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 
 .fi2t-gl-med-donut {
   position: absolute;
-  left: 634px;
-  top: 90.39px;
+  left: 720px;
+  top: 50%;
+  transform: translateY(-50%);
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -5929,6 +6260,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 
   .fi2t-gl-med-donut {
     margin: 0 auto;
+    transform: none;
   }
 
   .fi2t-gl-med-actions__grid {
@@ -5953,7 +6285,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme d'aventure (Figma 1440×3072) —— */
 .fi2t-gl-av-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -6617,7 +6949,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme d'affaire (Figma 1440×3968) — real HTML —— */
 .fi2t-gl-aff-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -7340,7 +7672,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme golfique (Figma 1440×3348) — real HTML —— */
 .fi2t-gl-golf-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -7960,7 +8292,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme la plaisance (Figma 1440×3819) — real HTML —— */
 .fi2t-gl-plais-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -8455,7 +8787,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme automobile (Figma 1440×2860) — real HTML —— */
 .fi2t-gl-auto-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -8815,7 +9147,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Tourisme des Sénior (Figma 1440×3521) —— */
 .fi2t-gl-sen-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -9658,16 +9990,16 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* Diagnostic Stratégique — Figma: title frame 494×86 @1793/459, sub@1879, cards@1938 */
 .fi2t-gl-cult-diag {
   padding: 0 0 44px; /* cards@1938+266=2204 → soft@2249 */
-  max-width: 1440px;
+  max-width: none;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   background: #fff;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .fi2t-gl-cult-diag__stage {
-  width: 1440px;
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0;
@@ -9957,7 +10289,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 /* —— Thalassothérapie (Figma 1440×3655) —— */
 .fi2t-gl-thal-stage {
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -12044,8 +12376,7 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
   }
 
   .fi2t-home > .fi2t-about {
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
     width: min(100% - 2rem, var(--fi2t-max));
     /* Desktop keeps the Figma 11rem rhythm; phones don't need that empty band. */
     padding-top: 3rem;
@@ -12053,22 +12384,24 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
   }
 
   .fi2t-home > .fi2t-adherer {
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
     width: min(100% - 2rem, var(--fi2t-max));
   }
 
-  .fi2t-about {
-    grid-template-columns: 1fr;
-  }
-
+  /* Tablet+: keep the same 2-column composition as desktop (text | media)
+   * Phones (<768) stack below — see the 767px rule later. */
+  .fi2t-about,
   .fi2t-adherer {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.5rem);
   }
 
-  .fi2t-about__media {
+  .fi2t-about__media,
+  .fi2t-adherer__media {
     justify-self: stretch;
     max-width: none;
+    margin-top: 0;
+    overflow: visible;
   }
 
   .fi2t-groupements {
@@ -12117,12 +12450,11 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
 
   .fi2t-about__badge,
   .fi2t-adherer__badge {
-    /* keep editable offsets; only clamp width on small screens */
-    max-width: calc(100% - 1.5rem);
+    /* Keep Figma-sized badges on tablet; only shrink on phone (≤767). */
+    max-width: min(320px, 70%);
   }
 
-  .fi2t-about,
-  .fi2t-adherer,
+  /* Stack only non-home grids here — about/adherer stay 2-col until phone breakpoint */
   .fi2t-contact,
   .fi2t-footer__grid,
   .fi2t-about-page__mission,
@@ -12192,6 +12524,7 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     padding-top: 4rem;
     padding-bottom: 3.5rem;
     width: min(100% - 2rem, var(--fi2t-about-max));
+    margin-inline: auto;
   }
 
   .fi2t-about-page__body {
@@ -12458,10 +12791,18 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
 
   .fi2t-about-page__diversify {
     border-radius: 24px 24px 0 0;
+    border-start-start-radius: 24px;
+    border-start-end-radius: 24px;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
   }
 
   .fi2t-about-page__join {
     border-radius: 0 0 24px 24px;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-end-start-radius: 24px;
+    border-end-end-radius: 24px;
   }
 
   .fi2t-values-grid {
@@ -12527,6 +12868,13 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     width: 100%;
     padding-top: 0.75rem;
     border-top: 1px solid rgba(68, 70, 80, 0.12);
+  }
+
+  .fi2t-header__lang-menu {
+    position: static;
+    margin-top: 0.5rem;
+    box-shadow: none;
+    width: 100%;
   }
 }
 
@@ -12694,23 +13042,19 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     display: none;
   }
 
-  /* Home — the About grid track is sized by a 567px paragraph. */
-  .fi2t-about {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
+  /* Home — paragraph track must shrink; keep 2-col until the phone rule below. */
   .fi2t-about__text p {
     width: auto;
   }
 
-  /* Badges hang off the artboard on purpose; on a phone that leaves the screen. */
-  .fi2t-adherer__badge,
+  /*
+   * Keep the gold badge overlapping the image (same composition as desktop).
+   * Do NOT flatten to position:static — that stacks the badge under the card.
+   */
   .fi2t-about__badge,
-  .fi2t-stat-badge {
-    position: static !important;
-    inset: auto !important;
-    margin: 1rem 0 0 !important;
-    width: fit-content;
+  .fi2t-adherer__badge {
+    position: absolute !important;
+    margin: 0 !important;
   }
 
   /*
@@ -13145,5 +13489,104 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     width: 272px;
     min-width: 272px;
     max-width: 272px;
+  }
+}
+
+/*
+ * Home about / adherer — responsive composition
+ * Tablet (768+): same 2-col design as desktop, scaled.
+ * Phone (<768): stack text then media; badge stays overlapping the image
+ * and is clamped so negative Figma offsets never clip off-screen.
+ */
+@media (max-width: 767px) {
+  .fi2t-about,
+  .fi2t-adherer {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem;
+  }
+
+  .fi2t-about__text p {
+    width: auto !important;
+  }
+
+  .fi2t-about__media,
+  .fi2t-adherer__media {
+    max-width: min(576px, 100%);
+    width: 100%;
+    justify-self: stretch;
+    margin-inline: 0;
+    /* Space under the card for the overhanging badge */
+    padding-bottom: 56px;
+    overflow: visible;
+  }
+
+  .fi2t-about__image {
+    height: auto;
+    max-height: none;
+    aspect-ratio: 576 / 414;
+  }
+
+  .fi2t-adherer__image {
+    height: auto;
+    max-height: none;
+  }
+
+  .fi2t-about__badge,
+  .fi2t-adherer__badge {
+    position: absolute !important;
+    margin: 0 !important;
+    max-width: min(220px, 70%);
+    min-height: 72px;
+    width: max(clamp(140px, 42vw, 200px), max-content);
+    padding: 0.9rem 1rem;
+  }
+
+  /*
+   * Keep the CMS / Figma bottom offset (overlap). Only clamp the horizontal
+   * hang so the badge never clips off the left/right of a phone screen.
+   */
+  .fi2t-about__badge {
+    left: 12px !important;
+    right: auto !important;
+  }
+
+  .fi2t-adherer__badge {
+    right: 12px !important;
+    left: auto !important;
+  }
+
+  [dir='rtl'] .fi2t-about__badge {
+    right: 12px !important;
+    left: auto !important;
+  }
+
+  [dir='rtl'] .fi2t-adherer__badge {
+    left: 12px !important;
+    right: auto !important;
+  }
+
+  .fi2t-about__badge .fi2t-stat-badge,
+  .fi2t-adherer__badge .fi2t-stat-badge {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .fi2t-about__badge .fi2t-stat-badge::first-line,
+  .fi2t-adherer__badge .fi2t-stat-badge::first-line {
+    font-size: 22px;
+    line-height: 1.15;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .fi2t-about,
+  .fi2t-adherer {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    align-items: start;
+  }
+
+  .fi2t-about__media,
+  .fi2t-adherer__media {
+    overflow: visible;
   }
 }

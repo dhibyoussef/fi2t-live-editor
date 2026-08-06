@@ -6,7 +6,7 @@ import BuilderSectionPreview, { type PreviewCarouselItem } from './BuilderSectio
 import InsertionZone from './InsertionZone'
 import ComponentPalette from './ComponentPalette'
 import SectionEditorPanel from './SectionEditorPanel'
-import BuilderLivePreview from './BuilderLivePreview'
+import BuilderLivePreview, { type EmbedEditPayload } from './BuilderLivePreview'
 
 export type InsertTarget = '__start__' | string | null
 export type CanvasMode = 'structure' | 'preview' | 'split'
@@ -51,6 +51,8 @@ interface Props {
   setValueChange: (section: string, block: BlockRow, locale: string, value: string) => void
   onDeleteLocale: (section: string, key: string, locale: string) => void
   onUploadImage: (section: string, block: BlockRow, file: File) => void
+  onEmbedEdit?: (edit: EmbedEditPayload) => void
+  onEmbedSaved?: (page: string) => void
 }
 
 export default function PageBuilder({
@@ -59,10 +61,11 @@ export default function PageBuilder({
   onSelectSection, onSetInsertTarget, onInsertPattern, onDeleteSection,
   effectiveValue, effectiveLabel, setLabelChange, setValueChange,
   onDeleteLocale, onUploadImage,
+  onEmbedEdit, onEmbedSaved,
 }: Props) {
   const selected = sections.find(s => s.name === selectedSection)
-  /* Structure + aperçu side by side with readable Structure cards */
-  const [canvasMode, setCanvasMode] = useState<CanvasMode>('split')
+  /* Structure narrower · Aperçu dominant so preview isn’t tiny */
+  const [canvasMode, setCanvasMode] = useState<CanvasMode>('preview')
   const [previewExpanded, setPreviewExpanded] = useState(false)
   const [previewLocale, setPreviewLocale] = useState<'fr' | 'en' | 'ar'>('fr')
 
@@ -193,6 +196,8 @@ export default function PageBuilder({
             onToggleExpand={() => setPreviewExpanded(e => !e)}
             showToolbar
             onLocaleChange={setPreviewLocale}
+            onEmbedEdit={onEmbedEdit}
+            onEmbedSaved={onEmbedSaved}
           />
         </div>
       )}

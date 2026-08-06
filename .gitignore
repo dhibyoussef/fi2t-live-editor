@@ -21,3 +21,8 @@ Thumbs.db
 **/.phpunit.cache/
 **/storage/*.key
 **/storage/pail/
+
+# Generated / local-only
+website/audit-out/
+Untitled (1)/
+css.css

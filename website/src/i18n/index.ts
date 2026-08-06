@@ -25,4 +25,11 @@ i18n
     interpolation: { escapeValue: false },
   })
 
+i18n.on('languageChanged', (lng) => {
+  const code = (lng || 'fr').split('-')[0]
+  if (typeof document === 'undefined') return
+  document.documentElement.lang = code
+  document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr'
+})
+
 export default i18n

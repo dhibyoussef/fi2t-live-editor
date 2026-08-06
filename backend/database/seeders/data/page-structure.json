@@ -853,10 +853,10 @@
       ],
       "values": {
         "fr": {
-          "label_name": "NOM COMPLET",
-          "label_email": "ADRESSE EMAIL",
-          "label_subject": "SUJET",
-          "label_message": "MESSAGE",
+          "label_name": "Nom complet",
+          "label_email": "Adresse email",
+          "label_subject": "Sujet",
+          "label_message": "Message",
           "submit": "Envoyer",
           "success": "Merci — votre message a bien été envoyé.",
           "placeholder_name": "Nom et prénom",
@@ -865,10 +865,10 @@
           "placeholder_message": "Votre message ici..."
         },
         "en": {
-          "label_name": "FULL NAME",
-          "label_email": "EMAIL ADDRESS",
-          "label_subject": "SUBJECT",
-          "label_message": "MESSAGE",
+          "label_name": "Full name",
+          "label_email": "Email address",
+          "label_subject": "Subject",
+          "label_message": "Message",
           "submit": "Send",
           "success": "Thank you — your message has been sent.",
           "placeholder_name": "First and last name",

@@ -29,12 +29,8 @@ function clone<T>(v: T): T {
 }
 
 async function uploadImage(file: File): Promise<string> {
-  const form = new FormData()
-  form.append('image', file)
-  const { data } = await api.post('/admin/content/upload-image', form, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  })
-  return data.url as string
+  const { uploadWebsiteImage } = await import('../../cms/uploadWebsiteImage')
+  return uploadWebsiteImage(file)
 }
 
 const IMAGE_FIELD = /^(img|image|face|icon|photo|banner|blueprint|marinaImg)$/i

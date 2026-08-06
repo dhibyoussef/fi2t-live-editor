@@ -188,15 +188,12 @@ function SlideUploader({
       onChange={async e => {
         const file = e.target.files?.[0]
         if (!file) return
-        const form = new FormData()
-        form.append('image', file)
         try {
-          const { data } = await api.post('/admin/content/upload-image', form, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-          })
-          update(data.url)
-        } catch {
-          alert('Erreur upload')
+          const { uploadWebsiteImage } = await import('../../cms/uploadWebsiteImage')
+          const url = await uploadWebsiteImage(file)
+          update(url)
+        } catch (err) {
+          alert(err instanceof Error ? err.message : 'Erreur upload')
         }
         e.target.value = ''
       }}

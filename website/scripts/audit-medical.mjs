@@ -16,7 +16,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const out = path.join(__dirname, 'audit-out')
 const designPath = path.resolve(
   __dirname,
-  '../../Untitled (1)/Tourisme medical.png',
+  '../public/design-refs/Tourisme medical.png',
 )
 
 const browser = await chromium.launch({ headless: true })
