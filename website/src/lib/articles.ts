@@ -79,6 +79,34 @@ export function createEmptyArticle(
   }
 }
 
+const FR_DETAIL_MARKERS =
+  /\b(des|les|pour|avec|dans|sur|une|est|sont|Fédération|tourisme|Président|Question|Réponse|Source|profite|modèle|économie)\b|[àâäéèêëïîôùûüçœ]/iu
+
+function looksFrenchDetail(value?: string): boolean {
+  if (!value?.trim()) return false
+  return FR_DETAIL_MARKERS.test(value)
+}
+
+function sectionsLookFrench(sections?: ArticleSection[]): boolean {
+  if (!sections?.length) return false
+  return looksFrenchDetail(sections.map((s) => `${s.question}\n${s.answer}`).join('\n'))
+}
+
+function pickLocalizedField(
+  cmsValue: string | undefined,
+  defaultValue: string | undefined,
+): string | undefined {
+  if (!cmsValue) return defaultValue
+  if (
+    defaultValue
+    && looksFrenchDetail(cmsValue)
+    && !looksFrenchDetail(defaultValue)
+  ) {
+    return defaultValue
+  }
+  return cmsValue || defaultValue
+}
+
 /** Prefer CMS fields; fill missing detail (hero/quote/sections/…) from defaults. */
 export function mergeArticleDetail(
   fromCms: ArticleItem | undefined,
@@ -90,16 +118,63 @@ export function mergeArticleDetail(
 
   const cmsSections = fromCms.sections?.length ? fromCms.sections : undefined
   const defSections = fromDefaults.sections?.length ? fromDefaults.sections : undefined
+  let sections = cmsSections ?? defSections
+  if (
+    cmsSections
+    && defSections
+    && sectionsLookFrench(cmsSections)
+    && !sectionsLookFrench(defSections)
+  ) {
+    sections = defSections
+  }
 
   return {
     ...fromDefaults,
     ...fromCms,
-    hero_title: fromCms.hero_title || fromDefaults.hero_title,
-    subtitle: fromCms.subtitle || fromDefaults.subtitle,
-    quote: fromCms.quote || fromDefaults.quote,
-    intro: fromCms.intro || fromDefaults.intro,
-    sections: cmsSections ?? defSections,
-    source: fromCms.source || fromDefaults.source,
+    hero_title: pickLocalizedField(fromCms.hero_title, fromDefaults.hero_title),
+    subtitle: pickLocalizedField(fromCms.subtitle, fromDefaults.subtitle),
+    quote: pickLocalizedField(fromCms.quote, fromDefaults.quote),
+    intro: pickLocalizedField(fromCms.intro, fromDefaults.intro),
+    sections,
+    source: pickLocalizedField(fromCms.source, fromDefaults.source),
     img: fromCms.img || fromDefaults.img,
   }
+}
+
+/**
+ * Deep-merge article lists by slug: keep CMS card/text edits, fill missing
+ * detail fields (sections, quote, intro…) from the locale overlay/defaults.
+ */
+export function mergeArticlesBySlug(
+  fromCms: ArticleItem[],
+  fromDefaults: ArticleItem[],
+): ArticleItem[] {
+  if (!fromCms.length) return fromDefaults
+  if (!fromDefaults.length) return fromCms
+
+  const defaultsBySlug = new Map(fromDefaults.map((item) => [item.slug, item]))
+  const seen = new Set<string>()
+  const merged: ArticleItem[] = []
+
+  for (const cmsItem of fromCms) {
+    seen.add(cmsItem.slug)
+    const detail = mergeArticleDetail(cmsItem, defaultsBySlug.get(cmsItem.slug))
+    if (detail) merged.push(detail)
+  }
+
+  for (const defItem of fromDefaults) {
+    if (seen.has(defItem.slug)) continue
+    merged.push(defItem)
+  }
+
+  return merged
+}
+
+/** JSON string helper for CMS `grid.items` locale merge. */
+export function mergeArticlesJson(cmsRaw: string, defaultsRaw: string): string {
+  const cms = parseArticles(cmsRaw, [])
+  const defaults = parseArticles(defaultsRaw, [])
+  if (!defaults.length) return cmsRaw
+  if (!cms.length) return defaultsRaw
+  return JSON.stringify(mergeArticlesBySlug(cms, defaults))
 }

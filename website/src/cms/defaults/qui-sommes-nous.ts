@@ -44,7 +44,7 @@ export const QUI_SOMMES_NOUS_DEFAULTS: Record<string, string> = {
   ]),
 
   'diversify.title': 'Pourquoi diversifier et innover ?',
-  'diversify.intro': 'La diversification des produits touristique n’est pas un luxe, c’est plutôt :',
+  'diversify.intro': 'La diversification des produits touristiques n’est pas un luxe, c’est plutôt :',
   'diversify.items': JSON.stringify([
     {
       title: 'Adaptation à la demande',

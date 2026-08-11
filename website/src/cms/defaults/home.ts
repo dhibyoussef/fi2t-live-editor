@@ -85,7 +85,7 @@ export const HOME_DEFAULTS: Record<string, string> = {
     {
       slug: 'secteur-sous-pression',
       title: 'Secteur touristique: sous pression, mais résilient...',
-      desc: 'Le secteur touristique mondiale, traverse une phase, avec des marché plus prédenr et des décisions de voyage de plus en plus tardive....',
+      desc: 'Le secteur touristique mondial traverse une phase exigeante, avec des marchés plus prudents et des décisions de voyage de plus en plus tardives....',
       date: '22 Mai 2026',
       img: '/images/act2.jpg?v=home2',
     },

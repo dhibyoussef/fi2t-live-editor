@@ -8,7 +8,7 @@ export const CONTACT_DEFAULTS: Record<string, string> = {
     {
       icon: '/images/icon-address.svg',
       label: 'Adresse',
-      value: "Rue du Lac Turkana, Les Berges du\nLac 1\n1053 Tunis, Tunisie",
+      value: "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisie",
     },
     {
       icon: '/images/icon-phone.svg',
@@ -32,4 +32,5 @@ export const CONTACT_DEFAULTS: Record<string, string> = {
   'form.placeholder_message': 'Votre message ici...',
   'form.submit': 'Envoyer',
   'form.success': 'Merci — votre message a bien été envoyé.',
+  'form.error': 'Impossible d’envoyer le message pour le moment. Réessayez plus tard.',
 }

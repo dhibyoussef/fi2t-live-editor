@@ -16,10 +16,22 @@ export const HOME_EN: Record<string, string> = {
   'objectifs.intro':
     'Fi2T aims to bring together different tourism operators within a single professional union.',
   'objectifs.items': JSON.stringify([
-    { title: 'Strategic vision', desc: 'Contribute to strategic vision for the sector' },
-    { title: 'Members’ interests', desc: 'Safeguard economic and social interests' },
-    { title: 'Synergy', desc: 'Create synergy between operators' },
-    { title: 'Development', desc: 'Contribute to the development of Tunisian tourism' },
+    {
+      title: 'Strategic vision',
+      desc: 'Contribute strategic and practical vision for the diversification and innovation of Tunisian tourism',
+    },
+    {
+      title: 'Members’ interests',
+      desc: 'Safeguard the economic and social interests of our members',
+    },
+    {
+      title: 'Synergy',
+      desc: 'Create synergy between the different operators of Tunisian tourism',
+    },
+    {
+      title: 'Development',
+      desc: 'Contribute to the development and growth of Tunisian tourism',
+    },
   ]),
 
   'groupements.title': 'Professional Groups',
@@ -99,10 +111,10 @@ export const HOME_AR: Record<string, string> = {
   'objectifs.title': 'أهدافنا',
   'objectifs.intro': 'تهدف Fi2T إلى جمع مختلف الفاعلين السياحيين ضمن نقابة مهنية واحدة.',
   'objectifs.items': JSON.stringify([
-    { title: 'رؤية استراتيجية', desc: 'المساهمة في الرؤية الاستراتيجية للقطاع' },
-    { title: 'مصالح الأعضاء', desc: 'حماية المصالح الاقتصادية والاجتماعية' },
-    { title: 'التآزر', desc: 'خلق تآزر بين الفاعلين' },
-    { title: 'التطوير', desc: 'المساهمة في تطوير السياحة التونسية' },
+    { title: 'رؤية استراتيجية', desc: 'المساهمة برؤية استراتيجية وعملية لتنويع وابتكار السياحة التونسية' },
+    { title: 'مصالح الأعضاء', desc: 'حماية المصالح الاقتصادية والاجتماعية لأعضائها' },
+    { title: 'التآزر', desc: 'خلق تآزر بين مختلف الفاعلين في السياحة التونسية' },
+    { title: 'التطوير', desc: 'المساهمة في تطوير وازدهار السياحة التونسية' },
   ]),
 
   'groupements.title': 'التجمعات المهنية',

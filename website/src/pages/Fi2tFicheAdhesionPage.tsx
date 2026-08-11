@@ -85,15 +85,15 @@ function FicheInner() {
       setSent(true)
       e.currentTarget.reset()
     } catch {
-      setSendError('Impossible d’envoyer la demande pour le moment. Réessayez plus tard.')
+      setSendError(get('form.error', FICHE_ADHESION_DEFAULTS['form.error'] ?? 'Impossible d’envoyer la demande pour le moment. Réessayez plus tard.'))
     } finally {
       setSending(false)
     }
   }
 
   return (
-    <div className="fi2t-adhesion-page">
-      <section className="fi2t-page-hero fi2t-page-hero--adhesion">
+    <div className="fi2t-adhesion-page" data-cms-page="fiche-adhesion">
+      <section className="fi2t-page-hero fi2t-page-hero--adhesion" data-cms-page="fiche-adhesion" data-cms-section="hero">
         <EditableHeroBackground
           page="fiche-adhesion"
           fallback={HERO_IMAGE}
@@ -111,7 +111,7 @@ function FicheInner() {
         </div>
       </section>
 
-      <section className="fi2t-section fi2t-adhesion-intro">
+      <section className="fi2t-section fi2t-adhesion-intro" data-cms-page="fiche-adhesion" data-cms-section="intro">
         <EditableText
           page="fiche-adhesion"
           blockKey="intro.title"
@@ -127,7 +127,7 @@ function FicheInner() {
         />
       </section>
 
-      <section className="fi2t-section fi2t-adhesion-adherer">
+      <section className="fi2t-section fi2t-adhesion-adherer" data-cms-page="fiche-adhesion" data-cms-section="adherer">
         <div className="fi2t-adherer fi2t-adhesion-adherer__grid">
           <div className="fi2t-adherer__media">
             <EditableImage
@@ -214,7 +214,7 @@ function FicheInner() {
         </div>
       </section>
 
-      <section className="fi2t-section fi2t-adhesion-form-wrap">
+      <section className="fi2t-section fi2t-adhesion-form-wrap" data-cms-page="fiche-adhesion" data-cms-section="form">
         <EditableText
           page="fiche-adhesion"
           blockKey="form.title"

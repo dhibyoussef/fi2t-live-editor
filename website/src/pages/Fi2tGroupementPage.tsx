@@ -117,7 +117,7 @@ function GroupementEditableBody({
   return (
     <>
       {bakedHero ? (
-        <section className="fi2t-page-hero fi2t-page-hero--groupement fi2t-page-hero--groupement-baked">
+        <section className="fi2t-page-hero fi2t-page-hero--groupement fi2t-page-hero--groupement-baked" data-cms-section="hero">
           <img src={bakedHero} alt="" className="fi2t-page-hero__bg fi2t-page-hero__bg--baked" />
           <div className="fi2t-page-hero__content">
             <h1 className="fi2t-page-hero__title fi2t-page-hero__title--sr">
@@ -127,7 +127,7 @@ function GroupementEditableBody({
         </section>
       ) : (
         <section className="fi2t-g-hero" aria-label="Bannière" data-cms-section="hero">
-          <div className="fi2t-g-hero-media" data-cms-section="hero-image">
+          <div className="fi2t-g-hero-media">
             <img
               className="fi2t-g-hero-media__img"
               src={heroImgSrc}
@@ -154,7 +154,6 @@ function GroupementEditableBody({
           </div>
           <div
             className="fi2t-g-hero-title"
-            data-cms-section="hero-title"
             onClick={(e) => e.stopPropagation()}
           >
             <EditableText
@@ -170,7 +169,7 @@ function GroupementEditableBody({
         </section>
       )}
 
-      <section className="fi2t-section fi2t-g-positioning">
+      <section className="fi2t-section fi2t-g-positioning" data-cms-section="positioning">
         <div className="fi2t-g-positioning__text">
           <EditableText
             page={slug}
@@ -207,7 +206,7 @@ function GroupementEditableBody({
         />
       </section>
 
-      <section className="fi2t-g-challenges">
+      <section className="fi2t-g-challenges" data-cms-section="challenges">
         <div className="fi2t-section">
           <EditableText
             page={slug}
@@ -261,7 +260,7 @@ function GroupementEditableBody({
         </div>
       </section>
 
-      <section className="fi2t-section fi2t-g-enjeux">
+      <section className="fi2t-section fi2t-g-enjeux" data-cms-section="enjeux">
         <div className="fi2t-g-enjeux__media">
           <img
             src={enjeuxImgSrc}
@@ -313,7 +312,7 @@ function GroupementEditableBody({
         </div>
       </section>
 
-      <section className="fi2t-g-proposals">
+      <section className="fi2t-g-proposals" data-cms-section="proposals">
         <div className="fi2t-section">
           <EditableText
             page={slug}
@@ -372,7 +371,7 @@ function GroupementInner({ slug }: { slug: string }) {
       : `fi2t-groupement-page--${slug}`
 
   return (
-    <div className={`fi2t-groupement-page ${pageMod}`}>
+    <div className={`fi2t-groupement-page ${pageMod}`} data-cms-page={slug}>
       {useCustom ? (
         <GroupementCustomBody slug={slug} />
       ) : (

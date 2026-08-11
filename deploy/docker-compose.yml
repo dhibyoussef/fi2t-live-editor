@@ -1,0 +1,112 @@
+# FI2T — Docker Compose (single domain, path routing)
+# From repo root:
+#   docker compose -f deploy/docker-compose.yml up -d --build
+#
+# Layout matches DEPLOYMENT.md:
+#   /api/*      → php-fpm
+#   /storage/*  → shared upload volume
+#   /admin/*    → frontend dist
+#   /*          → website dist
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: fi2t-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: fi2t
+      MYSQL_USER: fi2t_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-fi2t_secret_change_me}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-fi2t_root_change_me}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-fi2t_root_change_me}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - fi2t
+
+  php-fpm:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.php
+    container_name: fi2t-php-fpm
+    restart: unless-stopped
+    working_dir: /var/www/backend
+    volumes:
+      - ../backend:/var/www/backend
+      - storage:/var/www/backend/storage/app/public
+    env_file:
+      - ../backend/.env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: fi2t
+      DB_USERNAME: fi2t_user
+      DB_PASSWORD: ${MYSQL_PASSWORD:-fi2t_secret_change_me}
+      QUEUE_CONNECTION: database
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - fi2t
+
+  queue-worker:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.php
+    container_name: fi2t-queue
+    restart: unless-stopped
+    working_dir: /var/www/backend
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    volumes:
+      - ../backend:/var/www/backend
+      - storage:/var/www/backend/storage/app/public
+    env_file:
+      - ../backend/.env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: fi2t
+      DB_USERNAME: fi2t_user
+      DB_PASSWORD: ${MYSQL_PASSWORD:-fi2t_secret_change_me}
+      QUEUE_CONNECTION: database
+    depends_on:
+      mysql:
+        condition: service_healthy
+      php-fpm:
+        condition: service_started
+    networks:
+      - fi2t
+
+  nginx:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.nginx
+      args:
+        APP_URL: ${APP_URL:-http://localhost}
+        VITE_WEBSITE_URL: ${APP_URL:-http://localhost}
+        VITE_WEBSITE_ORIGIN: ${APP_URL:-http://localhost}
+        VITE_ADMIN_ORIGIN: ${APP_URL:-http://localhost}/admin
+    container_name: fi2t-nginx
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    volumes:
+      - storage:/var/www/storage:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php-fpm
+    networks:
+      - fi2t
+
+volumes:
+  db_data:
+  storage:
+
+networks:
+  fi2t:
+    driver: bridge

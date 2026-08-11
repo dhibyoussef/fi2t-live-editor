@@ -70,7 +70,11 @@ export default function EditableText({
 
   if (editing) {
     return (
-      <div className="cms-edit-popup">
+      <div
+        className="cms-edit-popup"
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+      >
         {label && (
           <div className="cms-edit-popup__label">
             {label}
@@ -106,7 +110,16 @@ export default function EditableText({
   return (
     <Tag
       className={`cms-editable cms-editable--text ${className}`}
-      onClick={() => setEditing(true)}
+      onClick={(e) => {
+        // Buttons/CTAs are often <Link> wrappers — block navigation so the label can be edited.
+        e.preventDefault()
+        e.stopPropagation()
+        setEditing(true)
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+      }}
       title={label || 'Cliquer pour modifier'}
       data-cms-page={page}
       data-cms-block={blockKey}

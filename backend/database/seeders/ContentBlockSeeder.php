@@ -148,11 +148,11 @@ class ContentBlockSeeder extends Seeder
             ['page' => 'organisation', 'section' => 'stats', 'key' => 'label_mandate', 'locale' => 'fr', 'type' => 'text', 'label' => 'Libellé — Mandat', 'value' => 'ANS DE MANDAT'],
             ['page' => 'organisation', 'section' => 'board', 'key' => 'title', 'locale' => 'fr', 'type' => 'text', 'label' => 'Bureau — Titre', 'value' => 'Composition Actuelle'],
             ['page' => 'organisation', 'section' => 'board', 'key' => 'members', 'locale' => 'fr', 'type' => 'json', 'label' => 'Bureau — Membres', 'value' => json_encode([
-                ['name' => 'Houssem Ben Azouz', 'role' => 'PRÉSIDENT', 'image' => ''],
-                ['name' => 'Chahla Khekhia', 'role' => 'SECRÉTAIRE GÉNÉRALE', 'image' => ''],
-                ['name' => 'Ahmed Oubaia', 'role' => 'TRÉSORIER', 'image' => ''],
-                ['name' => 'Néjib Gana', 'role' => 'VICE-PRÉSIDENT', 'image' => ''],
-                ['name' => 'Omar Cherif', 'role' => 'CONSEILLER', 'image' => ''],
+                ['name' => 'Houssem Ben Azouz', 'role' => 'PRÉSIDENT', 'image' => '/images/org-board/houssem-ben-azouz.svg?v=1'],
+                ['name' => 'Chahla Khekhia', 'role' => 'SECRÉTAIRE GÉNÉRALE', 'image' => '/images/org-board/chahla-khekhia.svg?v=1'],
+                ['name' => 'Ahmed Oubaia', 'role' => 'TRÉSORIER', 'image' => '/images/org-board/ahmed-oubaia.svg?v=1'],
+                ['name' => 'Néjib Gana', 'role' => 'VICE-PRÉSIDENT', 'image' => '/images/org-board/nejib-gana.svg?v=1'],
+                ['name' => 'Omar Cherif', 'role' => 'CONSEILLER', 'image' => '/images/org-board/omar-cherif.svg?v=1'],
             ], JSON_UNESCAPED_UNICODE)],
             ['page' => 'organisation', 'section' => 'headquarters', 'key' => 'title', 'locale' => 'fr', 'type' => 'text', 'label' => 'Siège — Titre', 'value' => 'Le bureau du siège de la Fi2T'],
             ['page' => 'organisation', 'section' => 'headquarters', 'key' => 'staff', 'locale' => 'fr', 'type' => 'json', 'label' => 'Siège — Équipe', 'value' => json_encode([
@@ -161,7 +161,7 @@ class ContentBlockSeeder extends Seeder
                 ['initials' => 'SS', 'name' => 'Sarra Sallemi', 'role' => 'Affaires administratives et comptables'],
             ], JSON_UNESCAPED_UNICODE)],
             ['page' => 'organisation', 'section' => 'regional', 'key' => 'title', 'locale' => 'fr', 'type' => 'text', 'label' => 'Régional — Titre', 'value' => 'Les Bureaux Régionaux'],
-            ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_label', 'locale' => 'fr', 'type' => 'text', 'label' => 'Régional — Libellé carte', 'value' => '11 Bureaux Régionaux'],
+            ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_label', 'locale' => 'fr', 'type' => 'text', 'label' => 'Régional — Libellé carte', 'value' => 'Bureaux Régionaux'],
             ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_image', 'locale' => '_all', 'type' => 'image', 'label' => 'Régional — Carte', 'value' => '/images/org-regional-map-card.png?v=2'],
             ['page' => 'organisation', 'section' => 'regional', 'key' => 'items', 'locale' => 'fr', 'type' => 'json', 'label' => 'Régional — Bureaux', 'value' => json_encode([
                 ['name' => 'Mr Nebil Azouz', 'region' => 'Bizerte'],

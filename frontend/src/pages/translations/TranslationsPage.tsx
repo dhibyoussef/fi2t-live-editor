@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
-  Languages, Plus, Save, Trash2, Search, CheckCircle2,
+  Languages, Plus, Save, Search, CheckCircle2,
   AlertCircle, Globe, X,
 } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
@@ -389,7 +389,6 @@ export default function TranslationsPage() {
                     <tbody>
                       {keys.map(key => {
                         const refValue    = frMap[key] ?? ''
-                        const savedValue  = targetMap[key] ?? ''
                         const editValue   = effective(key)
                         const isDirty     = key in changes
                         const isEmpty     = !isFR && !editValue.trim()

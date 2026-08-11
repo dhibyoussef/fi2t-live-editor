@@ -10,6 +10,7 @@ import AddPageModal from './components/AddPageModal'
 import PageBuilder, { type InsertTarget } from './builder/PageBuilder'
 import SiteMenuEditor from './SiteMenuEditor'
 import SiteSettingsEditor from './SiteSettingsEditor'
+import ArticlesPageEditor from './ArticlesPageEditor'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import api from '../../api/client'
@@ -29,7 +30,7 @@ interface BlockRow {
   key: string
   type: 'text' | 'image' | 'json'
   label: string | null
-  sort_order: number
+  sort_order?: number
   locales: Record<string, LocaleCell>
 }
 
@@ -87,13 +88,12 @@ const SECTION_LABELS: Record<string, string> = {
   board: 'Composition actuelle',
   headquarters: 'Bureau du siège',
   regional: 'Bureaux régionaux',
-  article: 'Page article',
-  grid: 'Grille des articles',
+  article: 'Bannière page article',
+  grid: 'Articles — liste & structure',
   objectifs: 'Nos objectifs',
   groupements: 'Groupements professionnels',
-  adherer: 'Pourquoi adhérer',
   actualites: 'Actualités',
-  cta: 'CTA rejoindre',
+  cta: 'Appel à l’action',
   footer: 'Pied de page',
   header: 'En-tête',
   settings: 'Paramètres du site',
@@ -106,7 +106,6 @@ const SECTION_LABELS: Record<string, string> = {
   quote: 'Citation',
   roadmap: 'Feuille de route',
   pillars: 'Piliers',
-  cta: 'Appel à l’action',
   split: 'Présentation',
   diagnostic: 'Diagnostic',
   defis: 'Défis',
@@ -142,9 +141,11 @@ export default function WebsiteContentPage() {
     meta_description: '',
   })
 
+  const matrixPage = activePage === 'articles' ? 'actualites' : activePage
+
   const { data, isLoading, dataUpdatedAt } = useQuery<MatrixResponse>({
-    queryKey: ['content-matrix', activePage],
-    queryFn: () => api.get('/admin/content/matrix', { params: { page: activePage } }).then(r => r.data),
+    queryKey: ['content-matrix', matrixPage],
+    queryFn: () => api.get('/admin/content/matrix', { params: { page: matrixPage } }).then(r => r.data),
     staleTime: 0,
     refetchOnWindowFocus: true,
   })
@@ -152,12 +153,12 @@ export default function WebsiteContentPage() {
   // Sync with website edit mode (focus + polling — apps run on different ports)
   useEffect(() => {
     const refresh = (notify = false) => {
-      qc.invalidateQueries({ queryKey: ['content-matrix', activePage] })
+      qc.invalidateQueries({ queryKey: ['content-matrix', matrixPage] })
       if (notify) toast.success('Contenu mis à jour depuis le site', { id: 'wc-sync' })
     }
     const unsub = onContentUpdated((msg) => {
       if (msg.source === 'dashboard') return
-      if (msg.page === activePage || msg.page === 'home') refresh(true)
+      if (msg.page === matrixPage || msg.page === 'actualites' || msg.page === 'home') refresh(true)
     })
     const onVisible = () => {
       if (document.visibilityState === 'visible') refresh(false)
@@ -173,22 +174,60 @@ export default function WebsiteContentPage() {
       window.removeEventListener('focus', onVisible)
       clearInterval(poll)
     }
-  }, [activePage, qc])
+  }, [matrixPage, qc])
 
   const cmsPages: CmsPage[] = useMemo(() => {
     const raw = data?.pages ?? []
-    if (raw.length && typeof raw[0] === 'object') return raw as CmsPage[]
-    return (raw as string[]).map(slug => ({
-      slug,
-      title: slug === 'home' ? "Page d'accueil" : slug === 'global' ? 'Global' : slug,
-      status: 'published' as const,
-      template: slug === 'home' ? 'home' as const : 'default' as const,
-      is_system: slug === 'home' || slug === 'global',
-      sort_order: 0,
-    }))
+    let pages: CmsPage[]
+    if (raw.length && typeof raw[0] === 'object') {
+      pages = [...(raw as CmsPage[])]
+    } else {
+      pages = (raw as string[]).map(slug => ({
+        slug,
+        title: slug === 'home' ? "Page d'accueil" : slug === 'global' ? 'Global' : slug,
+        status: 'published' as const,
+        template: slug === 'home' ? 'home' as const : 'default' as const,
+        is_system: slug === 'home' || slug === 'global',
+        sort_order: 0,
+      }))
+    }
+    // Virtual system page — articles share one standard structure (like Global).
+    if (!pages.some(p => p.slug === 'articles')) {
+      const afterActualites = pages.findIndex(p => p.slug === 'actualites')
+      const entry: CmsPage = {
+        slug: 'articles',
+        title: 'Articles',
+        status: 'published',
+        template: 'global',
+        is_system: true,
+        sort_order: (pages.find(p => p.slug === 'actualites')?.sort_order ?? 50) + 1,
+      }
+      if (afterActualites >= 0) pages.splice(afterActualites + 1, 0, entry)
+      else pages.push(entry)
+    }
+    return pages
   }, [data?.pages])
 
-  const activePageMeta = data?.page_meta ?? cmsPages.find(p => p.slug === activePage)
+  const activePageMeta =
+    activePage === 'articles'
+      ? {
+          slug: 'articles',
+          title: 'Articles',
+          status: 'published' as const,
+          template: 'global' as const,
+          is_system: true,
+          sort_order: 0,
+        }
+      : (data?.page_meta ?? cmsPages.find(p => p.slug === activePage))
+
+  const articlePendingByLocale = useMemo(() => {
+    const out: Partial<Record<'fr' | 'en' | 'ar', string>> = {}
+    for (const loc of ['fr', 'en', 'ar'] as const) {
+      const id = `grid.items.${loc}`
+      if (changes[id]?.page === 'actualites') out[loc] = changes[id].value
+    }
+    return out
+  }, [changes])
   const sections = data?.sections ?? []
 
   useEffect(() => {
@@ -262,8 +301,9 @@ export default function WebsiteContentPage() {
     mutationFn: () => api.post('/admin/content/bulk', { blocks: Object.values(changes) }),
     onSuccess: () => {
       setChanges({})
-      qc.invalidateQueries({ queryKey: ['content-matrix', activePage] })
-      notifyContentSaved(activePage, 'dashboard')
+      qc.invalidateQueries({ queryKey: ['content-matrix', matrixPage] })
+      qc.invalidateQueries({ queryKey: ['content-matrix', 'actualites'] })
+      notifyContentSaved(activePage === 'articles' ? 'actualites' : activePage, 'dashboard')
       toast.success('Contenu du site enregistré')
     },
     onError: () => toast.error('Erreur lors de la sauvegarde'),
@@ -417,6 +457,7 @@ export default function WebsiteContentPage() {
           setSelectedSection(null)
           setInsertTarget(null)
           if (slug === 'global') setViewMode('list')
+          else setViewMode('builder')
         }}
         onAddPage={() => setAddPageModal(true)}
         onDeletePage={page => {
@@ -434,11 +475,17 @@ export default function WebsiteContentPage() {
           <div>
             <p className="gc-page-header-title">{activePageMeta?.title ?? 'Contenu du site'}</p>
             <p className="gc-page-header-sub">
-              /{activePage}
-              {activePageMeta?.status === 'draft' && <span className="wc-draft-badge"> Brouillon</span>}
-              {dataUpdatedAt > 0 && (
-                <span className="wc-sync-hint"> — synchronisé avec le mode édition</span>
-              )}
+              {activePage === 'articles'
+                ? 'Pages articles — structure standard (Bannière · Carte · En-tête · Corps · Source)'
+                : (
+                  <>
+                    /{activePage}
+                    {activePageMeta?.status === 'draft' && <span className="wc-draft-badge"> Brouillon</span>}
+                    {dataUpdatedAt > 0 && (
+                      <span className="wc-sync-hint"> — synchronisé avec le mode édition</span>
+                    )}
+                  </>
+                )}
             </p>
           </div>
         </div>
@@ -456,17 +503,21 @@ export default function WebsiteContentPage() {
           >
             Enregistrer {changeCount > 0 ? `(${changeCount})` : ''}
           </Button>
-          <Button variant="secondary" onClick={() => setPageSettingsOpen(o => !o)}>
-            Paramètres
-          </Button>
-          <div className="wc-view-toggle">
-            <button type="button" className={viewMode === 'builder' ? 'active' : ''} onClick={() => setViewMode('builder')}>
-              <LayoutGrid size={14} /> Éditeur visuel
-            </button>
-            <button type="button" className={viewMode === 'list' ? 'active' : ''} onClick={() => setViewMode('list')}>
-              <List size={14} /> Liste
-            </button>
-          </div>
+          {activePage !== 'articles' && (
+            <Button variant="secondary" onClick={() => setPageSettingsOpen(o => !o)}>
+              Paramètres
+            </Button>
+          )}
+          {activePage !== 'articles' && activePage !== 'global' && (
+            <div className="wc-view-toggle">
+              <button type="button" className={viewMode === 'builder' ? 'active' : ''} onClick={() => setViewMode('builder')}>
+                <LayoutGrid size={14} /> Éditeur visuel
+              </button>
+              <button type="button" className={viewMode === 'list' ? 'active' : ''} onClick={() => setViewMode('list')}>
+                <List size={14} /> Liste
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -548,13 +599,31 @@ export default function WebsiteContentPage() {
         </>
       )}
 
-      {isLoading && viewMode === 'builder' && activePage !== 'global' && (
+      {activePage === 'articles' && (
+        <ArticlesPageEditor
+          preferredLocale="fr"
+          pendingByLocale={articlePendingByLocale}
+          onItemsChange={(locale, json) => {
+            setChange({
+              page: 'actualites',
+              section: 'grid',
+              key: 'items',
+              locale,
+              type: 'json',
+              value: json,
+              label: 'Actualités — Cartes',
+            })
+          }}
+        />
+      )}
+
+      {isLoading && viewMode === 'builder' && activePage !== 'global' && activePage !== 'articles' && (
         <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
           <div className="gc-spinner" />
         </div>
       )}
 
-      {!isLoading && viewMode === 'builder' && activePage !== 'global' && (
+      {!isLoading && viewMode === 'builder' && activePage !== 'global' && activePage !== 'articles' && (
         <PageBuilder
           pageSlug={activePage}
           pageTitle={activePageMeta?.title ?? activePage}
@@ -590,13 +659,22 @@ export default function WebsiteContentPage() {
             })
           }}
           onEmbedSaved={(page) => {
-            // Iframe already persisted — refresh matrix. Keep other admin drafts.
+            // Aperçu « Sauvegarder » already wrote to the API — drop mirrored
+            // drafts so the admin Enregistrer button does not stay dirty.
+            setChanges((prev) => {
+              const next = { ...prev }
+              for (const id of Object.keys(next)) {
+                if (next[id].page === page) delete next[id]
+              }
+              return next
+            })
             qc.invalidateQueries({ queryKey: ['content-matrix', page] })
+            toast.success('Aperçu enregistré — contenu synchronisé', { id: 'embed-saved' })
           }}
         />
       )}
 
-      {viewMode === 'list' && (
+      {viewMode === 'list' && activePage !== 'global' && activePage !== 'articles' && (
       <>
       <div className="wc-toolbar">
         <div style={{ flex: 1, maxWidth: 360 }}>

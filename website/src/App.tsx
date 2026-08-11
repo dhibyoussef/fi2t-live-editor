@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-
 import { EditModeProvider, useEditMode } from './cms/EditModeProvider'
 import { BuilderPreviewProvider } from './cms/BuilderPreviewProvider'
 import Layout from './components/layout/Layout'
+import ScrollToTop from './components/ScrollToTop'
 import Fi2tHomePage from './pages/Fi2tHomePage'
 import CmsDynamicPage from './pages/CmsDynamicPage'
 import ContactPage from './pages/Fi2tContactPage'
@@ -12,6 +13,7 @@ import Fi2tOrganisationPage from './pages/Fi2tOrganisationPage'
 import Fi2tQuiSommesNousPage from './pages/Fi2tQuiSommesNousPage'
 import Fi2tFicheAdhesionPage from './pages/Fi2tFicheAdhesionPage'
 import Fi2tGroupementPage from './pages/Fi2tGroupementPage'
+import Fi2tNotFoundPage from './pages/Fi2tNotFoundPage'
 import { isGroupementSlug } from './cms/defaults/groupements-index'
 import { GROUPEMENT_REDIRECTS } from './lib/groupements'
 import { syncTranslationsFromDB } from './i18n/syncFromDB'
@@ -40,6 +42,11 @@ function GroupementOrDynamic() {
   return <CmsDynamicPage />
 }
 
+/** Admin CMS lives on :3000 — show a clear FI2T message (no hotel header). */
+function AdminRedirect() {
+  return <Fi2tNotFoundPage slug="admin" variant="notfound" />
+}
+
 export default function App() {
   return (
     <EditModeProvider>
@@ -47,6 +54,7 @@ export default function App() {
         <EditModeBodyClass />
         <I18nSync />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route element={<Layout />}>
               <Route path="/" element={<Fi2tHomePage />} />
@@ -56,7 +64,10 @@ export default function App() {
               <Route path="/actualites/:slug" element={<Fi2tArticlePage />} />
               <Route path="/fiche-adhesion" element={<Fi2tFicheAdhesionPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/admin" element={<AdminRedirect />} />
+              <Route path="/admin/*" element={<AdminRedirect />} />
               <Route path="/:slug" element={<GroupementOrDynamic />} />
+              <Route path="*" element={<Fi2tNotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

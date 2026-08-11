@@ -1,12 +1,13 @@
-import { ReactNode } from 'react'
-import { Plus, Trash2, Upload, GripVertical, Star } from 'lucide-react'
+import { useState, type ReactNode } from 'react'
+import { Plus, Trash2, Upload, GripVertical, Star, ArrowLeft, ChevronRight, LayoutGrid, ExternalLink } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { uploadImageFile } from '../../../lib/uploadImageFile'
 import PageTreeEditor from './PageTreeEditor'
+import { resolvePreviewImageUrl } from '../builder/previewAssets'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-function parseArray<T extends Record<string, unknown>>(raw: string, fallback: T[]): T[] {
+function parseArray<T>(raw: string, fallback: T[]): T[] {
   if (!raw?.trim()) return fallback
   try {
     const parsed = JSON.parse(raw)
@@ -19,10 +20,6 @@ function parseArray<T extends Record<string, unknown>>(raw: string, fallback: T[
 async function uploadContentImage(file: File): Promise<string> {
   const data = await uploadImageFile(file, '/admin/content/upload-image')
   return data.url
-}
-
-function editorKind(section: string, key: string): string {
-  return `${section}.${key}`
 }
 
 // ─── Shared UI ───────────────────────────────────────────────────────────────
@@ -64,7 +61,7 @@ function ImageField({ value, onChange, label = 'Image' }: {
     <Field label={label}>
       <div className="wc-card-image-row">
         <div className="wc-card-image-preview">
-          {value ? <img src={value} alt="" /> : <span>Aucune image</span>}
+          {value ? <img src={resolvePreviewImageUrl(value)} alt="" /> : <span>Aucune image</span>}
         </div>
         <div className="wc-card-image-actions">
           <TextInput value={value} onChange={onChange} placeholder="URL de l'image" />
@@ -406,7 +403,19 @@ function SimpleCardsEditor({ value, onChange }: { value: string; onChange: (v: s
 interface ObjectifItem { num?: string; title: string; desc: string }
 interface GroupementCard { label: string; slug: string; icon: string }
 interface ReasonItem { title: string; desc: string }
-interface NewsCard { slug: string; title: string; desc: string; date: string; img: string }
+interface NewsCard {
+  slug: string
+  title: string
+  desc: string
+  date: string
+  img: string
+  hero_title?: string
+  subtitle?: string
+  quote?: string
+  intro?: string
+  sections?: Array<{ question: string; answer: string }>
+  source?: string
+}
 
 function ObjectifsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const items = parseArray<ObjectifItem>(value, [])
@@ -493,39 +502,374 @@ function ReasonsEditor({ value, onChange }: { value: string; onChange: (v: strin
   )
 }
 
+/** Same structure for every article page (mirrors website Fi2tArticlePage). */
+const ARTICLE_PAGE_STRUCTURE = [
+  {
+    id: 'hero',
+    title: 'Bannière',
+    hint: 'Titre affiché sur la bannière de la page article',
+  },
+  {
+    id: 'card',
+    title: 'Carte (liste Actualités)',
+    hint: 'Titre, extrait, date, slug et image dans la grille',
+  },
+  {
+    id: 'header',
+    title: 'En-tête article',
+    hint: 'Titre, sous-titre, citation et introduction',
+  },
+  {
+    id: 'body',
+    title: 'Corps / questions-réponses',
+    hint: 'Texte simple ou accordéon Q&R',
+  },
+  {
+    id: 'source',
+    title: 'Source',
+    hint: 'Ligne de crédit en bas de page',
+  },
+] as const
+
+type ArticleView = 'list' | 'structure' | 'section'
+type ArticleSectionId = (typeof ARTICLE_PAGE_STRUCTURE)[number]['id']
+
+function emptyArticle(): NewsCard {
+  const stamp = Date.now()
+  return {
+    slug: `nouvel-article-${stamp}`,
+    title: 'Nouvel article',
+    desc: 'Résumé de l’article…',
+    date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
+    img: '/images/act1.png?v=6',
+    hero_title: 'Nouvel article',
+    subtitle: '',
+    quote: '',
+    intro: 'Introduction de l’article…',
+    sections: [
+      { question: 'Question 1', answer: 'Réponse…' },
+      { question: 'Question 2', answer: 'Réponse…' },
+    ],
+    source: 'Source : Fi2T',
+  }
+}
+
+function patchArticle(items: NewsCard[], index: number, patch: Partial<NewsCard>): NewsCard[] {
+  return items.map((item, i) => (i === index ? { ...item, ...patch } : item))
+}
+
+/**
+ * Drill-down like other CMS pages:
+ * 1) Liste des articles → 2) Structure de la page (standard) → 3) Édition d’une section.
+ */
 function NewsCardsEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const items = parseArray<NewsCard>(value, [])
   const update = (next: NewsCard[]) => onChange(JSON.stringify(next))
+  const [view, setView] = useState<ArticleView>('list')
+  const [selected, setSelected] = useState(-1)
+  const [activeSection, setActiveSection] = useState<ArticleSectionId>('hero')
+  const [query, setQuery] = useState('')
 
+  const article = selected >= 0 && selected < items.length ? items[selected] : null
+
+  const filtered = items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => {
+      const q = query.trim().toLowerCase()
+      if (!q) return true
+      return (
+        (item.title ?? '').toLowerCase().includes(q)
+        || (item.slug ?? '').toLowerCase().includes(q)
+        || (item.date ?? '').toLowerCase().includes(q)
+      )
+    })
+
+  const setField = <K extends keyof NewsCard>(key: K, fieldValue: NewsCard[K]) => {
+    if (selected < 0) return
+    update(patchArticle(items, selected, { [key]: fieldValue } as Partial<NewsCard>))
+  }
+
+  const setQa = (sectionIndex: number, patch: Partial<{ question: string; answer: string }>) => {
+    if (!article || selected < 0) return
+    const sections = [...(article.sections ?? [])]
+    sections[sectionIndex] = { ...sections[sectionIndex], ...patch }
+    setField('sections', sections)
+  }
+
+  const addQa = () => {
+    if (!article) return
+    setField('sections', [...(article.sections ?? []), { question: 'Nouvelle question', answer: 'Réponse…' }])
+  }
+
+  const removeQa = (sectionIndex: number) => {
+    if (!article) return
+    setField('sections', (article.sections ?? []).filter((_, i) => i !== sectionIndex))
+  }
+
+  const openArticle = (index: number) => {
+    setSelected(index)
+    setView('structure')
+    setActiveSection('hero')
+  }
+
+  const addArticle = () => {
+    update([emptyArticle(), ...items])
+    setSelected(0)
+    setView('structure')
+    setActiveSection('hero')
+  }
+
+  const removeArticle = (index: number) => {
+    const next = items.filter((_, i) => i !== index)
+    update(next)
+    setSelected(-1)
+    setView('list')
+  }
+
+  const siteBase = import.meta.env.VITE_WEBSITE_ORIGIN ?? import.meta.env.VITE_PUBLIC_SITE_URL ?? 'http://127.0.0.1:3002'
+  const sectionMeta = ARTICLE_PAGE_STRUCTURE.find((s) => s.id === activeSection)
+
+  /* ─── 1) Liste des articles ───────────────────────────────────────────── */
+  if (view === 'list' || !article) {
+    return (
+      <div className="wc-article-page">
+        <p className="wc-list-hint">
+          Cliquez sur un article pour ouvrir sa <strong>Structure de la page</strong>
+          {' '}(identique pour tous les articles). Onglets FR / EN / AR = langue éditée.
+        </p>
+        <div className="wc-article-page__toolbar">
+          <strong>Articles</strong>
+          <span className="wc-article-studio__count">{items.length}</span>
+        </div>
+        <input
+          className="wc-field-input"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Rechercher un article…"
+        />
+        <div className="wc-article-page__list">
+          {filtered.map(({ item, index }) => (
+            <button
+              key={`${item.slug}-${index}`}
+              type="button"
+              className="wc-article-page__row"
+              onClick={() => openArticle(index)}
+            >
+              <span className="wc-article-studio__thumb">
+                {item.img ? (
+                  <img src={resolvePreviewImageUrl(item.img)} alt="" />
+                ) : null}
+              </span>
+              <span className="wc-article-studio__meta">
+                <span className="wc-article-studio__title">{item.title || 'Sans titre'}</span>
+                <span className="wc-article-studio__slug">{item.slug || '—'}</span>
+              </span>
+              <ChevronRight size={16} className="wc-article-page__chevron" />
+            </button>
+          ))}
+          {!filtered.length && <p className="wc-article-studio__empty">Aucun article trouvé.</p>}
+        </div>
+        <button type="button" className="wc-add-item-btn" onClick={addArticle}>
+          <Plus size={14} /> Nouvel article
+        </button>
+      </div>
+    )
+  }
+
+  /* ─── 2) Structure de la page (standard) ──────────────────────────────── */
+  if (view === 'structure') {
+    return (
+      <div className="wc-article-page">
+        <button type="button" className="wc-article-page__back" onClick={() => setView('list')}>
+          <ArrowLeft size={14} /> Tous les articles
+        </button>
+
+        <div className="wc-article-page__head">
+          <div className="wc-article-page__kicker">
+            <LayoutGrid size={12} /> Structure de la page
+          </div>
+          <h3 className="wc-article-page__title">{article.title || 'Sans titre'}</h3>
+          <p className="wc-article-page__slug">/{article.slug}</p>
+          <div className="wc-article-page__actions">
+            <a
+              className="wc-article-studio__preview-link"
+              href={`${siteBase}/actualites/${article.slug}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ExternalLink size={12} /> Voir sur le site
+            </a>
+            <button
+              type="button"
+              className="wc-item-remove"
+              title="Supprimer cet article"
+              onClick={() => removeArticle(selected)}
+            >
+              <Trash2 size={14} />
+            </button>
+          </div>
+        </div>
+
+        <p className="wc-list-hint">
+          Structure standard de chaque page article — cliquez une section pour l’éditer.
+        </p>
+
+        <div className="wc-article-page__structure">
+          {ARTICLE_PAGE_STRUCTURE.map((sec, i) => (
+            <button
+              key={sec.id}
+              type="button"
+              className="wc-article-page__structure-row"
+              onClick={() => {
+                setActiveSection(sec.id)
+                setView('section')
+              }}
+            >
+              <span className="wc-article-page__structure-num">{i + 1}</span>
+              <span className="wc-article-page__structure-text">
+                <span className="wc-article-page__structure-title">{sec.title}</span>
+                <span className="wc-article-page__structure-hint">{sec.hint}</span>
+              </span>
+              <ChevronRight size={16} className="wc-article-page__chevron" />
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  /* ─── 3) Édition d’une section ────────────────────────────────────────── */
   return (
-    <div className="wc-list-editor">
-      <p className="wc-list-hint">
-        Articles Actualités (carte + slug URL). Pour rédiger le corps, ouvrez l’article dans le Live Editor.
-      </p>
-      {items.map((item, i) => (
-        <ItemCard key={i} index={i} title="Article" onRemove={() => update(items.filter((_, j) => j !== i))}>
-          <Field label="Titre">
-            <TextInput value={item.title ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, title: v } : x))} />
-          </Field>
-          <Field label="Extrait">
-            <textarea className="wc-field-input" rows={2} value={item.desc ?? ''} onChange={e => update(items.map((x, j) => j === i ? { ...x, desc: e.target.value } : x))} />
-          </Field>
-          <Field label="Date">
-            <TextInput value={item.date ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, date: v } : x))} />
-          </Field>
-          <Field label="Slug">
-            <TextInput value={item.slug ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, slug: v } : x))} />
-          </Field>
-          <ImageField value={item.img ?? ''} onChange={v => update(items.map((x, j) => j === i ? { ...x, img: v } : x))} />
-        </ItemCard>
-      ))}
-      <button
-        type="button"
-        className="wc-add-item-btn"
-        onClick={() => update([{ slug: `article-${Date.now()}`, title: 'Nouvel article', desc: 'Résumé…', date: '', img: '/images/act1.png?v=6' }, ...items])}
-      >
-        <Plus size={14} /> Ajouter un article
+    <div className="wc-article-page">
+      <button type="button" className="wc-article-page__back" onClick={() => setView('structure')}>
+        <ArrowLeft size={14} /> Structure de la page
       </button>
+
+      <div className="wc-article-page__head">
+        <div className="wc-article-page__kicker">{article.title || 'Article'}</div>
+        <h3 className="wc-article-page__title">{sectionMeta?.title ?? activeSection}</h3>
+        <p className="wc-list-hint" style={{ marginBottom: 0 }}>{sectionMeta?.hint}</p>
+      </div>
+
+      <div className="wc-article-page__fields">
+        {activeSection === 'hero' && (
+          <Field label="Titre hero (2 lignes possibles)">
+            <textarea
+              className="wc-field-input"
+              rows={3}
+              value={article.hero_title ?? article.title ?? ''}
+              onChange={(e) => setField('hero_title', e.target.value)}
+              placeholder={'Ligne 1\nLigne 2'}
+            />
+          </Field>
+        )}
+
+        {activeSection === 'card' && (
+          <>
+            <Field label="Titre (carte)">
+              <TextInput value={article.title ?? ''} onChange={(v) => setField('title', v)} />
+            </Field>
+            <Field label="Extrait (carte)">
+              <textarea
+                className="wc-field-input"
+                rows={3}
+                value={article.desc ?? ''}
+                onChange={(e) => setField('desc', e.target.value)}
+              />
+            </Field>
+            <Field label="Date">
+              <TextInput value={article.date ?? ''} onChange={(v) => setField('date', v)} />
+            </Field>
+            <Field label="Slug (URL)">
+              <TextInput value={article.slug ?? ''} onChange={(v) => setField('slug', v)} placeholder="mon-article" />
+            </Field>
+            <ImageField
+              value={article.img ?? ''}
+              onChange={(v) => setField('img', v)}
+              label="Image carte / featured"
+            />
+          </>
+        )}
+
+        {activeSection === 'header' && (
+          <>
+            <Field label="Titre page article">
+              <TextInput value={article.title ?? ''} onChange={(v) => setField('title', v)} />
+            </Field>
+            <Field label="Sous-titre">
+              <TextInput value={article.subtitle ?? ''} onChange={(v) => setField('subtitle', v)} placeholder="Optionnel" />
+            </Field>
+            <Field label="Citation">
+              <textarea
+                className="wc-field-input"
+                rows={3}
+                value={article.quote ?? ''}
+                onChange={(e) => setField('quote', e.target.value)}
+                placeholder="Optionnel"
+              />
+            </Field>
+            <Field label="Introduction">
+              <textarea
+                className="wc-field-input"
+                rows={5}
+                value={article.intro ?? ''}
+                onChange={(e) => setField('intro', e.target.value)}
+              />
+            </Field>
+          </>
+        )}
+
+        {activeSection === 'body' && (
+          <>
+            <p className="wc-list-hint" style={{ marginTop: 0 }}>
+              Avec questions → accordéon Q&R. Sans questions → date + texte simple.
+            </p>
+            {(article.sections ?? []).map((section, si) => (
+              <ItemCard key={si} index={si} title="Question" onRemove={() => removeQa(si)}>
+                <Field label="Question">
+                  <TextInput value={section.question ?? ''} onChange={(v) => setQa(si, { question: v })} />
+                </Field>
+                <Field label="Réponse">
+                  <textarea
+                    className="wc-field-input"
+                    rows={6}
+                    value={section.answer ?? ''}
+                    onChange={(e) => setQa(si, { answer: e.target.value })}
+                  />
+                </Field>
+              </ItemCard>
+            ))}
+            <button type="button" className="wc-add-item-btn" onClick={addQa}>
+              <Plus size={14} /> Ajouter une question
+            </button>
+            {!(article.sections?.length) && (
+              <>
+                <Field label="Date (corps simple)">
+                  <TextInput value={article.date ?? ''} onChange={(v) => setField('date', v)} />
+                </Field>
+                <Field label="Texte (corps simple)">
+                  <textarea
+                    className="wc-field-input"
+                    rows={5}
+                    value={article.desc ?? ''}
+                    onChange={(e) => setField('desc', e.target.value)}
+                  />
+                </Field>
+              </>
+            )}
+          </>
+        )}
+
+        {activeSection === 'source' && (
+          <Field label="Source">
+            <TextInput
+              value={article.source ?? ''}
+              onChange={(v) => setField('source', v)}
+              placeholder="Source : …"
+            />
+          </Field>
+        )}
+      </div>
     </div>
   )
 }
@@ -1000,7 +1344,6 @@ const EDITOR_LABELS: Record<string, string> = {
   'defis.items': 'Défis',
   'plan.items': 'Plan de relance',
   'pourquoi.items': 'Pourquoi',
-  'services.items': 'Services',
   'pot.items': 'Potentiel',
   'places.items': 'Sites',
   'freins.items': 'Freins',

@@ -1,5 +1,10 @@
 /** EN / AR overlays for other FI2T pages (all visible text keys). */
 
+import {
+  INTERVIEW_ARTICLE_DETAIL_AR,
+  INTERVIEW_ARTICLE_DETAIL_EN,
+} from '../article-trois-questions'
+
 export const PAGE_EN: Record<string, Record<string, string>> = {
   'qui-sommes-nous': {
     'hero.title': 'Who we are',
@@ -29,20 +34,17 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
     'join.cta': 'Become a member',
   },
   organisation: {
-    'hero.title': 'Organisation',
-    'stats.mandate_years': '03',
-    'stats.value_groupements': '12',
-    'stats.value_regions': '11',
+    'hero.title': 'Organization',
     'stats.label_groupements': 'GROUPS',
     'stats.label_regions': 'REGIONS',
     'stats.label_mandate': 'YEARS OF MANDATE',
     'board.title': 'Current composition',
     'board.members': JSON.stringify([
-      { name: 'Houssem Ben Azouz', role: 'PRESIDENT', image: '' },
-      { name: 'Chahla Khekhia', role: 'SECRETARY GENERAL', image: '' },
-      { name: 'Ahmed Oubaia', role: 'TREASURER', image: '' },
-      { name: 'Néjib Gana', role: 'VICE-PRESIDENT', image: '' },
-      { name: 'Omar Cherif', role: 'ADVISOR', image: '' },
+      { name: 'Houssem Ben Azouz', role: 'PRESIDENT', image: '/images/org-board/houssem-ben-azouz.svg?v=1' },
+      { name: 'Chahla Khekhia', role: 'SECRETARY GENERAL', image: '/images/org-board/chahla-khekhia.svg?v=1' },
+      { name: 'Ahmed Oubaia', role: 'TREASURER', image: '/images/org-board/ahmed-oubaia.svg?v=1' },
+      { name: 'Néjib Gana', role: 'VICE-PRESIDENT', image: '/images/org-board/nejib-gana.svg?v=1' },
+      { name: 'Omar Cherif', role: 'ADVISOR', image: '/images/org-board/omar-cherif.svg?v=1' },
     ]),
     'headquarters.title': 'Fi2T headquarters office',
     'headquarters.staff': JSON.stringify([
@@ -51,7 +53,7 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
       { initials: 'SS', name: 'Sarra Sallemi', role: 'Administrative and accounting affairs' },
     ]),
     'regional.title': 'Regional offices',
-    'regional.map_label': '11 Regional Offices',
+    'regional.map_label': 'Regional Offices',
     'regional.items': JSON.stringify([
       { name: 'Mr Nebil Azouz', region: 'Bizerte' },
       { name: 'Mme Chahla Khekhia', region: 'Le Kef' },
@@ -106,9 +108,10 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
       {
         slug: 'trois-questions-walid-tritar',
         title: 'Tunisian tourism — Three questions for Walid Tritar',
-        desc: 'Walid Tritar has been elected new President of Fi2T for 2026–2029....',
+        desc: 'Walid Tritar answers three questions on all inclusive and Tunisian tourism....',
         date: '11 May 2026',
         img: '/images/article-featured-walid.png?v=2',
+        ...INTERVIEW_ARTICLE_DETAIL_EN,
       },
       {
         slug: 'resilience-secteur-touristique',
@@ -154,7 +157,7 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
       {
         icon: '/images/icon-address.svg',
         label: 'Address',
-        value: 'Rue du Lac Turkana, Les Berges du\nLac 1\n1053 Tunis, Tunisia',
+        value: "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisia",
       },
       {
         icon: '/images/icon-phone.svg',
@@ -177,6 +180,7 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
     'form.placeholder_message': 'Your message here...',
     'form.submit': 'Send',
     'form.success': 'Thank you — your message has been sent.',
+    'form.error': 'Unable to send your message right now. Please try again later.',
   },
   'fiche-adhesion': {
     'hero.title': 'Membership form',
@@ -210,6 +214,7 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
     'form.placeholder_message': 'Briefly describe your activity…',
     'form.submit': 'Submit application',
     'form.success': 'Thank you — your membership application has been sent.',
+    'form.error': 'Unable to send your application right now. Please try again later.',
   },
   global: {
     'settings.tagline': 'Interprofessional Federation of Tunisian Tourism',
@@ -225,7 +230,7 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
     'hero.title': 'من نحن',
     'mission.title': 'تاريخنا ورسالتنا',
     'mission.body':
-      'الاتحاد المهني المشترك للسياحة التونسية هو نقابة مهنية لأرباب العمل مستقلة تأسست في مارس 2016 من قبل فاعلين من أنشطة سياحية مختلفة.\nFi2T مفتوحة لجميع الفاعلين في السياحة التونسية ذوي الصلة المباشرة بالقطاع.',
+      'الاتحاد المهني المشترك للسياحة التونسية هو نقابة مهنية لأرباب العمل مستقلة تأسست في مارس 2016 من قبل فاعلين من أنشطة سياحية مختلفة: وكالات أسفار، إقامة بديلة، ترفيه، تنشيط، رياضة، نقل…\nFi2T مفتوحة لجميع الفاعلين في السياحة التونسية ذوي الصلة المباشرة بالقطاع. يمكن أن يكون الأعضاء أشخاصاً معنويين أو طبيعيين أو جمعيات أو نقابات.',
     'values.title': 'أهدافنا',
     'values.items': JSON.stringify([
       { title: 'النزاهة', desc: 'شفافية تامة وأخلاقيات لا تشوبها شائبة في كل أعمالنا المؤسسية.', icon: '/images/value-integrity.svg' },
@@ -249,19 +254,16 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
   },
   organisation: {
     'hero.title': 'التنظيم',
-    'stats.mandate_years': '03',
-    'stats.value_groupements': '12',
-    'stats.value_regions': '11',
     'stats.label_groupements': 'تجمعات',
     'stats.label_regions': 'جهات',
     'stats.label_mandate': 'سنوات الولاية',
     'board.title': 'التشكيلة الحالية',
     'board.members': JSON.stringify([
-      { name: 'حسام بن عزوز', role: 'الرئيس', image: '' },
-      { name: 'شهلة خيخية', role: 'الأمينة العامة', image: '' },
-      { name: 'أحمد عباية', role: 'أمين المال', image: '' },
-      { name: 'نجيب قانة', role: 'نائب الرئيس', image: '' },
-      { name: 'عمر شريف', role: 'مستشار', image: '' },
+      { name: 'حسام بن عزوز', role: 'الرئيس', image: '/images/org-board/houssem-ben-azouz.svg?v=1' },
+      { name: 'شهلة خيخية', role: 'الأمينة العامة', image: '/images/org-board/chahla-khekhia.svg?v=1' },
+      { name: 'أحمد عباية', role: 'أمين المال', image: '/images/org-board/ahmed-oubaia.svg?v=1' },
+      { name: 'نجيب قانة', role: 'نائب الرئيس', image: '/images/org-board/nejib-gana.svg?v=1' },
+      { name: 'عمر شريف', role: 'مستشار', image: '/images/org-board/omar-cherif.svg?v=1' },
     ]),
     'headquarters.title': 'مكتب مقر Fi2T',
     'headquarters.staff': JSON.stringify([
@@ -270,7 +272,7 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
       { initials: 'SS', name: 'سارة سالمي', role: 'الشؤون الإدارية والمحاسبية' },
     ]),
     'regional.title': 'المكاتب الجهوية',
-    'regional.map_label': '11 مكتباً جهوياً',
+    'regional.map_label': 'مكاتب جهوية',
     'regional.items': JSON.stringify([
       { name: 'السيد نبيل عزوز', region: 'بنزرت' },
       { name: 'السيدة شهلة خيخية', region: 'الكاف' },
@@ -325,9 +327,10 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
       {
         slug: 'trois-questions-walid-tritar',
         title: 'السياحة التونسية — ثلاثة أسئلة لوليد تريتار',
-        desc: 'تم انتخاب وليد تريتار رئيساً جديداً لـ Fi2T للفترة 2026–2029....',
+        desc: 'يجيب وليد تريتار عن ثلاثة أسئلة حول الكل شامل والسياحة التونسية....',
         date: '11 مايو 2026',
         img: '/images/article-featured-walid.png?v=2',
+        ...INTERVIEW_ARTICLE_DETAIL_AR,
       },
       {
         slug: 'resilience-secteur-touristique',
@@ -373,7 +376,7 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
       {
         icon: '/images/icon-address.svg',
         label: 'العنوان',
-        value: 'شارع بحيرة تركانا، ضفاف البحيرة 1\n1053 تونس، تونس',
+        value: "إقامة مريم - شقة رقم 2 -\nضفاف البحيرة 1\n1053 تونس، تونس",
       },
       {
         icon: '/images/icon-phone.svg',
@@ -396,6 +399,7 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
     'form.placeholder_message': 'رسالتكم هنا...',
     'form.submit': 'إرسال',
     'form.success': 'شكراً — تم إرسال رسالتكم بنجاح.',
+    'form.error': 'تعذّر إرسال الرسالة حالياً. يرجى المحاولة لاحقاً.',
   },
   'fiche-adhesion': {
     'hero.title': 'استمارة الانضمام',
@@ -429,6 +433,7 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
     'form.placeholder_message': 'قدّموا نشاطكم باختصار…',
     'form.submit': 'إرسال الطلب',
     'form.success': 'شكراً — تم إرسال طلب انضمامكم بنجاح.',
+    'form.error': 'تعذّر إرسال طلب الانضمام حالياً. يرجى المحاولة لاحقاً.',
   },
   global: {
     'settings.tagline': 'الاتحاد المهني المشترك للسياحة التونسية',

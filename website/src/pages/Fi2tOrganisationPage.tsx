@@ -47,33 +47,32 @@ function OrganisationInner() {
   // Editors need every row reachable inline, so the list never stays collapsed in edit mode.
   const canCollapseRegions = regions.length > REGIONAL_VISIBLE_ROWS && !isEditMode
   const showAllRegions = !canCollapseRegions || regionsExpanded
-  const mandateYears = get('stats.mandate_years', '03').padStart(2, '0').slice(0, 2)
-  const regionsCount = get('stats.value_regions', '11').padStart(2, '0').slice(0, 2)
+  /* Auto-calculated KPIs — not editable (avoids stale/fake numbers). */
+  const autoGroupements = String(Math.max(groupements.length, 1)).padStart(2, '0')
+  const autoRegions = String(Math.max(regions.length, 1)).padStart(2, '0')
+  const autoYears = String(Math.max(1, new Date().getFullYear() - 2016)).padStart(2, '0')
 
   const stats = useMemo(() => ([
     {
-      valueKey: 'stats.value_groupements',
-      value: get('stats.value_groupements', String(groupements.length).padStart(2, '0')).padStart(2, '0').slice(0, 2),
+      value: autoGroupements,
       labelKey: 'stats.label_groupements',
       label: get('stats.label_groupements', 'GROUPEMENTS'),
     },
     {
-      valueKey: 'stats.value_regions',
-      value: regionsCount,
+      value: autoRegions,
       labelKey: 'stats.label_regions',
       label: get('stats.label_regions', 'RÉGIONS'),
     },
     {
-      valueKey: 'stats.mandate_years',
-      value: mandateYears,
+      value: autoYears,
       labelKey: 'stats.label_mandate',
-      label: get('stats.label_mandate', 'ANS DE MANDAT'),
+      label: get('stats.label_mandate', 'ANS'),
     },
-  ]), [groupements.length, regionsCount, mandateYears, get])
+  ]), [autoGroupements, autoRegions, autoYears, get])
 
   return (
     <div className="fi2t-org-page">
-      <section className="fi2t-page-hero fi2t-page-hero--org">
+      <section className="fi2t-page-hero fi2t-page-hero--org" data-cms-section="hero">
         <EditableHeroBackground
           page="organisation"
           fallback="/images/qui-sommes-nous-banner.png?v=8"
@@ -91,16 +90,12 @@ function OrganisationInner() {
         </div>
       </section>
 
-      <section className="fi2t-org-stats">
+      <section className="fi2t-org-stats" data-cms-section="stats">
         {stats.map((item) => (
           <article key={item.labelKey} className="fi2t-org-stat">
-            <EditableText
-              page="organisation"
-              blockKey={item.valueKey}
-              as="span"
-              className="fi2t-org-stat__value"
-              fallback={item.value}
-            />
+            <span className="fi2t-org-stat__value" title="Calculé automatiquement">
+              {item.value}
+            </span>
             <EditableText
               page="organisation"
               blockKey={item.labelKey}
@@ -112,7 +107,7 @@ function OrganisationInner() {
         ))}
       </section>
 
-      <section className="fi2t-org-board">
+      <section className="fi2t-org-board" data-cms-section="board">
         <EditableText
           page="organisation"
           blockKey="board.title"
@@ -150,7 +145,7 @@ function OrganisationInner() {
         />
       </section>
 
-      <section className="fi2t-org-hq">
+      <section className="fi2t-org-hq" data-cms-section="headquarters">
         <div className="fi2t-org-hq__inner">
           <EditableText
             page="organisation"
@@ -185,7 +180,7 @@ function OrganisationInner() {
         </div>
       </section>
 
-      <section className="fi2t-org-regional">
+      <section className="fi2t-org-regional" data-cms-section="regional">
         <EditableText
           page="organisation"
           blockKey="regional.title"
@@ -246,7 +241,7 @@ function OrganisationInner() {
               page="organisation"
               blockKey="regional.map_image"
               className="fi2t-org-regional__map-img"
-              alt="11 Bureaux Régionaux"
+              alt="Bureaux Régionaux"
               fallback="/images/org-regional-map-card.png?v=2"
             />
             <div className="fi2t-org-regional__map-content">
@@ -256,19 +251,21 @@ function OrganisationInner() {
                 alt=""
                 aria-hidden="true"
               />
-              <EditableText
-                page="organisation"
-                blockKey="regional.map_label"
-                as="p"
-                className="fi2t-org-regional__map-label"
-                fallback="11 Bureaux Régionaux"
-              />
+              <p className="fi2t-org-regional__map-label">
+                <span>{regions.length}</span>{' '}
+                <EditableText
+                  page="organisation"
+                  blockKey="regional.map_label"
+                  as="span"
+                  fallback="Bureaux Régionaux"
+                />
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="fi2t-org-groupements">
+      <section className="fi2t-org-groupements" data-cms-section="groupements">
         <EditableText
           page="organisation"
           blockKey="groupements.title"
@@ -288,7 +285,7 @@ function OrganisationInner() {
           fields={[
             { key: 'label', label: 'Nom' },
             { key: 'slug', label: 'Slug (URL)' },
-            { key: 'icon', label: 'Icône', image: true },
+            { key: 'icon', label: 'Icône', image: true, iconPick: true },
           ]}
           renderItem={(item, _index, { editable, editField, editImage }) => {
             const card = (

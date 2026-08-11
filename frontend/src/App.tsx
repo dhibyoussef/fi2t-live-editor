@@ -66,10 +66,16 @@ function I18nSync() {
   return null
 }
 
+/** Vite `base` — `/` locally, `/admin/` in Docker single-domain deploy. */
+const routerBasename = (() => {
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+  return base || undefined
+})()
+
 export default function App() {
   return (
     <QueryClientProvider client={qc}>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBasename}>
         <I18nSync />
         <Suspense fallback={<PageLoader />}>
           <Routes>

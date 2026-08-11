@@ -61,8 +61,8 @@ export default {
       users: 'Utilisateurs',
       users_desc: 'Gérer les comptes administrateurs',
     },
-    // Status badges
-    status: {
+    // Legacy status codes (kept for shared Badge helpers)
+    statusCodes: {
       PENDING: 'En attente', CONFIRMED: 'Confirmé', CHECKED_IN: 'Arrivé',
       CHECKED_OUT: 'Parti', CANCELLED: 'Annulé', AVAILABLE: 'Disponible',
       OCCUPIED: 'Occupé', MAINTENANCE: 'Maintenance', OUT_OF_ORDER: 'Hors service',

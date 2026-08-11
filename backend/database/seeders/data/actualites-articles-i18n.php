@@ -6,44 +6,44 @@
  */
 
 $interviewEn = [
-    'hero_title' => "Houssem Azouz (President of the\nInterprofessional Federation",
-    'subtitle' => 'Three questions to Walid Tritar on Tunisian tourism',
-    'quote' => '“All inclusive is no longer really a choice: it is an obligation dictated by the market.”',
-    'intro' => 'Walid Tritar, newly elected President of Fi2T, answers three questions about the all-inclusive model and Tunisian tourism.',
-    'source' => 'Source: Fi2T',
+    'hero_title' => "Tunisian tourism\nThree questions for Walid Tritar",
+    'subtitle' => 'President of the Interprofessional Federation of Tunisian Tourism (Fi2T)',
+    'quote' => '“All Inclusive is no longer a choice — it is a necessity imposed by the market”',
+    'intro' => 'Long criticised for dragging Tunisian tourism downward, “all inclusive” remains a pillar of the national hotel model. For Walid Tritar, President of Fi2T, the formula primarily meets international market requirements and the sector’s economic realities. He addresses misconceptions, limits, and the conditions needed to move Tunisian tourism toward more quality and added value.',
+    'source' => 'Source: La Presse de Tunisie | lapresse.tn',
     'sections' => [
         [
             'question' => 'Q1 — Does “all inclusive” really benefit the Tunisian economy?',
-            'answer' => "Many misconceptions surround the all-inclusive concept in Tunisia. Competitors such as Egypt, Turkey and Bulgaria offer similar packages, so Tunisian hoteliers often have little choice but to follow the market.\n\nAll inclusive helps hotels forecast revenue and manage costs. It also supports employment. As leisure infrastructure outside hotels develops further, the model can evolve toward more open formulas.",
+            'answer' => "From the outset, the debate must be put in context. Many misconceptions circulate around the “all inclusive” model in Tunisia. Competitors such as Egypt, Turkey and Bulgaria offer similar packages, so Tunisian hoteliers often have little choice but to follow the market.\n\nAll inclusive helps hotels forecast revenue and manage costs. It also supports employment. As leisure infrastructure outside hotels develops further, the model can evolve toward more open formulas.",
         ],
         [
-            'question' => 'Q2 — Why is all inclusive so often criticised?',
+            'question' => 'Q2 — Does the all-inclusive model harm the quality of Tunisian tourism today?',
             'answer' => "Criticism often comes from misunderstanding: there is not one single all-inclusive model. Quality varies widely between hotels — from basic offers to ultra all inclusive with à-la-carte dining and premium services.\n\nThe issue is not the concept itself, but how it is applied. Hoteliers can choose volume-driven low-cost offers or quality products that strengthen Tunisia’s destination image.",
         ],
         [
-            'question' => 'Q3 — What should clients check before booking?',
+            'question' => 'Q3 — A final message to clear up confusion around “all inclusive”',
             'answer' => "Clients should carefully read what is included: dining quality, facilities, entertainment, pool services, room comfort and extras. Not all all-inclusive offers are equal — comparing product descriptions is essential.",
         ],
     ],
 ];
 
 $interviewAr = [
-    'hero_title' => "حسام عزوز (رئيس الاتحاد\nالمهني المشترك",
-    'subtitle' => 'ثلاثة أسئلة لوليد تريتار حول السياحة التونسية',
-    'quote' => '«الكل شامل لم يعد خياراً حقيقياً: إنه التزام يفرضه السوق.»',
-    'intro' => 'يجيب وليد تريتار، الرئيس الجديد لـ Fi2T، عن ثلاثة أسئلة حول نموذج الكل شامل والسياحة التونسية.',
-    'source' => 'المصدر: Fi2T',
+    'hero_title' => "السياحة التونسية\nثلاثة أسئلة لوليد تريتار",
+    'subtitle' => 'رئيس الاتحاد المهني المشترك للسياحة التونسية (Fi2T)',
+    'quote' => '«الكل شامل لم يعد خياراً، بل ضرورة يفرضها السوق»',
+    'intro' => 'طالما اتُّهم بجرّ السياحة التونسية إلى الأسفل، يبقى «الكل شامل» مع ذلك ركيزة للنموذج الفندقي الوطني. بالنسبة لوليد تريتار، رئيس Fi2T، تلبي هذه الصيغة أساساً متطلبات السوق الدولي وواقع القطاع الاقتصادي. ويعود إلى الأفكار المسبقة حول النموذج وحدوده، وإلى الشروط اللازمة لتطوير العرض السياحي التونسي نحو مزيد من الجودة والقيمة المضافة.',
+    'source' => 'المصدر: La Presse de Tunisie | lapresse.tn',
     'sections' => [
         [
-            'question' => 'س1 — هل يفيد نموذج «الكل شامل» الاقتصاد التونسي فعلاً؟',
+            'question' => 'س1 — هل يفيد «الكل شامل» الاقتصاد التونسي فعلاً؟',
             'answer' => "تحيط بنموذج الكل شامل في تونس أفكار مسبقة كثيرة. منافسون مثل مصر وتركيا وبلغاريا يقدمون عروضاً مشابهة، لذلك غالباً ما لا يملك الفندقيون التونسيون خياراً غير مواكبة السوق.\n\nيساعد الكل شامل الفنادق على توقع المداخيل وإدارة التكاليف، كما يدعم التشغيل. ومع تطور البنية التحتية للترفيه خارج الفنادق، يمكن أن يتطور النموذج نحو صيغ أكثر انفتاحاً.",
         ],
         [
-            'question' => 'س2 — لماذا يُنتقد الكل شامل كثيراً؟',
+            'question' => 'س2 — هل يضر نموذج الكل شامل اليوم بجودة السياحة التونسية؟',
             'answer' => "غالباً ما ينبع النقد من سوء فهم: لا يوجد نموذج واحد للكل شامل. تختلف الجودة كثيراً بين الفنادق — من عروض أساسية إلى كل شامل فائق مع مطاعم حسب الطلب وخدمات راقية.\n\nالمشكلة ليست في المفهوم ذاته بل في طريقة تطبيقه. يمكن للفندقيين اختيار عروض حجم منخفضة التكلفة أو منتجات جودة تعزز صورة تونس كوجهة.",
         ],
         [
-            'question' => 'س3 — ماذا يجب على الحريف التحقق منه قبل الحجز؟',
+            'question' => 'س3 — رسالة أخيرة لتوضيح اللبس حول «الكل شامل»',
             'answer' => "ينبغي قراءة ما يشمله العرض بدقة: جودة المطاعم، التجهيزات، التنشيط، خدمات المسبح، راحة الغرف والخدمات الإضافية. ليست كل عروض الكل شامل متساوية — ومقارنة وصف المنتج أمر أساسي.",
         ],
     ],
@@ -74,10 +74,10 @@ $baseEn = [
     ],
     array_merge([
         'slug' => 'trois-questions-walid-tritar',
-        'title' => 'Tunisian tourism — Three questions to Walid Tritar',
-        'desc' => 'Walid Tritar, newly elected President of Fi2T, answers three questions on all inclusive and the Tunisian destination....',
+        'title' => 'Tunisian tourism — Three questions for Walid Tritar',
+        'desc' => 'Walid Tritar answers three questions on all inclusive and Tunisian tourism....',
         'date' => '11 May 2026',
-        'img' => '/images/act1.jpg',
+        'img' => '/images/article-featured-walid.png?v=2',
     ], $interviewEn),
     [
         'slug' => 'resilience-secteur-touristique',
@@ -144,9 +144,9 @@ $baseAr = [
     array_merge([
         'slug' => 'trois-questions-walid-tritar',
         'title' => 'السياحة التونسية — ثلاثة أسئلة لوليد تريتار',
-        'desc' => 'يجيب وليد تريتار، الرئيس الجديد لـ Fi2T، عن ثلاثة أسئلة حول الكل شامل والوجهة التونسية....',
+        'desc' => 'يجيب وليد تريتار عن ثلاثة أسئلة حول الكل شامل والسياحة التونسية....',
         'date' => '11 مايو 2026',
-        'img' => '/images/act1.jpg',
+        'img' => '/images/article-featured-walid.png?v=2',
     ], $interviewAr),
     [
         'slug' => 'resilience-secteur-touristique',

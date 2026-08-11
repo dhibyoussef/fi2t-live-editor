@@ -43,12 +43,12 @@ export function ImageUploader({
     try {
       const data = await uploadImageFile(
         file,
-        '/admin/carousels/upload-image',
+        '/admin/content/upload-image',
         setProgress,
         phase => setState(phase),
       )
       onChange(data.url)
-      onPathChange?.(data.path)
+      if (data.path) onPathChange?.(data.path)
       setState('success')
       if (data.compressed) {
         setStatusHint('Image optimisée automatiquement avant envoi')

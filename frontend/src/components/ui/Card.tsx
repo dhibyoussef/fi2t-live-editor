@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties } from 'react'
+import type { ReactNode, CSSProperties } from 'react'
 
 type CardVariant = 'default' | 'gold' | 'dark' | 'sand'
 type CardPadding = 'none' | 'sm' | 'md' | 'lg'

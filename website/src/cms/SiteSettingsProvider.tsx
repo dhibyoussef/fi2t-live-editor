@@ -37,7 +37,16 @@ export function SiteSettingsProvider({ children }: { children: ReactNode }) {
 
     try {
       const { data: res } = await api.get('/content/global', { params: { locale } })
-      const merged = mergePageBlocks('global', res.blocks || {}, locale)
+      let frApi: Record<string, string> | undefined
+      if (locale !== 'fr') {
+        try {
+          const { data: frData } = await api.get('/content/global', { params: { locale: 'fr' } })
+          frApi = frData.blocks || {}
+        } catch {
+          frApi = undefined
+        }
+      }
+      const merged = mergePageBlocks('global', res.blocks || {}, locale, frApi)
       writeCache(cacheKey, merged, CACHE_TTL.settings)
       setBlocks(merged)
       const logo = merged['settings.logo']

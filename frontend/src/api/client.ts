@@ -27,8 +27,10 @@ api.interceptors.response.use(
         // Clear persisted zustand auth so ProtectedRoute cannot stay "logged in"
         localStorage.removeItem('gc-auth')
       } catch { /* ignore */ }
-      if (!window.location.pathname.startsWith('/login')) {
-        window.location.href = '/login'
+      const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+      const loginPath = `${base}/login`
+      if (!window.location.pathname.startsWith(loginPath)) {
+        window.location.href = loginPath
       }
     }
     return Promise.reject(error)

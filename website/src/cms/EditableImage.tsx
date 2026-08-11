@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { useEditMode } from './EditModeProvider'
 import { useContentBlock } from './ContentProvider'
 import { uploadWebsiteImage } from './uploadWebsiteImage'
@@ -24,11 +25,17 @@ function deriveAltBlockKey(imageKey: string) {
   return `${imageKey}_alt`
 }
 
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n))
+}
+
 function ImageEditPanel({
   label,
   src,
   altValue,
   uploading,
+  style,
+  panelRef,
   onPathChange,
   onAltChange,
   onChangeFile,
@@ -38,6 +45,8 @@ function ImageEditPanel({
   src: string
   altValue: string
   uploading: boolean
+  style?: React.CSSProperties
+  panelRef?: React.Ref<HTMLDivElement>
   onPathChange: (path: string) => void
   onAltChange: (alt: string) => void
   onChangeFile: () => void
@@ -45,9 +54,11 @@ function ImageEditPanel({
 }) {
   return (
     <div
-      className="cms-image-panel"
+      ref={panelRef}
+      className="cms-image-panel cms-image-panel--fixed"
       role="dialog"
       aria-label={label || 'Modifier l’image'}
+      style={style}
       onClick={(e) => e.stopPropagation()}
       onMouseDown={(e) => e.stopPropagation()}
     >
@@ -122,7 +133,9 @@ export default function EditableImage({
   const [panelOpen, setPanelOpen] = useState(false)
   const [pathDraft, setPathDraft] = useState('')
   const [altDraft, setAltDraft] = useState('')
+  const [panelPos, setPanelPos] = useState<{ top: number; left: number } | null>(null)
   const rootRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const pickingRef = useRef(false)
 
@@ -135,11 +148,57 @@ export default function EditableImage({
     setAltDraft(displayAlt)
   }, [panelOpen, src, displayAlt])
 
+  useLayoutEffect(() => {
+    if (!panelOpen) {
+      setPanelPos(null)
+      return
+    }
+
+    const place = () => {
+      const anchor = rootRef.current
+      if (!anchor) return
+      const rect = anchor.getBoundingClientRect()
+      const margin = 12
+      const gap = 8
+      const width = Math.min(340, window.innerWidth - margin * 2)
+      const height = panelRef.current?.offsetHeight || 220
+
+      let left = rect.left
+      // Prefer opening to the right of the anchor; if that overflows, flip left.
+      if (left + width > window.innerWidth - margin) {
+        left = rect.right - width
+      }
+      left = clamp(left, margin, window.innerWidth - width - margin)
+
+      let top = rect.bottom + gap
+      if (top + height > window.innerHeight - margin) {
+        top = rect.top - height - gap
+      }
+      top = clamp(top, margin, Math.max(margin, window.innerHeight - height - margin))
+
+      setPanelPos({ top, left })
+    }
+
+    place()
+    // Re-measure after paint (panel height known) and on resize/scroll.
+    const raf = requestAnimationFrame(place)
+    window.addEventListener('resize', place)
+    window.addEventListener('scroll', place, true)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', place)
+      window.removeEventListener('scroll', place, true)
+    }
+  }, [panelOpen])
+
   useEffect(() => {
     if (!panelOpen) return
     const onDoc = (e: MouseEvent) => {
       if (pickingRef.current) return
-      if (!rootRef.current?.contains(e.target as Node)) setPanelOpen(false)
+      const t = e.target as Node
+      if (rootRef.current?.contains(t)) return
+      if (panelRef.current?.contains(t)) return
+      setPanelOpen(false)
     }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !pickingRef.current) setPanelOpen(false)
@@ -216,27 +275,67 @@ export default function EditableImage({
     </button>
   )
 
-  const panel = panelOpen ? (
-    <ImageEditPanel
-      label={label}
-      src={pathDraft || src}
-      altValue={altDraft}
-      uploading={uploading}
-      onPathChange={savePath}
-      onAltChange={saveAlt}
-      onChangeFile={openPicker}
-      onClose={() => setPanelOpen(false)}
-    />
-  ) : null
+  const panel = panelOpen && typeof document !== 'undefined'
+    ? createPortal(
+        <ImageEditPanel
+          label={label}
+          src={pathDraft || src}
+          altValue={altDraft}
+          uploading={uploading}
+          panelRef={panelRef}
+          style={panelPos
+            ? {
+                top: panelPos.top,
+                left: panelPos.left,
+                width: Math.min(340, window.innerWidth - 24),
+              }
+            : { visibility: 'hidden', top: 0, left: 0 }}
+          onPathChange={savePath}
+          onAltChange={saveAlt}
+          onChangeFile={openPicker}
+          onClose={() => setPanelOpen(false)}
+        />,
+        document.body,
+      )
+    : null
+
+  const cmsAttrs = {
+    'data-cms-page': page,
+    'data-cms-block': blockKey,
+    'data-cms-type': 'image',
+  } as const
 
   if (!isEditMode) {
-    if (variant === 'chip') return null
-    return <img src={src} alt={displayAlt || alt} className={className} style={style} />
+    if (variant === 'chip') {
+      // Invisible marker so structure export still finds chip-only images (hero bg, CTA bg…).
+      return (
+        <span
+          {...cmsAttrs}
+          hidden
+          aria-hidden="true"
+          data-cms-fallback={fallback || undefined}
+        />
+      )
+    }
+    return (
+      <img
+        src={src}
+        alt={displayAlt || alt}
+        className={className}
+        style={style}
+        {...cmsAttrs}
+      />
+    )
   }
 
   if (variant === 'chip') {
     return (
-      <div ref={rootRef} className={`cms-editable cms-editable--image-chip ${className}`.trim()} style={style}>
+      <div
+        ref={rootRef}
+        className={`cms-editable cms-editable--image-chip ${className}`.trim()}
+        style={style}
+        {...cmsAttrs}
+      >
         {pencil}
         {panel}
         {fileInput}
@@ -245,7 +344,12 @@ export default function EditableImage({
   }
 
   return (
-    <div ref={rootRef} className={`cms-editable cms-editable--image ${className}`} style={style}>
+    <div
+      ref={rootRef}
+      className={`cms-editable cms-editable--image ${className}`}
+      style={style}
+      {...cmsAttrs}
+    >
       <img src={src} alt={displayAlt || alt} />
       {pencil}
       {panel}

@@ -109,8 +109,8 @@ return [
     ['page' => 'organisation', 'section' => 'headquarters', 'key' => 'title', 'locale' => 'ar', 'type' => 'text', 'label' => 'Siège — Titre', 'value' => 'مكتب مقر Fi2T'],
     ['page' => 'organisation', 'section' => 'regional', 'key' => 'title', 'locale' => 'en', 'type' => 'text', 'label' => 'Régions — Titre', 'value' => 'Regional offices'],
     ['page' => 'organisation', 'section' => 'regional', 'key' => 'title', 'locale' => 'ar', 'type' => 'text', 'label' => 'Régions — Titre', 'value' => 'المكاتب الجهوية'],
-    ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_label', 'locale' => 'en', 'type' => 'text', 'label' => 'Régions — Label carte', 'value' => '11 Regional Offices'],
-    ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_label', 'locale' => 'ar', 'type' => 'text', 'label' => 'Régions — Label carte', 'value' => '11 مكتباً جهوياً'],
+    ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_label', 'locale' => 'en', 'type' => 'text', 'label' => 'Régions — Label carte', 'value' => 'Regional Offices'],
+    ['page' => 'organisation', 'section' => 'regional', 'key' => 'map_label', 'locale' => 'ar', 'type' => 'text', 'label' => 'Régions — Label carte', 'value' => 'مكاتباً جهوياً'],
     ['page' => 'organisation', 'section' => 'groupements', 'key' => 'title', 'locale' => 'en', 'type' => 'text', 'label' => 'Groupements — Titre', 'value' => 'Professional Groups'],
     ['page' => 'organisation', 'section' => 'groupements', 'key' => 'title', 'locale' => 'ar', 'type' => 'text', 'label' => 'Groupements — Titre', 'value' => 'التجمعات المهنية'],
 

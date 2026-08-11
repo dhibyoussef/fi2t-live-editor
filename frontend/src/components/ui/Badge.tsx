@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 type BadgeVariant = 'gold' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | 'sand'
 type BadgeSize    = 'xs' | 'sm' | 'md'

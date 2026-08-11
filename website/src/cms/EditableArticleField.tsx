@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useEditMode } from './EditModeProvider'
-import { useContentBlock } from './ContentProvider'
-import api from '../api/client'
+import { useContent, useContentBlock } from './ContentProvider'
 import { ACTUALITES_ARTICLES, ACTUALITES_DEFAULTS } from './defaults/actualites'
+import { getPageDefaults } from './pageDefaults'
+import { fanOutListItemMedia } from './fanOutMedia'
+import { isMediaKey } from './mediaSync'
 import { findArticleBySlug, parseArticles, type ArticleItem } from '../lib/articles'
 
 const LANG_BADGE: Record<string, string> = { fr: '🇫🇷 FR', en: '🇬🇧 EN', ar: '🇹🇳 AR' }
@@ -87,13 +89,16 @@ export default function EditableArticleField({
 }: Props) {
   const { i18n } = useTranslation()
   const { isEditMode } = useEditMode()
+  const lang = (i18n.language || 'fr').split('-')[0]
+  const { refresh } = useContent()
+  const localeFallback =
+    getPageDefaults('actualites', lang)['grid.items'] ?? ACTUALITES_DEFAULTS['grid.items']
   const { value: raw, update } = useContentBlock('actualites', 'grid.items', {
     type: 'json',
     label: 'Grille — Articles',
-    fallback: ACTUALITES_DEFAULTS['grid.items'],
+    fallback: localeFallback,
   })
-  const lang = (i18n.language || 'fr').split('-')[0]
-  const articles = parseArticles(raw, parseArticles(ACTUALITES_DEFAULTS['grid.items'], ACTUALITES_ARTICLES))
+  const articles = parseArticles(raw, parseArticles(localeFallback, ACTUALITES_ARTICLES))
   const article = findArticleBySlug(articles, slug)
   const fieldValue = article ? getFieldValue(article, field) : fallback
   const rawDisplay = fieldValue || fallback
@@ -133,7 +138,25 @@ export default function EditableArticleField({
     try {
       const { uploadWebsiteImage } = await import('./uploadWebsiteImage')
       const url = await uploadWebsiteImage(file)
-      patch(url)
+      if (!article) return
+      const nextArticles = articles.map((item) =>
+        item.slug === slug ? setFieldValue(item, field, url) : item,
+      )
+      const json = JSON.stringify(nextArticles)
+      update(json)
+      if (image || isMediaKey(field)) {
+        await fanOutListItemMedia({
+          page: 'actualites',
+          section: 'grid',
+          key: 'items',
+          match: { slug },
+          mediaPatch: { [field]: url },
+          currentLocale: lang,
+          currentValue: json,
+          label: 'Grille — Articles',
+        })
+        await refresh()
+      }
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Erreur lors du téléversement.')
     } finally {
@@ -215,7 +238,15 @@ export default function EditableArticleField({
   return (
     <Tag
       className={`cms-editable cms-editable--text ${className}`}
-      onClick={() => setEditing(true)}
+      onClick={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        setEditing(true)
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+      }}
       title={label || 'Cliquer pour modifier'}
     >
       {renderLines(display, multiline, Tag === 'div')}

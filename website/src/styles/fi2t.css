@@ -941,16 +941,18 @@ a {
   margin: 0 0 61px; /* Figma Adhérer btn @3717 */
   display: grid;
   gap: 1.35rem;
+  min-width: 0;
 }
 
 .fi2t-reasons__item,
 .fi2t-reasons li {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0.75rem;
   align-items: start;
   padding-left: 0;
   position: relative;
+  min-width: 0;
 }
 
 .fi2t-reasons li::before {
@@ -977,6 +979,8 @@ a {
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .fi2t-reasons span {
@@ -984,6 +988,8 @@ a {
   font-size: 16px;
   line-height: 1.4;
   text-transform: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* News — Figma Rectangle 7: 817px @ 3860 */
@@ -1052,7 +1058,7 @@ a {
 
 .fi2t-news__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 368px));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-content: start;
   gap: 26px; /* Figma: 134 → 528 → 922 (368 + 26) */
   width: 100%;
@@ -1067,8 +1073,9 @@ a {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 368px;
-  min-height: 509px;
+  width: 100%;
+  max-width: 368px;
+  min-height: 0;
   height: 100%;
   box-shadow: none;
   box-sizing: border-box;
@@ -1088,7 +1095,7 @@ a {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 0; /* Figma: title → desc pad-top 4px → footer pad-top 12px */
+  gap: 8px;
   min-height: 0;
 }
 
@@ -1099,6 +1106,7 @@ a {
   gap: 0.75rem;
   margin-top: auto;
   padding-top: 12px;
+  flex-shrink: 0;
 }
 
 .fi2t-news-card__link {
@@ -1134,24 +1142,30 @@ a {
   font-size: 24px;
   font-weight: 600;
   color: #00113a;
-  line-height: 30px;
-  min-height: 90px; /* Figma heading box */
+  line-height: 1.3;
+  min-height: 0;
+  /* Grow with content up to 3 lines — never paint over the excerpt */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .fi2t-news-card p {
   margin: 0;
-  padding-top: 4px; /* Figma desc container */
+  padding-top: 0;
   color: #444650;
   font-size: 16px;
-  line-height: 26px;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* CTA — Figma Rectangle 16: 435px @ 4679 */
@@ -1723,12 +1737,14 @@ a {
   margin: 0;
   font-size: 40px;
   font-weight: 600;
-  line-height: 34px;
+  line-height: 1.2;
   letter-spacing: 0;
   color: #fff;
   text-shadow: none;
   background: none;
   -webkit-text-fill-color: #fff;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .fi2t-page-hero--about .fi2t-page-hero__title,
@@ -1859,6 +1875,7 @@ a {
   text-align: start;
   width: 318px;
   max-width: 100%;
+  min-width: 0;
 }
 
 .fi2t-value-card__icon-wrap {
@@ -1890,7 +1907,9 @@ a {
   text-transform: uppercase;
   color: #111c2d;
   font-weight: 600;
-  line-height: 16px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .fi2t-value-card p {
@@ -1898,6 +1917,8 @@ a {
   color: #424750;
   font-size: 14px;
   line-height: 23px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Split CTA: 755 + 432 = 1187, height 639, radius 24 */
@@ -2278,9 +2299,13 @@ a {
   font-size: 14px;
   letter-spacing: 1.4px;
   font-weight: 600;
-  line-height: 16px;
+  line-height: 1.3;
   color: #424750;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  padding-inline: 0.5rem;
 }
 
 /* Composition Actuelle — title @830, photos @933 216×220 */
@@ -2322,8 +2347,7 @@ a {
   max-width: 216px;
   aspect-ratio: 216 / 220;
   height: auto;
-  /* Design export shows neutral grey placeholders (not Figma fill #DEE8FF) */
-  background: #e8e8e8;
+  background: #dee8ff;
   border-radius: 12px;
   display: grid;
   place-items: center;
@@ -2350,6 +2374,14 @@ a {
   display: block;
 }
 
+/* Branded initials SVGs fill the card edge-to-edge */
+.fi2t-org-member__photo img[src*='org-board/'],
+.fi2t-org-member__photo-img[src*='org-board/'],
+.fi2t-org-member__photo .cms-list-image-btn img[src*='org-board/'] {
+  object-fit: contain;
+  background: #dee8ff;
+}
+
 .fi2t-org-member__placeholder {
   position: absolute;
   inset: 0;
@@ -2357,7 +2389,7 @@ a {
   place-items: center;
   width: 100%;
   height: 100%;
-  background: #e8e8e8;
+  background: #dee8ff;
   pointer-events: none;
 }
 
@@ -2372,22 +2404,26 @@ a {
   margin: 0 0 4px;
   font-size: 16px;
   font-weight: 700;
-  line-height: 16px;
+  line-height: 1.3;
   letter-spacing: 0.7px;
   color: #003461;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .fi2t-org-member p {
   margin: 0;
   font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.35;
   letter-spacing: -0.7px;
   color: #424750;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
-/* HQ band — Rectangle 34 #FBF9FF 1165×198 @ left 137 */
+/* HQ band — lilac card; staff flows beside the title (no absolute overflow) */
 .fi2t-org-hq {
   background: transparent;
   padding: 0;
@@ -2396,22 +2432,26 @@ a {
 .fi2t-org-hq__inner {
   position: relative;
   width: min(100% - 2rem, 1165px);
-  height: 198px;
   min-height: 198px;
+  height: auto;
   margin-left: max(1rem, calc((100% - 1440px) / 2 + 137px));
   margin-right: auto;
-  /* Figma band @1304; title/cards @1339 → padding-top 35px */
-  padding: 35px 48px 59px 43px;
+  padding: 35px 48px 35px 43px;
   background: #fbf9ff;
   border-radius: 20px;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(180px, 227px) minmax(0, 1fr);
+  gap: 1.5rem 28px;
+  align-items: center;
+  overflow: visible;
 }
 
 .fi2t-org-hq__title {
   margin: 0 !important;
-  width: 227px;
+  width: auto;
   max-width: 227px;
-  min-height: 98px;
+  min-height: 0;
   display: flex !important;
   align-items: center !important;
   font-size: 24px !important;
@@ -2422,15 +2462,14 @@ a {
 }
 
 .fi2t-org-hq__staff {
-  position: absolute;
-  /* page left 393 → band left 137 → 256px; top 1339−1304=35 */
-  left: 256px;
-  top: 35px;
+  position: static;
+  left: auto;
+  top: auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 271px));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-  width: 861px;
-  max-width: calc(100% - 256px - 48px);
+  width: 100%;
+  max-width: none;
 }
 
 .fi2t-org-hq__staff .cms-list-trigger-wrap {
@@ -2475,10 +2514,10 @@ a {
 
 .fi2t-org-staff strong {
   display: block;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 0.7px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
   color: #111c2d;
 }
 
@@ -2867,7 +2906,8 @@ a {
   width: 100%;
   max-width: 402px;
   min-height: 509px;
-  height: 509px;
+  height: auto;
+  min-width: 0;
   background: #fbf9ff;
   border: 1px solid rgba(197, 198, 210, 0.3);
   border-radius: 4px;
@@ -2936,24 +2976,27 @@ a {
   width: 100%;
   font-size: 24px;
   font-weight: 600;
-  line-height: 30px;
+  line-height: 1.3;
   color: #00113a;
-  /* Figma Heading 3 box height; PNG shows top-aligned text */
   box-sizing: border-box;
-  min-height: 90px;
-  display: grid;
-  align-items: start;
+  min-height: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
-/* Secteur cards: 2-line title box @ 60px */
+/* Secteur cards: slightly shorter title budget */
 .fi2t-actu-card--secteur h3 {
-  min-height: 60px;
+  -webkit-line-clamp: 2;
 }
 
-/* Figma Houssem cards: title/body max 318px → 4-line title wrap */
+/* Figma Houssem cards: title/body max 318px */
 .fi2t-actu-card--narrow h3 {
   max-width: 318px;
-  min-height: 120px;
+  -webkit-line-clamp: 4;
 }
 
 .fi2t-actu-card--narrow p {
@@ -2966,12 +3009,18 @@ a {
 
 .fi2t-actu-card p {
   margin: 0;
-  padding-top: 4px;
+  padding-top: 0;
   width: 100%;
   color: #444650;
   font-size: 16px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .fi2t-actu-card time {
@@ -3172,6 +3221,11 @@ a {
 .fi2t-article__back:hover {
   color: #00696b;
   text-decoration: underline;
+}
+
+[dir='rtl'] .fi2t-article__back-arrow {
+  display: inline-block;
+  transform: scaleX(-1);
 }
 
 .fi2t-article__featured {
@@ -5780,16 +5834,22 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
   position: absolute;
   left: max(0px, calc((100% - 1440px) / 2 + 153px));
   top: 83px; /* 1407-1324 */
-  width: 1204px;
+  width: min(1204px, calc(100% - 48px));
   max-width: calc(100% - 48px);
-  height: 469px;
+  height: auto;
+  min-height: 469px;
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(288px, 1fr);
+  gap: 2rem 2.5rem;
+  align-items: center;
+  justify-content: stretch;
 }
 
 .fi2t-gl-med-origin__left {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 570px;
+  position: relative;
+  left: auto;
+  top: auto;
+  width: auto;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -5891,10 +5951,11 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
 }
 
 .fi2t-gl-med-donut {
-  position: absolute;
-  left: 720px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  margin: 0 auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -5906,6 +5967,8 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(2px);
+  justify-self: center;
+  align-self: center;
 }
 
 .fi2t-gl-med-donut__inner {
@@ -5936,13 +5999,14 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 153px;
-  height: 16px;
+  width: 180px;
+  height: auto;
+  min-height: 20px;
   margin: 0;
   font-family: 'Montserrat Alternates', var(--fi2t-font), sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   text-align: center;
@@ -11477,7 +11541,7 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
   border-radius: 999px;
   background: rgba(0, 169, 141, 0.1);
   font-family: 'Montserrat Alternates', var(--fi2t-font), sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -11740,7 +11804,7 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
   background: rgba(0, 27, 59, 0.78);
   backdrop-filter: blur(4px);
   font-family: 'Montserrat Alternates', var(--fi2t-font), sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #fff;
@@ -12388,8 +12452,7 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     width: min(100% - 2rem, var(--fi2t-max));
   }
 
-  /* Tablet+: keep the same 2-column composition as desktop (text | media)
-   * Phones (<768) stack below — see the 767px rule later. */
+  /* About / adherer: 2-col only from 1024 up — see stack rule at ≤1023. */
   .fi2t-about,
   .fi2t-adherer {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -12550,21 +12613,48 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
 
   .fi2t-about-page__split {
     margin-bottom: 3rem;
-  }
-
-  .fi2t-about-page__split {
     min-height: 0;
     margin-top: 3.5rem;
+    grid-template-columns: 1fr;
   }
 
   .fi2t-values-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     justify-content: stretch;
     row-gap: 2rem;
+    column-gap: 1.25rem;
   }
 
   .fi2t-value-card {
     width: auto;
+  }
+
+  .fi2t-about-page__diversify {
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+    padding-block: 2.5rem;
+  }
+
+  .fi2t-about-page__join {
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
+    padding-block: 2.5rem;
+  }
+
+  .fi2t-about-page__join-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .fi2t-page-hero--about,
+  .fi2t-page-hero--org,
+  .fi2t-page-hero--actu {
+    height: auto;
+    min-height: 240px;
+  }
+
+  .fi2t-page-hero--about .fi2t-page-hero__title,
+  .fi2t-page-hero--org .fi2t-page-hero__title,
+  .fi2t-page-hero--actu .fi2t-page-hero__title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
   }
 
   .fi2t-footer {
@@ -12819,14 +12909,24 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
   }
 
   .fi2t-news__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: none;
     gap: 1.25rem;
+    justify-items: stretch;
   }
 
   .fi2t-news-card {
     width: 100%;
+    max-width: none;
     min-height: 0;
+  }
+
+  .fi2t-news-card h3 {
+    font-size: clamp(1.05rem, 2.8vw, 1.5rem);
+  }
+
+  .fi2t-news-card p {
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
   }
 
   .fi2t-home > .fi2t-news > .fi2t-section {
@@ -12837,8 +12937,7 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
   }
 
   .fi2t-objectifs,
-  .fi2t-groupements__grid,
-  .fi2t-news__grid {
+  .fi2t-groupements__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -12886,8 +12985,44 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     grid-template-columns: 1fr;
   }
 
+  .fi2t-values-grid {
+    row-gap: 1.75rem;
+  }
+
   .fi2t-org-board__grid,
-  .fi2t-org-groupements__grid,
+  .fi2t-org-groupements__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fi2t-org-member,
+  .fi2t-org-group-card {
+    width: 100%;
+    max-width: none;
+  }
+
+  .fi2t-org-regional__map-label {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .fi2t-diversify-list__item,
+  .fi2t-diversify-list li {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .fi2t-diversify-list strong,
+  .fi2t-diversify-list p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .fi2t-about-page__diversify h2,
+  .fi2t-about-page__join h2 {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
   .fi2t-actu-grid__inner {
     grid-template-columns: 1fr;
   }
@@ -13042,14 +13177,14 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     display: none;
   }
 
-  /* Home — paragraph track must shrink; keep 2-col until the phone rule below. */
+  /* Home — paragraph track must shrink; stacked below 1024 (see later rule). */
   .fi2t-about__text p {
     width: auto;
   }
 
   /*
    * Keep the gold badge overlapping the image (same composition as desktop).
-   * Do NOT flatten to position:static — that stacks the badge under the card.
+   * Horizontal hang is clamped in the ≤1023 / 1024–1279 rules below.
    */
   .fi2t-about__badge,
   .fi2t-adherer__badge {
@@ -13494,15 +13629,20 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
 
 /*
  * Home about / adherer — responsive composition
- * Tablet (768+): same 2-col design as desktop, scaled.
- * Phone (<768): stack text then media; badge stays overlapping the image
- * and is clamped so negative Figma offsets never clip off-screen.
+ * ≤1023: stack (avoids badge/text collision on tablet + RTL).
+ * 1024–1279: 2-col scaled, badge clamped inside the media box.
  */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .fi2t-about,
   .fi2t-adherer {
     grid-template-columns: 1fr !important;
-    gap: 1.75rem;
+    gap: 1.5rem;
+  }
+
+  /* Text / reasons first, then image */
+  .fi2t-about__text,
+  .fi2t-adherer__content {
+    order: -1;
   }
 
   .fi2t-about__text p {
@@ -13515,7 +13655,6 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     width: 100%;
     justify-self: stretch;
     margin-inline: 0;
-    /* Space under the card for the overhanging badge */
     padding-bottom: 56px;
     overflow: visible;
   }
@@ -13531,38 +13670,36 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     max-height: none;
   }
 
+  .fi2t-adherer__content .fi2t-btn {
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+    margin-inline: 0;
+  }
+
+  .fi2t-reasons {
+    margin-bottom: 1.5rem;
+  }
+
   .fi2t-about__badge,
   .fi2t-adherer__badge {
     position: absolute !important;
     margin: 0 !important;
-    max-width: min(220px, 70%);
+    max-width: min(220px, 72%);
     min-height: 72px;
     width: max(clamp(140px, 42vw, 200px), max-content);
     padding: 0.9rem 1rem;
-  }
-
-  /*
-   * Keep the CMS / Figma bottom offset (overlap). Only clamp the horizontal
-   * hang so the badge never clips off the left/right of a phone screen.
-   */
-  .fi2t-about__badge {
-    left: 12px !important;
-    right: auto !important;
-  }
-
-  .fi2t-adherer__badge {
-    right: 12px !important;
+    /* Kill Figma negative hang — stay on the image */
     left: auto !important;
-  }
-
-  [dir='rtl'] .fi2t-about__badge {
     right: 12px !important;
-    left: auto !important;
+    bottom: 8px !important;
+    top: auto !important;
   }
 
+  [dir='rtl'] .fi2t-about__badge,
   [dir='rtl'] .fi2t-adherer__badge {
-    left: 12px !important;
     right: auto !important;
+    left: 12px !important;
   }
 
   .fi2t-about__badge .fi2t-stat-badge,
@@ -13576,17 +13713,453 @@ body.cms-edit-active .fi2t-gl--hub .fi2t-g-hero-title .cms-editable {
     font-size: 22px;
     line-height: 1.15;
   }
+
+  .fi2t-news__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fi2t-news__head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .fi2t-news__head .fi2t-btn {
+    width: 100%;
+    max-width: 220px;
+    min-width: 0;
+  }
+
+  [dir='rtl'] .fi2t-news__head .fi2t-btn {
+    align-self: flex-start;
+  }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 1024px) and (max-width: 1279px) {
   .fi2t-about,
   .fi2t-adherer {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
     align-items: start;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
   }
 
   .fi2t-about__media,
   .fi2t-adherer__media {
     overflow: visible;
+    min-width: 0;
+    padding-bottom: 40px;
   }
+
+  .fi2t-about__text,
+  .fi2t-adherer__content {
+    min-width: 0;
+  }
+
+  /* Clamp badge so Figma negative X never covers the text column */
+  .fi2t-about__badge,
+  .fi2t-adherer__badge {
+    position: absolute !important;
+    max-width: min(200px, 55%);
+    min-height: 80px;
+    padding: 1rem 1.1rem;
+    left: auto !important;
+    right: 8px !important;
+    bottom: 8px !important;
+    top: auto !important;
+  }
+
+  [dir='rtl'] .fi2t-about__badge,
+  [dir='rtl'] .fi2t-adherer__badge {
+    right: auto !important;
+    left: 8px !important;
+  }
+}
+
+/* =============================================================================
+   Client polish — readability, CMS-safe text, RTL alignment, no overflow
+   ============================================================================= */
+
+/* Public labels that were 12px → readable 14px */
+.fi2t-stat-badge {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+}
+
+.fi2t-footer__newsletter input {
+  font-size: 14px;
+}
+
+.fi2t-gl-donut__ring span,
+.fi2t-gl-aff-axe__num,
+.fi2t-gl-tree-stat span {
+  font-size: 14px !important;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+}
+
+.fi2t-gl-cult-atouts blockquote,
+.fi2t-gl-cult-quote,
+.fi2t-gl-cult-atouts .fi2t-gl-cult-quote {
+  font-size: 14px !important;
+  line-height: 22px !important;
+}
+
+.fi2t-gl-tree-eyebrow,
+.fi2t-gl-hub-card__tag {
+  font-size: 14px !important;
+}
+
+/* CMS-safe: never clip editable body copy on medical + absolute Figma stages */
+.fi2t-gl-med-intro,
+.fi2t-gl-med-intro p,
+.fi2t-gl-med-adv,
+.fi2t-gl-med-adv__title,
+.fi2t-gl-med-adv__card,
+.fi2t-gl-med-adv__copy,
+.fi2t-gl-med-adv__copy h3,
+.fi2t-gl-med-adv__copy p,
+.fi2t-gl-med-origin,
+.fi2t-gl-med-origin__left h2,
+.fi2t-gl-med-origin__left > p,
+.fi2t-gl-med-diag,
+.fi2t-gl-med-diag__intro,
+.fi2t-gl-med-diag__card,
+.fi2t-gl-med-diag__card h3,
+.fi2t-gl-med-diag__card p,
+.fi2t-gl-med-actions,
+.fi2t-gl-med-actions__title,
+.fi2t-gl-med-action,
+.fi2t-gl-med-action h3,
+.fi2t-gl-med-action p,
+.fi2t-gl-med-bars__row {
+  height: auto !important;
+  min-height: 0;
+  overflow: visible !important;
+  white-space: normal !important;
+  max-width: 100%;
+}
+
+.fi2t-gl-med-intro {
+  width: min(1150px, calc(100% - 48px)) !important;
+  max-width: calc(100% - 48px) !important;
+}
+
+.fi2t-gl-med-adv,
+.fi2t-gl-med-origin,
+.fi2t-gl-med-diag,
+.fi2t-gl-med-actions {
+  min-height: unset;
+  padding-bottom: 48px;
+}
+
+.fi2t-gl-med-adv__grid,
+.fi2t-gl-med-diag__row {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: min(1144px, calc(100% - 48px)) !important;
+  max-width: calc(100% - 48px) !important;
+  height: auto !important;
+  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.fi2t-gl-med-adv__title,
+.fi2t-gl-med-diag__intro,
+.fi2t-gl-med-actions__title {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: min(920px, calc(100% - 48px)) !important;
+  margin: 0 auto 1.5rem !important;
+  text-align: center;
+}
+
+.fi2t-gl-med-adv__card,
+.fi2t-gl-med-diag__card {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  min-height: 160px;
+}
+
+.fi2t-gl-med-origin__inner {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: min(1204px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+}
+
+.fi2t-gl-med-actions__grid,
+.fi2t-gl-med-action,
+.fi2t-gl-med-action__inner {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.fi2t-gl-med-actions__grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: min(1144px, calc(100% - 48px)) !important;
+  margin: 0 auto;
+}
+
+.fi2t-groupement-page,
+.fi2t-gl,
+.fi2t-org-page,
+.fi2t-about-page,
+.fi2t-actu-page,
+.fi2t-contact-page,
+.fi2t-adhesion-page {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+/* Absolute Figma title bands: allow CMS text to grow */
+.fi2t-gl-aff-axe h3,
+.fi2t-gl [class*='__title'],
+.fi2t-gl h2[class*='Title'],
+.fi2t-gl h2 {
+  height: auto;
+  max-width: 100%;
+  overflow: visible;
+  white-space: normal;
+}
+
+/* —— Arabic RTL completion —— */
+[dir='rtl'] .fi2t-gl-tree-stat {
+  text-align: right;
+  border-left: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+[dir='rtl'] .fi2t-gl-tree-stat:first-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+[dir='rtl'] .fi2t-gl-tree-stat:last-child {
+  border-right: 0;
+  padding-right: 0;
+}
+
+[dir='rtl'] .fi2t-gl-hub-card__tag {
+  left: auto;
+  right: 18px;
+}
+
+[dir='rtl'] .fi2t-gl-hub-card__copy,
+[dir='rtl'] .fi2t-gl-hub-card__copy strong,
+[dir='rtl'] .fi2t-gl-hub-card__copy p,
+[dir='rtl'] .fi2t-gl-tree-pillars,
+[dir='rtl'] .fi2t-gl-tree-pillar,
+[dir='rtl'] .fi2t-gl-tree-pillar h3,
+[dir='rtl'] .fi2t-gl-tree-pillar p,
+[dir='rtl'] .fi2t-gl-tree-intro__lead,
+[dir='rtl'] .fi2t-gl-tree-intro__body,
+[dir='rtl'] .fi2t-gl-tree-intro__body p,
+[dir='rtl'] .fi2t-gl-med-adv__copy,
+[dir='rtl'] .fi2t-gl-med-adv__copy h3,
+[dir='rtl'] .fi2t-gl-med-adv__copy p,
+[dir='rtl'] .fi2t-gl-med-origin__left,
+[dir='rtl'] .fi2t-gl-med-origin__left h2,
+[dir='rtl'] .fi2t-gl-med-origin__left > p,
+[dir='rtl'] .fi2t-gl-med-bars__row,
+[dir='rtl'] .fi2t-gl-med-diag__card,
+[dir='rtl'] .fi2t-gl-med-action,
+[dir='rtl'] .fi2t-gl-seg-split,
+[dir='rtl'] .fi2t-gl-seg-split h2,
+[dir='rtl'] .fi2t-gl-seg-split p {
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-gl-med-bars__row {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .fi2t-org-staff,
+[dir='rtl'] .fi2t-org-member {
+  text-align: right;
+}
+
+[dir='rtl'] .fi2t-org-staff > div,
+[dir='rtl'] .fi2t-org-member {
+  align-items: flex-end;
+}
+
+/* Mobile badge labels stay readable */
+@media (max-width: 767px) {
+  .fi2t-about__badge .fi2t-stat-badge,
+  .fi2t-adherer__badge .fi2t-stat-badge {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .fi2t-about__badge .fi2t-stat-badge::first-line,
+  .fi2t-adherer__badge .fi2t-stat-badge::first-line {
+    font-size: 22px;
+    line-height: 1.15;
+  }
+
+  .fi2t-gl-med-adv__grid,
+  .fi2t-gl-med-diag__row,
+  .fi2t-gl-med-actions__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* -- FI2T 404 / missing page -- */
+.fi2t-notfound {
+  min-height: min(70vh, 640px);
+  display: grid;
+  place-items: center;
+  padding: 4rem 1.5rem 5rem;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 169, 141, 0.12), transparent 60%),
+    linear-gradient(180deg, #f7faf9 0%, #ffffff 55%);
+}
+
+.fi2t-notfound--loading {
+  min-height: 40vh;
+}
+
+.fi2t-notfound--inline {
+  min-height: auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.fi2t-notfound__inner {
+  width: min(100%, 560px);
+  text-align: center;
+}
+
+.fi2t-notfound__code {
+  margin: 0 0 0.75rem;
+  font-family: Montserrat, var(--fi2t-font), sans-serif;
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #00a98d;
+  opacity: 0.28;
+}
+
+.fi2t-notfound__title {
+  margin: 0 0 1rem;
+  font-family: Montserrat, var(--fi2t-font), sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: #001e40;
+}
+
+.fi2t-notfound__body,
+.fi2t-notfound__hint {
+  margin: 0 auto 1.25rem;
+  max-width: 42ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #424750;
+}
+
+.fi2t-notfound__hint {
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(0, 169, 141, 0.08);
+  border: 1px solid rgba(0, 169, 141, 0.22);
+  font-size: 0.95rem;
+}
+
+.fi2t-notfound__admin-link {
+  color: #00696b;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fi2t-notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.fi2t-notfound__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fi2t-notfound__btn--primary {
+  background: #00a98d;
+  color: #fff;
+  border: 2px solid #00a98d;
+}
+
+.fi2t-notfound__btn--primary:hover {
+  background: #00696b;
+  border-color: #00696b;
+  color: #fff;
+}
+
+.fi2t-notfound__btn--ghost {
+  background: transparent;
+  color: #001e40;
+  border: 2px solid rgba(0, 30, 64, 0.2);
+}
+
+.fi2t-notfound__btn--ghost:hover {
+  border-color: #00a98d;
+  color: #00696b;
+}
+
+.fi2t-notfound__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 169, 141, 0.25);
+  border-top-color: #00a98d;
+  border-radius: 50%;
+  animation: fi2t-notfound-spin 0.8s linear infinite;
+}
+
+@keyframes fi2t-notfound-spin {
+  to { transform: rotate(360deg); }
+}
+
+.cms-dyn-page-title--fi2t {
+  background: #001e40;
+}
+
+.cms-dyn-page-title--fi2t h1 {
+  color: #fff;
+  font-family: Montserrat, var(--fi2t-font), sans-serif;
+}
+
+[dir='rtl'] .fi2t-notfound__inner {
+  text-align: center;
 }

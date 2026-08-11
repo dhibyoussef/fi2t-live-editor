@@ -5,11 +5,15 @@ Thumbs.db
 .idea/
 .vscode/
 .cursor/
+agent-tools/
 
-# Env secrets
+# Env secrets (keep *.example)
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
+**/.env
+!**/.env.example
+!deploy/env.*.example
 
 # Dependencies & builds
 **/node_modules/
@@ -21,8 +25,17 @@ Thumbs.db
 **/.phpunit.cache/
 **/storage/*.key
 **/storage/pail/
+**/storage/logs/*
+!**/storage/logs/.gitignore
 
-# Generated / local-only
+# One-off maintenance (do not commit)
+backend/scripts/
+website/scripts/
 website/audit-out/
+website/scripts/audit-out/
+
+# Local junk
 Untitled (1)/
 css.css
+*.tmp
+*.bak

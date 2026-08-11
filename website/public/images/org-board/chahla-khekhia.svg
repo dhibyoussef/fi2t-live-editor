@@ -1,0 +1,13 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="216" height="220" viewBox="0 0 216 220" role="img" aria-label="Chahla Khekhia">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8F0F4"/>
+      <stop offset="100%" stop-color="#DEE8FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="216" height="220" rx="12" fill="url(#bg)"/>
+  <circle cx="108" cy="88" r="42" fill="#FFFFFF" fill-opacity="0.72"/>
+  <circle cx="108" cy="88" r="42" fill="none" stroke="#00A98D" stroke-width="2.5" stroke-opacity="0.35"/>
+  <text x="108" y="100" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-size="36" font-weight="700" fill="#003461" letter-spacing="1">CK</text>
+  <rect x="36" y="148" width="144" height="4" rx="2" fill="#CDB48A" fill-opacity="0.85"/>
+</svg>

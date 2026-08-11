@@ -46,7 +46,7 @@ const DIVERSIFY_FALLBACK = parseJsonArray<DiversifyItem>(QUI_SOMMES_NOUS_DEFAULT
 function QuiSommesNousInner() {
   return (
     <div className="fi2t-about-page">
-      <section className="fi2t-page-hero fi2t-page-hero--about">
+      <section className="fi2t-page-hero fi2t-page-hero--about" data-cms-section="hero">
         {/* Figma composition: BANNER 1 + Rectangle 25 (rgba(0,0,0,0.3)) */}
         <EditableHeroBackground
           page="qui-sommes-nous"
@@ -65,7 +65,7 @@ function QuiSommesNousInner() {
         </div>
       </section>
 
-      <section className="fi2t-about-page__mission">
+      <section className="fi2t-about-page__mission" data-cms-section="mission">
         <div className="fi2t-about-page__mission-text">
           <EditableText
             page="qui-sommes-nous"
@@ -94,7 +94,7 @@ function QuiSommesNousInner() {
         </div>
       </section>
 
-      <section className="fi2t-about-page__values">
+      <section className="fi2t-about-page__values" data-cms-section="values">
         <div className="fi2t-section">
           <EditableText
             page="qui-sommes-nous"
@@ -119,7 +119,7 @@ function QuiSommesNousInner() {
             fields={[
               { key: 'title', label: 'Titre' },
               { key: 'desc', label: 'Description', multiline: true },
-              { key: 'icon', label: 'Icône', image: true },
+              { key: 'icon', label: 'Icône', image: true, iconPick: true },
             ]}
             renderItem={(_item, _index, { editField, editImage }) => (
               <article className="fi2t-value-card">
@@ -134,7 +134,7 @@ function QuiSommesNousInner() {
         </div>
       </section>
 
-      <section className="fi2t-about-page__split">
+      <section className="fi2t-about-page__split" data-cms-section="diversify">
         <div className="fi2t-about-page__diversify">
           <EditableText
             page="qui-sommes-nous"
@@ -147,7 +147,7 @@ function QuiSommesNousInner() {
             blockKey="diversify.intro"
             as="p"
             className="fi2t-about-page__diversify-intro"
-            fallback="La diversification des produits touristique n’est pas un luxe, c’est plutôt :"
+            fallback="La diversification des produits touristiques n’est pas un luxe, c’est plutôt :"
           />
           <EditableJsonList<DiversifyItem>
             page="qui-sommes-nous"
@@ -175,7 +175,7 @@ function QuiSommesNousInner() {
             )}
           />
         </div>
-        <div className="fi2t-about-page__join">
+        <div className="fi2t-about-page__join" data-cms-section="join">
           <EditableText
             page="qui-sommes-nous"
             blockKey="join.title"

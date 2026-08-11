@@ -1,4 +1,4 @@
-﻿/* Editable overlays */
+/* Editable overlays */
 .cms-editable {
   cursor: pointer;
   outline: 2px dashed transparent;
@@ -88,6 +88,15 @@
   border: 1px solid rgba(25, 28, 29, 0.12);
   box-shadow: 0 16px 40px rgba(0, 30, 64, 0.18);
   text-align: left;
+}
+
+/* Portaled to body — stays fully on-screen (logo / left-edge images). */
+.cms-image-panel--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  z-index: 13000;
 }
 
 .cms-image-panel__head {
@@ -1434,6 +1443,118 @@ body.cms-edit-active .fi2t-gl-auto-stats-band {
   opacity: 1;
 }
 
+.cms-icon-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 0 0.65rem;
+  padding: 0.55rem;
+  border-radius: 12px;
+  background: #f4f7f6;
+  border: 1px solid rgba(0, 30, 64, 0.08);
+}
+
+.cms-icon-picker__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cms-icon-picker__search {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid rgba(0, 30, 64, 0.15);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: #fff;
+}
+
+.cms-icon-picker__search:focus {
+  outline: 2px solid rgba(0, 169, 141, 0.35);
+  border-color: #00a98d;
+}
+
+.cms-icon-picker__cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.cms-icon-picker__cat {
+  appearance: none;
+  border: 1px solid rgba(0, 30, 64, 0.12);
+  background: #fff;
+  color: #001e40;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cms-icon-picker__cat.is-active {
+  background: #00a98d;
+  border-color: #00a98d;
+  color: #fff;
+}
+
+.cms-icon-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 0.35rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0.15rem;
+}
+
+.cms-icon-picker__empty {
+  grid-column: 1 / -1;
+  margin: 0.5rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(0, 30, 64, 0.55);
+}
+
+.cms-icon-picker__hint {
+  margin: 0;
+  font-size: 0.7rem;
+  color: rgba(0, 30, 64, 0.5);
+}
+
+.cms-icon-picker__btn {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 0.3rem;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.cms-icon-picker__btn img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.cms-icon-picker__btn:hover {
+  border-color: rgba(0, 169, 141, 0.45);
+}
+
+.cms-icon-picker__btn.is-active {
+  border-color: #00a98d;
+  box-shadow: 0 0 0 2px rgba(0, 169, 141, 0.2);
+}
+
+@media (max-width: 640px) {
+  .cms-icon-picker__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
 .cms-list-panel__field--image .cms-list-panel__image-row {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1637,4 +1758,79 @@ body.cms-edit-active .fi2t-gl-auto-stats-band {
   color: #fff;
   padding: 8px 10px;
   font-size: 14px;
+}
+
+/* —— CMS / Aperçu live: edits must not clip or blow the artboard —— */
+body.cms-edit-active .cms-editable,
+body.cms-edit-active [contenteditable='true'],
+.cms-builder-embed .cms-editable,
+.cms-builder-embed [contenteditable='true'] {
+  height: auto !important;
+  max-width: 100%;
+  overflow: visible !important;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/*
+ * News / actu cards use line-clamp. `overflow: visible` on editables makes the
+ * title paint over the excerpt — keep clamp + wrapping instead.
+ */
+body.cms-edit-active .fi2t-news-card .cms-editable--text,
+body.cms-edit-active .fi2t-actu-card .cms-editable--text,
+.cms-builder-embed .fi2t-news-card .cms-editable--text,
+.cms-builder-embed .fi2t-actu-card .cms-editable--text {
+  overflow: hidden !important;
+  white-space: normal !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+body.cms-edit-active .fi2t-news-card h3.cms-editable--text,
+body.cms-edit-active .fi2t-actu-card h3.cms-editable--text,
+.cms-builder-embed .fi2t-news-card h3.cms-editable--text,
+.cms-builder-embed .fi2t-actu-card h3.cms-editable--text {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+body.cms-edit-active .fi2t-news-card p.cms-editable--text,
+body.cms-edit-active .fi2t-actu-card p.cms-editable--text,
+.cms-builder-embed .fi2t-news-card p.cms-editable--text,
+.cms-builder-embed .fi2t-actu-card p.cms-editable--text {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+body.cms-edit-active .fi2t-gl-med-adv,
+body.cms-edit-active .fi2t-gl-med-origin,
+body.cms-edit-active .fi2t-gl-med-diag,
+body.cms-edit-active .fi2t-gl-med-actions,
+body.cms-edit-active .fi2t-gl [class*='__card'],
+.cms-builder-embed .fi2t-gl-med-adv,
+.cms-builder-embed .fi2t-gl-med-origin,
+.cms-builder-embed .fi2t-gl-med-diag,
+.cms-builder-embed .fi2t-gl-med-actions {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+body.cms-edit-active .fi2t-gl-med-adv__grid,
+body.cms-edit-active .fi2t-gl-med-diag__row,
+body.cms-edit-active .fi2t-gl-med-actions__grid,
+.cms-builder-embed .fi2t-gl-med-adv__grid,
+.cms-builder-embed .fi2t-gl-med-diag__row,
+.cms-builder-embed .fi2t-gl-med-actions__grid {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  width: min(1144px, 100%) !important;
+  height: auto !important;
+  left: auto !important;
+  top: auto !important;
 }

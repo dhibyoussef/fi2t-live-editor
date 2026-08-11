@@ -409,7 +409,7 @@ const SANTE_CHILDREN_AR = [
   {
     slug: 'thalassotherapie',
     label: 'العلاج بمياه البحر',
-    tag: 'صحة عبر البحر',
+    tag: 'علاج بمياه البحر',
     blurb:
       'بروتوكولات بإشراف طبي حول مياه البحر والطين والطحالب، في مراكز مدمجة بفنادق الشاطئ من فئة 4★ و5★.',
     face: '/images/groupement-photos/face-thalassotherapie.jpg',
@@ -604,10 +604,10 @@ const MED_EN: PageOverlay = {
     originSub:
       'Demographic breakdown of the international patient base welcomed\nin our facilities.',
     bars: [
-      { label: 'Algeria', pct: 70 },
-      { label: 'Libya (clinic peak)', pct: 80 },
+      { label: 'Algeria', pct: 40 },
+      { label: 'Libya (clinic peak)', pct: 35 },
       { label: 'Sub-Saharan Africa', pct: 15, fill: '#59DBBD' },
-      { label: 'Europe', pct: 15, fill: '#59DBBD' },
+      { label: 'Europe', pct: 10, fill: '#59DBBD' },
     ],
     donutValue: '100%',
     donutLabel: 'PATIENT TRUST',
@@ -686,10 +686,10 @@ const MED_AR: PageOverlay = {
     originTitle: 'ما هي أبرز\nبلدان منشأ المرضى\nالطبيين في تونس',
     originSub: 'التوزيع الديمغرافي للمرضى الدوليين المستقبَلين\nفي منشآتنا.',
     bars: [
-      { label: 'الجزائر', pct: 70 },
-      { label: 'ليبيا (ذروة العيادات)', pct: 80 },
+      { label: 'الجزائر', pct: 40 },
+      { label: 'ليبيا (ذروة العيادات)', pct: 35 },
       { label: 'إفريقيا جنوب الصحراء', pct: 15, fill: '#59DBBD' },
-      { label: 'أوروبا', pct: 15, fill: '#59DBBD' },
+      { label: 'أوروبا', pct: 10, fill: '#59DBBD' },
     ],
     donutValue: '100%',
     donutLabel: 'ثقة المريض',

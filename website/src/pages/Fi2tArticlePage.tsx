@@ -7,6 +7,7 @@ import EditableArticleField from '../cms/EditableArticleField'
 import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
 import { ACTUALITES_ARTICLES, ACTUALITES_DEFAULTS } from '../cms/defaults/actualites'
+import { getPageDefaults } from '../cms/pageDefaults'
 import {
   findArticleBySlug,
   mergeArticleDetail,
@@ -14,7 +15,7 @@ import {
   type ArticleItem,
 } from '../lib/articles'
 
-/** Figma Article.png reference slug — baked hero (photo + title + accent). */
+/** Figma Article.png reference slug — baked hero (photo + title + accent) for FR only. */
 const BAKED_HERO_SLUG = 'trois-questions-walid-tritar'
 
 /** Collapse all whitespace into single spaces — Figma renders answers as continuous text. */
@@ -24,7 +25,10 @@ function flattenArticleText(value: string): string {
 
 function ArticleHero({ article }: { article: ArticleItem }) {
   const { isEditMode } = useEditMode()
-  const bakeHero = !isEditMode && article.slug === BAKED_HERO_SLUG
+  const { i18n } = useTranslation()
+  const lang = (i18n.language || 'fr').split('-')[0]
+  /* Baked hero embeds French title in the image — only use for FR visitors. */
+  const bakeHero = !isEditMode && article.slug === BAKED_HERO_SLUG && lang === 'fr'
   const heroFallback = article.hero_title || article.title
   const heroLines = heroFallback.split('\n').filter(Boolean)
 
@@ -37,6 +41,8 @@ function ArticleHero({ article }: { article: ArticleItem }) {
       ]
         .filter(Boolean)
         .join(' ')}
+      data-cms-page="actualites"
+      data-cms-section="article"
     >
       {bakeHero ? (
         <img
@@ -184,8 +190,10 @@ function ArticleSection({
 }
 
 function ArticleBody({ article }: { article: ArticleItem }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { isEditMode } = useEditMode()
+  const lang = (i18n.language || 'fr').split('-')[0]
+  const bakeFeatured = !isEditMode && article.slug === BAKED_HERO_SLUG && lang === 'fr'
   const hasSections = Boolean(article.sections?.length)
   const sectionCount = article.sections?.length ?? 0
   /* Closed by default — click to expand/collapse. */
@@ -217,20 +225,27 @@ function ArticleBody({ article }: { article: ArticleItem }) {
     (hasSections && article.sections!.every((_, i) => openSections[i] ?? false))
 
   return (
-    <article className={`fi2t-article${allExpanded ? ' fi2t-article--expanded' : ''}`}>
+    <article
+      className={`fi2t-article${allExpanded ? ' fi2t-article--expanded' : ''}`}
+      data-cms-page="actualites"
+      data-cms-section="article"
+    >
       <Link to="/actualites" className="fi2t-article__back">
-        ← {t('fi2t.ui.back_news')}
+        <span className="fi2t-article__back-arrow" aria-hidden="true">
+          ←
+        </span>
+        {t('fi2t.ui.back_news')}
       </Link>
 
       <div
         className={[
           'fi2t-article__featured',
-          !isEditMode && article.slug === BAKED_HERO_SLUG ? 'fi2t-article__featured--baked' : '',
+          bakeFeatured ? 'fi2t-article__featured--baked' : '',
         ]
           .filter(Boolean)
           .join(' ')}
         style={
-          !isEditMode && article.slug === BAKED_HERO_SLUG
+          bakeFeatured
             ? ({
                 ['--article-feat-face' as string]: "url('/images/article-featured-walid.png?v=2')",
               } as CSSProperties)
@@ -345,12 +360,18 @@ function ArticleBody({ article }: { article: ArticleItem }) {
 function ArticleInner() {
   const { slug = '' } = useParams<{ slug: string }>()
   const { get } = useContent()
+  const { i18n } = useTranslation()
+  const locale = (i18n.language || 'fr').split('-')[0]
 
+  const localeDefaults = getPageDefaults('actualites', locale)
   const cmsArticles = parseArticles(
     get('grid.items', '[]'),
-    parseArticles(ACTUALITES_DEFAULTS['grid.items'], ACTUALITES_ARTICLES),
+    parseArticles(localeDefaults['grid.items'] ?? ACTUALITES_DEFAULTS['grid.items'], ACTUALITES_ARTICLES),
   )
-  const defaultsArticles = parseArticles(ACTUALITES_DEFAULTS['grid.items'], ACTUALITES_ARTICLES)
+  const defaultsArticles = parseArticles(
+    localeDefaults['grid.items'] ?? ACTUALITES_DEFAULTS['grid.items'],
+    ACTUALITES_ARTICLES,
+  )
 
   const article = mergeArticleDetail(
     findArticleBySlug(cmsArticles, slug),
@@ -362,7 +383,7 @@ function ArticleInner() {
   }
 
   return (
-    <div className="fi2t-article-page">
+    <div className="fi2t-article-page" data-cms-page="actualites">
       <ArticleHero article={article} />
       <ArticleBody article={article} />
     </div>

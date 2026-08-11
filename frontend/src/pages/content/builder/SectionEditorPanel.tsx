@@ -6,6 +6,7 @@ interface BlockRow {
   key: string
   type: 'text' | 'image' | 'json'
   label: string | null
+  sort_order?: number
   locales: Record<string, { value: string | null }>
 }
 
@@ -32,9 +33,9 @@ interface Props {
 }
 
 export default function SectionEditorPanel({
-  section, pageSlug, preferredLocale = 'fr', onBack, onDelete,
+  section, pageSlug: _pageSlug, preferredLocale = 'fr', onBack, onDelete,
   effectiveValue, effectiveLabel, setLabelChange, setValueChange,
-  changes, onDeleteLocale, onUploadImage,
+  changes, onDeleteLocale: _onDeleteLocale, onUploadImage,
 }: Props) {
   return (
     <aside className="pb-editor">

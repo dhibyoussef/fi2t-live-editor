@@ -2,8 +2,87 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { useEditMode } from './EditModeProvider'
-import { useContentBlock } from './ContentProvider'
-import api from '../api/client'
+import { useContent, useContentBlock } from './ContentProvider'
+import {
+  FI2T_ICON_CATEGORIES,
+  FI2T_ICON_OPTIONS,
+  filterFi2tIcons,
+  isFi2tIconPath,
+  normalizeIconPath,
+} from './fi2tIcons'
+import { fanOutListItemMedia } from './fanOutMedia'
+import { isMediaKey } from './mediaSync'
+
+function IconLibraryPicker({
+  selectedSrc,
+  onPick,
+}: {
+  selectedSrc: string
+  onPick: (path: string) => void
+}) {
+  const [category, setCategory] = useState<string>('Tous')
+  const [query, setQuery] = useState('')
+  const filtered = useMemo(
+    () => filterFi2tIcons({ category, query }),
+    [category, query],
+  )
+  const selectedBase = normalizeIconPath(selectedSrc)
+
+  return (
+    <div className="cms-icon-picker" role="listbox" aria-label="Bibliothèque d'icônes FI2T">
+      <div className="cms-icon-picker__toolbar">
+        <input
+          type="search"
+          className="cms-icon-picker__search"
+          placeholder="Rechercher une icône…"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          aria-label="Rechercher une icône"
+        />
+        <div className="cms-icon-picker__cats" role="tablist" aria-label="Catégories">
+          {FI2T_ICON_CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              role="tab"
+              aria-selected={category === cat}
+              className={`cms-icon-picker__cat${category === cat ? ' is-active' : ''}`}
+              onClick={() => setCategory(cat)}
+            >
+              {cat}
+              {cat === 'Tous' ? ` (${FI2T_ICON_OPTIONS.length})` : ''}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="cms-icon-picker__grid">
+        {filtered.length === 0 ? (
+          <p className="cms-icon-picker__empty">Aucune icône ne correspond.</p>
+        ) : (
+          filtered.map((opt) => {
+            const active = selectedBase === normalizeIconPath(opt.path)
+            return (
+              <button
+                key={opt.path}
+                type="button"
+                role="option"
+                aria-selected={active}
+                className={`cms-icon-picker__btn${active ? ' is-active' : ''}`}
+                title={`${opt.label} · ${opt.category}`}
+                onClick={() => onPick(opt.path)}
+              >
+                <img src={opt.path} alt={opt.label} loading="lazy" />
+              </button>
+            )
+          })
+        )}
+      </div>
+      <p className="cms-icon-picker__hint">
+        {filtered.length} icône{filtered.length > 1 ? 's' : ''} · upload possible ci-dessous pour une icône unique
+      </p>
+    </div>
+  )
+}
 
 export type EditableListField = {
   key: string
@@ -12,6 +91,11 @@ export type EditableListField = {
   visible?: boolean
   /** When true, field is edited via image upload (path stored as string). */
   image?: boolean
+  /**
+   * When true (with image), show the full FI2T icon library (search + categories)
+   * in addition to optional file upload for custom icons.
+   */
+  iconPick?: boolean
   /** When true, field is a 0–100 percentage edited with a slider (not typed). */
   percent?: boolean
   min?: number
@@ -98,6 +182,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
   const { i18n } = useTranslation()
   const { isEditMode } = useEditMode()
   const lang = (i18n.language || 'fr').split('-')[0]
+  const { refresh } = useContent()
   const { value, update } = useContentBlock(page, blockKey, {
     type: 'json',
     label,
@@ -178,12 +263,58 @@ export default function EditableJsonList<T extends Record<string, string>>({
       const next = items.map((item, i) =>
         i === index ? ({ ...item, [fieldKey]: url } as T) : item,
       )
-      // Images publish immediately — text edits still wait for the toolbar Save.
-      queueItems(next)
+      const json = JSON.stringify(next)
+      update(json)
+      if (!shared && isMediaKey(fieldKey)) {
+        const dot = blockKey.indexOf('.')
+        const section = blockKey.slice(0, dot)
+        const blockKeyOnly = blockKey.slice(dot + 1)
+        const slug = String(next[index]?.slug ?? '')
+        await fanOutListItemMedia({
+          page,
+          section,
+          key: blockKeyOnly,
+          match: slug ? { slug } : { index },
+          mediaPatch: { [fieldKey]: url },
+          currentLocale: lang,
+          currentValue: json,
+          label,
+        })
+        await refresh()
+      }
     } catch {
       alert('Erreur lors du téléversement.')
     } finally {
       setUploading(null)
+    }
+  }
+
+  const applyMediaField = async (index: number, fieldKey: string, url: string) => {
+    const next = items.map((item, i) =>
+      i === index ? ({ ...item, [fieldKey]: url } as T) : item,
+    )
+    const json = JSON.stringify(next)
+    update(json)
+    if (!shared && isMediaKey(fieldKey)) {
+      const dot = blockKey.indexOf('.')
+      const section = blockKey.slice(0, dot)
+      const blockKeyOnly = blockKey.slice(dot + 1)
+      const slug = String(next[index]?.slug ?? '')
+      try {
+        await fanOutListItemMedia({
+          page,
+          section,
+          key: blockKeyOnly,
+          match: slug ? { slug } : { index },
+          mediaPatch: { [fieldKey]: url },
+          currentLocale: lang,
+          currentValue: json,
+          label,
+        })
+        await refresh()
+      } catch {
+        /* local update kept */
+      }
     }
   }
 
@@ -365,18 +496,32 @@ export default function EditableJsonList<T extends Record<string, string>>({
       const src = isImageSrc(raw) ? raw : ''
       const inputKey = `modal:${index}:${field.key}`
       const busy = uploading === `${index}:${field.key}`
+      const showPicker = field.iconPick === true || (
+        field.iconPick !== false
+        && (
+          /icon/i.test(field.key)
+          || /icône|icone|icon/i.test(field.label)
+        )
+        && (!src || isFi2tIconPath(src))
+      )
       return (
         <div key={field.key} className="cms-list-panel__field cms-list-panel__field--image">
           <span>{field.label}</span>
+          {showPicker && (
+            <IconLibraryPicker
+              selectedSrc={src}
+              onPick={(path) => void applyMediaField(index, field.key, path)}
+            />
+          )}
           <div className="cms-list-panel__image-row">
             <button
               type="button"
               className="cms-list-panel__image-preview"
               onClick={() => fileRefs.current[inputKey]?.click()}
-              title="Changer l’image"
+              title="Téléverser une image (optionnel)"
             >
               {src ? <img src={src} alt="" /> : <span>{raw || 'Aucune image'}</span>}
-              <span>{busy ? 'Envoi…' : 'Changer'}</span>
+              <span>{busy ? 'Envoi…' : 'Upload'}</span>
             </button>
             <input
               className="cms-list-panel__field-input"

@@ -1,4 +1,4 @@
-import { Plus, FileText, Globe, Home, Layout, Trash2 } from 'lucide-react'
+import { Plus, FileText, Globe, Home, Layout, Trash2, Newspaper } from 'lucide-react'
 
 export interface CmsPage {
   slug: string
@@ -14,6 +14,11 @@ const TEMPLATE_ICON: Record<string, typeof FileText> = {
   global: Globe,
   landing: Layout,
   default: FileText,
+}
+
+function iconForPage(page: CmsPage) {
+  if (page.slug === 'articles') return Newspaper
+  return TEMPLATE_ICON[page.template] ?? FileText
 }
 
 interface Props {
@@ -35,7 +40,7 @@ export default function PageSidebar({ pages, activeSlug, onSelect, onAddPage, on
       </div>
       <nav className="wc-pages-list">
         {pages.map(page => {
-          const Icon = TEMPLATE_ICON[page.template] ?? FileText
+          const Icon = iconForPage(page)
           return (
             <div
               key={page.slug}

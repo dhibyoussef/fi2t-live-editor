@@ -69,7 +69,16 @@ export function ContentProvider({ page, children }: Props) {
 
     try {
       const { data } = await api.get(`/content/${page}`, { params: { locale } })
-      const merged = mergePageBlocks(page, data.blocks || {}, locale)
+      let frApi: Record<string, string> | undefined
+      if (locale !== 'fr') {
+        try {
+          const { data: frData } = await api.get(`/content/${page}`, { params: { locale: 'fr' } })
+          frApi = frData.blocks || {}
+        } catch {
+          frApi = undefined
+        }
+      }
+      const merged = mergePageBlocks(page, data.blocks || {}, locale, frApi)
       writeCache(cacheKey, merged, CACHE_TTL.settings)
       setBlocks(merged)
       if (page === 'home') {

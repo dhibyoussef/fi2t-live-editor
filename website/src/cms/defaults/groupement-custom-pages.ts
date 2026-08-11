@@ -10,7 +10,7 @@ function hubChildren(slug: string) {
 }
 
 export type IconCard = { title: string; desc?: string; icon?: string }
-export type StatCard = { value: string; label: string; desc?: string; suffix?: string }
+export type StatCard = { value: string; label: string; desc?: string; suffix?: string; icon?: string }
 export type NumberedCard = { num?: string; title: string; desc: string }
 export type PlaceCard = { name: string; tag: string; img: string }
 export type BarItem = { label: string; pct: number; fill?: string }
@@ -332,10 +332,10 @@ export const CUSTOM_GROUPEMENT_PAGES: Record<string, CustomGroupementPage> = {
       originTitle: "Quels sont les principaux\npays d'origine des patients\nmédicaux en Tunisie",
       originSub: 'Répartition démographique de la patientèle internationale accueillie\ndans nos structures.',
       bars: [
-        { label: 'Algérie', pct: 70 },
-        { label: 'Libye (Pic cliniques)', pct: 80 },
+        { label: 'Algérie', pct: 40 },
+        { label: 'Libye (Pic cliniques)', pct: 35 },
         { label: 'Afrique Subsaharienne', pct: 15, fill: '#59DBBD' },
-        { label: 'Europe', pct: 15, fill: '#59DBBD' },
+        { label: 'Europe', pct: 10, fill: '#59DBBD' },
       ] satisfies BarItem[],
       donutValue: '100%',
       donutLabel: 'CONFIANCE PATIENT',

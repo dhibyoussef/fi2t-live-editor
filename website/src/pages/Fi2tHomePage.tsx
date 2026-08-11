@@ -181,9 +181,16 @@ function HomeInner() {
 
   return (
     <div className="fi2t-home">
-      <section className="fi2t-hero">
+      <section className="fi2t-hero" data-cms-section="hero">
         {/* Plain <img> keeps absolute full-bleed CSS; pencil opens the image panel. */}
-        <img src={heroImgSrc} alt={heroImgAlt} className="fi2t-hero__bg" />
+        <img
+          src={heroImgSrc}
+          alt={heroImgAlt}
+          className="fi2t-hero__bg"
+          data-cms-page="home"
+          data-cms-block="hero.image"
+          data-cms-type="image"
+        />
         {isEditMode && (
           <EditableImage
             page="home"
@@ -222,7 +229,7 @@ function HomeInner() {
         </div>
       </section>
 
-      <section className="fi2t-section fi2t-about" id="about">
+      <section className="fi2t-section fi2t-about" id="about" data-cms-section="about">
         <div className="fi2t-about__text">
           <EditableText page="home" blockKey="about.title" as="h2" fallback="Qui sommes-nous ?" />
           <EditableText
@@ -241,6 +248,9 @@ function HomeInner() {
             src={aboutImgSrc}
             alt="Qui sommes-nous"
             className="fi2t-about__image"
+            data-cms-page="home"
+            data-cms-block="about.image"
+            data-cms-type="image"
           />
           {isEditMode && (
             <EditableImage
@@ -271,7 +281,7 @@ function HomeInner() {
         </div>
       </section>
 
-      <section className="fi2t-objectifs-wrap" id="objectifs">
+      <section className="fi2t-objectifs-wrap" id="objectifs" data-cms-section="objectifs">
         <div className="fi2t-section fi2t-objectifs-section">
           <EditableText page="home" blockKey="objectifs.title" as="h2" className="fi2t-objectifs-section__title" fallback="Nos Objectifs" />
           <EditableText
@@ -323,8 +333,15 @@ function HomeInner() {
         </div>
       </section>
 
-      <section className="fi2t-groupements" id="groupements">
-        <img src={groupementsBgSrc} alt="" className="fi2t-groupements__bg" />
+      <section className="fi2t-groupements" id="groupements" data-cms-section="groupements">
+        <img
+          src={groupementsBgSrc}
+          alt=""
+          className="fi2t-groupements__bg"
+          data-cms-page="home"
+          data-cms-block="groupements.bg"
+          data-cms-type="image"
+        />
         {isEditMode && (
           <EditableImage
             page="home"
@@ -358,7 +375,7 @@ function HomeInner() {
             fields={[
               { key: 'label', label: 'Nom' },
               { key: 'slug', label: 'Slug (URL)' },
-              { key: 'icon', label: 'Icône', image: true },
+              { key: 'icon', label: 'Icône', image: true, iconPick: true },
             ]}
             renderItem={(item, _index, { editable, editField, editImage }) => {
               const card = (
@@ -384,7 +401,7 @@ function HomeInner() {
         </div>
       </section>
 
-      <section className="fi2t-section fi2t-adherer" id="adherer">
+      <section className="fi2t-section fi2t-adherer" id="adherer" data-cms-section="adherer">
         <div className="fi2t-adherer__media">
           <EditableImage
             page="home"
@@ -448,7 +465,7 @@ function HomeInner() {
         </div>
       </section>
 
-      <section className="fi2t-news" id="actualites">
+      <section className="fi2t-news" id="actualites" data-cms-section="actualites">
         <div className="fi2t-section">
           <div className="fi2t-news__head">
             <EditableText page="home" blockKey="actualites.title" as="h2" fallback="Dernières Actualités" />
@@ -527,8 +544,15 @@ function HomeInner() {
         </div>
       </section>
 
-      <section className="fi2t-cta">
-        <img src={ctaBgSrc} alt="" className="fi2t-cta__bg" />
+      <section className="fi2t-cta" data-cms-section="cta">
+        <img
+          src={ctaBgSrc}
+          alt=""
+          className="fi2t-cta__bg"
+          data-cms-page="home"
+          data-cms-block="cta.bg"
+          data-cms-type="image"
+        />
         {isEditMode && (
           <EditableImage
             page="home"

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import SiteHeader from '../components/layout/SiteHeader'
 import CmsSectionView, { type CmsSectionData } from '../components/cms/CmsSectionView'
 import { ContentProvider } from '../cms/ContentProvider'
 import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
+import Fi2tNotFoundPage from './Fi2tNotFoundPage'
 import api from '../api/client'
 import '../styles/cms-dynamic.css'
 
@@ -53,52 +53,35 @@ export default function CmsDynamicPage() {
 
   useEffect(() => {
     if (page?.meta_title || page?.title) {
-      document.title = page.meta_title || `${page.title} — Golden Carthage`
+      document.title = page.meta_title || `${page.title} — FI2T`
+    } else if (error === 'notfound') {
+      document.title = 'Page introuvable — FI2T'
     }
-  }, [page])
+  }, [page, error])
 
   if (slug === 'home') return <Navigate to="/" replace />
   if (STATIC_SLUGS.has(slug)) return <Navigate to="/" replace />
 
   if (loading) {
     return (
-      <div className="cms-dyn-loading">
-        <div className="cms-dyn-spinner" />
+      <div className="fi2t-notfound fi2t-notfound--loading" aria-busy="true">
+        <div className="fi2t-notfound__spinner" />
       </div>
     )
   }
 
   if (error === 'notfound') {
-    return (
-      <>
-        <SiteHeader variant="page" />
-        <div className="cms-dyn-empty">
-          <h1>Page introuvable</h1>
-          <p>La page <code>/{slug}</code> n'existe pas.</p>
-          <a href="/" className="btn-gold">Retour à l'accueil</a>
-        </div>
-      </>
-    )
+    return <Fi2tNotFoundPage slug={slug} variant="notfound" />
   }
 
   if (error === 'draft' && !isEditMode) {
-    return (
-      <>
-        <SiteHeader variant="page" />
-        <div className="cms-dyn-empty">
-          <h1>Page en brouillon</h1>
-          <p>Cette page n'est pas encore publiée. Publiez-la depuis le backoffice (Contenu du site → Paramètres → Publié).</p>
-        </div>
-      </>
-    )
+    return <Fi2tNotFoundPage slug={slug} variant="draft" />
   }
 
   return (
     <ContentProvider page={slug}>
-      <SiteHeader variant="page" />
-
-      {page && !sections.some(s => s.pattern === 'hero') && (
-        <div className="cms-dyn-page-title">
+      {page && !sections.some((s) => s.pattern === 'hero') && (
+        <div className="cms-dyn-page-title cms-dyn-page-title--fi2t">
           <div className="container">
             <h1>{page.title}</h1>
           </div>
@@ -106,9 +89,18 @@ export default function CmsDynamicPage() {
       )}
 
       {error === 'empty' && (
-        <div className="cms-dyn-empty cms-dyn-empty--inline">
+        <div className="fi2t-notfound fi2t-notfound--inline">
           <p>Cette page est publiée mais ne contient pas encore de blocs.</p>
-          {isEditMode && <p>Utilisez le backoffice → <strong>Contenu du site</strong> → <strong>Ajouter un bloc</strong>.</p>}
+          {isEditMode && (
+            <p>
+              Utilisez le backoffice → <strong>Contenu du site</strong> → <strong>Ajouter un bloc</strong>.
+            </p>
+          )}
+          {!isEditMode && (
+            <Link to="/" className="fi2t-notfound__btn fi2t-notfound__btn--primary">
+              Retour à l’accueil
+            </Link>
+          )}
         </div>
       )}
 

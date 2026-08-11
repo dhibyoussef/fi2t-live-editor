@@ -57,7 +57,7 @@ export default {
       users: 'Users',
       users_desc: 'Manage administrator accounts',
     },
-    status: {
+    statusCodes: {
       PENDING: 'Pending', CONFIRMED: 'Confirmed', CHECKED_IN: 'Checked In',
       CHECKED_OUT: 'Checked Out', CANCELLED: 'Cancelled', AVAILABLE: 'Available',
       OCCUPIED: 'Occupied', MAINTENANCE: 'Maintenance', OUT_OF_ORDER: 'Out of Order',

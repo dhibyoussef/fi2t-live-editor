@@ -101,14 +101,21 @@ class PageStructureSeeder extends Seeder
                     ->update(['sort_order' => $section['sort_order']]);
 
                 /*
-                 * Fields the band no longer has — `info.address` after the
-                 * contact rows became a list, for instance. The export only
-                 * omits a key when the site neither renders it nor ships a
-                 * default for it, so anything left here is genuinely unused.
+                 * Fields the band no longer has. Never drop `*_alt` companions
+                 * for an image that is still listed — those are live-edited
+                 * from the image panel even when the export omitted them.
                  */
+                $keepKeys = $section['keys'];
+                foreach ($section['keys'] as $k) {
+                    $alt = "{$k}_alt";
+                    if (! in_array($alt, $keepKeys, true)) {
+                        $keepKeys[] = $alt;
+                    }
+                }
+
                 $dead = ContentBlock::where('page', $page)
                     ->where('section', $section['slug'])
-                    ->whereNotIn('key', $section['keys'])
+                    ->whereNotIn('key', $keepKeys)
                     ->pluck('key')
                     ->unique();
 

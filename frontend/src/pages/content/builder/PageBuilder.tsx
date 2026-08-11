@@ -15,7 +15,7 @@ interface BlockRow {
   key: string
   type: 'text' | 'image' | 'json'
   label: string | null
-  sort_order: number
+  sort_order?: number
   locales: Record<string, { value: string | null }>
 }
 
@@ -71,8 +71,17 @@ export default function PageBuilder({
 
   const { data: publicCarousels = [] } = useQuery<Array<{ slug: string; active_items: PreviewCarouselItem[] }>>({
     queryKey: ['public-carousels-preview'],
-    queryFn: () => api.get('/carousels/public').then(r => r.data),
+    queryFn: async () => {
+      try {
+        const { data } = await api.get('/carousels/public')
+        return Array.isArray(data) ? data : []
+      } catch {
+        // Hotel leftover endpoint — not required for FI2T pages.
+        return []
+      }
+    },
     staleTime: 60_000,
+    retry: false,
   })
 
   const carouselBySlug = useMemo(
@@ -104,7 +113,7 @@ export default function PageBuilder({
                 <button type="button" className={canvasMode === 'split' ? 'active' : ''} onClick={() => setCanvasMode('split')} title="Structure + aperçu">
                   <Columns size={13} />
                 </button>
-                <button type="button" className={canvasMode === 'preview' ? 'active' : ''} onClick={() => setCanvasMode('preview')} title="Aperçu seul">
+                <button type="button" className="" onClick={() => setCanvasMode('preview')} title="Aperçu seul">
                   <Eye size={13} />
                 </button>
               </div>

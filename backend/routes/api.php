@@ -29,6 +29,10 @@ Route::get('content/{page}', [ContentBlockController::class, 'show']);
 Route::get('pages/{slug}', [CmsPageController::class, 'publicShow']);
 Route::get('site-nav', [SiteNavController::class, 'publicIndex']);
 
+// Legacy hotel endpoint still queried by the page builder preview — return empty list.
+Route::get('carousels/public', fn () => response()->json([]));
+Route::get('carousels/public/{slug}', fn () => response()->json(['slug' => request()->route('slug'), 'active_items' => []]));
+
 Route::prefix('forms')->middleware('throttle:20,1')->group(function () {
     Route::post('contact', [FormSubmissionController::class, 'contact']);
     Route::post('newsletter', [FormSubmissionController::class, 'newsletter']);

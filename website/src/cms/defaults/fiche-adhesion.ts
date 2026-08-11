@@ -49,4 +49,5 @@ export const FICHE_ADHESION_DEFAULTS: Record<string, string> = {
   'form.placeholder_message': 'Présentez brièvement votre activité…',
   'form.submit': 'Envoyer la demande',
   'form.success': 'Merci — votre demande d’adhésion a bien été envoyée.',
+  'form.error': 'Impossible d’envoyer la demande pour le moment. Réessayez plus tard.',
 }

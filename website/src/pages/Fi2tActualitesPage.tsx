@@ -60,7 +60,7 @@ function ActualitesInner() {
 
   return (
     <div className="fi2t-actu-page">
-      <section className="fi2t-page-hero fi2t-page-hero--actu">
+      <section className="fi2t-page-hero fi2t-page-hero--actu" data-cms-section="hero">
         <EditableHeroBackground
           page="actualites"
           fallback="/images/actualites-banner.jpg?v=2"
@@ -80,7 +80,7 @@ function ActualitesInner() {
 
       <AddArticleButton />
 
-      <section className="fi2t-actu-grid">
+      <section className="fi2t-actu-grid" data-cms-section="grid">
         <EditableJsonList<NewsItem>
           page="actualites"
           blockKey="grid.items"
@@ -130,6 +130,7 @@ function ActualitesInner() {
                     <Link
                       to={`/actualites/${item.slug}`}
                       className="fi2t-actu-card__edit-link"
+                      data-cms-allow-nav
                       onClick={(e) => e.stopPropagation()}
                     >
                       Ouvrir l’article →

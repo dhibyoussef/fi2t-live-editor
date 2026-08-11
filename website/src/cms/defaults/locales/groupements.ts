@@ -179,6 +179,11 @@ const TITLES_EN: Record<string, string> = {
   'tourisme-nautique': 'Nautical tourism',
   'tourisme-subaquatique': 'Underwater tourism',
   'tourisme-senior': 'Senior tourism',
+  'tourisme-medical': 'Medical tourism',
+  'tourisme-thermal': 'Thermal tourism',
+  'thalassotherapie': 'Thalassotherapy',
+  'tourisme-golfique': 'Golf tourism',
+  'tourisme-plaisance': 'Pleasure-boating tourism',
 }
 
 const TITLES_AR: Record<string, string> = {
@@ -195,6 +200,11 @@ const TITLES_AR: Record<string, string> = {
   'tourisme-nautique': 'السياحة البحرية',
   'tourisme-subaquatique': 'السياحة تحت الماء',
   'tourisme-senior': 'سياحة كبار السن',
+  'tourisme-medical': 'السياحة الطبية',
+  'tourisme-thermal': 'السياحة الحرارية',
+  'thalassotherapie': 'العلاج بمياه البحر',
+  'tourisme-golfique': 'سياحة الغولف',
+  'tourisme-plaisance': 'سياحة اليخوت',
 }
 
 /**

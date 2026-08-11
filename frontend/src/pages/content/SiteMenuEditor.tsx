@@ -45,7 +45,7 @@ export default function SiteMenuEditor() {
   const [openSections, setOpenSections] = useState<Record<number, boolean>>({})
   const [modal, setModal] = useState<'section' | 'child' | 'edit' | null>(null)
   const [selected, setSelected] = useState<NavItem | null>(null)
-  const [parentId, setParentId] = useState<number | null>(null)
+  const [_parentId, setParentId] = useState<number | null>(null)
   const [form, setForm] = useState(emptyForm())
   const f = (k: string, v: any) => setForm(p => ({ ...p, [k]: v }))
 

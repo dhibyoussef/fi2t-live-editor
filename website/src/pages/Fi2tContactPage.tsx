@@ -62,16 +62,18 @@ function ContactInner() {
       setSent(true)
       e.currentTarget.reset()
     } catch {
-      setSendError('Impossible d’envoyer le message pour le moment. Réessayez plus tard.')
+      setSendError(get('form.error', CONTACT_DEFAULTS['form.error'] ?? 'Impossible d’envoyer le message pour le moment. Réessayez plus tard.'))
     } finally {
       setSending(false)
     }
   }
 
   return (
-    <div className="fi2t-contact-page">
+    <div className="fi2t-contact-page" data-cms-page="contact">
       <section
         className="fi2t-page-hero fi2t-page-hero--contact"
+        data-cms-page="contact"
+        data-cms-section="hero"
       >
         <EditableHeroBackground
           page="contact"
@@ -90,7 +92,7 @@ function ContactInner() {
         </div>
       </section>
 
-      <section className="fi2t-contact">
+      <section className="fi2t-contact" data-cms-page="contact" data-cms-section="info">
         <div className="fi2t-contact__info">
           <EditableText
             page="contact"
@@ -166,7 +168,7 @@ function ContactInner() {
           />
         </div>
 
-        <form className="fi2t-contact__form" onSubmit={handleSubmit}>
+        <form className="fi2t-contact__form" data-cms-page="contact" data-cms-section="form" onSubmit={handleSubmit}>
           <div className="fi2t-contact__form-inner">
             <div className="fi2t-contact__row">
               <label className="fi2t-contact__field">

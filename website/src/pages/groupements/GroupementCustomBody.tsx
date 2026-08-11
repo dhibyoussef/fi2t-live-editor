@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react'
+import { Fragment, useEffect, useRef, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
@@ -19,7 +19,6 @@ import EditableText from '../../cms/EditableText'
 import EditableJsonList from '../../cms/EditableJsonList'
 import { useContent, useContentBlock } from '../../cms/ContentProvider'
 import { useEditMode } from '../../cms/EditModeProvider'
-import api from '../../api/client'
 import { GROUPEMENT_PHOTO_HERO_BY_SLUG, getHub, getParentHub } from '../../lib/groupement-tree'
 
 /** Keeps the Figma 1440 Diagnostic stage visually identical at any desktop width. */
@@ -303,39 +302,6 @@ function GroupementSplitHero({
   )
 }
 
-function GlStatBand({ title, items }: { title?: string; items: StatCard[] }) {
-  if (!items.length) return null
-  return (
-    <section className="fi2t-gl-tree-stats">
-      {title ? <h2>{title}</h2> : null}
-      <div className="fi2t-gl-tree-stats__grid">
-        {items.map((s) => (
-          <article key={s.label} className="fi2t-gl-tree-stat">
-            <strong><Num>{s.value}</Num></strong>
-            <span>{s.label}</span>
-            {s.desc ? <p>{s.desc}</p> : null}
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function GlCta({ title, body, label, to }: { title: string; body: string; label: string; to: string }) {
-  if (!title) return null
-  return (
-    <section className="fi2t-gl-tree-cta">
-      <div>
-        <h2>{title}</h2>
-        {body ? <p>{body}</p> : null}
-      </div>
-      <Link to={to} className="fi2t-gl-tree-cta__btn">
-        {label}
-      </Link>
-    </section>
-  )
-}
-
 /**
  * Figures like "+7%", "1.6 T" or "55 835" get reordered by the bidi algorithm
  * inside an RTL page. Isolating them as LTR keeps the reading order; values
@@ -367,21 +333,6 @@ function sequenceNumber(index: number, template?: string) {
   return match ? `${match[1]}${number}${match[3]}` : number
 }
 
-function Lines({ text }: { text: string }) {
-  return (
-    <>
-      {String(text)
-        .split('\n')
-        .map((line, i, arr) => (
-          <span key={`${i}-${line.slice(0, 24)}`}>
-            {line}
-            {i < arr.length - 1 ? <br /> : null}
-          </span>
-        ))}
-    </>
-  )
-}
-
 function RichLine({ text }: { text: string }) {
   const parts = String(text).split(/\*\*(.+?)\*\*/)
   return (
@@ -407,20 +358,6 @@ function ParentCrumb({ slug }: { slug: string }) {
       <span aria-hidden="true">/</span>
       <span>{current}</span>
     </nav>
-  )
-}
-
-function Paragraphs({ text }: { text: string }) {
-  return (
-    <>
-      {text
-        .split('\n')
-        .map((p) => p.trim())
-        .filter(Boolean)
-        .map((p) => (
-          <p key={p}>{p}</p>
-        ))}
-    </>
   )
 }
 
@@ -460,7 +397,7 @@ function HubBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
 
   return (
     <div className="fi2t-gl-hub-stage">
-      <section className="fi2t-gl-tree-intro">
+      <section className="fi2t-gl-tree-intro" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.eyebrow"
@@ -489,7 +426,7 @@ function HubBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
         </div>
       </section>
 
-      <section className="fi2t-gl-tree-stats">
+      <section className="fi2t-gl-tree-stats" data-cms-section="stats">
         <EditableText
           page={slug}
           blockKey="stats.title"
@@ -520,7 +457,7 @@ function HubBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
         />
       </section>
 
-      <section className="fi2t-gl-tree-pillars">
+      <section className="fi2t-gl-tree-pillars" data-cms-section="pillars">
         <header className="fi2t-gl-head fi2t-gl-head--center">
           <EditableText
             page={slug}
@@ -565,7 +502,7 @@ function HubBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
         />
       </section>
 
-      <section className="fi2t-gl-hub-filieres" aria-label={page.heroTitle}>
+      <section className="fi2t-gl-hub-filieres" aria-label={page.heroTitle} data-cms-section="grid">
         <header className="fi2t-gl-head fi2t-gl-head--center">
           <EditableText
             page={slug}
@@ -651,7 +588,7 @@ function HubBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
         />
       </section>
 
-      <section className="fi2t-gl-tree-cta">
+      <section className="fi2t-gl-tree-cta" data-cms-section="cta">
         <div>
           <EditableText page={slug} blockKey="cta.title" as="h2" fallback={String(s.ctaTitle || '')} />
           <EditableText
@@ -695,7 +632,7 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
 
   return (
     <div className="fi2t-gl-seg-stage">
-      <section className="fi2t-gl-tree-intro">
+      <section className="fi2t-gl-tree-intro" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.eyebrow"
@@ -725,7 +662,7 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         </div>
       </section>
 
-      <section className="fi2t-gl-tree-stats">
+      <section className="fi2t-gl-tree-stats" data-cms-section="stats">
         <EditableText
           page={slug}
           blockKey="stats.title"
@@ -757,7 +694,7 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-tree-pillars">
+      <section className="fi2t-gl-tree-pillars" data-cms-section="pillars">
         <header className="fi2t-gl-head fi2t-gl-head--center">
           <EditableText
             page={slug}
@@ -812,7 +749,7 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-seg-split">
+      <section className="fi2t-gl-seg-split" data-cms-section="challenges">
         <div className="fi2t-gl-seg-split__col fi2t-gl-seg-split__col--challenges">
           <EditableText
             page={slug}
@@ -857,7 +794,7 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         </div>
       </section>
 
-      <section className="fi2t-gl-tree-cta">
+      <section className="fi2t-gl-tree-cta" data-cms-section="cta">
         <div>
           <EditableText
             page={slug}
@@ -901,15 +838,6 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
   )
 }
 
-function SectionHead({ title, sub, center = true }: { title: string; sub?: string; center?: boolean }) {
-  return (
-    <header className={`fi2t-gl-head${center ? ' fi2t-gl-head--center' : ''}`}>
-      <h2>{title}</h2>
-      {sub ? <p>{sub}</p> : null}
-    </header>
-  )
-}
-
 function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
   const { isEditMode } = useEditMode()
   const s = page.sections
@@ -937,7 +865,7 @@ function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string
 
   return (
     <div className="fi2t-gl-thal-stage">
-      <section className="fi2t-gl-intro fi2t-gl-thal-intro">
+      <section className="fi2t-gl-intro fi2t-gl-thal-intro" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.body"
@@ -948,7 +876,7 @@ function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string
         />
       </section>
 
-      <section className="fi2t-gl-split fi2t-gl-thal-split">
+      <section className="fi2t-gl-split fi2t-gl-thal-split" data-cms-section="split">
         <div className="fi2t-gl-split__text">
           <EditableText
             page={slug}
@@ -998,7 +926,7 @@ function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string
         </div>
       </section>
 
-      <section className="fi2t-gl-thal-atouts-band">
+      <section className="fi2t-gl-thal-atouts-band" data-cms-section="atouts">
         <header className="fi2t-gl-thal-atouts-band__head">
           <EditableText
             page={slug}
@@ -1047,7 +975,7 @@ function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string
         />
       </section>
 
-      <section className="fi2t-gl-thal-diag">
+      <section className="fi2t-gl-thal-diag" data-cms-section="diagnostic">
         <header className="fi2t-gl-thal-diag__head">
           <EditableText
             page={slug}
@@ -1081,7 +1009,7 @@ function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string
         />
       </section>
 
-      <section className="fi2t-gl-thal-defis">
+      <section className="fi2t-gl-thal-defis" data-cms-section="defis">
         <header className="fi2t-gl-thal-defis__head">
           <EditableText
             page={slug}
@@ -1120,7 +1048,7 @@ function ThalassoBody({ page, slug }: { page: CustomGroupementPage; slug: string
         />
       </section>
 
-      <section className="fi2t-gl-thal-plan">
+      <section className="fi2t-gl-thal-plan" data-cms-section="plan">
         <header className="fi2t-gl-thal-plan__head">
           <EditableText
             page={slug}
@@ -1178,7 +1106,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
 
   return (
     <div className="fi2t-gl-sen-stage">
-      <section className="fi2t-gl-sen-intro">
+      <section className="fi2t-gl-sen-intro" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.body"
@@ -1189,7 +1117,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
         />
       </section>
 
-      <section className="fi2t-gl-sen-pourquoi">
+      <section className="fi2t-gl-sen-pourquoi" data-cms-section="pourquoi">
         <header className="fi2t-gl-sen-pourquoi__head">
           <EditableText
             page={slug}
@@ -1241,7 +1169,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
         />
       </section>
 
-      <section className="fi2t-gl-sen-services">
+      <section className="fi2t-gl-sen-services" data-cms-section="services">
         <header className="fi2t-gl-sen-services__head">
           <EditableText
             page={slug}
@@ -1292,7 +1220,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
         />
       </section>
 
-      <section className="fi2t-gl-sen-defis">
+      <section className="fi2t-gl-sen-defis" data-cms-section="defis">
         <header className="fi2t-gl-sen-defis__head">
           <EditableText
             page={slug}
@@ -1344,7 +1272,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
         />
       </section>
 
-      <section className="fi2t-gl-sen-roadmap">
+      <section className="fi2t-gl-sen-roadmap" data-cms-section="roadmap">
         <div className="fi2t-gl-sen-roadmap__copy">
           <EditableText
             page={slug}
@@ -1416,7 +1344,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
 
   return (
     <div className="fi2t-gl-therm-stage">
-      <section className="fi2t-gl-therm-intro">
+      <section className="fi2t-gl-therm-intro" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.body"
@@ -1427,7 +1355,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-therm-pot">
+      <section className="fi2t-gl-therm-pot" data-cms-section="pot">
         <header className="fi2t-gl-therm-pot__head">
           <EditableText
             page={slug}
@@ -1476,7 +1404,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-therm-real">
+      <section className="fi2t-gl-therm-real" data-cms-section="real">
         <div className="fi2t-gl-therm-real__copy">
           <EditableText
             page={slug}
@@ -1551,7 +1479,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-therm-defis">
+      <section className="fi2t-gl-therm-defis" data-cms-section="defis">
         <header className="fi2t-gl-therm-defis__head">
           <EditableText
             page={slug}
@@ -1596,7 +1524,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-therm-roadmap">
+      <section className="fi2t-gl-therm-roadmap" data-cms-section="roadmap">
         <header className="fi2t-gl-therm-roadmap__head">
           <EditableText
             page={slug}
@@ -1656,7 +1584,7 @@ function MedicalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
 
   return (
     <div className="fi2t-gl-med-stage">
-      <section className="fi2t-gl-med-intro">
+      <section className="fi2t-gl-med-intro" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.body"
@@ -1667,7 +1595,7 @@ function MedicalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-med-adv">
+      <section className="fi2t-gl-med-adv" data-cms-section="adv">
         <EditableText
           page={slug}
           blockKey="adv.title"
@@ -1781,7 +1709,7 @@ function MedicalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         </div>
       </section>
 
-      <section className="fi2t-gl-med-diag">
+      <section className="fi2t-gl-med-diag" data-cms-section="diag">
         <EditableText
           page={slug}
           blockKey="diag.intro"
@@ -1826,7 +1754,7 @@ function MedicalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
         />
       </section>
 
-      <section className="fi2t-gl-med-actions">
+      <section className="fi2t-gl-med-actions" data-cms-section="actions">
         <EditableText
           page={slug}
           blockKey="actions.title"
@@ -1884,7 +1812,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
 
   return (
     <div className="fi2t-gl-av-stage">
-      <section className="fi2t-gl-av-top">
+      <section className="fi2t-gl-av-top" data-cms-section="intro">
         <section className="fi2t-gl-av-intro">
           <EditableText
             page={slug}
@@ -1895,7 +1823,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
             fallback={page.intro}
           />
         </section>
-        <section className="fi2t-gl-av-market">
+        <section className="fi2t-gl-av-market" data-cms-section="market">
           <div className="fi2t-gl-av-market__copy">
             <EditableText
               page={slug}
@@ -1936,7 +1864,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
         </section>
       </section>
 
-      <section className="fi2t-gl-av-wealth">
+      <section className="fi2t-gl-av-wealth" data-cms-section="wealth">
         <EditableJsonList<(typeof photosFallback)[number]>
           page={slug}
           blockKey="photos.items"
@@ -1999,7 +1927,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
         </div>
       </section>
 
-      <section className="fi2t-gl-av-freins">
+      <section className="fi2t-gl-av-freins" data-cms-section="freins">
         <header className="fi2t-gl-av-freins__head">
           <EditableText
             page={slug}
@@ -2052,7 +1980,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
         />
       </section>
 
-      <section className="fi2t-gl-av-roadmap">
+      <section className="fi2t-gl-av-roadmap" data-cms-section="roadmap">
         <div className="fi2t-gl-av-roadmap__copy">
           <EditableText
             page={slug}
@@ -2390,7 +2318,7 @@ function GolfBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
 
   return (
     <div className="fi2t-gl-golf-stage">
-      <section className="fi2t-gl-golf-pot">
+      <section className="fi2t-gl-golf-pot" data-cms-section="pot">
         <EditableText
           page={slug}
           blockKey="pot.title"
@@ -2456,7 +2384,7 @@ function GolfBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
         </aside>
       </section>
 
-      <section className="fi2t-gl-golf-etat">
+      <section className="fi2t-gl-golf-etat" data-cms-section="etat">
         <article className="fi2t-gl-golf-etat__card">
           <EditableText
             page={slug}
@@ -2572,7 +2500,7 @@ function GolfBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
         />
       </section>
 
-      <section className="fi2t-gl-golf-map">
+      <section className="fi2t-gl-golf-map" data-cms-section="map">
         <header className="fi2t-gl-golf-map__head">
           <EditableText
             page={slug}
@@ -2634,7 +2562,7 @@ function PlaisanceBody({ page, slug }: { page: CustomGroupementPage; slug: strin
 
   return (
     <div className="fi2t-gl-plais-stage">
-      <section className="fi2t-gl-plais-impact">
+      <section className="fi2t-gl-plais-impact" data-cms-section="impact">
         <div className="fi2t-gl-plais-impact__left">
           <EditableText
             page={slug}
@@ -2690,7 +2618,7 @@ function PlaisanceBody({ page, slug }: { page: CustomGroupementPage; slug: strin
         />
       </section>
 
-      <section className="fi2t-gl-plais-parent">
+      <section className="fi2t-gl-plais-parent" data-cms-section="parent">
         <EditableImage
           page={slug}
           blockKey="parent.icon"
@@ -2717,7 +2645,7 @@ function PlaisanceBody({ page, slug }: { page: CustomGroupementPage; slug: strin
         <span className="fi2t-gl-plais-parent__bar" aria-hidden />
       </section>
 
-      <section className="fi2t-gl-plais-probs">
+      <section className="fi2t-gl-plais-probs" data-cms-section="prob">
         <header className="fi2t-gl-plais-probs__head">
           <EditableText
             page={slug}
@@ -2768,7 +2696,7 @@ function PlaisanceBody({ page, slug }: { page: CustomGroupementPage; slug: strin
         />
       </section>
 
-      <section className="fi2t-gl-plais-actions">
+      <section className="fi2t-gl-plais-actions" data-cms-section="actions">
         <div className="fi2t-gl-plais-actions__left">
           <EditableText
             page={slug}
@@ -2853,7 +2781,7 @@ function AutoBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
 
   return (
     <div className="fi2t-gl-auto-stage">
-      <section className="fi2t-gl-auto-vision">
+      <section className="fi2t-gl-auto-vision" data-cms-section="vision">
         <EditableText
           page={slug}
           blockKey="vision.title"
@@ -2907,7 +2835,7 @@ function AutoBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
         />
       </section>
 
-      <section className="fi2t-gl-auto-real">
+      <section className="fi2t-gl-auto-real" data-cms-section="real">
         <div className="fi2t-gl-auto-real__copy">
           <EditableText
             page={slug}
@@ -2955,7 +2883,7 @@ function AutoBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
         />
       </section>
 
-      <section className="fi2t-gl-auto-actions">
+      <section className="fi2t-gl-auto-actions" data-cms-section="actions">
         <EditableImage
           page={slug}
           blockKey="actions.img"
@@ -3011,112 +2939,6 @@ const HEB_VALUES_PER_PAGE = 4
 
 type HebergementType = { name: string; desc: string; img: string; wide?: boolean }
 
-type JsonPath = Array<string | number>
-
-function setAtPath(root: unknown, path: JsonPath, value: unknown): unknown {
-  if (path.length === 0) return value
-  const [head, ...rest] = path
-  if (typeof head === 'number') {
-    const list = Array.isArray(root) ? [...root] : []
-    list[head] = setAtPath(list[head], rest, value)
-    return list
-  }
-  const obj =
-    root && typeof root === 'object' && !Array.isArray(root)
-      ? { ...(root as Record<string, unknown>) }
-      : {}
-  obj[head] = setAtPath(obj[head], rest, value)
-  return obj
-}
-
-/**
- * Click-to-upload for an image nested inside a band JSON block
- * (e.g. `types.data` → `items[0].img`, `grid.data` → `children[0].face`).
- */
-function EditableJsonPathImage({
-  page,
-  blockKey,
-  path,
-  src,
-  alt = '',
-  className = '',
-  fallbackData,
-}: {
-  page: string
-  blockKey: string
-  path: JsonPath
-  src: string
-  alt?: string
-  className?: string
-  fallbackData: Record<string, unknown>
-}) {
-  const { isEditMode } = useEditMode()
-  const block = useContentBlock(page, blockKey, {
-    type: 'json',
-    label: blockKey,
-    fallback: JSON.stringify(fallbackData),
-  })
-  const [uploading, setUploading] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const upload = async (file: File) => {
-    setUploading(true)
-    try {
-      const { uploadWebsiteImage } = await import('../../cms/uploadWebsiteImage')
-      const url = await uploadWebsiteImage(file)
-      let current: Record<string, unknown> = fallbackData
-      try {
-        const parsed = JSON.parse(block.value) as Record<string, unknown>
-        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) current = parsed
-      } catch {
-        // Keep the rendered CMS values when an old block is malformed.
-      }
-      block.update(JSON.stringify(setAtPath(current, path, url)))
-    } catch (err) {
-      alert(err instanceof Error ? err.message : 'Erreur lors du téléversement.')
-    } finally {
-      setUploading(false)
-    }
-  }
-
-  if (!isEditMode) {
-    return <img src={src} alt={alt} className={className} loading="lazy" />
-  }
-
-  return (
-    <div
-      className={`cms-editable cms-editable--image ${className}`.trim()}
-      onClick={(event) => {
-        event.preventDefault()
-        event.stopPropagation()
-        inputRef.current?.click()
-      }}
-      title="Cliquer pour changer l’image"
-      data-cms-page={page}
-      data-cms-block={blockKey}
-    >
-      <img src={src} alt={alt} />
-      <div className="cms-editable__overlay">
-        <span>
-          <i className={`fa-solid ${uploading ? 'fa-spinner fa-spin' : 'fa-camera'}`} />
-          {uploading ? ' Envoi…' : ' Changer l’image'}
-        </span>
-      </div>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        hidden
-        onChange={(event) => {
-          const file = event.target.files?.[0]
-          event.target.value = ''
-          if (file) void upload(file)
-        }}
-      />
-    </div>
-  )
-}
-
 function HebergementsBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
   const s = page.sections
   const typesFallback = (s.types as HebergementType[]).map((t) => ({
@@ -3151,7 +2973,7 @@ function HebergementsBody({ page, slug }: { page: CustomGroupementPage; slug: st
 
   return (
     <>
-      <section className="fi2t-gl-intro fi2t-gl-intro--heb">
+      <section className="fi2t-gl-intro fi2t-gl-intro--heb" data-cms-section="intro">
         <EditableText
           page={slug}
           blockKey="intro.body"
@@ -3211,7 +3033,7 @@ function HebergementsBody({ page, slug }: { page: CustomGroupementPage; slug: st
         )}
       />
 
-      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-heb-values">
+      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-heb-values" data-cms-section="values">
         <EditableJsonList<(typeof valuesFallback)[number]>
           page={slug}
           blockKey="values.items"
@@ -3264,7 +3086,7 @@ function HebergementsBody({ page, slug }: { page: CustomGroupementPage; slug: st
         />
       </section>
 
-      <section className="fi2t-gl-band fi2t-gl-band--soft fi2t-gl-heb-growth">
+      <section className="fi2t-gl-band fi2t-gl-band--soft fi2t-gl-heb-growth" data-cms-section="growth">
         <div className="fi2t-gl-split__text">
           <EditableText
             page={slug}
@@ -3308,7 +3130,7 @@ function HebergementsBody({ page, slug }: { page: CustomGroupementPage; slug: st
         />
       </section>
 
-      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-heb-diag">
+      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-heb-diag" data-cms-section="diag">
         <header className="fi2t-gl-head">
           <EditableText
             page={slug}
@@ -3397,11 +3219,11 @@ function CulturelBody({ page, slug }: { page: CustomGroupementPage; slug: string
 
   return (
     <>
-      <section className="fi2t-gl-intro fi2t-gl-cult-intro">
+      <section className="fi2t-gl-intro fi2t-gl-cult-intro" data-cms-section="intro">
         <EditableText page={slug} blockKey="intro.body" as="p" multiline fallback={page.intro} />
       </section>
 
-      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-cult-stats">
+      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-cult-stats" data-cms-section="stats">
         <EditableJsonList<(typeof statsFallback)[number]>
           page={slug}
           blockKey="stats.items"
@@ -3430,7 +3252,7 @@ function CulturelBody({ page, slug }: { page: CustomGroupementPage; slug: string
         />
       </section>
 
-      <section className="fi2t-gl-cult-atouts">
+      <section className="fi2t-gl-cult-atouts" data-cms-section="atouts">
         <div className="fi2t-gl-cult-atouts__copy">
           <EditableText page={slug} blockKey="atouts.title" as="h2" fallback={String(s.atoutsTitle ?? '')} />
           <EditableText
@@ -3484,7 +3306,7 @@ function CulturelBody({ page, slug }: { page: CustomGroupementPage; slug: string
         </div>
       </section>
 
-      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-cult-diag">
+      <section className="fi2t-gl-band fi2t-gl-band--white fi2t-gl-cult-diag" data-cms-section="diag">
         <CultDiagStage>
           <header className="fi2t-gl-head fi2t-gl-head--center">
             <EditableText page={slug} blockKey="diag.title" as="h2" fallback={String(s.diagTitle ?? '')} />
@@ -3531,7 +3353,7 @@ function CulturelBody({ page, slug }: { page: CustomGroupementPage; slug: string
         </CultDiagStage>
       </section>
 
-      <section className="fi2t-gl-band fi2t-gl-cult-roadmap fi2t-gl-roadmap-split">
+      <section className="fi2t-gl-band fi2t-gl-cult-roadmap fi2t-gl-roadmap-split" data-cms-section="roadmap">
         <div>
           <EditableText page={slug} blockKey="roadmap.title" as="h2" fallback={String(s.roadmapTitle ?? '')} />
           <EditableText
@@ -3605,7 +3427,7 @@ export default function GroupementCustomBody({ slug }: { slug: string }) {
   const render = LAYOUTS[page.layout]
   if (!render) return null
   return (
-    <div className={`fi2t-gl fi2t-gl--${page.layout}`}>
+    <div className={`fi2t-gl fi2t-gl--${page.layout}`} data-cms-page={slug}>
       <GroupementHero title={page.heroTitle} slug={slug}>
         <ParentCrumb slug={slug} />
       </GroupementHero>

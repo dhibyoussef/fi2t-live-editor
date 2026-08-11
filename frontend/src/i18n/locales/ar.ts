@@ -59,7 +59,7 @@ export default {
       users: 'المستخدمون',
       users_desc: 'إدارة حسابات المسؤولين',
     },
-    status: {
+    statusCodes: {
       PENDING: 'قيد الانتظار', CONFIRMED: 'مؤكد', CHECKED_IN: 'وصل',
       CHECKED_OUT: 'غادر', CANCELLED: 'ملغى', AVAILABLE: 'متاح',
       OCCUPIED: 'مشغول', MAINTENANCE: 'صيانة', OUT_OF_ORDER: 'خارج الخدمة',

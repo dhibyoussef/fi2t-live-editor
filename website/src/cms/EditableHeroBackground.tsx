@@ -28,7 +28,14 @@ export default function EditableHeroBackground({
 
   return (
     <>
-      <img src={src || fallback} alt={altText || alt} className={className} />
+      <img
+        src={src || fallback}
+        alt={altText || alt}
+        className={className}
+        data-cms-page={page}
+        data-cms-block={blockKey}
+        data-cms-type="image"
+      />
       {isEditMode ? (
         <EditableImage
           page={page}

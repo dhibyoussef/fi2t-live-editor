@@ -120,11 +120,11 @@ $enPages = [
         'stats.label_mandate' => 'YEARS OF MANDATE',
         'board.title' => 'Current composition',
         'board.members' => [
-            ['name' => 'Houssem Ben Azouz', 'role' => 'PRESIDENT', 'image' => ''],
-            ['name' => 'Chahla Khekhia', 'role' => 'SECRETARY GENERAL', 'image' => ''],
-            ['name' => 'Ahmed Oubaia', 'role' => 'TREASURER', 'image' => ''],
-            ['name' => 'Néjib Gana', 'role' => 'VICE-PRESIDENT', 'image' => ''],
-            ['name' => 'Omar Cherif', 'role' => 'ADVISOR', 'image' => ''],
+            ['name' => 'Houssem Ben Azouz', 'role' => 'PRESIDENT', 'image' => '/images/org-board/houssem-ben-azouz.svg?v=1'],
+            ['name' => 'Chahla Khekhia', 'role' => 'SECRETARY GENERAL', 'image' => '/images/org-board/chahla-khekhia.svg?v=1'],
+            ['name' => 'Ahmed Oubaia', 'role' => 'TREASURER', 'image' => '/images/org-board/ahmed-oubaia.svg?v=1'],
+            ['name' => 'Néjib Gana', 'role' => 'VICE-PRESIDENT', 'image' => '/images/org-board/nejib-gana.svg?v=1'],
+            ['name' => 'Omar Cherif', 'role' => 'ADVISOR', 'image' => '/images/org-board/omar-cherif.svg?v=1'],
         ],
         'headquarters.title' => 'Fi2T headquarters office',
         'headquarters.staff' => [
@@ -133,7 +133,7 @@ $enPages = [
             ['initials' => 'SS', 'name' => 'Sarra Sallemi', 'role' => 'Administrative and accounting affairs'],
         ],
         'regional.title' => 'Regional offices',
-        'regional.map_label' => '11 Regional Offices',
+        'regional.map_label' => 'Regional Offices',
         'regional.items' => [
             ['name' => 'Mr Nebil Azouz', 'region' => 'Bizerte'],
             ['name' => 'Mme Chahla Khekhia', 'region' => 'Le Kef'],
@@ -277,11 +277,11 @@ $arPages = [
         'stats.label_mandate' => 'سنوات الولاية',
         'board.title' => 'التشكيلة الحالية',
         'board.members' => [
-            ['name' => 'حسام بن عزوز', 'role' => 'الرئيس', 'image' => ''],
-            ['name' => 'شهلة خيخية', 'role' => 'الأمينة العامة', 'image' => ''],
-            ['name' => 'أحمد عباية', 'role' => 'أمين المال', 'image' => ''],
-            ['name' => 'نجيب قانة', 'role' => 'نائب الرئيس', 'image' => ''],
-            ['name' => 'عمر شريف', 'role' => 'مستشار', 'image' => ''],
+            ['name' => 'حسام بن عزوز', 'role' => 'الرئيس', 'image' => '/images/org-board/houssem-ben-azouz.svg?v=1'],
+            ['name' => 'شهلة خيخية', 'role' => 'الأمينة العامة', 'image' => '/images/org-board/chahla-khekhia.svg?v=1'],
+            ['name' => 'أحمد عباية', 'role' => 'أمين المال', 'image' => '/images/org-board/ahmed-oubaia.svg?v=1'],
+            ['name' => 'نجيب قانة', 'role' => 'نائب الرئيس', 'image' => '/images/org-board/nejib-gana.svg?v=1'],
+            ['name' => 'عمر شريف', 'role' => 'مستشار', 'image' => '/images/org-board/omar-cherif.svg?v=1'],
         ],
         'headquarters.title' => 'مكتب مقر Fi2T',
         'headquarters.staff' => [
@@ -290,7 +290,7 @@ $arPages = [
             ['initials' => 'SS', 'name' => 'سارة سالمي', 'role' => 'الشؤون الإدارية والمحاسبية'],
         ],
         'regional.title' => 'المكاتب الجهوية',
-        'regional.map_label' => '11 مكتباً جهوياً',
+        'regional.map_label' => 'مكاتباً جهوياً',
         'regional.items' => [
             ['name' => 'السيد نبيل عزوز', 'region' => 'بنزرت'],
             ['name' => 'السيدة شهلة خيخية', 'region' => 'الكاف'],

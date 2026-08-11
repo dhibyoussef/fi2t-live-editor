@@ -20,7 +20,6 @@ import {
   type SchemaField,
   type SchemaSection,
 } from '../../cms/defaults/groupement-page-schema'
-import api from '../../api/client'
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json }
 

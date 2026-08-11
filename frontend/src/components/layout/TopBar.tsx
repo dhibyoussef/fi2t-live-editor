@@ -110,7 +110,7 @@ export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
                 {user ? `${user.first_name} ${user.last_name}` : 'Utilisateur'}
               </p>
               <p className="gc-user-info-role">
-                {user?.roles?.[0]?.name ?? 'Admin'}
+                {user?.roles?.[0] ?? 'Admin'}
               </p>
             </div>
             <ChevronDown
