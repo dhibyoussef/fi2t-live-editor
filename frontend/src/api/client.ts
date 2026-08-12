@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { apiBaseUrl } from '../lib/apiBase'
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: apiBaseUrl(),
   timeout: 12_000,
   headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
 })

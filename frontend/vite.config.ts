@@ -3,8 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  // Production Docker (single domain): VITE_BASE=/admin/
-  // Local dev: leave unset → /
+  // Local: `/` · Docker root: `/admin/` · Prodexo: `/fi2t/admin/` (via VITE_BASE)
   base: process.env.VITE_BASE || '/',
   plugins: [react(), tailwindcss()],
   server: {

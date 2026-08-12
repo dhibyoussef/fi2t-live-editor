@@ -6,6 +6,7 @@ import { ContentProvider } from '../../cms/ContentProvider'
 import EditToolbar from '../../cms/EditToolbar'
 import { useEditMode } from '../../cms/EditModeProvider'
 import api from '../../api/client'
+import { publicUrl } from '../../lib/publicUrl'
 
 const FOOTER_LINKS = [
   { key: 'apropos', href: '/' },
@@ -62,7 +63,7 @@ function FooterInner() {
       {isEditMode && <EditToolbar onlyWhenPending />}
       <div className="fi2t-footer__grid">
         <div>
-          <img src="/images/logo-white.png" alt="FI2T" className="fi2t-footer__logo" />
+          <img src={publicUrl('/images/logo-white.png')} alt="FI2T" className="fi2t-footer__logo" />
           <EditableText
             page="global"
             blockKey="footer.about"

@@ -113,7 +113,8 @@ npm install
    - `/api` and `/storage` go to Laravel
 6. Use **HTTPS**. Keep uploads folder writable (`storage/app/public`).
 
-Full guide (Docker containers): **[DEPLOYMENT.md](DEPLOYMENT.md)**
+Full guide (Docker containers): **[DEPLOYMENT.md](DEPLOYMENT.md)**  
+Prodexo preprod (SFTP, `/fi2t/`): **[deploy/PREPROD-PRODEXO.md](deploy/PREPROD-PRODEXO.md)**
 
 ---
 

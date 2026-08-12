@@ -1,12 +1,16 @@
 const WEBSITE_ORIGIN = import.meta.env.VITE_WEBSITE_ORIGIN ?? 'http://localhost:3002'
+const API_ORIGIN = (import.meta.env.VITE_API_ORIGIN as string | undefined)
+  ?? (import.meta.env.VITE_APP_PREFIX as string | undefined)
+  ?? 'http://localhost:8000'
 
 /** Résout une URL d'image CMS pour l'aperçu admin (chemins relatifs → site public) */
 export function resolvePreviewImageUrl(url: string | undefined | null): string {
   if (!url?.trim()) return ''
   if (/^(https?:|data:)/i.test(url)) return url
   if (url.startsWith('/storage/')) {
-    const api = import.meta.env.VITE_API_ORIGIN ?? 'http://localhost:8000'
-    return `${api}${url}`
+    const prefix = (import.meta.env.VITE_APP_PREFIX as string | undefined)?.replace(/\/$/, '')
+    if (prefix) return `${prefix}${url}`
+    return `${API_ORIGIN}${url}`
   }
   if (url.startsWith('/')) return `${WEBSITE_ORIGIN}${url}`
   return url

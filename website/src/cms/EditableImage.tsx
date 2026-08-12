@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useEditMode } from './EditModeProvider'
 import { useContentBlock } from './ContentProvider'
 import { uploadWebsiteImage } from './uploadWebsiteImage'
+import { publicUrl } from '../lib/publicUrl'
 
 interface Props {
   page: string
@@ -139,7 +140,7 @@ export default function EditableImage({
   const inputRef = useRef<HTMLInputElement>(null)
   const pickingRef = useRef(false)
 
-  const src = value || fallback
+  const src = publicUrl(value || fallback)
   const displayAlt = (altStored || alt || '').trim()
 
   useEffect(() => {
@@ -361,7 +362,7 @@ export default function EditableImage({
 /** Resolve a CMS image URL for pairing with a plain `<img>` (heroes, backgrounds). */
 export function useEditableImageSrc(page: string, blockKey: string, fallback = '') {
   const { value } = useContentBlock(page, blockKey, { type: 'image', fallback })
-  return value || fallback
+  return publicUrl(value || fallback)
 }
 
 /** Resolve CMS alt text for a paired image key. */

@@ -18,6 +18,11 @@ import { isGroupementSlug } from './cms/defaults/groupements-index'
 import { GROUPEMENT_REDIRECTS } from './lib/groupements'
 import { syncTranslationsFromDB } from './i18n/syncFromDB'
 
+const routerBasename = (() => {
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+  return base || undefined
+})()
+
 function EditModeBodyClass() {
   const { isEditMode } = useEditMode()
   useEffect(() => {
@@ -53,7 +58,7 @@ export default function App() {
       <BuilderPreviewProvider>
         <EditModeBodyClass />
         <I18nSync />
-        <BrowserRouter>
+        <BrowserRouter basename={routerBasename}>
           <ScrollToTop />
           <Routes>
             <Route element={<Layout />}>
