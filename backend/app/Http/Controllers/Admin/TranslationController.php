@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Locale;
 use App\Models\Translation;
+use App\Services\AutoTranslator;
+use App\Support\TranslationCatalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -124,5 +126,90 @@ class TranslationController extends Controller
         Translation::where('locale', $code)->delete();
         Locale::where('code', $code)->delete();
         return response()->json(null, 204);
+    }
+
+    /** POST /admin/translate — FR/EN/AR via MyMemory (no API key required). */
+    public function translate(Request $request, AutoTranslator $translator): JsonResponse
+    {
+        $data = $request->validate([
+            'from'   => 'required|string|max:8',
+            'to'     => 'required|string|max:8',
+            'text'   => 'nullable|string|max:8000',
+            'texts'  => 'sometimes|array|max:40',
+            'texts.*'=> 'nullable|string|max:8000',
+        ]);
+
+        if (! empty($data['texts'])) {
+            return response()->json([
+                'texts' => $translator->translateMany($data['texts'], $data['from'], $data['to']),
+            ]);
+        }
+
+        return response()->json([
+            'text' => $translator->translate((string) ($data['text'] ?? ''), $data['from'], $data['to']),
+        ]);
+    }
+
+    /** POST /admin/translations/sync-keys — upsert missing keys from the seeder file. */
+    public function syncKeys(): JsonResponse
+    {
+        $data = TranslationCatalog::load();
+        $fr = $data['fr'] ?? [];
+        $added = 0;
+
+        foreach ($fr as $key => $value) {
+            $row = Translation::firstOrCreate(
+                ['locale' => 'fr', 'key' => $key],
+                ['value' => $value]
+            );
+            if ($row->wasRecentlyCreated || trim((string) $row->value) === '') {
+                if (! $row->wasRecentlyCreated) {
+                    $row->update(['value' => $value]);
+                }
+                $added++;
+            }
+            foreach (['en', 'ar'] as $loc) {
+                Translation::firstOrCreate(
+                    ['locale' => $loc, 'key' => $key],
+                    ['value' => $data[$loc][$key] ?? '']
+                );
+            }
+        }
+
+        return response()->json([
+            'message' => 'Clés synchronisées',
+            'keys'    => count($fr),
+            'added'   => $added,
+        ]);
+    }
+
+    /** POST /admin/translations/auto-fill — translate empty keys for en|ar from French. */
+    public function autoFill(Request $request, AutoTranslator $translator): JsonResponse
+    {
+        set_time_limit(180);
+        $locale = $request->validate(['locale' => 'required|in:en,ar'])['locale'];
+        $french = Translation::query()->where('locale', 'fr')->get();
+        $filled = 0;
+
+        foreach ($french as $row) {
+            $existing = Translation::query()
+                ->where('locale', $locale)
+                ->where('key', $row->key)
+                ->first();
+            if ($existing && trim((string) $existing->value) !== '') {
+                continue;
+            }
+            $translated = $translator->translate((string) $row->value, 'fr', $locale);
+            Translation::updateOrCreate(
+                ['locale' => $locale, 'key' => $row->key],
+                ['value' => $translated]
+            );
+            $filled++;
+        }
+
+        return response()->json([
+            'message' => $filled.' clé(s) traduite(s)',
+            'count'   => $filled,
+        ]);
     }
 }

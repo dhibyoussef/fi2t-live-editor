@@ -12,7 +12,9 @@ const DashboardPage = lazy(() => import('./pages/dashboard/Fi2tDashboardPage'))
 const UsersPage = lazy(() => import('./pages/users/UsersPage'))
 const RolesPage = lazy(() => import('./pages/users/RolesPage'))
 const WebsiteContentPage = lazy(() => import('./pages/content/WebsiteContentPage'))
+const ArticlesAdminPage = lazy(() => import('./pages/content/ArticlesAdminPage'))
 const TranslationsPage = lazy(() => import('./pages/translations/TranslationsPage'))
+const FormulairesAdminPage = lazy(() => import('./pages/forms/FormulairesAdminPage'))
 
 const qc = new QueryClient({ defaultOptions: { queries: { retry: 1, staleTime: 30_000 } } })
 
@@ -92,7 +94,9 @@ export default function App() {
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/website-content" element={<WebsiteContentPage />} />
+              <Route path="/articles" element={<ArticlesAdminPage />} />
               <Route path="/translations" element={<TranslationsPage />} />
+              <Route path="/formulaires" element={<FormulairesAdminPage />} />
               <Route path="/users" element={<UsersPage />} />
               <Route path="/roles" element={<RolesPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />

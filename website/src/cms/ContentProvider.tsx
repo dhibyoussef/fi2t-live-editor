@@ -201,7 +201,11 @@ export function ContentProvider({ page, children }: Props) {
    */
   const saveBlock = useCallback(async (block: PendingBlock) => {
     setBlocks((prev) => ({ ...prev, [`${block.section}.${block.key}`]: block.value }))
-    await api.post('/admin/content/bulk', { blocks: [block] })
+    await api.post('/admin/content/bulk', {
+      blocks: [block],
+      source_locale: block.locale,
+      translate: true,
+    }, { timeout: 120000 })
     setPending((prev) =>
       prev.filter(
         (p) =>
@@ -226,7 +230,11 @@ export function ContentProvider({ page, children }: Props) {
 
   const savePending = useCallback(async () => {
     if (!pending.length) return
-    await api.post('/admin/content/bulk', { blocks: pending })
+    await api.post('/admin/content/bulk', {
+      blocks: pending,
+      source_locale: locale,
+      translate: true,
+    }, { timeout: 120000 })
     setPending([])
     invalidateCache(`content:${page}:`)
     await fetchBlocks()

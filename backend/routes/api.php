@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SiteNavController;
 use App\Http\Controllers\Admin\TranslationController;
+use App\Http\Controllers\Admin\FormSubmissionController as AdminFormSubmissionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FormSubmissionController;
@@ -46,9 +47,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('change-password', [AuthController::class, 'changePassword']);
     });
 
-    Route::prefix('admin')->group(function () {
-        Route::middleware('role:super-admin|admin')->group(function () {
-            // Short-lived Live Editor token (never put the long admin PAT in a URL)
+    Route::prefix('admin')->middleware('role:super-admin|admin')->group(function () {
+        // Full CMS session only (not the short Live Editor token)
+        Route::middleware('ability:cms-admin')->group(function () {
             Route::post('edit-session', [AuthController::class, 'createEditSession'])
                 ->middleware('throttle:30,1');
 
@@ -57,12 +58,31 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::apiResource('roles', RoleController::class);
             Route::get('permissions', [RoleController::class, 'permissions']);
 
-            Route::get('translations', [TranslationController::class, 'index']);
-            Route::post('translations/bulk', [TranslationController::class, 'bulk']);
             Route::post('translations/locales', [TranslationController::class, 'addLocale']);
             Route::delete('translations/locales/{code}', [TranslationController::class, 'deleteLocale']);
 
-            // Live editor / page builder
+            Route::post('media', [MediaController::class, 'store']);
+            Route::put('media/{media}', [MediaController::class, 'update']);
+            Route::delete('media/{media}', [MediaController::class, 'destroy']);
+            Route::post('media/reorder', [MediaController::class, 'reorder']);
+
+            Route::get('form-submissions/unread', [AdminFormSubmissionController::class, 'unread']);
+            Route::post('form-submissions/mark-all-read', [AdminFormSubmissionController::class, 'markAllRead']);
+            Route::get('form-submissions', [AdminFormSubmissionController::class, 'index']);
+            Route::get('form-submissions/{formSubmission}', [AdminFormSubmissionController::class, 'show']);
+            Route::patch('form-submissions/{formSubmission}', [AdminFormSubmissionController::class, 'update']);
+            Route::delete('form-submissions/{formSubmission}', [AdminFormSubmissionController::class, 'destroy']);
+        });
+
+        // Live Editor token may only edit content / nav / translations
+        Route::middleware('ability:cms-admin,cms-edit')->group(function () {
+            Route::get('translations', [TranslationController::class, 'index']);
+            Route::post('translations/bulk', [TranslationController::class, 'bulk']);
+            Route::post('translations/sync-keys', [TranslationController::class, 'syncKeys']);
+            Route::post('translations/auto-fill', [TranslationController::class, 'autoFill']);
+            Route::post('translate', [TranslationController::class, 'translate'])->middleware('throttle:30,1');
+            Route::post('content/sync-locales', [ContentBlockController::class, 'syncLocales']);
+
             Route::get('content/matrix', [ContentBlockController::class, 'matrix']);
             Route::get('content/patterns', [CmsPageController::class, 'patterns']);
             Route::get('content/pages', [CmsPageController::class, 'index']);
@@ -82,11 +102,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('site-nav/{siteNavItem}', [SiteNavController::class, 'update']);
             Route::delete('site-nav/{siteNavItem}', [SiteNavController::class, 'destroy']);
             Route::post('site-nav/reorder', [SiteNavController::class, 'reorder']);
-
-            Route::post('media', [MediaController::class, 'store']);
-            Route::put('media/{media}', [MediaController::class, 'update']);
-            Route::delete('media/{media}', [MediaController::class, 'destroy']);
-            Route::post('media/reorder', [MediaController::class, 'reorder']);
         });
     });
 });

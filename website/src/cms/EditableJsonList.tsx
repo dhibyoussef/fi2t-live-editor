@@ -12,6 +12,7 @@ import {
 } from './fi2tIcons'
 import { fanOutListItemMedia } from './fanOutMedia'
 import { isMediaKey } from './mediaSync'
+import { publicUrl } from '../lib/publicUrl'
 
 function IconLibraryPicker({
   selectedSrc,
@@ -71,7 +72,7 @@ function IconLibraryPicker({
                 title={`${opt.label} · ${opt.category}`}
                 onClick={() => onPick(opt.path)}
               >
-                <img src={opt.path} alt={opt.label} loading="lazy" />
+                <img src={publicUrl(opt.path)} alt={opt.label} loading="lazy" />
               </button>
             )
           })
@@ -282,8 +283,8 @@ export default function EditableJsonList<T extends Record<string, string>>({
         })
         await refresh()
       }
-    } catch {
-      alert('Erreur lors du téléversement.')
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Erreur lors du téléversement.')
     } finally {
       setUploading(null)
     }
@@ -448,8 +449,8 @@ export default function EditableJsonList<T extends Record<string, string>>({
     const busy = uploading === inputKey
 
     if (!isEditMode) {
-      if (src) return <img src={src} alt={alt} className={className || undefined} />
-      return fallback ?? <img src="/images/icon1.png?v=5" alt={alt} className={className || undefined} />
+      if (src) return <img src={publicUrl(src)} alt={alt} className={className || undefined} />
+      return fallback ?? <img src={publicUrl('/images/icon1.png?v=5')} alt={alt} className={className || undefined} />
     }
 
     return (
@@ -464,7 +465,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
         }}
       >
         {src ? (
-          <img src={src} alt={alt} />
+          <img src={publicUrl(src)} alt={alt} />
         ) : (
           <span className="cms-list-image-btn__fallback">{fallback ?? (raw || 'Icône')}</span>
         )}
@@ -520,7 +521,7 @@ export default function EditableJsonList<T extends Record<string, string>>({
               onClick={() => fileRefs.current[inputKey]?.click()}
               title="Téléverser une image (optionnel)"
             >
-              {src ? <img src={src} alt="" /> : <span>{raw || 'Aucune image'}</span>}
+              {src ? <img src={publicUrl(src)} alt="" /> : <span>{raw || 'Aucune image'}</span>}
               <span>{busy ? 'Envoi…' : 'Upload'}</span>
             </button>
             <input

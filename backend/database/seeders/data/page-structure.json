@@ -824,17 +824,17 @@
       "values": {
         "fr": {
           "title": "Informations de contact",
-          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"Adresse\",\"value\":\"Résidence MERIEM - Appt N°2 -\\nLes Berges du Lac 1\\n1053 Tunis, Tunisie\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"Téléphone\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"Email\",\"value\":\"contact@fi2t.tn\"}]",
+          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"Adresse\",\"value\":\"Résidence MERIEM - Appt N°2 -\\nLes Berges du Lac 1\\n1053 Tunis, Tunisie\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"Téléphone\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"Email\",\"value\":\"contact.fi2t@fit-tunisie.org\"}]",
           "per_page": "3"
         },
         "en": {
           "title": "Contact information",
-          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"Address\",\"value\":\"Résidence MERIEM - Appt N°2 -\\nLes Berges du Lac 1\\n1053 Tunis, Tunisia\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"Phone\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"Email\",\"value\":\"contact@fi2t.tn\"}]",
+          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"Address\",\"value\":\"Résidence MERIEM - Appt N°2 -\\nLes Berges du Lac 1\\n1053 Tunis, Tunisia\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"Phone\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"Email\",\"value\":\"contact.fi2t@fit-tunisie.org\"}]",
           "per_page": "3"
         },
         "ar": {
           "title": "معلومات الاتصال",
-          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"العنوان\",\"value\":\"إقامة مريم - شقة رقم 2 -\\nضفاف البحيرة 1\\n1053 تونس، تونس\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"الهاتف\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"البريد الإلكتروني\",\"value\":\"contact@fi2t.tn\"}]",
+          "items": "[{\"icon\":\"/images/icon-address.svg\",\"label\":\"العنوان\",\"value\":\"إقامة مريم - شقة رقم 2 -\\nضفاف البحيرة 1\\n1053 تونس، تونس\"},{\"icon\":\"/images/icon-phone.svg\",\"label\":\"الهاتف\",\"value\":\"+216 29 710 507\"},{\"icon\":\"/images/icon-email.svg\",\"label\":\"البريد الإلكتروني\",\"value\":\"contact.fi2t@fit-tunisie.org\"}]",
           "per_page": "3"
         }
       }

@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react'
-import { Plus, Trash2, Upload, GripVertical, Star, ArrowLeft, ChevronRight, LayoutGrid, ExternalLink } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Plus, Trash2, Upload, GripVertical, Star, ArrowLeft, ChevronRight, LayoutGrid, ExternalLink, Newspaper } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { uploadImageFile } from '../../../lib/uploadImageFile'
 import PageTreeEditor from './PageTreeEditor'
@@ -52,8 +53,8 @@ function ImageField({ value, onChange, label = 'Image' }: {
   const upload = async (file: File) => {
     try {
       onChange(await uploadContentImage(file))
-    } catch {
-      toast.error('Erreur lors du téléversement')
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : 'Erreur lors du téléversement')
     }
   }
 
@@ -1535,7 +1536,22 @@ export default function JsonBlockEditor({ section, blockKey, value, onChange }: 
       {editor === 'objectifs' && <ObjectifsEditor value={value} onChange={onChange} />}
       {editor === 'groupements' && <GroupementsEditor value={value} onChange={onChange} />}
       {editor === 'reasons' && <ReasonsEditor value={value} onChange={onChange} />}
-      {editor === 'news' && <NewsCardsEditor value={value} onChange={onChange} />}
+      {editor === 'news' && section === 'grid' && (
+        <div className="wc-articles-redirect">
+          <Newspaper size={18} />
+          <div>
+            <p><strong>Les articles ne s’éditent plus ici.</strong></p>
+            <p>
+              Cette page Actualités est la liste statique (/actualites). Pour ajouter,
+              modifier ou supprimer un article, ouvrez l’onglet <strong>Articles</strong>.
+            </p>
+            <Link to="/articles" className="wc-add-item-btn" style={{ display: 'inline-flex', marginTop: 8 }}>
+              Ouvrir Articles
+            </Link>
+          </div>
+        </div>
+      )}
+      {editor === 'news' && section !== 'grid' && <NewsCardsEditor value={value} onChange={onChange} />}
       {editor === 'values' && <ValuesEditor value={value} onChange={onChange} />}
       {editor === 'diversify' && <DiversifyEditor value={value} onChange={onChange} />}
       {editor === 'board' && <BoardEditor value={value} onChange={onChange} />}

@@ -7,6 +7,7 @@ import { getPageDefaults } from './pageDefaults'
 import { fanOutListItemMedia } from './fanOutMedia'
 import { isMediaKey } from './mediaSync'
 import { findArticleBySlug, parseArticles, type ArticleItem } from '../lib/articles'
+import { publicUrl } from '../lib/publicUrl'
 
 const LANG_BADGE: Record<string, string> = { fr: '🇫🇷 FR', en: '🇬🇧 EN', ar: '🇹🇳 AR' }
 
@@ -165,7 +166,7 @@ export default function EditableArticleField({
   }
 
   if (image) {
-    const src = display || fallback
+    const src = publicUrl(display || fallback)
     if (!isEditMode) {
       return <img src={src} alt="" className={className} />
     }

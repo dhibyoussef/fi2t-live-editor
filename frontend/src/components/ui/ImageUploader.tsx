@@ -1,5 +1,6 @@
 import { useRef, useState, useCallback } from 'react'
 import { Upload, X, Link2, ImageIcon, CheckCircle2, AlertCircle } from 'lucide-react'
+import { publicUrl } from '../../lib/publicUrl'
 import { uploadImageFile } from '../../lib/uploadImageFile'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -144,7 +145,7 @@ export function ImageUploader({
           {value && (
             <div className="img-preview-zone">
               <img
-                src={value}
+                src={publicUrl(value)}
                 alt="preview"
                 className="img-preview-img"
                 onError={e => { (e.target as HTMLImageElement).src = 'https://placehold.co/800x300/1C1811/D4A017?text=Erreur' }}
@@ -209,7 +210,7 @@ export function ImageUploader({
           {value && (
             <div className="img-url-preview">
               <img
-                src={value}
+                src={publicUrl(value)}
                 alt="preview"
                 onError={e => { (e.target as HTMLImageElement).src = 'https://placehold.co/800x300/1C1811/D4A017?text=Image+introuvable' }}
               />

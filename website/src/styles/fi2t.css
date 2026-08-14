@@ -2272,7 +2272,7 @@ a {
   padding: 36px 1rem 0;
   text-align: center;
   background-color: #fbf9ff;
-  background-image: url('/images/org-stat-card.png');
+  background-image: var(--fi2t-img-org-stat-card, url('/images/org-stat-card.png'));
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
@@ -8029,7 +8029,7 @@ body.cms-edit-active .fi2t-gl-therm-place__copy .cms-editable {
   bottom: -40px;
   width: 117px;
   height: 167px;
-  background: url('/images/groupement-media/golf-etat-wm.png?v=1') center / contain no-repeat;
+  background: var(--fi2t-img-golf-etat-wm, url('/images/groupement-media/golf-etat-wm.png?v=1')) center / contain no-repeat;
   opacity: 0.1;
   pointer-events: none;
 }

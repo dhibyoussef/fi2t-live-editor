@@ -2,8 +2,11 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   LayoutDashboard, ShieldCheck, Settings, ExternalLink,
-  Globe, LayoutTemplate, Languages,
+  Globe, LayoutTemplate, Languages, Newspaper, Inbox,
 } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import api from '../../api/client'
+import { adminAsset } from '../../lib/adminAsset'
 import { useAuthStore } from '../../store/authStore'
 import { buildLiveEditorUrl } from '../../api/editSession'
 import toast from 'react-hot-toast'
@@ -32,6 +35,7 @@ const nav: NavGroup[] = [
     groupKey: 'website',
     items: [
       { to: '/website-content', icon: LayoutTemplate, label: 'nav.website_content' },
+      { to: '/articles', icon: Newspaper, label: 'nav.articles' },
       { to: '/translations', icon: Languages, label: 'nav.translations' },
       { to: '__website_edit__', icon: Globe, label: 'nav.website_edit', external: true },
     ],
@@ -39,6 +43,7 @@ const nav: NavGroup[] = [
   {
     groupKey: 'admin',
     items: [
+      { to: '/formulaires', icon: Inbox, label: 'nav.formulaires' },
       { to: '/users', icon: ShieldCheck, label: 'nav.users' },
       { to: '/roles', icon: Settings, label: 'nav.roles' },
     ],
@@ -50,6 +55,13 @@ interface SidebarProps { collapsed?: boolean }
 export default function Sidebar({ collapsed = false }: SidebarProps) {
   const { t } = useTranslation()
   const token = useAuthStore((s) => s.token)
+  const unreadQ = useQuery({
+    queryKey: ['form-submissions-unread'],
+    queryFn: () => api.get('/admin/form-submissions/unread').then((r) => r.data as { unread: number }),
+    refetchInterval: 30_000,
+    enabled: Boolean(token),
+  })
+  const unread = unreadQ.data?.unread ?? 0
 
   const openWebsiteEdit = async () => {
     if (!token) return
@@ -66,14 +78,14 @@ export default function Sidebar({ collapsed = false }: SidebarProps) {
       <div className="gc-sidebar-logo">
         {collapsed ? (
           <img
-            src="/logo.png"
+            src={adminAsset('logo.png')}
             alt="FI2T"
             className="gc-sidebar-brand gc-sidebar-brand--mark"
           />
         ) : (
           <>
             <img
-              src="/logo.png"
+              src={adminAsset('logo.png')}
               alt="FI2T — Fédération Interprofessionnelle du Tourisme Tunisien"
               className="gc-sidebar-brand"
             />
@@ -124,6 +136,9 @@ export default function Sidebar({ collapsed = false }: SidebarProps) {
                   >
                     <Icon className="gc-nav-icon" size={16} />
                     {!collapsed && <span className="gc-nav-label">{t(item.label)}</span>}
+                    {!collapsed && item.to === '/formulaires' && unread > 0 && (
+                      <span className="gc-nav-badge">{unread > 99 ? '99+' : unread}</span>
+                    )}
                   </NavLink>
                 )
               })}

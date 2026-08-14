@@ -18,12 +18,22 @@ return Application::configure(basePath: dirname(__DIR__))
         // Convert empty strings → null so nullable fields pass validation
         $middleware->append(\Illuminate\Foundation\Http\Middleware\TrimStrings::class);
         $middleware->append(\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class);
+        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
 
         $middleware->alias([
             'role'       => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'abilities'  => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+            'ability'    => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
         ]);
+
+        // API must never redirect to a web login route (none exists → 500).
+        $middleware->redirectGuestsTo(fn (Request $request) =>
+            $request->expectsJson() || $request->is('api/*') || str_contains($request->path(), 'api/')
+                ? null
+                : '/'
+        );
     })
     ->booted(function () {
         RateLimiter::for('login', function (Request $request) {
@@ -38,6 +48,16 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
-            fn (Request $request) => $request->is('api/*'),
+            fn (Request $request) => $request->expectsJson()
+                || $request->is('api/*')
+                || $request->is('fi2t/api/*')
+                || str_contains($request->path(), '/api/')
+                || str_starts_with($request->path(), 'api/'),
         );
+
+        $exceptions->render(function (\Illuminate\Auth\AuthenticationException $e, Request $request) {
+            if ($request->expectsJson() || $request->is('api/*') || str_contains($request->path(), 'api/')) {
+                return response()->json(['message' => 'Non authentifié.'], 401);
+            }
+        });
     })->create();

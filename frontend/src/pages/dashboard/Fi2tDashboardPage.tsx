@@ -7,8 +7,9 @@ import toast from 'react-hot-toast'
 import {
   ExternalLink, LayoutTemplate, Globe, Languages,
   Users, ShieldCheck, ArrowRight, FileText, Newspaper,
-  Settings2, Loader2,
+  Settings2, Loader2, Inbox,
 } from 'lucide-react'
+import { adminAsset } from '../../lib/adminAsset'
 
 type CmsPageRow = {
   id: number
@@ -63,8 +64,10 @@ export default function Fi2tDashboardPage() {
   }
 
   const shortcuts = [
-    { to: '/website-content', icon: LayoutTemplate, title: 'Contenu du site', desc: 'Pages, textes, images, listes et Aperçu live.' },
+    { to: '/website-content', icon: LayoutTemplate, title: 'Contenu du site', desc: 'Pages statiques — accueil, Actualités, contact…' },
+    { to: '/articles', icon: Newspaper, title: 'Articles', desc: 'Ajouter, modifier ou supprimer les actualités.' },
     { to: '/translations', icon: Languages, title: 'Traductions', desc: 'Interface FR / EN / AR.' },
+    { to: '/formulaires', icon: Inbox, title: 'Formulaires', desc: 'Contact, adhésion et newsletter reçus.' },
     { to: '/users', icon: Users, title: 'Utilisateurs', desc: 'Comptes admin et accès.' },
     { to: '/roles', icon: ShieldCheck, title: 'Rôles', desc: 'Permissions super-admin / admin.' },
   ]
@@ -72,7 +75,7 @@ export default function Fi2tDashboardPage() {
   return (
     <div className="fi2t-dash">
       <section className="fi2t-dash__hero">
-        <img src="/hero.jpg" alt="" className="fi2t-dash__hero-bg" />
+        <img src={adminAsset('hero.jpg')} alt="" className="fi2t-dash__hero-bg" />
         <div className="fi2t-dash__hero-overlay" />
         <div className="fi2t-dash__hero-content">
           <div className="fi2t-dash__eyebrow">FI2T · CMS Live Editor</div>
@@ -144,12 +147,6 @@ export default function Fi2tDashboardPage() {
               </Link>
             )
           })}
-          <button type="button" className="fi2t-dash-card" onClick={() => void openLiveEditor('/actualites')}>
-            <div className="fi2t-dash-card__icon"><Newspaper size={20} /></div>
-            <strong>Actualités</strong>
-            <span>Ajouter ou modifier un article en Live Editor.</span>
-            <div className="fi2t-dash-card__cta">Live editor <ExternalLink size={14} /></div>
-          </button>
           <button type="button" className="fi2t-dash-card" onClick={() => void openLiveEditor('/')}>
             <div className="fi2t-dash-card__icon"><Globe size={20} /></div>
             <strong>Site public</strong>

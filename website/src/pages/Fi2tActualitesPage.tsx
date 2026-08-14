@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ContentProvider, useContent } from '../cms/ContentProvider'
 import { useEditMode } from '../cms/EditModeProvider'
@@ -7,7 +7,7 @@ import EditableHeroBackground from '../cms/EditableHeroBackground'
 import EditableJsonList from '../cms/EditableJsonList'
 import AddArticleButton from '../cms/AddArticleButton'
 import EditToolbar from '../cms/EditToolbar'
-import Fi2tPagination, { padItemsForPages } from '../components/fi2t/Fi2tPagination'
+import Fi2tPagination from '../components/fi2t/Fi2tPagination'
 import { ACTUALITES_ARTICLES, ACTUALITES_DEFAULTS } from '../cms/defaults/actualites'
 import { createEmptyArticle, type ArticleItem } from '../lib/articles'
 
@@ -44,10 +44,7 @@ function ActualitesInner() {
   )
 
   const perPage = Math.max(1, Number.parseInt(get('grid.per_page', '9'), 10) || 9)
-  const articles = useMemo(
-    () => (isEditMode ? rawArticles : padItemsForPages(rawArticles, perPage, 6)),
-    [rawArticles, perPage, isEditMode],
-  )
+  const articles = rawArticles
   const totalPages = Math.max(1, Math.ceil(articles.length / perPage))
   const safePage = Math.min(page, totalPages)
 
@@ -102,7 +99,6 @@ function ActualitesInner() {
           itemClassName={(_item, index) =>
             (!isEditMode && (index < pageStart || index >= pageEnd) ? 'is-page-hidden' : '')
           }
-          transform={(items) => (isEditMode ? items : padItemsForPages(items, perPage, 6))}
           renderItem={(item, _index, { editable, editField, editImage }) => {
             const narrow = /houssem/i.test(item.title) || /houssem/i.test(item.slug)
             const secteur = /secteur touristique/i.test(item.title)

@@ -64,10 +64,20 @@ export default function PageBuilder({
   onEmbedEdit, onEmbedSaved,
 }: Props) {
   const selected = sections.find(s => s.name === selectedSection)
-  /* Structure narrower · Aperçu dominant so preview isn’t tiny */
-  const [canvasMode, setCanvasMode] = useState<CanvasMode>('preview')
+  const [canvasMode, setCanvasMode] = useState<CanvasMode>(() => {
+    try {
+      const saved = sessionStorage.getItem('fi2t-pb-canvas')
+      if (saved === 'structure' || saved === 'split' || saved === 'preview') return saved
+    } catch { /* ignore */ }
+    return 'split'
+  })
   const [previewExpanded, setPreviewExpanded] = useState(false)
   const [previewLocale, setPreviewLocale] = useState<'fr' | 'en' | 'ar'>('fr')
+
+  const changeCanvasMode = (mode: CanvasMode) => {
+    setCanvasMode(mode)
+    try { sessionStorage.setItem('fi2t-pb-canvas', mode) } catch { /* ignore */ }
+  }
 
   const { data: publicCarousels = [] } = useQuery<Array<{ slug: string; active_items: PreviewCarouselItem[] }>>({
     queryKey: ['public-carousels-preview'],
@@ -107,13 +117,13 @@ export default function PageBuilder({
             <div className="pb-canvas-header__left">
               <span><LayoutGrid size={14} /> Structure de la page</span>
               <div className="pb-canvas-modes">
-                <button type="button" className={canvasMode === 'structure' ? 'active' : ''} onClick={() => setCanvasMode('structure')} title="Structure seule">
+                <button type="button" className={canvasMode === 'structure' ? 'active' : ''} onClick={() => changeCanvasMode('structure')} title="Structure seule">
                   <LayoutGrid size={13} />
                 </button>
-                <button type="button" className={canvasMode === 'split' ? 'active' : ''} onClick={() => setCanvasMode('split')} title="Structure + aperçu">
+                <button type="button" className={canvasMode === 'split' ? 'active' : ''} onClick={() => changeCanvasMode('split')} title="Structure + aperçu">
                   <Columns size={13} />
                 </button>
-                <button type="button" className="" onClick={() => setCanvasMode('preview')} title="Aperçu seul">
+                <button type="button" className="" onClick={() => changeCanvasMode('preview')} title="Aperçu seul">
                   <Eye size={13} />
                 </button>
               </div>
@@ -183,10 +193,10 @@ export default function PageBuilder({
               <div className="pb-canvas-header__left">
                 <span><Eye size={14} /> Aperçu instantané</span>
                 <div className="pb-canvas-modes">
-                  <button type="button" onClick={() => setCanvasMode('structure')} title="Structure seule">
+                  <button type="button" onClick={() => changeCanvasMode('structure')} title="Structure seule">
                     <LayoutGrid size={13} />
                   </button>
-                  <button type="button" onClick={() => setCanvasMode('split')} title="Structure + aperçu">
+                  <button type="button" onClick={() => changeCanvasMode('split')} title="Structure + aperçu">
                     <Columns size={13} />
                   </button>
                   <button type="button" className="active" title="Aperçu seul">

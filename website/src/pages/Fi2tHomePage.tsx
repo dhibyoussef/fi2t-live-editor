@@ -9,6 +9,7 @@ import EditablePositioned from '../cms/EditablePositioned'
 import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
 import { GROUPEMENTS, type GroupementItem } from '../lib/groupements'
+import { publicUrl } from '../lib/publicUrl'
 
 const OBJECTIFS_PER_PAGE = 4
 
@@ -445,7 +446,7 @@ function HomeInner() {
             renderItem={(_item, _index, { editField }) => (
               <>
                 <img
-                  src="/images/adherer-check.svg"
+                  src={publicUrl('/images/adherer-check.svg')}
                   alt=""
                   className="fi2t-reasons__check"
                   width={20}
@@ -505,11 +506,11 @@ function HomeInner() {
                     editImage('img', 'fi2t-news-card__media', item.title)
                   ) : (
                     <img
-                      src={
+                      src={publicUrl(
                         index < 3
                           ? `/images/act${index + 1}-home.jpg?v=1`
-                          : item.img || '/images/act1.jpg'
-                      }
+                          : item.img || '/images/act1.jpg',
+                      )}
                       alt={item.title}
                       className="fi2t-news-card__media"
                     />

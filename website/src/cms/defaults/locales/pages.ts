@@ -167,7 +167,7 @@ export const PAGE_EN: Record<string, Record<string, string>> = {
       {
         icon: '/images/icon-email.svg',
         label: 'Email',
-        value: 'contact@fi2t.tn',
+        value: 'contact.fi2t@fit-tunisie.org',
       },
     ]),
     'form.label_name': 'FULL NAME',
@@ -386,7 +386,7 @@ export const PAGE_AR: Record<string, Record<string, string>> = {
       {
         icon: '/images/icon-email.svg',
         label: 'البريد الإلكتروني',
-        value: 'contact@fi2t.tn',
+        value: 'contact.fi2t@fit-tunisie.org',
       },
     ]),
     'form.label_name': 'الاسم الكامل',

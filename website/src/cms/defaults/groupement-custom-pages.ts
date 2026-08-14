@@ -116,7 +116,7 @@ export const CUSTOM_GROUPEMENT_PAGES: Record<string, CustomGroupementPage> = {
 
   'tourisme-senior': {
     layout: 'senior',
-    heroTitle: 'Tourisme des Sénior',
+    heroTitle: 'Tourisme des séniors',
     intro:
       "Avec l’augmentation de l’espérance de vie et le vieillissement de la population, le tourisme des seniors connaît une forte croissance. Disposant souvent de plus de temps libre, les voyageurs de 60 ans et plus recherchent des expériences authentiques, confortables et enrichissantes. D’ici 2050, cette tranche d’âge devrait atteindre 2,1 milliards de personnes dans le monde, tandis qu’en Europe, elle représente déjà près d’un quart des voyageurs internationaux. Cette évolution fait du tourisme senior un marché stratégique offrant de nombreuses opportunités pour développer des offres touristiques adaptées, accessibles et durables.",
     sections: {
@@ -617,7 +617,7 @@ export const CUSTOM_GROUPEMENT_PAGES: Record<string, CustomGroupementPage> = {
 
   'tourisme-plaisance': {
     layout: 'plaisance',
-    heroTitle: 'Tourisme la plaisance',
+    heroTitle: 'Tourisme de plaisance',
     intro: '',
     sections: {
       impactTitle: "Un Impact Économique\nDécuplé",

@@ -17,7 +17,7 @@ class TranslationSeeder extends Seeder
         ], ['code'], ['name', 'flag', 'direction', 'is_active', 'sort_order']);
 
         /** @var array<string, array<string, string>> $data */
-        $data = require __DIR__ . '/data/translations-fi2t.php';
+        $data = \App\Support\TranslationCatalog::load();
 
         // 1) Seed French references first (source of truth for keys)
         $fr = $data['fr'] ?? [];

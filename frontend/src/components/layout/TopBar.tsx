@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Bell, ChevronDown, LogOut, User2, Globe } from 'lucide-react'
+import { Bell, ChevronDown, LogOut, User2, Globe, Inbox } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
 import { useAuthStore } from '../../store/authStore'
 import { useNavigate } from 'react-router-dom'
 import { apiClient } from '../../api/client'
@@ -17,18 +18,39 @@ interface TopBarProps {
   pageSubtitle?: string
 }
 
+function relativeTime(iso: string, t: (key: string, opts?: { count: number }) => string) {
+  const diff = Date.now() - new Date(iso).getTime()
+  const min = Math.max(1, Math.round(diff / 60000))
+  if (min < 60) return t('forms.time_min', { count: min })
+  const h = Math.round(min / 60)
+  if (h < 24) return t('forms.time_h', { count: h })
+  const d = Math.round(h / 24)
+  return t('forms.time_d', { count: d })
+}
+
 export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
   const { user, logout } = useAuthStore()
   const [langOpen, setLangOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
+  const [bellOpen, setBellOpen] = useState(false)
+
+  const unreadQ = useQuery({
+    queryKey: ['form-submissions-unread'],
+    queryFn: () => apiClient.get('/admin/form-submissions/unread').then((r) => r.data as {
+      unread: number
+      latest: { id: number; type: string; name: string | null; email: string; subject: string | null; created_at: string }[]
+    }),
+    refetchInterval: 30_000,
+  })
+  const unread = unreadQ.data?.unread ?? 0
+  const latest = unreadQ.data?.latest ?? []
 
   const currentLang = LANGUAGES.find(l => l.code === i18n.language) ?? LANGUAGES[0]
 
   const changeLanguage = (code: string) => {
     i18n.changeLanguage(code)
-    document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr'
     setLangOpen(false)
   }
 
@@ -40,16 +62,17 @@ export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
     }
     logout()
     navigate('/login', { replace: true })
-    toast.success('Déconnexion réussie')
+    toast.success(t('common.logout_ok'))
   }
 
   const initials = user
     ? `${user.first_name?.[0] ?? ''}${user.last_name?.[0] ?? ''}`.toUpperCase()
     : 'U'
 
+  const closeMenus = () => { setLangOpen(false); setUserOpen(false); setBellOpen(false) }
+
   return (
     <header className="gc-topbar">
-      {/* Page title */}
       <div className="gc-topbar-left">
         {(pageTitle || pageSubtitle) && (
           <div className="gc-topbar-title">
@@ -59,19 +82,61 @@ export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
         )}
       </div>
 
-      {/* Right actions */}
       <div className="gc-topbar-actions">
-        {/* Bell */}
-        <button className="gc-icon-btn">
-          <Bell size={15} />
-          <span className="gc-badge-dot" />
-        </button>
+        <div style={{ position: 'relative' }}>
+          <button
+            className="gc-icon-btn"
+            type="button"
+            aria-label="Notifications"
+            onClick={() => { setBellOpen(o => !o); setLangOpen(false); setUserOpen(false) }}
+          >
+            <Bell size={15} />
+            {unread > 0 && <span className="gc-badge-dot" />}
+          </button>
 
-        {/* Language */}
+          {bellOpen && (
+            <div className="gc-dropdown forms-notif-dropdown">
+              <div className="gc-dropdown-header">
+                <p>{t('forms.title')}</p>
+                <p>{unread > 0
+                  ? (unread > 1 ? t('forms.new_many', { count: unread }) : t('forms.new_one', { count: unread }))
+                  : t('forms.notif_none')}</p>
+              </div>
+              {latest.length === 0 ? (
+                <div className="forms-notif-empty">{t('forms.notif_empty')}</div>
+              ) : (
+                latest.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className="gc-dropdown-item forms-notif-item"
+                    onClick={() => {
+                      closeMenus()
+                      navigate('/formulaires')
+                    }}
+                  >
+                    <span className="forms-notif-type">{t(`forms.${item.type}`, { defaultValue: item.type })}</span>
+                    <span className="forms-notif-from">{item.name || item.email}</span>
+                    <span className="forms-notif-time">{relativeTime(item.created_at, t)}</span>
+                  </button>
+                ))
+              )}
+              <button
+                type="button"
+                className="gc-dropdown-item"
+                onClick={() => { closeMenus(); navigate('/formulaires') }}
+              >
+                <Inbox size={14} />
+                {t('forms.notif_all')}
+              </button>
+            </div>
+          )}
+        </div>
+
         <div style={{ position: 'relative' }}>
           <button
             className="gc-lang-btn"
-            onClick={() => { setLangOpen(o => !o); setUserOpen(false) }}
+            onClick={() => { setLangOpen(o => !o); setUserOpen(false); setBellOpen(false) }}
           >
             <Globe size={13} />
             <span>{currentLang.label}</span>
@@ -98,11 +163,10 @@ export default function TopBar({ pageTitle, pageSubtitle }: TopBarProps) {
 
         <div className="gc-topbar-divider" />
 
-        {/* User */}
         <div style={{ position: 'relative' }}>
           <button
             className={`gc-user-btn${userOpen ? ' open' : ''}`}
-            onClick={() => { setUserOpen(o => !o); setLangOpen(false) }}
+            onClick={() => { setUserOpen(o => !o); setLangOpen(false); setBellOpen(false) }}
           >
             <div className="gc-user-avatar">{initials}</div>
             <div className="gc-user-info">

@@ -1,14 +1,15 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   Languages, Plus, Save, Search, CheckCircle2,
-  AlertCircle, Globe, X,
+  AlertCircle, Globe, X, RefreshCw, Sparkles,
 } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { Modal } from '../../components/ui/Modal'
 import api from '../../api/client'
 import { applyLocaleOverrides } from '../../i18n/syncFromDB'
+import { autoTranslateMany } from '../../lib/autoTranslate'
 import toast from 'react-hot-toast'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -36,13 +37,19 @@ interface ApiResponse {
 // ─── Key groupings ────────────────────────────────────────────────────────────
 
 const GROUPS: { label: string; prefix: string | null }[] = [
-  { label: 'Site FI2T — Navigation', prefix: 'fi2t' },
-  { label: 'Navigation admin',       prefix: 'nav' },
-  { label: 'Groupes de menu',        prefix: 'navGroups' },
-  { label: 'Authentification',       prefix: 'login' },
-  { label: 'Tableau de bord',        prefix: 'dashboard' },
-  { label: 'Commun',                 prefix: 'common' },
-  { label: 'Général',                prefix: null },
+  { label: 'Site FI2T', prefix: 'fi2t' },
+  { label: 'Navigation admin', prefix: 'nav' },
+  { label: 'Groupes de menu', prefix: 'navGroups' },
+  { label: 'Authentification', prefix: 'login' },
+  { label: 'Tableau de bord', prefix: 'dashboard' },
+  { label: 'Pages CMS', prefix: 'pages' },
+  { label: 'Articles', prefix: 'articles' },
+  { label: 'Formulaires', prefix: 'forms' },
+  { label: 'Layout', prefix: 'layout' },
+  { label: 'Commun', prefix: 'common' },
+  { label: 'Traductions', prefix: 'translations' },
+  { label: 'Contenu', prefix: 'content' },
+  { label: 'Général', prefix: null },
 ]
 
 function groupFor(key: string): string {
@@ -66,14 +73,22 @@ export default function TranslationsPage() {
   const [newLocale, setNewLocale]       = useState({ code: '', name: '', flag: '', direction: 'ltr', copy_from: 'fr' })
   // Which group is open
   const [openGroups, setOpenGroups]     = useState<Record<string, boolean>>({
-    'Site FI2T — Navigation': true,
+    'Site FI2T': true,
     'Navigation admin': true,
     'Groupes de menu': true,
     Authentification: true,
     'Tableau de bord': true,
+    'Pages CMS': true,
+    Articles: true,
+    Formulaires: true,
+    Layout: true,
     Commun: true,
+    Traductions: true,
+    Contenu: true,
     Général: true,
   })
+  const autosaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const changesRef = useRef<Record<string, string>>({})
 
   const searchRef = useRef<HTMLInputElement>(null)
 
@@ -137,22 +152,52 @@ export default function TranslationsPage() {
 
   // ── Mutations ────────────────────────────────────────────────────────────────
 
+  const persistPending = async (pending: Record<string, string>, locale: string) => {
+    const entries = Object.entries(pending)
+    if (!entries.length) return
+    const payload = entries.map(([key, value]) => ({ locale, key, value }))
+    const extras: Array<{ locale: string; key: string; value: string }> = []
+    const others = locales.map(l => l.code).filter(c => c !== locale)
+    for (const other of others) {
+      const missing = entries.filter(([key, value]) => {
+        if (!value.trim()) return false
+        const current = allTranslations[other]?.[key]?.value ?? ''
+        return !current.trim()
+      })
+      if (!missing.length) continue
+      const translated = await autoTranslateMany(missing.map(([, v]) => v), locale, other)
+      missing.forEach(([key], i) => extras.push({ locale: other, key, value: translated[i] ?? '' }))
+    }
+    await api.post('/admin/translations/bulk', { changes: [...payload, ...extras] })
+    applyLocaleOverrides(locale, { ...targetMap, ...pending })
+  }
+
   const saveM = useMutation({
-    mutationFn: () => {
-      const payload = Object.entries(changes).map(([key, value]) => ({
-        locale: activeLang, key, value,
-      }))
-      return api.post('/admin/translations/bulk', { changes: payload })
-    },
+    mutationFn: () => persistPending(changes, activeLang),
     onSuccess: () => {
-      // Apply immediately to i18next for live effect
-      const merged = { ...targetMap, ...changes }
-      applyLocaleOverrides(activeLang, merged)
       setChanges({})
       qc.invalidateQueries({ queryKey: ['translations'] })
-      toast.success(`${Object.keys(changes).length} traduction(s) enregistrée(s)`)
+      toast.success('Traductions enregistrées (autres langues mises à jour)')
     },
     onError: () => toast.error('Erreur lors de la sauvegarde'),
+  })
+
+  const syncKeysM = useMutation({
+    mutationFn: () => api.post('/admin/translations/sync-keys'),
+    onSuccess: (res) => {
+      qc.invalidateQueries({ queryKey: ['translations'] })
+      toast.success(`${res.data.keys ?? 0} clés — ${res.data.added ?? 0} ajoutée(s)`)
+    },
+    onError: () => toast.error('Impossible de compléter les clés'),
+  })
+
+  const autoFillM = useMutation({
+    mutationFn: (locale: string) => api.post('/admin/translations/auto-fill', { locale }, { timeout: 180000 }),
+    onSuccess: (res) => {
+      qc.invalidateQueries({ queryKey: ['translations'] })
+      toast.success(res.data.message ?? 'Clés traduites')
+    },
+    onError: () => toast.error('Traduction automatique impossible'),
   })
 
   const addLocaleM = useMutation({
@@ -184,11 +229,30 @@ export default function TranslationsPage() {
   const setChange = (key: string, val: string) => {
     setChanges(p => {
       const next = { ...p, [key]: val }
-      // Remove from changes if value matches saved — no real change
       if (val === (targetMap[key] ?? '')) delete next[key]
+      changesRef.current = next
       return next
     })
   }
+
+  useEffect(() => {
+    changesRef.current = changes
+    if (!Object.keys(changes).length) return
+    if (autosaveTimer.current) clearTimeout(autosaveTimer.current)
+    autosaveTimer.current = setTimeout(() => {
+      const pending = { ...changesRef.current }
+      if (!Object.keys(pending).length) return
+      persistPending(pending, activeLang)
+        .then(() => {
+          setChanges({})
+          qc.invalidateQueries({ queryKey: ['translations'] })
+        })
+        .catch(() => toast.error('Enregistrement auto impossible'))
+    }, 900)
+    return () => {
+      if (autosaveTimer.current) clearTimeout(autosaveTimer.current)
+    }
+  }, [changes, activeLang])
 
   const discardChanges = () => setChanges({})
 
@@ -221,7 +285,25 @@ export default function TranslationsPage() {
             </p>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <Button
+            variant="secondary"
+            icon={<RefreshCw size={13} />}
+            loading={syncKeysM.isPending}
+            onClick={() => syncKeysM.mutate()}
+          >
+            Compléter les clés
+          </Button>
+          {activeLang !== 'fr' && (
+            <Button
+              variant="secondary"
+              icon={<Sparkles size={13} />}
+              loading={autoFillM.isPending}
+              onClick={() => autoFillM.mutate(activeLang)}
+            >
+              Traduire les vides
+            </Button>
+          )}
           {changeCount > 0 && (
             <Button variant="secondary" icon={<X size={13} />} onClick={discardChanges}>
               Annuler ({changeCount})
@@ -230,7 +312,7 @@ export default function TranslationsPage() {
           <Button
             icon={<Save size={14} />}
             loading={saveM.isPending}
-            disabled={changeCount === 0 || isFR}
+            disabled={changeCount === 0}
             onClick={() => saveM.mutate()}
           >
             Enregistrer {changeCount > 0 ? `(${changeCount})` : ''}
@@ -295,21 +377,16 @@ export default function TranslationsPage() {
         })}
       </div>
 
-      {/* Info banner for FR */}
-      {isFR && (
-        <div className="carousel-info-bar">
-          <span className="carousel-info-dot" />
-          Le français est la langue de référence. Pour modifier ses valeurs, éditez directement
-          les fichiers <code>fr.ts</code> puis relancez le seeder.
-        </div>
-      )}
+      <div className="carousel-info-bar">
+        <span className="carousel-info-dot" />
+        Enregistrement automatique en tapant. Les langues vides sont traduites instantanément.
+        Utilisez <strong>Compléter les clés</strong> puis <strong>Traduire les vides</strong> pour tout couvrir.
+      </div>
 
-      {/* Unsaved changes notice */}
-      {changeCount > 0 && !isFR && (
+      {changeCount > 0 && (
         <div className="tr-changes-bar">
           <Save size={13} />
-          {changeCount} modification{changeCount !== 1 ? 's' : ''} non sauvegardée{changeCount !== 1 ? 's' : ''}.
-          Cliquez sur <strong>Enregistrer</strong> pour appliquer.
+          {changeCount} modification{changeCount !== 1 ? 's' : ''} — enregistrement automatique…
         </div>
       )}
 
@@ -324,14 +401,13 @@ export default function TranslationsPage() {
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        {!isFR && (
-          <div className="tr-progress-wrap">
+        <div className="tr-progress-wrap">
             {(() => {
               const s   = stats[activeLang] ?? { total: 0, done: 0 }
               const pct = s.total ? Math.round((s.done / s.total) * 100) : 0
               return (
                 <>
-                  <span className="tr-progress-label">{s.done}/{s.total} traduits</span>
+                  <span className="tr-progress-label">{s.done}/{s.total} remplis</span>
                   <div className="tr-progress-bar">
                     <div className="tr-progress-fill" style={{ width: `${pct}%` }} />
                   </div>
@@ -340,7 +416,6 @@ export default function TranslationsPage() {
               )
             })()}
           </div>
-        )}
       </div>
 
       {/* Loading */}
@@ -375,15 +450,13 @@ export default function TranslationsPage() {
                     <thead>
                       <tr>
                         <th className="tr-th-key">Clé</th>
-                        <th className="tr-th-ref">
-                          🇫🇷 Référence (FR)
-                        </th>
                         {!isFR && (
-                          <th className="tr-th-edit">
-                            {locales.find(l => l.code === activeLang)?.flag ?? '🌐'}{' '}
-                            {locales.find(l => l.code === activeLang)?.name}
-                          </th>
+                          <th className="tr-th-ref">🇫🇷 Référence (FR)</th>
                         )}
+                        <th className="tr-th-edit">
+                          {locales.find(l => l.code === activeLang)?.flag ?? '🌐'}{' '}
+                          {locales.find(l => l.code === activeLang)?.name}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -391,39 +464,30 @@ export default function TranslationsPage() {
                         const refValue    = frMap[key] ?? ''
                         const editValue   = effective(key)
                         const isDirty     = key in changes
-                        const isEmpty     = !isFR && !editValue.trim()
+                        const isEmpty     = !editValue.trim()
 
                         return (
                           <tr
                             key={key}
                             className={`tr-row${isDirty ? ' dirty' : ''}${isEmpty ? ' empty' : ''}`}
                           >
-                            {/* Key */}
                             <td className="tr-td-key">
                               <code className="tr-key-code">{key}</code>
                             </td>
-
-                            {/* Reference (FR) — always readonly */}
-                            <td className="tr-td-ref">
-                              {isFR ? (
-                                <span className="tr-ref-value">{refValue}</span>
-                              ) : (
-                                <span className="tr-ref-value" dir="ltr">{refValue}</span>
-                              )}
-                            </td>
-
-                            {/* Edit cell (only when not on FR tab) */}
                             {!isFR && (
-                              <td className="tr-td-edit">
-                                <input
-                                  className={`tr-edit-input${isDirty ? ' changed' : ''}${isEmpty ? ' missing' : ''}`}
-                                  value={editValue}
-                                  placeholder={refValue}
-                                  dir={locales.find(l => l.code === activeLang)?.direction ?? 'ltr'}
-                                  onChange={e => setChange(key, e.target.value)}
-                                />
+                              <td className="tr-td-ref">
+                                <span className="tr-ref-value" dir="ltr">{refValue}</span>
                               </td>
                             )}
+                            <td className="tr-td-edit">
+                              <input
+                                className={`tr-edit-input${isDirty ? ' changed' : ''}${isEmpty ? ' missing' : ''}`}
+                                value={editValue}
+                                placeholder={refValue}
+                                dir={locales.find(l => l.code === activeLang)?.direction ?? 'ltr'}
+                                onChange={e => setChange(key, e.target.value)}
+                              />
+                            </td>
                           </tr>
                         )
                       })}

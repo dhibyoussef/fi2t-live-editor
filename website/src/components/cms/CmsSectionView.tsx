@@ -4,6 +4,7 @@ import EditableImage from '../../cms/EditableImage'
 import { useContent } from '../../cms/ContentProvider'
 import { useBuilderPreview } from '../../cms/BuilderPreviewProvider'
 import '../../styles/cms-dynamic.css'
+import { publicUrl } from '../../lib/publicUrl'
 
 export interface CmsSectionData {
   slug: string
@@ -55,7 +56,7 @@ export default function CmsSectionView({ page, section, index }: Props) {
       <SectionShell
         slug={section.slug}
         className="cms-dyn-hero"
-        style={slide ? { backgroundImage: `url(${slide})` } : undefined}
+        style={slide ? { backgroundImage: `url(${publicUrl(slide)})` } : undefined}
       >
         <div className="cms-dyn-hero__overlay" />
         <div className="container cms-dyn-hero__body">
@@ -114,7 +115,7 @@ export default function CmsSectionView({ page, section, index }: Props) {
           <div className="cms-dyn-cards">
             {cards.map((c, i) => (
               <article key={i} className="cms-dyn-card">
-                {c.image && <img src={c.image} alt={c.name} />}
+                {c.image && <img src={publicUrl(c.image)} alt={c.name} />}
                 <div className="cms-dyn-card__body">
                   {c.badge && <span className="cms-dyn-card__badge">{c.badge}</span>}
                   <h3>{c.name}</h3>
@@ -141,7 +142,7 @@ export default function CmsSectionView({ page, section, index }: Props) {
           <div className="cms-dyn-cards cms-dyn-cards--3">
             {cards.map((c, i) => (
               <article key={i} className="cms-dyn-card cms-dyn-card--overlay">
-                {c.image && <img src={c.image} alt={c.name} />}
+                {c.image && <img src={publicUrl(c.image)} alt={c.name} />}
                 <div className="cms-dyn-card__overlay"><h3>{c.name}</h3></div>
               </article>
             ))}
@@ -163,7 +164,7 @@ export default function CmsSectionView({ page, section, index }: Props) {
           <div className="cms-dyn-gallery">
             {photos.map((p, i) => (
               <div key={i} className={`cms-dyn-gallery__item${p.large ? ' cms-dyn-gallery__item--large' : ''}${p.wide ? ' cms-dyn-gallery__item--wide' : ''}`}>
-                <img src={p.image} alt="" loading="lazy" />
+                <img src={publicUrl(p.image)} alt="" loading="lazy" />
               </div>
             ))}
           </div>
@@ -187,7 +188,7 @@ export default function CmsSectionView({ page, section, index }: Props) {
               <blockquote key={i} className="cms-dyn-review">
                 <p>{r.text}</p>
                 <footer>
-                  {r.avatar && <img src={r.avatar} alt="" />}
+                  {r.avatar && <img src={publicUrl(r.avatar)} alt="" />}
                   <div><strong>{r.name}</strong><span>{r.origin}</span></div>
                 </footer>
               </blockquote>
@@ -210,7 +211,7 @@ export default function CmsSectionView({ page, section, index }: Props) {
           <div className="cms-dyn-cards">
             {items.map((item, i) => (
               <article key={i} className="cms-dyn-card">
-                {item.image && <img src={item.image} alt={item.title} />}
+                {item.image && <img src={publicUrl(item.image)} alt={item.title} />}
                 <div className="cms-dyn-card__body">
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>

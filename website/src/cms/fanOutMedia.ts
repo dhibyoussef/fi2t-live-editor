@@ -66,7 +66,11 @@ export async function fanOutListItemMedia(opts: {
     })
   }
 
-  await api.post('/admin/content/bulk', { blocks })
+  await api.post('/admin/content/bulk', {
+    blocks,
+    source_locale: blocks[0]?.locale,
+    translate: false,
+  })
   for (const locale of LOCALES) {
     invalidateCache(`content:${page}:${locale}`)
   }

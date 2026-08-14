@@ -65,6 +65,13 @@ export function mergeJsonListMedia(localeList: unknown[], frList: unknown[]): un
   if (!frList.length) return localeList
   if (!localeList.length) return frList
 
+  // String/number lists are copy, not media — keep the active locale (EN/AR).
+  const frAllPrimitive = frList.every((item) => !isPlainObject(item))
+  const localeAllPrimitive = localeList.every((item) => !isPlainObject(item))
+  if (frAllPrimitive || localeAllPrimitive) {
+    return localeList
+  }
+
   const bySlug = new Map<string, Record<string, unknown>>()
   for (const item of localeList) {
     if (!isPlainObject(item)) continue

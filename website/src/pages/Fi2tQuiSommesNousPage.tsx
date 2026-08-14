@@ -6,6 +6,7 @@ import EditableHeroBackground from '../cms/EditableHeroBackground'
 import EditableJsonList from '../cms/EditableJsonList'
 import EditToolbar from '../cms/EditToolbar'
 import { QUI_SOMMES_NOUS_DEFAULTS } from '../cms/defaults/qui-sommes-nous'
+import { publicUrl } from '../lib/publicUrl'
 
 type ValueItem = { title: string; desc: string; icon: string }
 type DiversifyItem = { title: string; desc: string }
@@ -165,7 +166,7 @@ function QuiSommesNousInner() {
             renderItem={(_item, _index, { editField }) => (
               <>
                 <span className="fi2t-diversify-list__check" aria-hidden="true">
-                  <img src="/images/check-circle.svg" alt="" />
+                  <img src={publicUrl('/images/check-circle.svg')} alt="" />
                 </span>
                 <div>
                   {editField('title', 'strong')}

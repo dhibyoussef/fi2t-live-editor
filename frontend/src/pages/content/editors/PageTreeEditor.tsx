@@ -72,8 +72,8 @@ function StringField({
     try {
       const data = await uploadImageFile(file, '/admin/content/upload-image')
       onChange(data.url)
-    } catch {
-      toast.error('Erreur lors du téléversement')
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : 'Erreur lors du téléversement')
     }
   }
 

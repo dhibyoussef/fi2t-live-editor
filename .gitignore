@@ -33,6 +33,9 @@ backend/scripts/
 website/scripts/
 website/audit-out/
 website/scripts/audit-out/
+deploy-upload/
+backend/fi2t/
+**/tmp-*
 
 # Local junk
 Untitled (1)/

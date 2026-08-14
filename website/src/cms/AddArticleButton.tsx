@@ -100,6 +100,8 @@ export default function AddArticleButton() {
               label: 'Accueil — Actualités',
             },
           ],
+          source_locale: lang,
+          translate: true,
         })
       } catch {
         /* Accueil sync is optional */

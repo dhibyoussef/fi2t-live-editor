@@ -204,7 +204,7 @@ class ContentBlockSeeder extends Seeder
             ['page' => 'contact', 'section' => 'info', 'key' => 'items', 'locale' => 'fr', 'type' => 'json', 'label' => 'Info — Coordonnées', 'value' => json_encode([
                 ['icon' => '/images/icon-address.svg', 'label' => 'Adresse', 'value' => "Rue du Lac Turkana, Les Berges du\nLac 1\n1053 Tunis, Tunisie"],
                 ['icon' => '/images/icon-phone.svg', 'label' => 'Téléphone', 'value' => '+216 29 710 507'],
-                ['icon' => '/images/icon-email.svg', 'label' => 'Email', 'value' => 'contact@fi2t.tn'],
+                ['icon' => '/images/icon-email.svg', 'label' => 'Email', 'value' => 'contact.fi2t@fit-tunisie.org'],
             ], JSON_UNESCAPED_UNICODE)],
             ['page' => 'contact', 'section' => 'form', 'key' => 'label_name', 'locale' => 'fr', 'type' => 'text', 'label' => 'Formulaire — Label nom', 'value' => 'Nom complet'],
             ['page' => 'contact', 'section' => 'form', 'key' => 'placeholder_name', 'locale' => 'fr', 'type' => 'text', 'label' => 'Formulaire — Placeholder nom', 'value' => 'Nom et prénom'],
@@ -257,8 +257,14 @@ class ContentBlockSeeder extends Seeder
             ['page' => 'global', 'section' => 'footer', 'key' => 'address', 'locale' => 'fr', 'type' => 'text', 'label' => 'Footer — Adresse', 'value' => "Résidence MERIEM - Appt N°2 -\nLes Berges du Lac 1\n1053 Tunis, Tunisie"],
             ['page' => 'global', 'section' => 'footer', 'key' => 'phone_1', 'locale' => 'fr', 'type' => 'text', 'label' => 'Footer — Téléphone 1', 'value' => '+216 29 710 507'],
             ['page' => 'global', 'section' => 'footer', 'key' => 'phone_2', 'locale' => 'fr', 'type' => 'text', 'label' => 'Footer — Téléphone 2', 'value' => '+216 24 940 022'],
-            ['page' => 'global', 'section' => 'footer', 'key' => 'email', 'locale' => 'fr', 'type' => 'text', 'label' => 'Footer — Email', 'value' => 'contact@fit-tunisie.org'],
+            ['page' => 'global', 'section' => 'footer', 'key' => 'email', 'locale' => 'fr', 'type' => 'text', 'label' => 'Footer — Email', 'value' => 'contact.fi2t@fit-tunisie.org'],
+            ['page' => 'global', 'section' => 'footer', 'key' => 'email', 'locale' => 'en', 'type' => 'text', 'label' => 'Footer — Email', 'value' => 'contact.fi2t@fit-tunisie.org'],
+            ['page' => 'global', 'section' => 'footer', 'key' => 'email', 'locale' => 'ar', 'type' => 'text', 'label' => 'Footer — Email', 'value' => 'contact.fi2t@fit-tunisie.org'],
             ['page' => 'global', 'section' => 'footer', 'key' => 'newsletter', 'locale' => 'fr', 'type' => 'text', 'label' => 'Footer — Newsletter', 'value' => 'Restez informé de nos dernières initiatives.'],
+            ['page' => 'global', 'section' => 'settings', 'key' => 'email', 'locale' => '_all', 'type' => 'text', 'label' => 'E-mail principal', 'value' => 'contact.fi2t@fit-tunisie.org'],
+            ['page' => 'global', 'section' => 'forms', 'key' => 'notify_contact', 'locale' => '_all', 'type' => 'text', 'label' => 'Contact — e-mail de réception', 'value' => 'contact.fi2t@fit-tunisie.org'],
+            ['page' => 'global', 'section' => 'forms', 'key' => 'notify_newsletter', 'locale' => '_all', 'type' => 'text', 'label' => 'Newsletter — e-mail de réception', 'value' => 'newsletter.fi2t@fit-tunisie.org'],
+            ['page' => 'global', 'section' => 'forms', 'key' => 'notify_adhesion', 'locale' => '_all', 'type' => 'text', 'label' => 'Adhésion — e-mail de réception', 'value' => 'adhesion.fi2t@fit-tunisie.org'],
         ];
 
         $groupementDefaults = require __DIR__ . '/data/groupement-blocks.php';

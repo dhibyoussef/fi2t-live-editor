@@ -13,6 +13,7 @@ import {
   GROUPEMENT_HERO_BY_SLUG,
 } from '../cms/defaults/groupements-index'
 import type { ChallengeItem, PillarCard, ProposalItem } from '../cms/defaults/groupement-shared'
+import { publicUrl } from '../lib/publicUrl'
 import { GROUPEMENT_PHOTO_HERO_BY_SLUG } from '../lib/groupement-tree'
 import GroupementCustomBody, { hasCustomGroupementLayout } from './groupements/GroupementCustomBody'
 
@@ -118,7 +119,7 @@ function GroupementEditableBody({
     <>
       {bakedHero ? (
         <section className="fi2t-page-hero fi2t-page-hero--groupement fi2t-page-hero--groupement-baked" data-cms-section="hero">
-          <img src={bakedHero} alt="" className="fi2t-page-hero__bg fi2t-page-hero__bg--baked" />
+          <img src={publicUrl(bakedHero)} alt="" className="fi2t-page-hero__bg fi2t-page-hero__bg--baked" />
           <div className="fi2t-page-hero__content">
             <h1 className="fi2t-page-hero__title fi2t-page-hero__title--sr">
               {defaults['hero.title'] ?? slug}

@@ -182,7 +182,7 @@ $enPages = [
         'info.items' => [
             ['icon' => '/images/icon-address.svg', 'label' => 'Address', 'value' => "Rue du Lac Turkana, Les Berges du Lac 1\n1053 Tunis, Tunisia"],
             ['icon' => '/images/icon-phone.svg', 'label' => 'Phone', 'value' => '+216 29 710 507'],
-            ['icon' => '/images/icon-email.svg', 'label' => 'Email', 'value' => 'contact@fi2t.tn'],
+            ['icon' => '/images/icon-email.svg', 'label' => 'Email', 'value' => 'contact.fi2t@fit-tunisie.org'],
         ],
         'form.label_name' => 'Full name',
         'form.placeholder_name' => 'First and last name',
@@ -339,7 +339,7 @@ $arPages = [
         'info.items' => [
             ['icon' => '/images/icon-address.svg', 'label' => 'العنوان', 'value' => "شارع بحيرة تركانا، ضفاف البحيرة 1\n1053 تونس، تونس"],
             ['icon' => '/images/icon-phone.svg', 'label' => 'الهاتف', 'value' => '+216 29 710 507'],
-            ['icon' => '/images/icon-email.svg', 'label' => 'البريد الإلكتروني', 'value' => 'contact@fi2t.tn'],
+            ['icon' => '/images/icon-email.svg', 'label' => 'البريد الإلكتروني', 'value' => 'contact.fi2t@fit-tunisie.org'],
         ],
         'form.label_name' => 'الاسم الكامل',
         'form.placeholder_name' => 'الاسم واللقب',

@@ -1,8 +1,8 @@
-import { useState, useMemo, useEffect } from 'react'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useState, useMemo, useEffect, useRef } from 'react'
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query'
 import {
   LayoutTemplate, Save, Plus, X, Search, ChevronDown, ChevronRight,
-  Image as ImageIcon, Type, Layers, Upload, Trash2, LayoutGrid, List,
+  Image as ImageIcon, Type, Layers, Upload, Trash2, LayoutGrid, List, Languages,
 } from 'lucide-react'
 import LocalizedJsonEditor from './editors/LocalizedJsonEditor'
 import PageSidebar, { type CmsPage } from './components/PageSidebar'
@@ -10,7 +10,6 @@ import AddPageModal from './components/AddPageModal'
 import PageBuilder, { type InsertTarget } from './builder/PageBuilder'
 import SiteMenuEditor from './SiteMenuEditor'
 import SiteSettingsEditor from './SiteSettingsEditor'
-import ArticlesPageEditor from './ArticlesPageEditor'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import api from '../../api/client'
@@ -129,10 +128,11 @@ export default function WebsiteContentPage() {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({})
   const [changes, setChanges] = useState<Record<string, PendingChange>>({})
   const [viewMode, setViewMode] = useState<'builder' | 'list'>('builder')
+  const [sourceLocale, setSourceLocale] = useState<'fr' | 'en' | 'ar'>('fr')
   const [selectedSection, setSelectedSection] = useState<string | null>(null)
   const [insertTarget, setInsertTarget] = useState<InsertTarget>(null)
   const [addPageModal, setAddPageModal] = useState(false)
-  const [globalTab, setGlobalTab] = useState<'settings' | 'menu'>('settings')
+  const [globalTab, setGlobalTab] = useState<'settings' | 'forms' | 'menu'>('settings')
   const [pageSettingsOpen, setPageSettingsOpen] = useState(false)
   const [pageSettings, setPageSettings] = useState({
     status: 'published' as 'draft' | 'published',
@@ -141,14 +141,19 @@ export default function WebsiteContentPage() {
     meta_description: '',
   })
 
-  const matrixPage = activePage === 'articles' ? 'actualites' : activePage
+  const matrixPage = activePage
 
-  const { data, isLoading, dataUpdatedAt } = useQuery<MatrixResponse>({
+  const { data, isLoading, isFetching, dataUpdatedAt } = useQuery<MatrixResponse>({
     queryKey: ['content-matrix', matrixPage],
     queryFn: () => api.get('/admin/content/matrix', { params: { page: matrixPage } }).then(r => r.data),
-    staleTime: 0,
-    refetchOnWindowFocus: true,
+    staleTime: 30_000,
+    placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
   })
+
+  const matrixCache = useRef<Record<string, MatrixResponse>>({})
+  if (data?.page) matrixCache.current[data.page] = data
+  const currentMatrix = matrixCache.current[activePage] ?? (data?.page === activePage ? data : undefined)
 
   // Sync with website edit mode (focus + polling — apps run on different ports)
   useEffect(() => {
@@ -158,7 +163,7 @@ export default function WebsiteContentPage() {
     }
     const unsub = onContentUpdated((msg) => {
       if (msg.source === 'dashboard') return
-      if (msg.page === matrixPage || msg.page === 'actualites' || msg.page === 'home') refresh(true)
+      if (msg.page === matrixPage || msg.page === 'home') refresh(true)
     })
     const onVisible = () => {
       if (document.visibilityState === 'visible') refresh(false)
@@ -167,7 +172,7 @@ export default function WebsiteContentPage() {
     window.addEventListener('focus', onVisible)
     const poll = setInterval(() => {
       if (document.visibilityState === 'visible') refresh(false)
-    }, 12000)
+    }, 60000)
     return () => {
       unsub()
       document.removeEventListener('visibilitychange', onVisible)
@@ -176,8 +181,10 @@ export default function WebsiteContentPage() {
     }
   }, [matrixPage, qc])
 
+  const display = currentMatrix ?? data
+
   const cmsPages: CmsPage[] = useMemo(() => {
-    const raw = data?.pages ?? []
+    const raw = display?.pages ?? data?.pages ?? []
     let pages: CmsPage[]
     if (raw.length && typeof raw[0] === 'object') {
       pages = [...(raw as CmsPage[])]
@@ -191,55 +198,22 @@ export default function WebsiteContentPage() {
         sort_order: 0,
       }))
     }
-    // Virtual system page — articles share one standard structure (like Global).
-    if (!pages.some(p => p.slug === 'articles')) {
-      const afterActualites = pages.findIndex(p => p.slug === 'actualites')
-      const entry: CmsPage = {
-        slug: 'articles',
-        title: 'Articles',
-        status: 'published',
-        template: 'global',
-        is_system: true,
-        sort_order: (pages.find(p => p.slug === 'actualites')?.sort_order ?? 50) + 1,
-      }
-      if (afterActualites >= 0) pages.splice(afterActualites + 1, 0, entry)
-      else pages.push(entry)
-    }
-    return pages
-  }, [data?.pages])
+    return pages.filter(p => p.slug !== 'articles')
+  }, [display?.pages, data?.pages])
 
-  const activePageMeta =
-    activePage === 'articles'
-      ? {
-          slug: 'articles',
-          title: 'Articles',
-          status: 'published' as const,
-          template: 'global' as const,
-          is_system: true,
-          sort_order: 0,
-        }
-      : (data?.page_meta ?? cmsPages.find(p => p.slug === activePage))
-
-  const articlePendingByLocale = useMemo(() => {
-    const out: Partial<Record<'fr' | 'en' | 'ar', string>> = {}
-    for (const loc of ['fr', 'en', 'ar'] as const) {
-      const id = `grid.items.${loc}`
-      if (changes[id]?.page === 'actualites') out[loc] = changes[id].value
-    }
-    return out
-  }, [changes])
-  const sections = data?.sections ?? []
+  const activePageMeta = currentMatrix?.page_meta ?? cmsPages.find(p => p.slug === activePage)
+  const sections = currentMatrix?.sections ?? []
 
   useEffect(() => {
-    if (data?.page_meta) {
+    if (currentMatrix?.page_meta) {
       setPageSettings({
-        status: data.page_meta.status ?? 'published',
-        template: data.page_meta.template ?? 'default',
-        meta_title: data.page_meta.meta_title ?? '',
-        meta_description: data.page_meta.meta_description ?? '',
+        status: currentMatrix.page_meta.status ?? 'published',
+        template: currentMatrix.page_meta.template ?? 'default',
+        meta_title: currentMatrix.page_meta.meta_title ?? '',
+        meta_description: currentMatrix.page_meta.meta_description ?? '',
       })
     }
-  }, [data?.page_meta])
+  }, [currentMatrix?.page_meta])
 
   const effectiveValue = (section: string, block: BlockRow, locale: string): string => {
     const id = `${section}.${block.key}.${locale}`
@@ -284,6 +258,9 @@ export default function WebsiteContentPage() {
   }
 
   const setValueChange = (section: string, block: BlockRow, locale: string, value: string) => {
+    if (locale === 'fr' || locale === 'en' || locale === 'ar') {
+      setSourceLocale(locale)
+    }
     setChange({
       page: activePage,
       section,
@@ -298,15 +275,32 @@ export default function WebsiteContentPage() {
   const changeCount = Object.keys(changes).length
 
   const saveM = useMutation({
-    mutationFn: () => api.post('/admin/content/bulk', { blocks: Object.values(changes) }),
-    onSuccess: () => {
+    mutationFn: () => api.post('/admin/content/bulk', {
+      blocks: Object.values(changes),
+      source_locale: sourceLocale,
+      translate: true,
+    }, { timeout: 120000 }),
+    onSuccess: async () => {
       setChanges({})
       qc.invalidateQueries({ queryKey: ['content-matrix', matrixPage] })
-      qc.invalidateQueries({ queryKey: ['content-matrix', 'actualites'] })
-      notifyContentSaved(activePage === 'articles' ? 'actualites' : activePage, 'dashboard')
-      toast.success('Contenu du site enregistré')
+      notifyContentSaved(activePage, 'dashboard')
+      toast.success('Enregistré — appliqué à FR / EN / AR')
     },
     onError: () => toast.error('Erreur lors de la sauvegarde'),
+  })
+
+  const syncLocalesM = useMutation({
+    mutationFn: () => api.post('/admin/content/sync-locales', {
+      page: activePage,
+      translate: true,
+      deep: true,
+      source_locale: sourceLocale,
+    }, { timeout: 180000 }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['content-matrix', matrixPage] })
+      toast.success('Structure alignée et textes traduits (FR / EN / AR)')
+    },
+    onError: () => toast.error('Impossible d’aligner les langues'),
   })
 
   const createPageM = useMutation({
@@ -475,17 +469,17 @@ export default function WebsiteContentPage() {
           <div>
             <p className="gc-page-header-title">{activePageMeta?.title ?? 'Contenu du site'}</p>
             <p className="gc-page-header-sub">
-              {activePage === 'articles'
-                ? 'Pages articles — structure standard (Bannière · Carte · En-tête · Corps · Source)'
-                : (
-                  <>
-                    /{activePage}
-                    {activePageMeta?.status === 'draft' && <span className="wc-draft-badge"> Brouillon</span>}
-                    {dataUpdatedAt > 0 && (
-                      <span className="wc-sync-hint"> — synchronisé avec le mode édition</span>
-                    )}
-                  </>
-                )}
+              /{activePage}
+              {activePage === 'actualites' && (
+                <span className="wc-sync-hint"> — page liste uniquement · articles → onglet Articles</span>
+              )}
+              {activePageMeta?.status === 'draft' && <span className="wc-draft-badge"> Brouillon</span>}
+              {isFetching && currentMatrix && (
+                <span className="wc-sync-hint"> — mise à jour…</span>
+              )}
+              {dataUpdatedAt > 0 && !isFetching && (
+                <span className="wc-sync-hint"> — synchronisé avec le mode édition</span>
+              )}
             </p>
           </div>
         </div>
@@ -493,6 +487,16 @@ export default function WebsiteContentPage() {
           {changeCount > 0 && (
             <Button variant="secondary" icon={<X size={13} />} onClick={() => setChanges({})}>
               Annuler ({changeCount})
+            </Button>
+          )}
+          {activePage !== 'global' && (
+            <Button
+              variant="secondary"
+              icon={<Languages size={14} />}
+              loading={syncLocalesM.isPending}
+              onClick={() => syncLocalesM.mutate()}
+            >
+              Aligner FR / EN / AR
             </Button>
           )}
           <Button
@@ -503,12 +507,10 @@ export default function WebsiteContentPage() {
           >
             Enregistrer {changeCount > 0 ? `(${changeCount})` : ''}
           </Button>
-          {activePage !== 'articles' && (
-            <Button variant="secondary" onClick={() => setPageSettingsOpen(o => !o)}>
-              Paramètres
-            </Button>
-          )}
-          {activePage !== 'articles' && activePage !== 'global' && (
+          <Button variant="secondary" onClick={() => setPageSettingsOpen(o => !o)}>
+            Paramètres
+          </Button>
+          {activePage !== 'global' && (
             <div className="wc-view-toggle">
               <button type="button" className={viewMode === 'builder' ? 'active' : ''} onClick={() => setViewMode('builder')}>
                 <LayoutGrid size={14} /> Éditeur visuel
@@ -588,6 +590,13 @@ export default function WebsiteContentPage() {
             </button>
             <button
               type="button"
+              className={globalTab === 'forms' ? 'active' : ''}
+              onClick={() => setGlobalTab('forms')}
+            >
+              Formulaires / e-mails
+            </button>
+            <button
+              type="button"
               className={globalTab === 'menu' ? 'active' : ''}
               onClick={() => setGlobalTab('menu')}
             >
@@ -595,35 +604,18 @@ export default function WebsiteContentPage() {
             </button>
           </div>
           {globalTab === 'settings' && <SiteSettingsEditor />}
+          {globalTab === 'forms' && <SiteSettingsEditor initialTab="forms" />}
           {globalTab === 'menu' && <SiteMenuEditor />}
         </>
       )}
 
-      {activePage === 'articles' && (
-        <ArticlesPageEditor
-          preferredLocale="fr"
-          pendingByLocale={articlePendingByLocale}
-          onItemsChange={(locale, json) => {
-            setChange({
-              page: 'actualites',
-              section: 'grid',
-              key: 'items',
-              locale,
-              type: 'json',
-              value: json,
-              label: 'Actualités — Cartes',
-            })
-          }}
-        />
-      )}
-
-      {isLoading && viewMode === 'builder' && activePage !== 'global' && activePage !== 'articles' && (
+      {viewMode === 'builder' && activePage !== 'global' && !currentMatrix && isLoading && (
         <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
           <div className="gc-spinner" />
         </div>
       )}
 
-      {!isLoading && viewMode === 'builder' && activePage !== 'global' && activePage !== 'articles' && (
+      {viewMode === 'builder' && activePage !== 'global' && currentMatrix && (
         <PageBuilder
           pageSlug={activePage}
           pageTitle={activePageMeta?.title ?? activePage}
@@ -674,7 +666,7 @@ export default function WebsiteContentPage() {
         />
       )}
 
-      {viewMode === 'list' && activePage !== 'global' && activePage !== 'articles' && (
+      {viewMode === 'list' && activePage !== 'global' && (
       <>
       <div className="wc-toolbar">
         <div style={{ flex: 1, maxWidth: 360 }}>
@@ -687,13 +679,13 @@ export default function WebsiteContentPage() {
         </div>
       </div>
 
-      {isLoading && (
+      {!currentMatrix && isLoading && (
         <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
           <div className="gc-spinner" />
         </div>
       )}
 
-      {!isLoading && filteredSections.length === 0 && (
+      {currentMatrix && filteredSections.length === 0 && (
         <div className="wc-empty">
           <LayoutTemplate size={32} />
           <p>Aucun contenu pour cette page.</p>
@@ -703,7 +695,7 @@ export default function WebsiteContentPage() {
         </div>
       )}
 
-      {!isLoading && (
+      {currentMatrix && filteredSections.length > 0 && (
         <div className="wc-sections">
           {filteredSections.map(sec => {
             const open = isSectionOpen(sec.name)

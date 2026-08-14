@@ -84,26 +84,3 @@ export default function Fi2tPagination({
     </nav>
   )
 }
-
-/** Repeat items to fill `minPages` of `perPage` (Figma demo grids). Short real lists stay as-is. */
-export function padItemsForPages<T extends { slug?: string }>(
-  items: T[],
-  perPage: number,
-  minPages = 6,
-): T[] {
-  if (items.length === 0 || items.length < perPage) return items
-  const target = perPage * minPages
-  if (items.length >= target) return items
-  const out = [...items]
-  let n = 0
-  while (out.length < target) {
-    const src = items[n % items.length]
-    n += 1
-    const pageNum = Math.floor(out.length / perPage) + 1
-    out.push({
-      ...src,
-      ...(src.slug != null ? { slug: `${src.slug}-p${pageNum}-${out.length}` } : null),
-    })
-  }
-  return out
-}

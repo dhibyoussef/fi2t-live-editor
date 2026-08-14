@@ -20,6 +20,7 @@ import EditableJsonList from '../../cms/EditableJsonList'
 import { useContent, useContentBlock } from '../../cms/ContentProvider'
 import { useEditMode } from '../../cms/EditModeProvider'
 import { GROUPEMENT_PHOTO_HERO_BY_SLUG, getHub, getParentHub } from '../../lib/groupement-tree'
+import { publicUrl } from '../../lib/publicUrl'
 
 /** Keeps the Figma 1440 Diagnostic stage visually identical at any desktop width. */
 function CultDiagStage({ children }: { children: ReactNode }) {
@@ -490,7 +491,7 @@ function HubBody({ page, slug }: { page: CustomGroupementPage; slug: string }) {
             <>
               <span className="fi2t-gl-tree-pillar__icon" aria-hidden>
                 {item.icon?.startsWith('/') ? (
-                  <img src={item.icon} alt="" />
+                  <img src={publicUrl(item.icon)} alt="" />
                 ) : (
                   <GlIcon name={item.icon} />
                 )}
@@ -736,7 +737,7 @@ function SegmentBody({ page, slug }: { page: CustomGroupementPage; slug: string 
                   'fi2t-gl-tree-pillar__icon-btn',
                   item.title,
                   item.icon?.startsWith('/') ? (
-                    <img src={item.icon} alt="" />
+                    <img src={publicUrl(item.icon)} alt="" />
                   ) : (
                     <GlIcon name={item.icon} />
                   ),
@@ -1156,7 +1157,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
                 item.title,
                 <img
                   className="fi2t-gl-sen-card__icon"
-                  src={`/images/groupement-media/senior-pourquoi-${i + 1}.png?v=2`}
+                  src={publicUrl(`/images/groupement-media/senior-pourquoi-${i + 1}.png?v=2`)}
                   alt=""
                   width={48}
                   height={48}
@@ -1208,7 +1209,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
                 item.title,
                 <img
                   className="fi2t-gl-sen-services__icon"
-                  src={`/images/groupement-media/senior-svc-${i + 1}.png?v=3`}
+                  src={publicUrl(`/images/groupement-media/senior-svc-${i + 1}.png?v=3`)}
                   alt=""
                   width={30}
                   height={30}
@@ -1259,7 +1260,7 @@ function SeniorBody({ page, slug }: { page: CustomGroupementPage; slug: string }
                 item.title,
                 <img
                   className="fi2t-gl-sen-defis-card__icon"
-                  src={`/images/groupement-media/senior-defis-${i + 1}.png?v=2`}
+                  src={publicUrl(`/images/groupement-media/senior-defis-${i + 1}.png?v=2`)}
                   alt=""
                   width={40}
                   height={40}
@@ -1391,7 +1392,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
             <>
               <img
                 className="fi2t-gl-therm-stat__icon"
-                src={`/images/groupement-media/thermal-pot-${i + 1}.png?v=2`}
+                src={publicUrl(`/images/groupement-media/thermal-pot-${i + 1}.png?v=2`)}
                 alt=""
                 width={48}
                 height={48}
@@ -1511,7 +1512,7 @@ function ThermalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
                 item.title,
                 <img
                   className="fi2t-gl-therm-defis-item__icon"
-                  src={`/images/groupement-media/thermal-defis-${i + 1}.png?v=1`}
+                  src={publicUrl(`/images/groupement-media/thermal-defis-${i + 1}.png?v=1`)}
                   alt=""
                 />,
               )}
@@ -1626,7 +1627,7 @@ function MedicalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
                 item.title,
                 <img
                   className="fi2t-gl-med-adv__icon"
-                  src={`/images/groupement-media/medical-adv-${i + 1}.png?v=4`}
+                  src={publicUrl(`/images/groupement-media/medical-adv-${i + 1}.png?v=4`)}
                   alt=""
                 />,
               )}
@@ -1741,7 +1742,7 @@ function MedicalBody({ page, slug }: { page: CustomGroupementPage; slug: string 
                 item.title,
                 <img
                   className="fi2t-gl-med-diag__icon"
-                  src={`/images/groupement-media/medical-diag-${i + 1}.png?v=3`}
+                  src={publicUrl(`/images/groupement-media/medical-diag-${i + 1}.png?v=3`)}
                   alt=""
                   width={56}
                   height={56}
@@ -1877,7 +1878,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
           itemClassName={(_item, i) => `fi2t-gl-av-wealth__photo fi2t-gl-av-wealth__photo--${i + 1}`}
           renderItem={(item, _i, { editImage }) =>
             editImage('img', 'fi2t-gl-av-wealth__photo-img', 'Photo aventure', (
-              <img src={item.img} alt="" className="fi2t-gl-av-wealth__photo-img" />
+              <img src={publicUrl(item.img)} alt="" className="fi2t-gl-av-wealth__photo-img" />
             ))
           }
         />
@@ -1967,7 +1968,7 @@ function AventureBody({ page, slug }: { page: CustomGroupementPage; slug: string
                 item.title,
                 <img
                   className="fi2t-gl-av-freins__icon"
-                  src={`/images/groupement-media/aventure-freins-${i + 1}.png?v=2`}
+                  src={publicUrl(`/images/groupement-media/aventure-freins-${i + 1}.png?v=2`)}
                   alt=""
                   width={64}
                   height={64}
@@ -2171,7 +2172,7 @@ function AffaireBody({ page, slug }: { page: CustomGroupementPage; slug: string 
                 item.title,
                 <img
                   className="fi2t-gl-aff-atouts__icon"
-                  src={`/images/groupement-media/affaire-atout-${i + 1}.png?v=2`}
+                  src={publicUrl(`/images/groupement-media/affaire-atout-${i + 1}.png?v=2`)}
                   alt=""
                 />,
               )}
@@ -2224,7 +2225,7 @@ function AffaireBody({ page, slug }: { page: CustomGroupementPage; slug: string 
                   item.title,
                   <img
                     className="fi2t-gl-aff-diag__icon"
-                    src={`/images/groupement-media/affaire-diag-${i + 1}.png?v=2`}
+                    src={publicUrl(`/images/groupement-media/affaire-diag-${i + 1}.png?v=2`)}
                     alt=""
                   />,
                 )}
@@ -2274,7 +2275,7 @@ function AffaireBody({ page, slug }: { page: CustomGroupementPage; slug: string 
               {editField('title', 'h3')}
               {editField('desc', 'p')}
               <div className="fi2t-gl-aff-axe__link">
-                <img src="/images/groupement-media/affaire-check.png?v=2" alt="" width={19} height={19} />
+                <img src={publicUrl('/images/groupement-media/affaire-check.png?v=2')} alt="" width={19} height={19} />
                 <em>{editField('link', 'span')}</em>
               </div>
             </>
@@ -2358,7 +2359,7 @@ function GolfBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
                 item.label,
                 <img
                   className="fi2t-gl-golf-pot__icon"
-                  src={`/images/groupement-media/golf-pot-${i + 1}.png?v=1`}
+                  src={publicUrl(`/images/groupement-media/golf-pot-${i + 1}.png?v=1`)}
                   alt=""
                 />,
               )}
@@ -2368,7 +2369,7 @@ function GolfBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
           )}
         />
         <aside className="fi2t-gl-golf-banner">
-          <img src="/images/groupement-media/golf-info.png?v=1" alt="" width={30} height={30} />
+          <img src={publicUrl('/images/groupement-media/golf-info.png?v=1')} alt="" width={30} height={30} />
           {isEditMode ? (
             <EditableText
               page={slug}
@@ -2489,7 +2490,7 @@ function GolfBody({ page, slug }: { page: CustomGroupementPage; slug: string }) 
                 item.title,
                 <img
                   className="fi2t-gl-golf-defis__icon"
-                  src={`/images/groupement-media/golf-def-${i + 1}.png?v=2`}
+                  src={publicUrl(`/images/groupement-media/golf-def-${i + 1}.png?v=2`)}
                   alt=""
                 />,
               )}
@@ -2595,7 +2596,7 @@ function PlaisanceBody({ page, slug }: { page: CustomGroupementPage; slug: strin
                     item.title,
                     <img
                       className="fi2t-gl-plais-impact__icon"
-                      src={`/images/groupement-media/plaisance-impact-glyph-${i + 1}.png?v=2`}
+                      src={publicUrl(`/images/groupement-media/plaisance-impact-glyph-${i + 1}.png?v=2`)}
                       alt=""
                     />,
                   )}
@@ -2685,7 +2686,7 @@ function PlaisanceBody({ page, slug }: { page: CustomGroupementPage; slug: strin
                 item.title,
                 <img
                   className="fi2t-gl-plais-probs__icon"
-                  src={`/images/groupement-media/plaisance-prob-${i + 1}.png?v=2`}
+                  src={publicUrl(`/images/groupement-media/plaisance-prob-${i + 1}.png?v=2`)}
                   alt=""
                 />,
               )}
@@ -3242,7 +3243,7 @@ function CulturelBody({ page, slug }: { page: CustomGroupementPage; slug: string
           renderItem={(item, _index, { editField }) => (
             <>
               <span className="fi2t-gl-stat__icon">
-                {item.icon?.startsWith('/') ? <img src={item.icon} alt="" /> : <GlIcon name={item.icon} />}
+                {item.icon?.startsWith('/') ? <img src={publicUrl(item.icon)} alt="" /> : <GlIcon name={item.icon} />}
               </span>
               <div className="fi2t-gl-stat__value">{editField('value', 'span')}</div>
               <div className="fi2t-gl-stat__label">{editField('label', 'span')}</div>
@@ -3279,7 +3280,7 @@ function CulturelBody({ page, slug }: { page: CustomGroupementPage; slug: string
             renderItem={(item, _index, { editField }) => (
               <>
                 <span className="fi2t-gl-card__icon">
-                  {item.icon?.startsWith('/') ? <img src={item.icon} alt="" /> : <GlIcon name={item.icon} />}
+                  {item.icon?.startsWith('/') ? <img src={publicUrl(item.icon)} alt="" /> : <GlIcon name={item.icon} />}
                 </span>
                 {editField('title', 'h3')}
                 {editField('desc', 'p')}

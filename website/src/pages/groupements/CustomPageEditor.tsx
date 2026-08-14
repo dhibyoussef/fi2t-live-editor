@@ -20,6 +20,7 @@ import {
   type SchemaField,
   type SchemaSection,
 } from '../../cms/defaults/groupement-page-schema'
+import { publicUrl } from '../../lib/publicUrl'
 
 type Json = string | number | boolean | null | Json[] | { [k: string]: Json }
 
@@ -56,7 +57,7 @@ function Leaf({
       <label className="glx-field">
         <span className="glx-field__label">{label}</span>
         <div className="glx-image">
-          {value ? <img src={value} alt="" /> : <span className="glx-image__empty">—</span>}
+          {value ? <img src={publicUrl(value)} alt="" /> : <span className="glx-image__empty">—</span>}
           <div className="glx-image__side">
             <input className="glx-input" value={value} onChange={(e) => onChange(e.target.value)} />
             <label className="glx-btn glx-btn--ghost">
@@ -72,8 +73,8 @@ function Leaf({
                   setBusy(true)
                   try {
                     onChange(await uploadImage(f))
-                  } catch {
-                    alert('Erreur lors du téléversement.')
+                  } catch (err) {
+                    alert(err instanceof Error ? err.message : 'Erreur lors du téléversement.')
                   } finally {
                     setBusy(false)
                   }

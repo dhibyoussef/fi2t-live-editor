@@ -51,17 +51,21 @@ function ContactInner() {
     setSending(true)
     setSendError('')
     setSent(false)
-    const fd = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const fd = new FormData(form)
     try {
       await api.post('/forms/contact', {
         name: String(fd.get('name') || ''),
         email: String(fd.get('email') || ''),
         subject: String(fd.get('subject') || ''),
         message: String(fd.get('message') || ''),
+        website: String(fd.get('website') || ''),
       })
+      setSendError('')
       setSent(true)
-      e.currentTarget.reset()
+      form.reset()
     } catch {
+      setSent(false)
       setSendError(get('form.error', CONTACT_DEFAULTS['form.error'] ?? 'Impossible d’envoyer le message pour le moment. Réessayez plus tard.'))
     } finally {
       setSending(false)
@@ -126,8 +130,14 @@ function ContactInner() {
               const label = (item.label || '').toLowerCase()
               const raw = (item.value || '').replace(/\s+/g, ' ').trim()
               const tel = raw.replace(/[^\d+]/g, '')
-              const isEmail = label.includes('email') || label.includes('mail') || /@/.test(raw)
-              const isPhone = label.includes('téléphone') || label.includes('telephone') || label.includes('phone') || label.includes('tél')
+              const isEmail = label.includes('email') || label.includes('mail') || label.includes('بريد') || /@/.test(raw)
+              const isPhone =
+                label.includes('téléphone') ||
+                label.includes('telephone') ||
+                label.includes('phone') ||
+                label.includes('tél') ||
+                label.includes('هاتف') ||
+                /^\+\d/.test(raw)
               const href = isEmail
                 ? `mailto:${raw}`
                 : isPhone
@@ -144,7 +154,7 @@ function ContactInner() {
                     {editable || !href ? (
                       editField('value', 'p')
                     ) : (
-                      <p>
+                      <p dir={isPhone || isEmail ? 'ltr' : undefined}>
                         <a className="fi2t-contact__link" href={href}>
                           {item.value}
                         </a>
@@ -231,17 +241,16 @@ function ContactInner() {
               />
             </label>
 
+            <label className="fi2t-page-hero__title--sr" aria-hidden="true">
+              Site web
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+            </label>
+
             <button type="submit" className="fi2t-contact__submit" disabled={sending || isEditMode}>
               <EditableText page="contact" blockKey="form.submit" as="span" fallback="Envoyer" />
             </button>
 
-            {sendError && (
-              <p className="fi2t-contact__success" role="alert" style={{ color: '#b42318' }}>
-                {sendError}
-              </p>
-            )}
-
-            {sent && (
+            {sent ? (
               <p className="fi2t-contact__success" role="status">
                 <EditableText
                   page="contact"
@@ -250,7 +259,11 @@ function ContactInner() {
                   fallback="Merci — votre message a bien été envoyé."
                 />
               </p>
-            )}
+            ) : sendError ? (
+              <p className="fi2t-contact__success" role="alert" style={{ color: '#b42318' }}>
+                {sendError}
+              </p>
+            ) : null}
           </div>
         </form>
       </section>

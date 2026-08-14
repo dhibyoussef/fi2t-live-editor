@@ -14,6 +14,7 @@ import {
   parseArticles,
   type ArticleItem,
 } from '../lib/articles'
+import { publicUrl } from '../lib/publicUrl'
 
 /** Figma Article.png reference slug — baked hero (photo + title + accent) for FR only. */
 const BAKED_HERO_SLUG = 'trois-questions-walid-tritar'
@@ -46,7 +47,7 @@ function ArticleHero({ article }: { article: ArticleItem }) {
     >
       {bakeHero ? (
         <img
-          src="/images/article-hero-walid.jpg?v=2"
+          src={publicUrl('/images/article-hero-walid.jpg?v=2')}
           alt=""
           className="fi2t-page-hero__bg fi2t-page-hero__bg--baked"
         />
@@ -247,7 +248,7 @@ function ArticleBody({ article }: { article: ArticleItem }) {
         style={
           bakeFeatured
             ? ({
-                ['--article-feat-face' as string]: "url('/images/article-featured-walid.png?v=2')",
+                ['--article-feat-face' as string]: `url('${publicUrl('/images/article-featured-walid.png?v=2')}')`,
               } as CSSProperties)
             : undefined
         }

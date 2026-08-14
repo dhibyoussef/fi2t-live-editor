@@ -1,3 +1,4 @@
+import { apiBaseUrl } from './apiBase'
 import { compressImage } from './compressImage'
 
 export type UploadEndpoint = '/admin/carousels/upload-image' | '/admin/content/upload-image'
@@ -9,7 +10,7 @@ function uploadFormData(
 ): Promise<{ url: string; path?: string }> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', `/api${endpoint}`)
+    xhr.open('POST', `${apiBaseUrl()}${endpoint}`)
     xhr.setRequestHeader('Accept', 'application/json')
 
     const token = localStorage.getItem('gc_token')

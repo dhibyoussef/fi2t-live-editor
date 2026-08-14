@@ -5,6 +5,7 @@ import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { apiClient } from '../../api/client'
 import { useAuthStore } from '../../store/authStore'
 import toast from 'react-hot-toast'
+import { adminAsset } from '../../lib/adminAsset'
 
 export default function LoginPage() {
   const { t } = useTranslation()
@@ -48,7 +49,7 @@ export default function LoginPage() {
 
         <div className="login-brand-logo animate-fade-in">
           <div className="login-logo-icon">
-            <img src="/logo-white.png" alt="FI2T" />
+            <img src={adminAsset('logo-white.png')} alt="FI2T" />
           </div>
           <div>
             <p className="login-logo-name">FI2T</p>
@@ -76,7 +77,7 @@ export default function LoginPage() {
       <div className="login-form-panel">
         <div className="login-mobile-logo">
           <div className="login-logo-icon login-logo-icon-sm">
-            <img src="/logo.png" alt="FI2T" />
+            <img src={adminAsset('logo.png')} alt="FI2T" />
           </div>
           <span className="login-mobile-brand">FI2T</span>
         </div>

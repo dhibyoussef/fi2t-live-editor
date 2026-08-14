@@ -9,6 +9,7 @@ import EditToolbar from '../cms/EditToolbar'
 import { useEditMode } from '../cms/EditModeProvider'
 import { GROUPEMENTS, type GroupementItem } from '../lib/groupements'
 import { ORGANISATION_DEFAULTS } from '../cms/defaults/organisation'
+import { publicUrl } from '../lib/publicUrl'
 
 type BoardMember = { name: string; role: string; image: string }
 type StaffMember = { initials: string; name: string; role: string }
@@ -134,7 +135,7 @@ function OrganisationInner() {
                 {editImage('image', 'fi2t-org-member__photo-img', item.name || '')}
                 {!item.image && (
                   <span className="fi2t-org-member__placeholder" aria-hidden="true">
-                    <img src="/images/org-person-placeholder.svg" alt="" />
+                    <img src={publicUrl('/images/org-person-placeholder.svg')} alt="" />
                   </span>
                 )}
               </div>
@@ -247,7 +248,7 @@ function OrganisationInner() {
             <div className="fi2t-org-regional__map-content">
               <img
                 className="fi2t-org-regional__map-icon"
-                src="/images/org-map-icon.svg?v=2"
+                src={publicUrl('/images/org-map-icon.svg?v=2')}
                 alt=""
                 aria-hidden="true"
               />

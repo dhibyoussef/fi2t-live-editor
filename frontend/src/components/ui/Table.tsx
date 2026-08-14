@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Loader2 } from 'lucide-react'
 
 interface Column<T> {
@@ -19,6 +20,7 @@ interface TableProps<T> {
 }
 
 export function Table<T>({ columns, data, loading, emptyText, rowKey, onRowClick }: TableProps<T>) {
+  const { t } = useTranslation()
   const getKey = (row: T, i: number): string | number =>
     rowKey ? rowKey(row) : i
   return (
@@ -44,7 +46,7 @@ export function Table<T>({ columns, data, loading, emptyText, rowKey, onRowClick
                 <td colSpan={columns.length}>
                   <div className="gc-table-loading">
                     <Loader2 size={18} style={{ animation: 'spinGold 0.7s linear infinite' }} />
-                    <span>Chargement...</span>
+                    <span>{t('loading')}</span>
                   </div>
                 </td>
               </tr>
@@ -57,7 +59,7 @@ export function Table<T>({ columns, data, loading, emptyText, rowKey, onRowClick
                       <path d="M3 9h18M9 21V9" />
                     </svg>
                   </div>
-                  <p>{emptyText ?? 'Aucun résultat'}</p>
+                  <p>{emptyText ?? t('forms.empty')}</p>
                 </td>
               </tr>
             ) : (

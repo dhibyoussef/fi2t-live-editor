@@ -18,7 +18,7 @@ export const CONTACT_DEFAULTS: Record<string, string> = {
     {
       icon: '/images/icon-email.svg',
       label: 'Email',
-      value: 'contact@fi2t.tn',
+      value: 'contact.fi2t@fit-tunisie.org',
     },
   ]),
 

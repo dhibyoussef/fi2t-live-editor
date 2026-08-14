@@ -29,7 +29,7 @@ export default function EditableHeroBackground({
   return (
     <>
       <img
-        src={src || fallback}
+        src={src}
         alt={altText || alt}
         className={className}
         data-cms-page={page}

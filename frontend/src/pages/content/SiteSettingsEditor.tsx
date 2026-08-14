@@ -40,7 +40,7 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
     { section: 'settings', key: 'address', label: 'Adresse (réglages)', type: 'textarea', locales: ['fr', 'en', 'ar'], placeholder: 'Résidence MERIEM - Appt N°2 - Les Berges du Lac 1, 1053 Tunis' },
     { section: 'settings', key: 'phone', label: 'Téléphone principal', type: 'text', locales: ['_all'], placeholder: '+216 29 710 507' },
     { section: 'settings', key: 'phone_secondary', label: 'Téléphone secondaire', type: 'text', locales: ['_all'], placeholder: '+216 24 940 022' },
-    { section: 'settings', key: 'email', label: 'E-mail principal', type: 'text', locales: ['_all'], placeholder: 'contact@fit-tunisie.org' },
+    { section: 'settings', key: 'email', label: 'E-mail principal', type: 'text', locales: ['_all'], placeholder: 'contact.fi2t@fit-tunisie.org' },
   ],
   social: [
     { section: 'settings', key: 'social_facebook', label: 'Facebook', type: 'text', locales: ['_all'], placeholder: 'https://facebook.com/...' },
@@ -53,7 +53,7 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
     { section: 'footer', key: 'address', label: 'Adresse (pied de page)', type: 'textarea', locales: ['fr', 'en', 'ar'] },
     { section: 'footer', key: 'phone_1', label: 'Téléphone 1', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: '+216 29 710 507' },
     { section: 'footer', key: 'phone_2', label: 'Téléphone 2', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: '+216 24 940 022' },
-    { section: 'footer', key: 'email', label: 'E-mail (pied de page)', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'contact@fit-tunisie.org' },
+    { section: 'footer', key: 'email', label: 'E-mail (pied de page)', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'contact.fi2t@fit-tunisie.org' },
     { section: 'footer', key: 'newsletter', label: 'Texte newsletter', type: 'text', locales: ['fr', 'en', 'ar'], placeholder: 'Restez informé de nos dernières initiatives.' },
   ],
   forms: [
@@ -63,8 +63,8 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
       label: 'Contact — e-mail de réception',
       type: 'text',
       locales: ['_all'],
-      placeholder: 'contact@votre-domaine.tn',
-      help: 'Reçoit les messages du formulaire /contact.',
+      placeholder: 'contact.fi2t@fit-tunisie.org',
+      help: 'Boîte officielle Contact. Pas une adresse personnelle.',
     },
     {
       section: 'forms',
@@ -72,8 +72,8 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
       label: 'Newsletter — e-mail de réception',
       type: 'text',
       locales: ['_all'],
-      placeholder: 'newsletter@votre-domaine.tn',
-      help: 'Reçoit les inscriptions newsletter du pied de page.',
+      placeholder: 'newsletter.fi2t@fit-tunisie.org',
+      help: 'Boîte officielle Newsletter (pied de page).',
     },
     {
       section: 'forms',
@@ -81,8 +81,8 @@ const FIELD_DEFS: Record<Tab, { section: string; key: string; label: string; typ
       label: 'Demande d’adhésion — e-mail de réception',
       type: 'text',
       locales: ['_all'],
-      placeholder: 'adhesion@votre-domaine.tn',
-      help: 'Reçoit les demandes du formulaire /fiche-adhesion.',
+      placeholder: 'adhesion.fi2t@fit-tunisie.org',
+      help: 'Boîte officielle Fiche adhésion.',
     },
   ],
 }
@@ -138,9 +138,9 @@ function valuesToBlocks(values: Values): { page: string; section: string; key: s
   return blocks
 }
 
-export default function SiteSettingsEditor() {
+export default function SiteSettingsEditor({ initialTab = 'identity' }: { initialTab?: Tab }) {
   const qc = useQueryClient()
-  const [tab, setTab] = useState<Tab>('identity')
+  const [tab, setTab] = useState<Tab>(initialTab)
   const [values, setValues] = useState<Values>({})
   const [dirty, setDirty] = useState(false)
 
@@ -214,9 +214,9 @@ export default function SiteSettingsEditor() {
           {tab === 'forms' && (
             <div className="site-settings-field" style={{ marginBottom: '1.25rem' }}>
               <p className="wc-page-settings-help" style={{ margin: 0 }}>
-                Indiquez où recevoir les soumissions (Contact, Newsletter, Adhésion).
-                L’envoi utilise la config mail Laravel (<code>MAIL_*</code> dans <code>backend/.env</code>).
-                Avec <code>MAIL_MAILER=log</code>, les messages sont écrits dans les logs.
+                L’<strong>expéditeur</strong> affiché est la boîte officielle (Contact / Adhésion / Newsletter).
+                Le <strong>destinataire</strong> de test est votre inbox perso. Chaque envoi est aussi enregistré dans Administration → Formulaires.
+                Envoi via Brevo (pas de SMTP installé sur le serveur).
               </p>
             </div>
           )}

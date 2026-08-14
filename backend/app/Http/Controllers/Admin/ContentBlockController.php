@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\CmsPage;
 use App\Models\CmsSection;
 use App\Models\ContentBlock;
+use App\Services\ContentLocaleSync;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ContentBlockController extends Controller
 {
@@ -152,7 +154,7 @@ class ContentBlockController extends Controller
     }
 
     /** POST /admin/content/bulk — upsert multiple blocks */
-    public function bulk(Request $request): JsonResponse
+    public function bulk(Request $request, ContentLocaleSync $sync): JsonResponse
     {
         $data = $request->validate([
             'blocks'              => 'required|array|min:1',
@@ -166,12 +168,30 @@ class ContentBlockController extends Controller
             'blocks.*.sort_order' => 'nullable|integer|min:0',
             'blocks.*.sync_locales' => 'nullable|array',
             'blocks.*.sync_locales.*' => 'string|max:10',
+            'source_locale'       => 'nullable|string|max:10',
+            'translate'           => 'sometimes|boolean',
         ]);
 
+        $sourceLocale = strtolower((string) ($data['source_locale'] ?? ''));
+        if (! in_array($sourceLocale, ['fr', 'en', 'ar'], true)) {
+            $sourceLocale = '';
+        }
+        $translate = $data['translate'] ?? true;
+
+        $previous = [];
         $saved = [];
         foreach ($data['blocks'] as $block) {
             $locale = $block['locale'] ?? '_all';
             $type = $block['type'] ?? 'text';
+            $id = $block['page']."\0".$block['section']."\0".$block['key']."\0".$locale;
+            if (! array_key_exists($id, $previous)) {
+                $previous[$id] = ContentBlock::query()
+                    ->where('page', $block['page'])
+                    ->where('section', $block['section'])
+                    ->where('key', $block['key'])
+                    ->where('locale', $locale)
+                    ->value('value');
+            }
 
             $saved[] = ContentBlock::updateOrCreate(
                 [
@@ -199,31 +219,6 @@ class ContentBlockController extends Controller
                     ->delete();
             }
 
-            // Live Editor "apply to all languages": fan-out text/json to every locale.
-            if (! empty($block['sync_locales']) && is_array($block['sync_locales'])) {
-                foreach ($block['sync_locales'] as $syncLocale) {
-                    $syncLocale = (string) $syncLocale;
-                    if ($syncLocale === '' || $syncLocale === $locale) {
-                        continue;
-                    }
-                    ContentBlock::updateOrCreate(
-                        [
-                            'page'    => $block['page'],
-                            'section' => $block['section'],
-                            'key'     => $block['key'],
-                            'locale'  => $syncLocale,
-                        ],
-                        [
-                            'type'       => $type,
-                            'value'      => $block['value'] ?? null,
-                            'label'      => $block['label'] ?? null,
-                            'sort_order' => $block['sort_order'] ?? 0,
-                        ]
-                    );
-                }
-            }
-
-            // Keep block title (label) in sync across all locale rows
             if (! empty($block['label'])) {
                 ContentBlock::query()
                     ->where('page', $block['page'])
@@ -233,7 +228,62 @@ class ContentBlockController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Contenu mis à jour', 'count' => count($saved)]);
+        // The saved language is canonical: add/delete/reorder/text apply to FR+EN+AR.
+        $propagate = [];
+        foreach ($data['blocks'] as $block) {
+            $locale = $block['locale'] ?? '_all';
+            if (! in_array($locale, ['fr', 'en', 'ar'], true)) {
+                continue;
+            }
+            if ($sourceLocale !== '' && $locale !== $sourceLocale) {
+                continue;
+            }
+            $id = $block['page'].'|'.$block['section'].'|'.$block['key'];
+            $propagate[$id] = $block;
+        }
+
+        set_time_limit(180);
+        foreach ($propagate as $block) {
+            $locale = $block['locale'] ?? 'fr';
+            $pid = $block['page']."\0".$block['section']."\0".$block['key']."\0".$locale;
+            $sync->propagateSaved(
+                $block['page'],
+                $block['section'],
+                $block['key'],
+                $block['type'] ?? 'text',
+                $locale,
+                $previous[$pid] ?? null,
+                $block['value'] ?? null,
+                $block['label'] ?? null,
+                (int) ($block['sort_order'] ?? 0),
+                $translate,
+            );
+        }
+
+        return response()->json(['message' => 'Contenu mis à jour (FR / EN / AR)', 'count' => count($saved)]);
+    }
+
+    /** POST /admin/content/sync-locales — same structure in FR / EN / AR. */
+    public function syncLocales(Request $request, ContentLocaleSync $sync): JsonResponse
+    {
+        $data = $request->validate([
+            'page' => 'nullable|string|max:80',
+            'translate' => 'sometimes|boolean',
+            'deep' => 'sometimes|boolean',
+            'source_locale' => 'nullable|string|max:10',
+        ]);
+        set_time_limit(180);
+        $result = $sync->sync(
+            $data['page'] ?? null,
+            $data['translate'] ?? true,
+            $data['deep'] ?? false,
+            $data['source_locale'] ?? 'fr',
+        );
+
+        return response()->json([
+            'message' => 'Structure alignée FR / EN / AR',
+            ...$result,
+        ]);
     }
 
     /** POST /admin/content/upload-image */
@@ -241,10 +291,60 @@ class ContentBlockController extends Controller
     {
         $request->validate($this->imageUploadRules());
 
-        $path = $request->file('image')->store('website', 'public');
-        $url  = '/storage/' . $path;
+        $file = $request->file('image');
+        $ext  = strtolower((string) ($file->guessExtension() ?: $file->getClientOriginalExtension() ?: 'jpg'));
+        if (! in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'bmp'], true)) {
+            $ext = 'jpg';
+        }
+        $name = Str::random(40).'.'.$ext;
 
-        return response()->json(['url' => $url, 'path' => $path]);
+        $dirs = array_values(array_unique(array_filter([
+            public_path('storage/website'),
+            storage_path('app/public/website'),
+            '/var/www/html/backend/storage/app/public/website',
+            '/var/www/html/backend/public/storage/website',
+        ])));
+
+        $primary = null;
+        foreach ($dirs as $dir) {
+            if (! is_dir($dir) && ! @mkdir($dir, 0755, true) && ! is_dir($dir)) {
+                continue;
+            }
+            $primary = $dir;
+            break;
+        }
+        if (! $primary) {
+            return response()->json(['message' => 'Dossier images inaccessible.'], 500);
+        }
+
+        if (! $file->move($primary, $name)) {
+            return response()->json(['message' => 'Impossible d’enregistrer l’image.'], 500);
+        }
+
+        $src = $primary.DIRECTORY_SEPARATOR.$name;
+        @chmod($src, 0644);
+        $bytes = @file_get_contents($src);
+        if ($bytes === false || ! is_file($src)) {
+            return response()->json(['message' => 'Le fichier n’a pas pu être écrit sur le serveur.'], 500);
+        }
+
+        foreach ($dirs as $dir) {
+            if ($dir === $primary) {
+                continue;
+            }
+            if (! is_dir($dir) && ! @mkdir($dir, 0755, true) && ! is_dir($dir)) {
+                continue;
+            }
+            $copy = $dir.DIRECTORY_SEPARATOR.$name;
+            if (@file_put_contents($copy, $bytes) !== false) {
+                @chmod($copy, 0644);
+            }
+        }
+
+        return response()->json([
+            'url'  => '/storage/website/'.$name,
+            'path' => 'website/'.$name,
+        ]);
     }
 
     /** DELETE /admin/content/image */

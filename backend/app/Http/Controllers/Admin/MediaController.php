@@ -12,9 +12,9 @@ class MediaController extends Controller
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'mediable_type' => 'required|string',
+            'mediable_type' => ['required', 'string', 'in:App\\Models\\CmsPage,App\\Models\\CmsSection,App\\Models\\ContentBlock'],
             'mediable_id'   => 'required|integer|min:1',
-            'url'           => 'required|string|max:1000',
+            'url'           => ['required', 'string', 'max:1000', 'regex:/^(https:\/\/|\/(?:storage|images|fi2t)\/)/i'],
             'alt_text'      => 'nullable|string|max:255',
             'type'          => 'in:IMAGE,VIDEO',
             'sort_order'    => 'integer|min:0',

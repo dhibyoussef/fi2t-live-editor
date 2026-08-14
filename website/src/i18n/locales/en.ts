@@ -185,7 +185,7 @@ export default {
     nav: {
       home: 'Home',
       about: 'Who we are',
-      organisation: 'Organisation',
+      organisation: 'Organization',
       news: 'News',
       news_short: 'News',
       apropos: 'About',

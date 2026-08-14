@@ -81,6 +81,11 @@ class AuthController extends Controller
 
     public function changePassword(Request $request): JsonResponse
     {
+        $token = $request->user()?->currentAccessToken();
+        if ($token && ! $token->can('cms-admin')) {
+            return response()->json(['message' => 'Accès refusé.'], 403);
+        }
+
         $request->validate([
             'current_password' => 'required|string|current_password',
             'password'         => 'required|string|min:8|confirmed',

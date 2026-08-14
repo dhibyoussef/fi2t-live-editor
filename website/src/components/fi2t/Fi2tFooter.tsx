@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FormEvent, useState } from 'react'
 import EditableText from '../../cms/EditableText'
-import { ContentProvider } from '../../cms/ContentProvider'
+import { ContentProvider, useContentBlock } from '../../cms/ContentProvider'
 import EditToolbar from '../../cms/EditToolbar'
 import { useEditMode } from '../../cms/EditModeProvider'
 import api from '../../api/client'
@@ -39,6 +39,21 @@ function SocialIcon({ name }: { name: 'facebook' | 'x' | 'linkedin' }) {
   )
 }
 
+function FooterEmail() {
+  const { value } = useContentBlock('global', 'footer.email', {
+    type: 'text',
+    fallback: 'contact.fi2t@fit-tunisie.org',
+  })
+  const email = String(value || '').trim()
+  const href = email.includes('@') ? `mailto:${email}` : undefined
+
+  return (
+    <a href={href} className="fi2t-footer__email">
+      <EditableText page="global" blockKey="footer.email" as="span" fallback="contact.fi2t@fit-tunisie.org" />
+    </a>
+  )
+}
+
 function FooterInner() {
   const { t } = useTranslation()
   const { isEditMode } = useEditMode()
@@ -50,7 +65,7 @@ function FooterInner() {
     if (!newsletterEmail.trim()) return
     setNewsletterStatus('loading')
     try {
-      await api.post('/forms/newsletter', { email: newsletterEmail.trim() })
+      await api.post('/forms/newsletter', { email: newsletterEmail.trim(), website: '' })
       setNewsletterStatus('ok')
       setNewsletterEmail('')
     } catch {
@@ -102,9 +117,7 @@ function FooterInner() {
               <EditableText page="global" blockKey="footer.phone_2" as="span" fallback="+216 24 940 022" />
             </a>
           </div>
-          <a href="mailto:contact@fit-tunisie.org" className="fi2t-footer__email">
-            <EditableText page="global" blockKey="footer.email" as="span" fallback="contact@fit-tunisie.org" />
-          </a>
+          <FooterEmail />
         </div>
 
         <div className="fi2t-footer__newsletter-wrap">
@@ -116,6 +129,10 @@ function FooterInner() {
             fallback="Restez informé de nos dernières initiatives."
           />
           <form className="fi2t-footer__newsletter" onSubmit={submitNewsletter}>
+            <label className="fi2t-page-hero__title--sr" aria-hidden="true">
+              Site web
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+            </label>
             <input
               type="email"
               name="email"

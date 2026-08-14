@@ -6,13 +6,21 @@ const API_ORIGIN = (import.meta.env.VITE_API_ORIGIN as string | undefined)
 /** Résout une URL d'image CMS pour l'aperçu admin (chemins relatifs → site public) */
 export function resolvePreviewImageUrl(url: string | undefined | null): string {
   if (!url?.trim()) return ''
-  if (/^(https?:|data:)/i.test(url)) return url
+  if (/^(https?:|data:|blob:)/i.test(url)) return url
+  const prefix = (import.meta.env.VITE_APP_PREFIX as string | undefined)?.replace(/\/$/, '') || ''
   if (url.startsWith('/storage/')) {
-    const prefix = (import.meta.env.VITE_APP_PREFIX as string | undefined)?.replace(/\/$/, '')
     if (prefix) return `${prefix}${url}`
     return `${API_ORIGIN}${url}`
   }
-  if (url.startsWith('/')) return `${WEBSITE_ORIGIN}${url}`
+  if (url.startsWith('/')) {
+    const origin = WEBSITE_ORIGIN.replace(/\/$/, '')
+    if (origin && !/localhost|127\.0\.0\.1/.test(origin)) {
+      if (prefix && origin.endsWith(prefix)) return `${origin}${url}`
+      return `${origin}${url}`
+    }
+    if (prefix) return `${prefix}${url}`
+    return `${origin}${url}`
+  }
   return url
 }
 

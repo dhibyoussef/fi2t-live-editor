@@ -1,4 +1,4 @@
-import { Plus, FileText, Globe, Home, Layout, Trash2, Newspaper } from 'lucide-react'
+import { Plus, FileText, Globe, Home, Layout, Trash2 } from 'lucide-react'
 
 export interface CmsPage {
   slug: string
@@ -16,11 +16,6 @@ const TEMPLATE_ICON: Record<string, typeof FileText> = {
   default: FileText,
 }
 
-function iconForPage(page: CmsPage) {
-  if (page.slug === 'articles') return Newspaper
-  return TEMPLATE_ICON[page.template] ?? FileText
-}
-
 interface Props {
   pages: CmsPage[]
   activeSlug: string
@@ -29,7 +24,15 @@ interface Props {
   onDeletePage?: (page: CmsPage) => void
 }
 
-export default function PageSidebar({ pages, activeSlug, onSelect, onAddPage, onDeletePage }: Props) {
+export default function PageSidebar({
+  pages,
+  activeSlug,
+  onSelect,
+  onAddPage,
+  onDeletePage,
+}: Props) {
+  const staticPages = pages.filter(p => p.slug !== 'articles')
+
   return (
     <aside className="wc-pages-sidebar">
       <div className="wc-pages-sidebar-head">
@@ -38,14 +41,15 @@ export default function PageSidebar({ pages, activeSlug, onSelect, onAddPage, on
           <Plus size={14} />
         </button>
       </div>
+      <p className="wc-pages-sidebar-hint">
+        Pages statiques (accueil, Actualités, contact…). Les articles sont dans l’onglet Articles.
+      </p>
       <nav className="wc-pages-list">
-        {pages.map(page => {
-          const Icon = iconForPage(page)
+        {staticPages.map(page => {
+          const Icon = TEMPLATE_ICON[page.template] ?? FileText
+          const active = activeSlug === page.slug
           return (
-            <div
-              key={page.slug}
-              className={`wc-page-item${activeSlug === page.slug ? ' active' : ''}`}
-            >
+            <div key={page.slug} className={`wc-page-item${active ? ' active' : ''}`}>
               <button type="button" className="wc-page-item-btn" onClick={() => onSelect(page.slug)}>
                 <Icon size={14} />
                 <span className="wc-page-item-title">{page.title}</span>

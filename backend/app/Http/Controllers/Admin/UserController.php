@@ -14,13 +14,19 @@ class UserController extends Controller
 {
     public function index(Request $request): AnonymousResourceCollection
     {
+        $search = trim((string) $request->input('search', ''));
         $users = User::with('roles')
-            ->when($request->search, fn ($q) => $q->where('first_name', 'like', "%{$request->search}%")
-                ->orWhere('last_name', 'like', "%{$request->search}%")
-                ->orWhere('email', 'like', "%{$request->search}%"))
+            ->when($search !== '', function ($q) use ($search) {
+                $like = '%'.$search.'%';
+                $q->where(function ($inner) use ($like) {
+                    $inner->where('first_name', 'like', $like)
+                        ->orWhere('last_name', 'like', $like)
+                        ->orWhere('email', 'like', $like);
+                });
+            })
             ->when($request->role, fn ($q) => $q->role($request->role))
             ->latest()
-            ->paginate($request->per_page ?? 15);
+            ->paginate(min(50, max(1, (int) ($request->per_page ?? 15))));
 
         return UserResource::collection($users);
     }
